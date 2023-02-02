@@ -1,0 +1,12 @@
+{
+  "uuid": "Battery-Health-Charging@maniacx.github.com",
+  "name": "Battery Health Charging",
+  "description": "Control For Asus Battery Charging Limit at 60%, 80%, 100%",
+  "url": "https://github.com/maniacx/Battery-Health-Charging",
+  "shell-version": [
+    "43"
+  ],
+  "version": 1,
+  "settings-schema": "org.gnome.shell.extensions.Battery-Health-Charging",
+  "gettext-domain": "Battery-Health-Charging@maniacx.github.com"
+}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="Battery-Health-Charging@maniacx.github.com">
+  <template class="BHC_Preferences" parent="AdwPreferencesPage">
+    <child>
+      <object class="AdwPreferencesGroup" id="settings_group">
+        <property name="title" translatable="yes">Settings</property>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">Icon Style Type</property>
+            <property name="subtitle" translatable="yes">Choose the style of the icon</property>
+            <property name="activatable-widget">icon_style_mode</property>
+            <child>
+              <object class="GtkDropDown" id="icon_style_mode">
+                <property name="valign">center</property>
+                <property name="model">icon_style_model</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow" id="show_system_indicator_row">
+            <property name="title" translatable="yes">Show System Indicator</property>
+            <property name="subtitle" translatable="yes">Shows icon in system tray.</property>
+            <property name="activatable-widget">show_system_indicator</property>
+            <child>
+              <object class="GtkSwitch" id="show_system_indicator">
+                <property name="valign">center</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwPreferencesGroup" id="service_installer">
+        <property name="title" translatable="yes">Installation</property>
+        <child>
+          <object class="AdwExpanderRow" id="override_background">
+            <property name="title" translatable="yes">Install / Remove Service</property>
+            <child>               
+              <object class="AdwActionRow" id="install_service_explaination_row">
+                <property name="subtitle" translatable="yes">For Battery Health Charging Extension to function properly, we need to install this systemd service. &lt;b&gt;Root privileges needed&lt;/b&gt; to install or remove this service.&#xA;&#xA;This systemd service will change the file permissions of &lt;b&gt;&lt;i&gt;charge_control_end_threshold&lt;/i&gt;&lt;/b&gt; on every boot, which is needed for this extension to work.&#xA;&#xA;&lt;b&gt;Install&lt;/b&gt; this service and continue using this extension.&#xA;&#xA;&lt;b&gt;Remove&lt;/b&gt; this service before uninstalling this extension.</property>
+              </object>
+            </child>
+            <child>
+              <object class="AdwActionRow" id="install_service_row">
+                <child>
+                  <object class="GtkButton" id="install_service">
+                    <property name="halign">start</property>
+                    <property name="valign">center</property>
+                    <property name="margin-start">6</property>
+                    <child>
+                      <object class="AdwButtonContent" id="install_service_button"></object>
+                    </child>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>          
+      </object>
+    </child>
+  </template>
+  <object class="GtkStringList" id="icon_style_model">
+    <items>
+      <item translatable="yes">Symbol and Percentage</item>
+      <item translatable="yes">Symbols Only</item>
+      <item translatable="yes">Percentage Highlighted</item>
+    </items>
+  </object>
+</interface>
