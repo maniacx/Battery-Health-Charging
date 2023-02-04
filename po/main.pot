@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-02 14:14-0600\n"
+"POT-Creation-Date: 2023-02-04 04:25-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,65 +17,73 @@ msgstr ""
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:38
-msgid "Battery Health Charging"
-msgstr ""
-
-#: extension.js:41
-msgid "Battery Health Charging Gnome Extension Error"
-msgstr ""
-
-#: extension.js:51
-msgid "Log Out Now!"
-msgstr ""
-
-#: extension.js:62
-msgid "Successful Install. Please save your work and logout."
-msgstr ""
-
-#: extension.js:73
+#: extension.js:39
 msgid "Charger Limit"
 msgstr ""
 
-#: extension.js:76 extension.js:143
+#: extension.js:42 extension.js:109
 msgid "Battery Health Mode"
 msgstr ""
 
-#: extension.js:108
+#: extension.js:74
 msgid "Full Capacity Mode  (100%)"
 msgstr ""
 
-#: extension.js:110
+#: extension.js:76
 msgid "Balanced Mode  (80%)"
 msgstr ""
 
-#: extension.js:112
+#: extension.js:78
 msgid "Maximum Lifespan Mode  (60%)"
 msgstr ""
 
-#: extension.js:238
+#: extension.js:197
+msgid "Installation Successfull. Please save your work and logout."
+msgstr ""
+
+#: extension.js:199
+msgid "Uninstallation Successfull."
+msgstr ""
+
+#: extension.js:211
 msgid ""
 "Unsupported Gnome version.\n"
 "This extension is compatible only with Gnome version 43 and above."
 msgstr ""
 
-#: extension.js:241
+#: extension.js:214
 msgid ""
 "Unsupported device.\n"
 "Cannot detect sysfs path : charge_control_end_threshold."
 msgstr ""
 
-#: extension.js:244
+#: extension.js:217
 msgid ""
 "Unsupported device.\n"
 "Detected sysfs path : charge_control_start_threshold."
 msgstr ""
 
-#: extension.js:247
+#: extension.js:220
 msgid ""
 "Battery Health service not installed.\n"
 "Please install required service from Battery Health Charging extension "
 "settings under Install / Remove Service"
+msgstr ""
+
+#: extension.js:238 extension.js:241
+msgid "Battery Health Charging"
+msgstr ""
+
+#: extension.js:244
+msgid "Battery Health Charging Gnome Extension Error"
+msgstr ""
+
+#: extension.js:254
+msgid "Log Out"
+msgstr ""
+
+#: extension.js:260 preference.ui:6
+msgid "Settings"
 msgstr ""
 
 #: prefs.js:38 prefs.js:68
@@ -84,10 +92,6 @@ msgstr ""
 
 #: prefs.js:41 prefs.js:71
 msgid "Install"
-msgstr ""
-
-#: preference.ui:6
-msgid "Settings"
 msgstr ""
 
 #: preference.ui:9
