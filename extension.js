@@ -5,6 +5,7 @@ const Gio = imports.gi.Gio;
 const PopupMenu = imports.ui.popupMenu;
 const Main = imports.ui.main;
 const MessageTray = imports.ui.messageTray;
+const Util = imports.misc.util;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const QuickSettings = imports.ui.quickSettings;
@@ -50,6 +51,10 @@ function notify(msg, action = '') {
     if (action === 'logout') {
         notification.addAction(_('Log Out Now!'), () => {
             Driver.spawnCommandLine('gnome-session-quit');
+        });
+    } else {
+        notification.addAction(_('Settings'), () => {
+            Util.spawn(['gnome-extensions', 'prefs', Me.metadata.uuid]);
         });
     }
     source.showNotification(notification);
