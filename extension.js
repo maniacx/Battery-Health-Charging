@@ -185,12 +185,17 @@ class ChargeLimit {
 
     enable() {
         this._settings = ExtensionUtils.getSettings();
+        let flag = false;
 
         // on installation service completion notify to logout
         this._settings.connectObject(
             'changed::install-service', () => {
-                if (this._settings.get_boolean('install-service'))
-                    this.notify(_('Installation Successfull. Please save your work and logout.'), 'installed');
+                if (flag) {
+                    if (this._settings.get_boolean('install-service'))
+                        this.notify(_('Installation Successfull. Please save your work and logout.'), 'installed');
+                    else
+                        this.notify(_('Uninstallation Successfull.'), 'uninstalled');
+                }
             },
             this
         );
@@ -198,6 +203,7 @@ class ChargeLimit {
         // Check for incompatibilities and notify errors
         switch (Driver.checkInCompatibility()) {
         case 0:
+            flag = true;
             break;
         case 1:
             this.notify(_('Unsupported Gnome version.\nThis extension is compatible only with Gnome version 43 and above.'));
@@ -211,6 +217,7 @@ class ChargeLimit {
         case 4:
             this.notify(_('Battery Health service not installed.\n' +
                 'Please install required service from Battery Health Charging extension settings under Install / Remove Service'), 'show-settings');
+            flag = true;
             return;
         }
 
@@ -225,9 +232,12 @@ class ChargeLimit {
 
     notify(msg, action = '') {
         let notifyTitle, notifyIcon;
-        if (action === 'logout') {
+        if (action === 'installed') {
             notifyTitle = _('Battery Health Charging');
             notifyIcon =  'system-reboot-symbolic';
+        } else if (action === 'uninstalled') {
+            notifyTitle = _('Battery Health Charging');
+            notifyIcon = 'success-symbolic';
         } else {
             notifyTitle = _('Battery Health Charging Gnome Extension Error');
             notifyIcon = 'mail-mark-junk-symbolic';
@@ -238,7 +248,7 @@ class ChargeLimit {
         let notification = new MessageTray.Notification(source, notifyTitle, msg);
         notification.setUrgency(3);
         notification.setTransient(true);
-        if (action === 'logout') {
+        if (action === 'installed') {
             notification.addAction(_('Log Out Now!'), () => {
                 Driver.spawnCommandLine('gnome-session-quit');
             });
@@ -266,4 +276,3 @@ function init() {
     ExtensionUtils.initTranslations(Me.metadata.uuid);
     return new ChargeLimit();
 }
-
