@@ -210,7 +210,7 @@ class ChargeLimit {
             return;
         case 4:
             this.notify(_('Battery Health service not installed.\n' +
-                'Please install required service from Battery Health Charging extension settings under Install / Remove Service'));
+                'Please install required service from Battery Health Charging extension settings under Install / Remove Service'), 'show-settings');
             return;
         }
 
@@ -242,7 +242,7 @@ class ChargeLimit {
             notification.addAction(_('Log Out Now!'), () => {
                 Driver.spawnCommandLine('gnome-session-quit');
             });
-        } else {
+        } else if (action === 'show-settings') {
             notification.addAction(_('Settings'), () => {
                 Util.spawn(['gnome-extensions', 'prefs', Me.metadata.uuid]);
             });
