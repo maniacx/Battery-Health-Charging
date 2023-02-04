@@ -252,6 +252,8 @@ class ChargeLimit {
             notification.addAction(_('Log Out Now!'), () => {
                 Driver.spawnCommandLine('gnome-session-quit');
             });
+        } else if (action === 'uninstalled') {
+            notification.setUrgency(2);
         } else if (action === 'show-settings') {
             notification.addAction(_('Settings'), () => {
                 Util.spawn(['gnome-extensions', 'prefs', Me.metadata.uuid]);
