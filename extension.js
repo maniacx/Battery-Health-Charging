@@ -5,6 +5,7 @@ const Gio = imports.gi.Gio;
 const PopupMenu = imports.ui.popupMenu;
 const Main = imports.ui.main;
 const MessageTray = imports.ui.messageTray;
+const SystemActions = imports.misc.systemActions;
 const Util = imports.misc.util;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
@@ -184,6 +185,7 @@ class ChargeLimit {
     }
 
     enable() {
+        this._systemActions = new SystemActions.getDefault();
         this._settings = ExtensionUtils.getSettings();
         let flag = false;
 
@@ -249,8 +251,8 @@ class ChargeLimit {
         notification.setUrgency(3);
         notification.setTransient(true);
         if (action === 'installed') {
-            notification.addAction(_('Log Out Now!'), () => {
-                Driver.spawnCommandLine('gnome-session-quit');
+            notification.addAction(_('Log Out'), () => {
+                this._systemActions.activateLogout();
             });
         } else if (action === 'uninstalled') {
             notification.setUrgency(2);
@@ -267,6 +269,7 @@ class ChargeLimit {
         if (this._indicator != null)
             this._indicator.destroy();
         this._settings = null;
+        this._systemActions = null;
         this._indicator = null;
     }
 }
