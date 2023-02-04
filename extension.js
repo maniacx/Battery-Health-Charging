@@ -27,46 +27,6 @@ function getIcon(iconName) {
     return Gio.icon_new_for_string(`${ICONS_FOLDER}/${iconName}.svg`);
 }
 
-/**
- * Notification on Gnome shell. Types error and logout
- *
- * @param {string} msg notification message
- * @param {string} action default('') = notification error, logout = logout
- */
-function notify(msg, action = '') {
-    let notifyTitle, notifyIcon;
-    if (action === 'logout') {
-        notifyTitle = _('Battery Health Charging');
-        notifyIcon =  'system-reboot-symbolic';
-    } else {
-        notifyTitle = _('Battery Health Charging Gnome Extension Error');
-        notifyIcon = 'mail-mark-junk-symbolic';
-    }
-    let source = new MessageTray.Source(Me.metadata.name, notifyIcon);
-    Main.messageTray.add(source);
-
-    let notification = new MessageTray.Notification(source, notifyTitle, msg);
-    notification.setUrgency(3);
-    notification.setTransient(true);
-    if (action === 'logout') {
-        notification.addAction(_('Log Out Now!'), () => {
-            Driver.spawnCommandLine('gnome-session-quit');
-        });
-    } else {
-        notification.addAction(_('Settings'), () => {
-            Util.spawn(['gnome-extensions', 'prefs', Me.metadata.uuid]);
-        });
-    }
-    source.showNotification(notification);
-}
-
-/**
- * Triggers logout notification
- */
-function notifyLogout() {
-    notify(_('Successful Install. Please save your work and logout.'), 'logout');
-}
-
 const SystemMenuToggle = GObject.registerClass(
     class SystemMenuToggle extends QuickSettings.QuickMenuToggle {
         _init() {
@@ -230,7 +190,7 @@ class ChargeLimit {
         this._settings.connectObject(
             'changed::install-service', () => {
                 if (this._settings.get_boolean('install-service'))
-                    notifyLogout();
+                    this.notify(_('Installation Successfull. Please save your work and logout.'), 'installed');
             },
             this
         );
@@ -240,16 +200,16 @@ class ChargeLimit {
         case 0:
             break;
         case 1:
-            notify(_('Unsupported Gnome version.\nThis extension is compatible only with Gnome version 43 and above.'));
+            this.notify(_('Unsupported Gnome version.\nThis extension is compatible only with Gnome version 43 and above.'));
             return;
         case 2:
-            notify(_('Unsupported device.\nCannot detect sysfs path : charge_control_end_threshold.'));
+            this.notify(_('Unsupported device.\nCannot detect sysfs path : charge_control_end_threshold.'));
             return;
         case 3:
-            notify(_('Unsupported device.\nDetected sysfs path : charge_control_start_threshold.'));
+            this.notify(_('Unsupported device.\nDetected sysfs path : charge_control_start_threshold.'));
             return;
         case 4:
-            notify(_('Battery Health service not installed.\n' +
+            this.notify(_('Battery Health service not installed.\n' +
                 'Please install required service from Battery Health Charging extension settings under Install / Remove Service'));
             return;
         }
@@ -261,6 +221,33 @@ class ChargeLimit {
             Driver.setLimit(currentLimitSettings);
 
         this._indicator = new SystemMenu();
+    }
+
+    notify(msg, action = '') {
+        let notifyTitle, notifyIcon;
+        if (action === 'logout') {
+            notifyTitle = _('Battery Health Charging');
+            notifyIcon =  'system-reboot-symbolic';
+        } else {
+            notifyTitle = _('Battery Health Charging Gnome Extension Error');
+            notifyIcon = 'mail-mark-junk-symbolic';
+        }
+        let source = new MessageTray.Source(Me.metadata.name, notifyIcon);
+        Main.messageTray.add(source);
+
+        let notification = new MessageTray.Notification(source, notifyTitle, msg);
+        notification.setUrgency(3);
+        notification.setTransient(true);
+        if (action === 'logout') {
+            notification.addAction(_('Log Out Now!'), () => {
+                Driver.spawnCommandLine('gnome-session-quit');
+            });
+        } else {
+            notification.addAction(_('Settings'), () => {
+                Util.spawn(['gnome-extensions', 'prefs', Me.metadata.uuid]);
+            });
+        }
+        source.showNotification(notification);
     }
 
     disable() {
