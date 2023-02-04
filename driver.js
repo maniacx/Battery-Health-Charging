@@ -6,7 +6,6 @@ const Config = imports.misc.config;
 
 const DEVICE_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold';
 const INVALID_DEVICE_PATH = '/sys/class/power_supply/BAT0/charge_control_start_threshold';
-const SERVICE_PATH = '/etc/systemd/system/mani-battery-health-charging.service';
 
 /**
  * Test file/direcory exists
@@ -221,4 +220,3 @@ function runUninstaller() {
         logError(e);
     }
 }
-
