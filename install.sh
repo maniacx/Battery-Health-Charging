@@ -9,6 +9,7 @@ gnome-extensions pack ./ \
     --extra-source=resources/ \
     --extra-source=driver.js \
     --extra-source=preference.ui \
+    --podir=po \
     --force \
 
 echo "Installing extension..."
