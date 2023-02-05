@@ -13,12 +13,13 @@ Similar to the MyAsus app on Windows OS, you can set the limit to stop charging 
 **3. Maximum Lifespan Mode (60%):** Stops charging when power is above 60% and resumes charging when power is below 58%. This mode is recommended when the Notebook is always powered by AC adapter.
 
 ### Compatibilty
-Compatible with Asus laptops and probably other which has only `charging stop threshold` and doesn't have `charging start threshhold`.
+Compatible with Asus laptops and probably other which has only `charging stop threshold`.
+Also compatible with device which also has `charging start threshhold`.
 You can simply check if your device is compatible, and have the following node by executing this in terminal.
 ```bash
 ls /sys/class/power_supply/BAT0
 ```
-If you find a node name `charge_control_end_threshold` and do not find node named `charge_control_start_threshold` then this extension is compatible with your device.
+If you find do not find a node/file named `charge_control_end_threshold` then this extension device is not compatible with your device.
 ### Installation from git
 ```bash
     git clone https://github.com/maniacx/Battery-Health-Charging
@@ -37,6 +38,9 @@ The service installed is a simple systemd service which on every boot changes th
 ### Translation
 Open the po/main.pot file on github. It contains each text displayed in this  extension. Submit the information by raising an issue for this repo on github. You can also compile the translation file yourself and test it on your device.
 Tutorial: https://youtu.be/WmWjwE-M4D0
+
+### Bugs/Issue
+Raise an issue on github.
 
 ### Credits
 I am not a developer. I made this extension for my Asus Viwobook. I have look into codes of other extension to create this extension. Credits to them.
