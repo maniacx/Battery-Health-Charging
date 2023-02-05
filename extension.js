@@ -56,6 +56,7 @@ const SystemMenuToggle = GObject.registerClass(
         _updatePanelMenu() {
             const iconStyle = this._settings.get_int('icon-style-type');
             let iconType = 'mix';
+            let currentLimitValueString = _('Error');
             switch (iconStyle) {
             case 0:
                 iconType = 'mix';
@@ -77,7 +78,13 @@ const SystemMenuToggle = GObject.registerClass(
                 getIcon(`charging-limit-${iconType}-80-symbolic`));
             let menuItem60 = new PopupMenu.PopupImageMenuItem(_('Maximum Lifespan Mode  (60%)'),
                 getIcon(`charging-limit-${iconType}-60-symbolic`));
-            let currentLimitItem = new PopupMenu.PopupMenuItem(_(`Charging Limit is set to ${currentLimitValue}`));
+            if (currentLimitValue === 100)
+                currentLimitValueString = _('100');
+            else if (currentLimitValue === 80)
+                currentLimitValueString = _('80');
+            else if (currentLimitValue === 60)
+                currentLimitValueString = _('60');
+            let currentLimitItem = new PopupMenu.PopupMenuItem(_(`Charging Limit is set to ${currentLimitValueString}`));
             currentLimitItem.sensitive = false;
             currentLimitItem.active = false;
 
