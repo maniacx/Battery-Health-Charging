@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-05 02:18-0600\n"
+"POT-Creation-Date: 2023-02-05 16:35-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,11 +21,11 @@ msgstr ""
 msgid "Charger Limit"
 msgstr ""
 
-#: extension.js:42 extension.js:117
+#: extension.js:42 extension.js:119
 msgid "Battery Health Mode"
 msgstr ""
 
-#: extension.js:60
+#: extension.js:60 extension.js:89
 msgid "Error"
 msgstr ""
 
@@ -42,61 +42,69 @@ msgid "Maximum Lifespan Mode  (60%)"
 msgstr ""
 
 #: extension.js:83
-msgid "100"
+msgid "Charging Limit is set to 100%"
 msgstr ""
 
 #: extension.js:85
-msgid "80"
+msgid "Charging Limit is set to 80%"
 msgstr ""
 
 #: extension.js:87
-msgid "60"
+msgid "Charging Limit is set to 60%"
 msgstr ""
 
-#: extension.js:88
-msgid "Charging Limit is set to "
+#: extension.js:206
+msgid "Charging will stop at 100%. Charging will start at 98%."
 msgstr ""
 
-#: extension.js:205
+#: extension.js:208
+msgid "Charging will stop at 80%. Charging will start at 78%."
+msgstr ""
+
+#: extension.js:210
+msgid "Charging will stop at 60%. Charging will start at 58%."
+msgstr ""
+
+#: extension.js:215
 msgid "Installation Successfull. Please save your work and logout."
 msgstr ""
 
-#: extension.js:207
+#: extension.js:217
 msgid "Uninstallation Successfull."
 msgstr ""
 
-#: extension.js:219
+#: extension.js:229
 msgid ""
 "Unsupported Gnome version.\n"
 "This extension is compatible only with Gnome version 43 and above."
 msgstr ""
 
-#: extension.js:222
+#: extension.js:232
 msgid ""
 "Unsupported device.\n"
 "Cannot detect sysfs path : charge_control_end_threshold."
 msgstr ""
 
-#: extension.js:225
+#: extension.js:235
 msgid ""
 "Battery Health service not installed.\n"
 "Please install required service from Battery Health Charging extension "
 "settings under Install / Remove Service"
 msgstr ""
 
-#: extension.js:252 extension.js:255
+#: extension.js:262 extension.js:265 extension.js:268
 msgid "Battery Health Charging"
 msgstr ""
 
-#: extension.js:258
+#: extension.js:271
 msgid "Battery Health Charging Gnome Extension Error"
 msgstr ""
 
-#: extension.js:268
+#: extension.js:281
 msgid "Log Out"
 msgstr ""
 
-#: extension.js:274 preference.ui:6
+#: extension.js:287 preference.ui:6
 msgid "Settings"
 msgstr ""
 
@@ -135,12 +143,12 @@ msgstr ""
 #: preference.ui:42
 msgid ""
 "For Battery Health Charging Extension to function properly, we need to "
-"install this systemd service. <b>Root privileges needed</b> to install or "
-"remove this service.\n"
+"install this systemd service. <b>Root privileges are required</b> to install "
+"or remove this service.\n"
 "\n"
-"This systemd service will change the file permissions of "
-"<b><i>charge_control_end_threshold</i></b> on every boot, which is needed "
-"for this extension to work.\n"
+"This systemd service will change the file permissions of charging threshold "
+"on sysfs filesystem on every boot, which is needed for this extension to "
+"work.\n"
 "\n"
 "<b>Install</b> this service and continue using this extension.\n"
 "\n"
