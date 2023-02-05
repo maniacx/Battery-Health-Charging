@@ -80,12 +80,14 @@ const SystemMenuToggle = GObject.registerClass(
             let menuItem60 = new PopupMenu.PopupImageMenuItem(_('Maximum Lifespan Mode  (60%)'),
                 getIcon(`charging-limit-${iconType}-60-symbolic`));
             if (currentLimitValue === 100)
-                currentLimitValueString = _('100');
+                currentLimitValueString = _('Charging Limit is set to 100%');
             else if (currentLimitValue === 80)
-                currentLimitValueString = _('80');
+                currentLimitValueString = _('Charging Limit is set to 80%');
             else if (currentLimitValue === 60)
-                currentLimitValueString = _('60');
-            let currentLimitItem = new PopupMenu.PopupMenuItem(_('Charging Limit is set to ' + currentLimitValueString));
+                currentLimitValueString = _('Charging Limit is set to 60%');
+            else
+                currentLimitValueString = _('Error');
+            let currentLimitItem = new PopupMenu.PopupMenuItem(currentLimitValueString);
             currentLimitItem.sensitive = false;
             currentLimitItem.active = false;
 
