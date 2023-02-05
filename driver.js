@@ -142,6 +142,16 @@ function checkAuthRequired() {
     } catch (e) {
         // Ignored
     }
+    if(isChargeStartThresholdSupported()) {
+        try {
+            const f = Gio.File.new_for_path(START_THRESHOLD_DEVICE_PATH);
+            const info = f.query_info('access::*', Gio.FileQueryInfoFlags.NONE, null);
+            if (!info.get_attribute_boolean('access::can-write'))
+                return true;
+        } catch (e) {
+            // Ignored
+        }
+    }
     return false;
 }
 
