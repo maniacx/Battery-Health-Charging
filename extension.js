@@ -199,8 +199,16 @@ class ChargeLimit {
         this._settings = ExtensionUtils.getSettings();
         let flag = false;
 
-        // on service installation/removal completion notify to logout
+        // notify on service installation/removal and limit change.
         this._settings.connectObject(
+            'changed::charger-limit', () => {
+                if (this._settings.get_int('charger-limit') === 100)
+                    this.notify(_('Charging will stop at 100%. Charging will start at 98%.'), 'changed');
+                else if (this._settings.get_int('charger-limit') === 80)
+                    this.notify(_('Charging will stop at 80%. Charging will start at 78%.'), 'changed');
+                else if (this._settings.get_int('charger-limit') === 60)
+                    this.notify(_('Charging will stop at 60%. Charging will start at 58%.'), 'changed');
+            },
             'changed::install-service', () => {
                 if (flag) {
                     if (this._settings.get_boolean('install-service'))
@@ -256,6 +264,9 @@ class ChargeLimit {
         } else if (action === 'uninstalled') {
             notifyTitle = _('Battery Health Charging');
             notifyIcon = 'success-symbolic';
+        } else if (action === 'changed') {
+            notifyTitle = _('Battery Health Charging');
+            notifyIcon = 'battery-level-100-charged-symbolic';
         } else {
             notifyTitle = _('Battery Health Charging Gnome Extension Error');
             notifyIcon = 'mail-mark-junk-symbolic';
@@ -270,7 +281,7 @@ class ChargeLimit {
             notification.addAction(_('Log Out'), () => {
                 this._systemActions.activateLogout();
             });
-        } else if (action === 'uninstalled') {
+        } else if ((action === 'uninstalled') || (action === 'changed')) {
             notification.setUrgency(2);
         } else if (action === 'show-settings') {
             notification.addAction(_('Settings'), () => {
