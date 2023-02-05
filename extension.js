@@ -40,6 +40,7 @@ const SystemMenuToggle = GObject.registerClass(
             this.gicon = getIcon('charging-limit-mix-100-symbolic');
             this.toggleMode = false;
             this.menu.setHeader(getIcon('charging-limit-mix-100-symbolic'), _('Battery Health Mode'));
+            this._isChargeStartThresholdSupported = Driver.isChargeStartThresholdSupported();
             this._updatePanelMenu();
 
             this._settings.connectObject(
@@ -70,7 +71,7 @@ const SystemMenuToggle = GObject.registerClass(
             }
 
             this._chargeLimitSection.removeAll();
-            let currentLimitValue = Driver.getCurrentLimitValue();
+            let currentLimitValue = Driver.getCurrentEndLimitValue();
             let currentLimitSettings = this._settings.get_int('charger-limit');
             let menuItem100 = new PopupMenu.PopupImageMenuItem(_('Full Capacity Mode  (100%)'),
                 getIcon(`charging-limit-${iconType}-100-symbolic`));
@@ -91,19 +92,19 @@ const SystemMenuToggle = GObject.registerClass(
             menuItem100.connect('activate', () => {
                 Main.overview.hide();
                 Main.panel.closeQuickSettings();
-                Driver.setLimit('100');
+                Driver.setLimit('100', this._isChargeStartThresholdSupported);
                 this._settings.set_int('charger-limit', 100);
             });
             menuItem80.connect('activate', () => {
                 Main.overview.hide();
                 Main.panel.closeQuickSettings();
-                Driver.setLimit('80');
+                Driver.setLimit('80', this._isChargeStartThresholdSupported);
                 this._settings.set_int('charger-limit', 80);
             });
             menuItem60.connect('activate', () => {
                 Main.overview.hide();
                 Main.panel.closeQuickSettings();
-                Driver.setLimit('60');
+                Driver.setLimit('60', this._isChargeStartThresholdSupported);
                 this._settings.set_int('charger-limit', 60);
             });
 
@@ -196,7 +197,7 @@ class ChargeLimit {
         this._settings = ExtensionUtils.getSettings();
         let flag = false;
 
-        // on installation service completion notify to logout
+        // on service installation/removal completion notify to logout
         this._settings.connectObject(
             'changed::install-service', () => {
                 if (flag) {
@@ -221,21 +222,27 @@ class ChargeLimit {
             this.notify(_('Unsupported device.\nCannot detect sysfs path : charge_control_end_threshold.'));
             return;
         case 3:
-            this.notify(_('Unsupported device.\nDetected sysfs path : charge_control_start_threshold.'));
-            return;
-        case 4:
             this.notify(_('Battery Health service not installed.\n' +
                 'Please install required service from Battery Health Charging extension settings under Install / Remove Service'), 'show-settings');
             flag = true;
             return;
         }
 
-        // On enable restore the previously set charging limit value.
-        let currentLimitValue = Driver.getCurrentLimitValue();
-        let currentLimitSettings = this._settings.get_int('charger-limit');
-        if (currentLimitValue !== currentLimitSettings)
-            Driver.setLimit(currentLimitSettings);
+        this._isChargeStartThresholdSupported = Driver.isChargeStartThresholdSupported();
 
+        // On enable restore the previously set charging limit value.
+        let currentStartLimitValue = false;
+        let currentEndLimitValue = Driver.getCurrentEndLimitValue();
+        if (this._isChargeStartThresholdSupported)
+            currentStartLimitValue = Driver.getCurrentStartLimitValue();
+
+        let currentLimitSettings = this._settings.get_int('charger-limit');
+        if (currentEndLimitValue !== currentLimitSettings) {
+            Driver.setLimit(currentLimitSettings, this._isChargeStartThresholdSupported);
+        } else if (this._isChargeStartThresholdSupported) {
+            if ((currentStartLimitValue + 2) !==  currentLimitSettings)
+                Driver.setLimit(currentLimitSettings, this._isChargeStartThresholdSupported);
+        }
         this._indicator = new SystemMenu();
     }
 

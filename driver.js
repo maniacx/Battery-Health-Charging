@@ -4,8 +4,9 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Config = imports.misc.config;
 
-const DEVICE_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold';
-const INVALID_DEVICE_PATH = '/sys/class/power_supply/BAT0/charge_control_start_threshold';
+const END_THRESHOLD_DEVICE_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold';
+const START_THRESHOLD_DEVICE_PATH = '/sys/class/power_supply/BAT0/charge_control_start_threshold';
+
 
 /**
  * Test file/direcory exists
@@ -58,12 +59,33 @@ function readFileInt(path) {
 }
 
 /**
- * Read value from Device Path
+ * Checks if charge_control_start_threshold exist.
  *
- * @returns {number|null} Return a integer or null
+ * @returns {boolean} true if supported
  */
-function getCurrentLimitValue() {
-    return readFileInt(DEVICE_PATH);
+function isChargeStartThresholdSupported() {
+    if (fileExists(START_THRESHOLD_DEVICE_PATH))
+        return true;
+
+    return false;
+}
+
+/**
+ * Read value from charge_control_end_threshold
+ *
+ * @returns {number} Return a integer.
+ */
+function getCurrentEndLimitValue() {
+    return readFileInt(END_THRESHOLD_DEVICE_PATH);
+}
+
+/**
+ * Read value from charge_control_start_threshold
+ *
+ * @returns {number} Return a integer.
+ */
+function getCurrentStartLimitValue() {
+    return readFileInt(START_THRESHOLD_DEVICE_PATH);
 }
 
 /**
@@ -83,10 +105,17 @@ function spawnCommandLine(command) {
  * Set limit in sysfs
  *
  * @param {string} value Limit Value
+ * @param endValue
+ * @param chargeStartThresholdSupported
  */
-function setLimit(value) {
-    let cmd = `bash -c "echo ${value} > ${DEVICE_PATH}\n"`;
-    spawnCommandLine(cmd);
+function setLimit(endValue, chargeStartThresholdSupported) {
+    let chargeEndThresholdCmd = `bash -c "echo ${endValue} > ${END_THRESHOLD_DEVICE_PATH}\n"`;
+    spawnCommandLine(chargeEndThresholdCmd);
+    if (chargeStartThresholdSupported) {
+        let startValue = parseInt(endValue) - 2;
+        let chargeStartThresholdCmd = `bash -c "echo ${startValue} > ${START_THRESHOLD_DEVICE_PATH}\n"`;
+        spawnCommandLine(chargeStartThresholdCmd);
+    }
 }
 
 /**
@@ -106,7 +135,7 @@ function isSupported() {
  */
 function checkAuthRequired() {
     try {
-        const f = Gio.File.new_for_path(DEVICE_PATH);
+        const f = Gio.File.new_for_path(END_THRESHOLD_DEVICE_PATH);
         const info = f.query_info('access::*', Gio.FileQueryInfoFlags.NONE, null);
         if (!info.get_attribute_boolean('access::can-write'))
             return true;
@@ -125,15 +154,12 @@ function checkInCompatibility() {
     if (!isSupported())
         return 1;
 
-    if (!fileExists(DEVICE_PATH))
+    if (!fileExists(END_THRESHOLD_DEVICE_PATH))
         return 2;
-
-    if (fileExists(INVALID_DEVICE_PATH))
-        return 3;
 
     if (checkAuthRequired()) {
         ExtensionUtils.getSettings().set_boolean('install-service', false);
-        return 4;
+        return 3;
     }
 
     return 0;
@@ -143,19 +169,26 @@ function checkInCompatibility() {
  * Triggered by "Install" Button in Prefs to install systemd services
  * Run the following command asynchronously to copy systemd service, enable it and start it.
  * Only on successful execution, toggle the button "Remove". Following command are executed.
- *    # cp -f (current extension directory)/resources/mani-battery-health-charging
+ *    # cp -f (current extension directory)/resources/mani-battery-health-charging-0|1
  *                                  /etc/systemd/system/mani-battery-health-charging.service
  *    # chmod 644 /etc/systemd/system/mani-battery-health-charging.service
  *    # systemctl enable mani-battery-health-charging.service
  *    # systemctl start mani-battery-health-charging.service
  */
 function runInstaller() {
+    let copyCmd = '';
     let addCmd = ' && ';
-    let copyCmd = `cp -f ${Me.dir.get_child('resources').get_child('mani-battery-health-charging').get_path()
-    } /etc/systemd/system/mani-battery-health-charging.service`;
     let chmodCmd = 'chmod 644 /etc/systemd/system/mani-battery-health-charging.service';
     let sysCtlEnableCmd = 'systemctl enable mani-battery-health-charging.service';
     let sysCtlStartCmd = 'systemctl start mani-battery-health-charging.service';
+    if (isChargeStartThresholdSupported) {
+        copyCmd = `cp -f ${Me.dir.get_child('resources').get_child('mani-battery-health-charging-1').get_path()
+        } /etc/systemd/system/mani-battery-health-charging.service`;
+    } else {
+        copyCmd = `cp -f ${Me.dir.get_child('resources').get_child('mani-battery-health-charging-0').get_path()
+        } /etc/systemd/system/mani-battery-health-charging.service`;
+    }
+
     let argv = [
         'pkexec',
         '/bin/sh',
