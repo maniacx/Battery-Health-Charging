@@ -85,7 +85,7 @@ const SystemMenuToggle = GObject.registerClass(
                 currentLimitValueString = _('80');
             else if (currentLimitValue === 60)
                 currentLimitValueString = _('60');
-            let currentLimitItem = new PopupMenu.PopupMenuItem(_(`Charging Limit is set to ${currentLimitValueString}`));
+            let currentLimitItem = new PopupMenu.PopupMenuItem(_('Charging Limit is set to ' + currentLimitValueString));
             currentLimitItem.sensitive = false;
             currentLimitItem.active = false;
 

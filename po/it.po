@@ -7,14 +7,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-05 01:42-0600\n"
-"PO-Revision-Date: 2023-02-05 01:56-0600\n"
+"POT-Creation-Date: 2023-02-05 02:18-0600\n"
+"PO-Revision-Date: 2023-02-05 02:21-0600\n"
 "Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: extension.js:39
 msgid "Charger Limit"
@@ -50,6 +51,10 @@ msgstr ""
 
 #: extension.js:87
 msgid "60"
+msgstr ""
+
+#: extension.js:88
+msgid "Charging Limit is set to "
 msgstr ""
 
 #: extension.js:205
