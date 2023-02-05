@@ -37,9 +37,9 @@
         <child>
           <object class="AdwExpanderRow" id="override_background">
             <property name="title" translatable="yes">Install / Remove Service</property>
-            <child>               
+            <child>
               <object class="AdwActionRow" id="install_service_explaination_row">
-                <property name="subtitle" translatable="yes">For Battery Health Charging Extension to function properly, we need to install this systemd service. &lt;b&gt;Root privileges needed&lt;/b&gt; to install or remove this service.&#xA;&#xA;This systemd service will change the file permissions of &lt;b&gt;&lt;i&gt;charge_control_end_threshold&lt;/i&gt;&lt;/b&gt; on every boot, which is needed for this extension to work.&#xA;&#xA;&lt;b&gt;Install&lt;/b&gt; this service and continue using this extension.&#xA;&#xA;&lt;b&gt;Remove&lt;/b&gt; this service before uninstalling this extension.</property>
+                <property name="subtitle" translatable="yes">For Battery Health Charging Extension to function properly, we need to install this systemd service. &lt;b&gt;Root privileges are required&lt;/b&gt; to install or remove this service.&#xA;&#xA;This systemd service will change the file permissions of charging threshold on sysfs filesystem on every boot, which is needed for this extension to work.&#xA;&#xA;&lt;b&gt;Install&lt;/b&gt; this service and continue using this extension.&#xA;&#xA;&lt;b&gt;Remove&lt;/b&gt; this service before uninstalling this extension.</property>
               </object>
             </child>
             <child>
@@ -57,7 +57,7 @@
               </object>
             </child>
           </object>
-        </child>          
+        </child>
       </object>
     </child>
   </template>
