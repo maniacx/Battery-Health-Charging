@@ -181,7 +181,7 @@ function runInstaller() {
     let chmodCmd = 'chmod 644 /etc/systemd/system/mani-battery-health-charging.service';
     let sysCtlEnableCmd = 'systemctl enable mani-battery-health-charging.service';
     let sysCtlStartCmd = 'systemctl start mani-battery-health-charging.service';
-    if (isChargeStartThresholdSupported) {
+    if (isChargeStartThresholdSupported()) {
         copyCmd = `cp -f ${Me.dir.get_child('resources').get_child('mani-battery-health-charging-1').get_path()
         } /etc/systemd/system/mani-battery-health-charging.service`;
     } else {
