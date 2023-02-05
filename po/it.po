@@ -1,0 +1,160 @@
+# ITALIAN TRANSLATION.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# ALBANO BATTISTELLA <ALBANO_BATTISTELLA@HOTMAIL.COM>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-02-02 14:14-0600\n"
+"PO-Revision-Date: 2023-02-04 13:40+0100\n"
+"Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
+"Language-Team: Italian <LL@li.org>\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: extension.js:38
+msgid "Battery Health Charging"
+msgstr "Stato di Carica della Batteria"
+
+#: extension.js:41
+msgid "Battery Health Charging Gnome Extension Error"
+msgstr ""
+
+#: extension.js:51
+msgid "Log Out Now!"
+msgstr "Disconnettiti ora!"
+
+#: extension.js:62
+msgid "Successful Install. Please save your work and logout."
+msgstr "Installazione riuscita. Salva il tuo lavoro e disconnettiti."
+
+#: extension.js:73
+msgid "Charger Limit"
+msgstr "Limite di carica"
+
+#: extension.js:76 extension.js:143
+msgid "Battery Health Mode"
+msgstr "Modalità di carica della batteria"
+
+#: extension.js:108
+msgid "Full Capacity Mode  (100%)"
+msgstr "Modalità piena capacità (100%)"
+
+#: extension.js:110
+msgid "Balanced Mode  (80%)"
+msgstr "Modalità bilanciata (80%)"
+
+#: extension.js:112
+msgid "Maximum Lifespan Mode  (60%)"
+msgstr "Modalità durata massima (60%)"
+
+#: extension.js:238
+msgid ""
+"Unsupported Gnome version.\n"
+"This extension is compatible only with Gnome version 43 and above."
+msgstr ""
+"Questa estensione è compatibile solo con Gnome versione 43 e successive."
+
+#: extension.js:241
+msgid ""
+"Unsupported device.\n"
+"Cannot detect sysfs path : charge_control_end_threshold."
+msgstr ""
+"Dispositivo non supportato.\n"
+"Impossibile rilevare il percorso sysfs: charge_control_end_threshold."
+
+#: extension.js:244
+msgid ""
+"Unsupported device.\n"
+"Detected sysfs path : charge_control_start_threshold."
+msgstr ""
+"Dispositivo non supportato.\n"
+"Percorso sysfs rilevato: charge_control_start_threshold."
+
+#: extension.js:247
+msgid ""
+"Battery Health service not installed.\n"
+"Please install required service from Battery Health Charging extension "
+"settings under Install / Remove Service"
+msgstr ""
+"Servizio Stato batteria non installato.\n"
+"Si prega di installare il servizio richiesto dall'estensione Battery Health Charging "
+"impostazioni in Installa / Rimuovi servizio"
+
+#: prefs.js:38 prefs.js:68
+msgid "Remove"
+msgstr "Rimuovi"
+
+#: prefs.js:41 prefs.js:71
+msgid "Install"
+msgstr "Installa"
+
+#: preference.ui:6
+msgid "Settings"
+msgstr "Impostazioni"
+
+#: preference.ui:9
+msgid "Icon Style Type"
+msgstr "Tipo di stile dell'icona"
+
+#: preference.ui:10
+msgid "Choose the style of the icon"
+msgstr "Scegli lo stile dell'icona"
+
+#: preference.ui:22
+msgid "Show System Indicator"
+msgstr "Mostra indicatore di sistema"
+
+#: preference.ui:23
+msgid "Shows icon in system tray."
+msgstr "Mostra l'icona nella barra delle applicazioni."
+
+#: preference.ui:36
+msgid "Installation"
+msgstr "Installazione"
+
+#: preference.ui:39
+msgid "Install / Remove Service"
+msgstr "Installa / Rimuovi servizio"
+
+#: preference.ui:42
+msgid ""
+"For Battery Health Charging Extension to function properly, we need to "
+"install this systemd service. <b>Root privileges needed</b> to install or "
+"remove this service.\n"
+"\n"
+"This systemd service will change the file permissions of "
+"<b><i>charge_control_end_threshold</i></b> on every boot, which is needed "
+"for this extension to work.\n"
+"\n"
+"<b>Install</b> this service and continue using this extension.\n"
+"\n"
+"<b>Remove</b> this service before uninstalling this extension."
+msgstr ""
+"Affinché Battery Health Charging Extension funzioni correttamente, dobbiamo "
+"installare questo servizio systemd. <b>Privilegi di root necessari</b> per l'installazione o "
+"rimuovi questo servizio.\n"
+"\n"
+"Questo servizio systemd cambierà i permessi dei file di "
+"<b><i>charge_control_end_threshold</i></b> a ogni avvio, necessario "
+"affinché questa estensione funzioni.\n"
+"\n"
+"<b>Installa</b> questo servizio e continua a utilizzare questa estensione.\n"
+"\n"
+"<b>Rimuovi</b> questo servizio prima di disinstallare questa estensione."
+
+#: preference.ui:66
+msgid "Symbol and Percentage"
+msgstr "Simbolo e Percentuale"
+
+#: preference.ui:67
+msgid "Symbols Only"
+msgstr "Solo simboli"
+
+#: preference.ui:68
+msgid "Percentage Highlighted"
+msgstr "Percentuale evidenziata"
