@@ -7,13 +7,6 @@ const Config = imports.misc.config;
 const END_THRESHOLD_DEVICE_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold';
 const START_THRESHOLD_DEVICE_PATH = '/sys/class/power_supply/BAT0/charge_control_start_threshold';
 
-
-/**
- * Test file/direcory exists
- *
- * @param {string} path File/directory path
- * @returns {boolean}
- */
 function fileExists(path) {
     try {
         const f = Gio.File.new_for_path(path);
@@ -23,12 +16,6 @@ function fileExists(path) {
     }
 }
 
-/**
- * Read file contents
- *
- * @param {string} path Path of file
- * @returns {string} File contents
- */
 function readFile(path) {
     try {
         const f = Gio.File.new_for_path(path);
@@ -40,12 +27,6 @@ function readFile(path) {
     }
 }
 
-/**
- * Read integer value from file
- *
- * @param {string} path Path of file
- * @returns {number|null} Return a integer or null
- */
 function readFileInt(path) {
     try {
         const v = readFile(path);
@@ -58,11 +39,6 @@ function readFileInt(path) {
     }
 }
 
-/**
- * Checks if charge_control_start_threshold exist.
- *
- * @returns {boolean} true if supported
- */
 function isChargeStartThresholdSupported() {
     if (fileExists(START_THRESHOLD_DEVICE_PATH))
         return true;
@@ -70,29 +46,14 @@ function isChargeStartThresholdSupported() {
     return false;
 }
 
-/**
- * Read value from charge_control_end_threshold
- *
- * @returns {number} Return a integer.
- */
 function getCurrentEndLimitValue() {
     return readFileInt(END_THRESHOLD_DEVICE_PATH);
 }
 
-/**
- * Read value from charge_control_start_threshold
- *
- * @returns {number} Return a integer.
- */
 function getCurrentStartLimitValue() {
     return readFileInt(START_THRESHOLD_DEVICE_PATH);
 }
 
-/**
- * Execute bash command asynchronously
- *
- * @param {string} command Command-Line
- */
 function spawnCommandLine(command) {
     try {
         GLib.spawn_command_line_async(command);
@@ -101,38 +62,21 @@ function spawnCommandLine(command) {
     }
 }
 
-/**
- * Set limit in sysfs
- *
- * @param {string} value Limit Value
- * @param endValue
- * @param chargeStartThresholdSupported
- */
-function setLimit(endValue, chargeStartThresholdSupported) {
+function setEndThresholdLimit(endValue) {
     let chargeEndThresholdCmd = `bash -c "echo ${endValue} > ${END_THRESHOLD_DEVICE_PATH}\n"`;
     spawnCommandLine(chargeEndThresholdCmd);
-    if (chargeStartThresholdSupported) {
-        let startValue = parseInt(endValue) - 2;
-        let chargeStartThresholdCmd = `bash -c "echo ${startValue} > ${START_THRESHOLD_DEVICE_PATH}\n"`;
-        spawnCommandLine(chargeStartThresholdCmd);
-    }
 }
 
-/**
- *  Gets Gnome version
- *
- * @returns {number} Gnome Version
- */
+function setStartThresholdLimit(startValue) {
+    let chargeStartThresholdCmd = `bash -c "echo ${startValue} > ${START_THRESHOLD_DEVICE_PATH}\n"`;
+    spawnCommandLine(chargeStartThresholdCmd);
+}
+
 function isSupported() {
     let currentVersion = Config.PACKAGE_VERSION.split('.');
     return currentVersion[0] >= 43;
 }
 
-/**
- * Test if file is writable
- *
- * @returns {boolean} false file writable
- */
 function checkAuthRequired() {
     try {
         const f = Gio.File.new_for_path(END_THRESHOLD_DEVICE_PATH);
@@ -142,7 +86,7 @@ function checkAuthRequired() {
     } catch (e) {
         // Ignored
     }
-    if(isChargeStartThresholdSupported()) {
+    if (isChargeStartThresholdSupported()) {
         try {
             const f = Gio.File.new_for_path(START_THRESHOLD_DEVICE_PATH);
             const info = f.query_info('access::*', Gio.FileQueryInfoFlags.NONE, null);
@@ -155,11 +99,6 @@ function checkAuthRequired() {
     return false;
 }
 
-/**
- * Checks for different incompatibilities and notifies accordingly
- *
- * @returns {number} type of non-compabitilty
- */
 function checkInCompatibility() {
     if (!isSupported())
         return 1;

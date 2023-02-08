@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="Battery-Health-Charging@maniacx.github.com">
   <template class="BHC_Preferences" parent="AdwPreferencesPage">
+    <property name="name">General</property>
+    <property name="title" translatable="yes">General</property>
+    <property name="icon-name">view-list-symbolic</property>
     <child>
       <object class="AdwPreferencesGroup" id="settings_group">
         <property name="title" translatable="yes">Settings</property>
         <child>
-          <object class="AdwActionRow">
+          <object class="AdwActionRow" id="icon_style_mode_row">
             <property name="title" translatable="yes">Icon Style Type</property>
-            <property name="subtitle" translatable="yes">Choose the style of the icon</property>
+            <property name="subtitle" translatable="yes">In threshold settings, if &lt;b&gt;Customise&lt;/b&gt; mode is selected, icon type will switch to &lt;b&gt;Symbols Only&lt;/b&gt; and this option will be disabled.</property>
             <property name="activatable-widget">icon_style_mode</property>
             <child>
               <object class="GtkDropDown" id="icon_style_mode">
@@ -35,24 +38,30 @@
       <object class="AdwPreferencesGroup" id="service_installer">
         <property name="title" translatable="yes">Installation</property>
         <child>
-          <object class="AdwExpanderRow" id="override_background">
+          <object class="AdwActionRow">
             <property name="title" translatable="yes">Install / Remove Service</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="subtitle" translatable="yes">For Battery Health Charging Extension to function properly, we need to install this systemd service. &lt;b&gt;Root privileges are required&lt;/b&gt; to install or remove this service.
+
+This systemd service will change the file permissions of charging threshold on sysfs filesystem on every boot, which is needed for this extension to work.
+
+&lt;b&gt;Install&lt;/b&gt; this service and continue using this extension.
+
+&lt;b&gt;Remove&lt;/b&gt; this service before uninstalling this extension.</property>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
             <child>
-              <object class="AdwActionRow" id="install_service_explaination_row">
-                <property name="subtitle" translatable="yes">For Battery Health Charging Extension to function properly, we need to install this systemd service. &lt;b&gt;Root privileges are required&lt;/b&gt; to install or remove this service.&#xA;&#xA;This systemd service will change the file permissions of charging threshold on sysfs filesystem on every boot, which is needed for this extension to work.&#xA;&#xA;&lt;b&gt;Install&lt;/b&gt; this service and continue using this extension.&#xA;&#xA;&lt;b&gt;Remove&lt;/b&gt; this service before uninstalling this extension.</property>
-              </object>
-            </child>
-            <child>
-              <object class="AdwActionRow" id="install_service_row">
+              <object class="GtkButton" id="install_service">
+                <property name="halign">start</property>
+                <property name="valign">center</property>
+                <property name="margin-start">6</property>
                 <child>
-                  <object class="GtkButton" id="install_service">
-                    <property name="halign">start</property>
-                    <property name="valign">center</property>
-                    <property name="margin-start">6</property>
-                    <child>
-                      <object class="AdwButtonContent" id="install_service_button"></object>
-                    </child>
-                  </object>
+                  <object class="AdwButtonContent" id="install_service_button" />
                 </child>
               </object>
             </child>

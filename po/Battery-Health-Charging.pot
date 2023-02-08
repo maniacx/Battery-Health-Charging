@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-05 16:35-0600\n"
+"POT-Creation-Date: 2023-02-08 03:51-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,130 +17,125 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: extension.js:39
+#: extension.js:33
 msgid "Charger Limit"
 msgstr ""
 
-#: extension.js:42 extension.js:119
+#: extension.js:36 extension.js:212
 msgid "Battery Health Mode"
 msgstr ""
 
-#: extension.js:60 extension.js:89
-msgid "Error"
+#: extension.js:39 threshold.ui:39
+msgid "Full Capacity Mode"
 msgstr ""
 
-#: extension.js:76
-msgid "Full Capacity Mode  (100%)"
+#: extension.js:40 threshold.ui:139
+msgid "Balanced Mode"
 msgstr ""
 
-#: extension.js:78
-msgid "Balanced Mode  (80%)"
+#: extension.js:41 threshold.ui:240
+msgid "Maximum Lifespan Mode"
 msgstr ""
 
-#: extension.js:80
-msgid "Maximum Lifespan Mode  (60%)"
+#: extension.js:167
+#, javascript-format
+msgid ""
+"Device will stop charging at %d%%\n"
+"Device will start charging at %d%%"
 msgstr ""
 
-#: extension.js:83
-msgid "Charging Limit is set to 100%"
+#: extension.js:169 extension.js:307
+#, javascript-format
+msgid "Charging Limit is set to %d%%"
 msgstr ""
 
-#: extension.js:85
-msgid "Charging Limit is set to 80%"
+#: extension.js:305
+#, javascript-format
+msgid "Charge thresholds are set to %d / %d %%"
 msgstr ""
 
-#: extension.js:87
-msgid "Charging Limit is set to 60%"
-msgstr ""
-
-#: extension.js:206
-msgid "Charging will stop at 100%. Charging will start at 98%."
-msgstr ""
-
-#: extension.js:208
-msgid "Charging will stop at 80%. Charging will start at 78%."
-msgstr ""
-
-#: extension.js:210
-msgid "Charging will stop at 60%. Charging will start at 58%."
-msgstr ""
-
-#: extension.js:215
+#: extension.js:313
 msgid "Installation Successfull. Please save your work and logout."
 msgstr ""
 
-#: extension.js:217
+#: extension.js:315
 msgid "Uninstallation Successfull."
 msgstr ""
 
-#: extension.js:229
+#: extension.js:326
 msgid ""
 "Unsupported Gnome version.\n"
 "This extension is compatible only with Gnome version 43 and above."
 msgstr ""
 
-#: extension.js:232
+#: extension.js:329
 msgid ""
 "Unsupported device.\n"
 "Cannot detect sysfs path : charge_control_end_threshold."
 msgstr ""
 
-#: extension.js:235
+#: extension.js:332
 msgid ""
 "Battery Health service not installed.\n"
 "Please install required service from Battery Health Charging extension "
-"settings under Install / Remove Service"
+"settings under Install / Remove Service."
 msgstr ""
 
-#: extension.js:262 extension.js:265 extension.js:268
+#: extension.js:374 extension.js:377 extension.js:380
 msgid "Battery Health Charging"
 msgstr ""
 
-#: extension.js:271
+#: extension.js:383
 msgid "Battery Health Charging Gnome Extension Error"
 msgstr ""
 
-#: extension.js:281
+#: extension.js:393
 msgid "Log Out"
 msgstr ""
 
-#: extension.js:287 preference.ui:6
+#: extension.js:399 preference.ui:9
 msgid "Settings"
 msgstr ""
 
-#: prefs.js:38 prefs.js:68
+#: prefs.js:77
 msgid "Remove"
 msgstr ""
 
-#: prefs.js:41 prefs.js:71
+#: prefs.js:80
 msgid "Install"
 msgstr ""
 
-#: preference.ui:9
+#: preference.ui:5
+msgid "General"
+msgstr ""
+
+#: preference.ui:12
 msgid "Icon Style Type"
 msgstr ""
 
-#: preference.ui:10
-msgid "Choose the style of the icon"
+#: preference.ui:13
+msgid ""
+"In threshold settings, if <b>Customise</b> mode is selected, icon type will "
+"switch to <b>Symbols Only</b> and this option will be disabled."
 msgstr ""
 
-#: preference.ui:22
+#: preference.ui:25
 msgid "Show System Indicator"
 msgstr ""
 
-#: preference.ui:23
+#: preference.ui:26
 msgid "Shows icon in system tray."
 msgstr ""
 
-#: preference.ui:36
+#: preference.ui:39
 msgid "Installation"
 msgstr ""
 
-#: preference.ui:39
+#: preference.ui:42
 msgid "Install / Remove Service"
 msgstr ""
 
-#: preference.ui:42
+#: preference.ui:47
 msgid ""
 "For Battery Health Charging Extension to function properly, we need to "
 "install this systemd service. <b>Root privileges are required</b> to install "
@@ -155,14 +150,44 @@ msgid ""
 "<b>Remove</b> this service before uninstalling this extension."
 msgstr ""
 
-#: preference.ui:66
+#: preference.ui:75
 msgid "Symbol and Percentage"
 msgstr ""
 
-#: preference.ui:67
+#: preference.ui:76
 msgid "Symbols Only"
 msgstr ""
 
-#: preference.ui:68
+#: preference.ui:77
 msgid "Percentage Highlighted"
+msgstr ""
+
+#: threshold.ui:5
+msgid "Threshold Customization"
+msgstr ""
+
+#: threshold.ui:23
+msgid "Customize"
+msgstr ""
+
+#: threshold.ui:29
+msgid "Default"
+msgstr ""
+
+#: threshold.ui:42 threshold.ui:142 threshold.ui:243
+msgid "Stop charging threshold value"
+msgstr ""
+
+#: threshold.ui:54 threshold.ui:101 threshold.ui:154 threshold.ui:202
+#: threshold.ui:255 threshold.ui:303
+msgid "Current Value"
+msgstr ""
+
+#: threshold.ui:65 threshold.ui:113 threshold.ui:166 threshold.ui:214
+#: threshold.ui:267 threshold.ui:315
+msgid "Apply"
+msgstr ""
+
+#: threshold.ui:89 threshold.ui:190 threshold.ui:291
+msgid "Start charging threshold value"
 msgstr ""

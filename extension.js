@@ -17,13 +17,8 @@ const Gettext = imports.gettext.domain(gettextDomain);
 const _ = Gettext.gettext;
 
 const ICONS_FOLDER = Me.dir.get_child('icons').get_path();
+var isChargeStartThresholdSupported = false;
 
-/**
- * Get icon
- *
- * @param {string} iconName Icon name
- * @returns {Gio.Icon}
- */
 function getIcon(iconName) {
     return Gio.icon_new_for_string(`${ICONS_FOLDER}/${iconName}.svg`);
 }
@@ -33,31 +28,112 @@ const SystemMenuToggle = GObject.registerClass(
         _init() {
             super._init();
             this._settings = ExtensionUtils.getSettings();
-
             this._chargeLimitSection = new PopupMenu.PopupMenuSection();
             this.menu.addMenuItem(this._chargeLimitSection);
             this.label = _('Charger Limit');
-            this.gicon = getIcon('charging-limit-mix-100-symbolic');
+            this.gicon = getIcon('charging-limit-mix-ful-symbolic');
             this.toggleMode = false;
-            this.menu.setHeader(getIcon('charging-limit-mix-100-symbolic'), _('Battery Health Mode'));
+            this.menu.setHeader(getIcon('charging-limit-mix-ful-symbolic'), _('Battery Health Mode'));
             this._isChargeStartThresholdSupported = Driver.isChargeStartThresholdSupported();
+
+            this.popupMenuFullCapacityLabel = _('Full Capacity Mode');
+            this.popupMenuBalancedLabel = _('Balanced Mode');
+            this.popupMenuMaxlifeLabel = _('Maximum Lifespan Mode');
+
             this._updatePanelMenu();
 
-            this._settings.connectObject(
-                'changed::charger-limit', () => {
-                    this._updatePanelMenu();
-                },
-                'changed::icon-style-type', () => {
-                    this._updatePanelMenu();
-                },
-                this
-            );
+            if (isChargeStartThresholdSupported) {
+                this._settings.connectObject(
+                    'changed::charging-mode', () => {
+                        this._updatePanelMenu();
+                    },
+                    'changed::icon-style-type', () => {
+                        this._updatePanelMenu();
+                    },
+                    'changed::current-full-capacity-end-threshold', () => {
+                        if (this._settings.get_string('charging-mode') === 'ful') {
+                            let endValue = this._settings.get_int('current-full-capacity-end-threshold');
+                            Driver.setEndThresholdLimit(endValue);
+                            this._updatePanelMenu();
+                        }
+                    },
+                    'changed::current-balanced-end-threshold', () => {
+                        if (this._settings.get_string('charging-mode') === 'bal') {
+                            let endValue = this._settings.get_int('current-balanced-end-threshold');
+                            Driver.setEndThresholdLimit(endValue);
+                            this._updatePanelMenu();
+                        }
+                    },
+                    'changed::current-maxlife-end-threshold', () => {
+                        if (this._settings.get_string('charging-mode') === 'max') {
+                            let endValue = this._settings.get_int('current-maxlife-end-threshold');
+                            Driver.setEndThresholdLimit(endValue);
+                            this._updatePanelMenu();
+                        }
+                    },
+                    'changed::current-full-capacity-start-threshold', () => {
+                        if (this._settings.get_string('charging-mode') === 'ful') {
+                            let startValue = this._settings.get_int('current-full-capacity-start-threshold');
+                            Driver.setStartThresholdLimit(startValue);
+                            this._updatePanelMenu();
+                        }
+                    },
+
+                    'changed::current-balanced-start-threshold', () => {
+                        if (this._settings.get_string('charging-mode') === 'bal') {
+                            let startValue = this._settings.get_int('current-balanced-start-threshold');
+                            Driver.setStartThresholdLimit(startValue);
+                            this._updatePanelMenu();
+                        }
+                    },
+                    'changed::current-maxlife-start-threshold', () => {
+                        if (this._settings.get_string('charging-mode') === 'max') {
+                            let startValue = this._settings.get_int('current-maxlife-start-threshold');
+                            Driver.setStartThresholdLimit(startValue);
+                            this._updatePanelMenu();
+                        }
+                    },
+                    this
+                );
+            } else {
+                this._settings.connectObject(
+                    'changed::charging-mode', () => {
+                        this._updatePanelMenu();
+                    },
+                    'changed::icon-style-type', () => {
+                        this._updatePanelMenu();
+                    },
+                    'changed::current-full-capacity-end-threshold', () => {
+                        if (this._settings.get_string('charging-mode') === 'ful') {
+                            let endValue = this._settings.get_int('current-full-capacity-end-threshold');
+                            Driver.setEndThresholdLimit(endValue);
+                            this._updatePanelMenu();
+                        }
+                    },
+                    'changed::current-balanced-end-threshold', () => {
+                        if (this._settings.get_string('charging-mode') === 'bal') {
+                            let endValue = this._settings.get_int('current-balanced-end-threshold');
+                            Driver.setEndThresholdLimit(endValue);
+                            this._updatePanelMenu();
+                        }
+                    },
+                    'changed::current-maxlife-end-threshold', () => {
+                        if (this._settings.get_string('charging-mode') === 'max') {
+                            let endValue = this._settings.get_int('current-maxlife-end-threshold');
+                            Driver.setEndThresholdLimit(endValue);
+                            this._updatePanelMenu();
+                        }
+                    },
+                    this
+                );
+            }
         }
 
         _updatePanelMenu() {
             const iconStyle = this._settings.get_int('icon-style-type');
             let iconType = 'mix';
-            let currentLimitValueString = _('Error');
+            let currentLimitValueString = '';
+
             switch (iconStyle) {
             case 0:
                 iconType = 'mix';
@@ -71,60 +147,77 @@ const SystemMenuToggle = GObject.registerClass(
             }
 
             this._chargeLimitSection.removeAll();
-            let currentLimitValue = Driver.getCurrentEndLimitValue();
-            let currentLimitSettings = this._settings.get_int('charger-limit');
-            let menuItem100 = new PopupMenu.PopupImageMenuItem(_('Full Capacity Mode  (100%)'),
-                getIcon(`charging-limit-${iconType}-100-symbolic`));
-            let menuItem80 = new PopupMenu.PopupImageMenuItem(_('Balanced Mode  (80%)'),
-                getIcon(`charging-limit-${iconType}-80-symbolic`));
-            let menuItem60 = new PopupMenu.PopupImageMenuItem(_('Maximum Lifespan Mode  (60%)'),
-                getIcon(`charging-limit-${iconType}-60-symbolic`));
-            if (currentLimitValue === 100)
-                currentLimitValueString = _('Charging Limit is set to 100%');
-            else if (currentLimitValue === 80)
-                currentLimitValueString = _('Charging Limit is set to 80%');
-            else if (currentLimitValue === 60)
-                currentLimitValueString = _('Charging Limit is set to 60%');
+
+            let currentStartLimitValue = 0;
+            let currentEndLimitValue = Driver.getCurrentEndLimitValue();
+
+            if (isChargeStartThresholdSupported)
+                currentStartLimitValue = Driver.getCurrentStartLimitValue();
+
+            let currentLimitSettings = this._settings.get_string('charging-mode');
+
+            let menuItemFul = new PopupMenu.PopupImageMenuItem(this.popupMenuFullCapacityLabel,
+                getIcon(`charging-limit-${iconType}-ful-symbolic`));
+            let menuItemBal = new PopupMenu.PopupImageMenuItem(this.popupMenuBalancedLabel,
+                getIcon(`charging-limit-${iconType}-bal-symbolic`));
+            let menuItemMax = new PopupMenu.PopupImageMenuItem(this.popupMenuMaxlifeLabel,
+                getIcon(`charging-limit-${iconType}-max-symbolic`));
+
+            if (isChargeStartThresholdSupported)
+                currentLimitValueString = _('Device will stop charging at %d%%\nDevice will start charging at %d%%').format(currentEndLimitValue, currentStartLimitValue);
             else
-                currentLimitValueString = _('Error');
+                currentLimitValueString = _('Charging Limit is set to %d%%').format(currentEndLimitValue);
+
+
             let currentLimitItem = new PopupMenu.PopupMenuItem(currentLimitValueString);
             currentLimitItem.sensitive = false;
             currentLimitItem.active = false;
 
-            menuItem100.connect('activate', () => {
+            menuItemFul.connect('activate', () => {
                 Main.overview.hide();
                 Main.panel.closeQuickSettings();
-                Driver.setLimit('100', this._isChargeStartThresholdSupported);
-                this._settings.set_int('charger-limit', 100);
-            });
-            menuItem80.connect('activate', () => {
-                Main.overview.hide();
-                Main.panel.closeQuickSettings();
-                Driver.setLimit('80', this._isChargeStartThresholdSupported);
-                this._settings.set_int('charger-limit', 80);
-            });
-            menuItem60.connect('activate', () => {
-                Main.overview.hide();
-                Main.panel.closeQuickSettings();
-                Driver.setLimit('60', this._isChargeStartThresholdSupported);
-                this._settings.set_int('charger-limit', 60);
+                Driver.setEndThresholdLimit(this._settings.get_int('current-full-capacity-end-threshold'));
+                if (isChargeStartThresholdSupported)
+                    Driver.setStartThresholdLimit(this._settings.get_int('current-full-capacity-start-threshold'));
+
+                this._settings.set_string('charging-mode', 'ful');
             });
 
-            this._chargeLimitSection.addMenuItem(menuItem100);
-            this._chargeLimitSection.addMenuItem(menuItem80);
-            this._chargeLimitSection.addMenuItem(menuItem60);
+            menuItemBal.connect('activate', () => {
+                Main.overview.hide();
+                Main.panel.closeQuickSettings();
+                Driver.setEndThresholdLimit(this._settings.get_int('current-balanced-end-threshold'));
+                if (isChargeStartThresholdSupported)
+                    Driver.setStartThresholdLimit(this._settings.get_int('current-balanced-start-threshold'));
+
+                this._settings.set_string('charging-mode', 'bal');
+            });
+
+            menuItemMax.connect('activate', () => {
+                Main.overview.hide();
+                Main.panel.closeQuickSettings();
+                Driver.setEndThresholdLimit(this._settings.get_int('current-maxlife-end-threshold'));
+                if (isChargeStartThresholdSupported)
+                    Driver.setStartThresholdLimit(this._settings.get_int('current-maxlife-start-threshold'));
+
+                this._settings.set_string('charging-mode', 'max');
+            });
+
+            this._chargeLimitSection.addMenuItem(menuItemFul);
+            this._chargeLimitSection.addMenuItem(menuItemBal);
+            this._chargeLimitSection.addMenuItem(menuItemMax);
             this._chargeLimitSection.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
             this._chargeLimitSection.addMenuItem(currentLimitItem);
             this.gicon = getIcon(`charging-limit-${iconType}-${currentLimitSettings}-symbolic`);
             this.menu.setHeader(getIcon(`charging-limit-${iconType}-${currentLimitSettings}-symbolic`), _('Battery Health Mode'));
 
-            menuItem100.setOrnament(currentLimitSettings === 100
+            menuItemFul.setOrnament(currentLimitSettings === 'ful'
                 ? PopupMenu.Ornament.DOT
                 : PopupMenu.Ornament.NONE);
-            menuItem80.setOrnament(currentLimitSettings === 80
+            menuItemBal.setOrnament(currentLimitSettings === 'bal'
                 ? PopupMenu.Ornament.DOT
                 : PopupMenu.Ornament.NONE);
-            menuItem60.setOrnament(currentLimitSettings === 60
+            menuItemMax.setOrnament(currentLimitSettings === 'max'
                 ? PopupMenu.Ornament.DOT
                 : PopupMenu.Ornament.NONE);
         }
@@ -135,11 +228,10 @@ var SystemMenu = GObject.registerClass(
     class SystemMenu extends QuickSettings.SystemIndicator {
         _init() {
             super._init();
-            // indicator initialization
+
             this._settings = ExtensionUtils.getSettings();
             this._indicator = this._addIndicator();
-            this._indicator.gicon = getIcon('charging-limit-mix-100-symbolic');
-
+            this._indicator.gicon = getIcon('charging-limit-mix-ful-symbolic');
             this.quickSettingsItems.push(new SystemMenuToggle());
 
             this.connect('destroy', () => {
@@ -151,7 +243,7 @@ var SystemMenu = GObject.registerClass(
             this._updateIndicator();
 
             this._settings.connectObject(
-                'changed::charger-limit', () => {
+                'changed::charging-mode', () => {
                     this._updateIndicator();
                 },
                 'changed::icon-style-type', () => {
@@ -165,7 +257,6 @@ var SystemMenu = GObject.registerClass(
         }
 
         _updateIndicator() {
-            // Iconstyle for indicator
             const iconStyle = this._settings.get_int('icon-style-type');
             let iconType = 'mix';
             switch (iconStyle) {
@@ -179,8 +270,10 @@ var SystemMenu = GObject.registerClass(
                 iconType = 'num';
                 break;
             }
-            let currentLimitSettings = this._settings.get_int('charger-limit');
+
+            let currentLimitSettings = this._settings.get_string('charging-mode');
             this._indicator.gicon = getIcon(`charging-limit-${iconType}-${currentLimitSettings}-symbolic`);
+
             if (this._settings.get_boolean('show-system-indicator'))
                 this._indicator.visible = true;
             else
@@ -197,17 +290,22 @@ class ChargeLimit {
     enable() {
         this._systemActions = new SystemActions.getDefault();
         this._settings = ExtensionUtils.getSettings();
+        isChargeStartThresholdSupported = Driver.isChargeStartThresholdSupported();
         let flag = false;
 
-        // notify on service installation/removal and limit change.
         this._settings.connectObject(
-            'changed::charger-limit', () => {
-                if (this._settings.get_int('charger-limit') === 100)
-                    this.notify(_('Charging will stop at 100%. Charging will start at 98%.'), 'changed');
-                else if (this._settings.get_int('charger-limit') === 80)
-                    this.notify(_('Charging will stop at 80%. Charging will start at 78%.'), 'changed');
-                else if (this._settings.get_int('charger-limit') === 60)
-                    this.notify(_('Charging will stop at 60%. Charging will start at 58%.'), 'changed');
+            'changed::charging-mode', () => {
+                let currentEndLimitValue = 0;
+                let currentStartLimitValue = 0;
+                let currentLimitSettings = this._settings.get_string('charging-mode');
+                currentEndLimitValue = this.getCurrentEndValue(currentLimitSettings);
+
+                if (isChargeStartThresholdSupported) {
+                    currentStartLimitValue = this.getCurrentStartValue(currentLimitSettings);
+                    this.notify(_('Charge thresholds are set to %d / %d %%').format(currentEndLimitValue, currentStartLimitValue), 'update');
+                } else  {
+                    this.notify(_('Charging Limit is set to %d%%').format(currentEndLimitValue), 'update');
+                }
             },
             'changed::install-service', () => {
                 if (flag) {
@@ -220,7 +318,6 @@ class ChargeLimit {
             this
         );
 
-        // Check for incompatibilities and notify errors
         switch (Driver.checkInCompatibility()) {
         case 0:
             flag = true;
@@ -233,27 +330,42 @@ class ChargeLimit {
             return;
         case 3:
             this.notify(_('Battery Health service not installed.\n' +
-                'Please install required service from Battery Health Charging extension settings under Install / Remove Service'), 'show-settings');
+                'Please install required service from Battery Health Charging extension settings under Install / Remove Service.'), 'show-settings');
             flag = true;
             return;
         }
 
-        this._isChargeStartThresholdSupported = Driver.isChargeStartThresholdSupported();
+        let currentLimitSettings = this._settings.get_string('charging-mode');
+        Driver.setEndThresholdLimit(this.getCurrentEndValue(currentLimitSettings));
+        if (isChargeStartThresholdSupported)
+            Driver.setStartThresholdLimit(this.getCurrentStartValue(currentLimitSettings));
 
-        // On enable restore the previously set charging limit value.
-        let currentStartLimitValue = false;
-        let currentEndLimitValue = Driver.getCurrentEndLimitValue();
-        if (this._isChargeStartThresholdSupported)
-            currentStartLimitValue = Driver.getCurrentStartLimitValue();
 
-        let currentLimitSettings = this._settings.get_int('charger-limit');
-        if (currentEndLimitValue !== currentLimitSettings) {
-            Driver.setLimit(currentLimitSettings, this._isChargeStartThresholdSupported);
-        } else if (this._isChargeStartThresholdSupported) {
-            if ((currentStartLimitValue + 2) !==  currentLimitSettings)
-                Driver.setLimit(currentLimitSettings, this._isChargeStartThresholdSupported);
-        }
         this._indicator = new SystemMenu();
+    }
+
+    getCurrentEndValue(limit) {
+        let value = 0;
+        if (limit === 'ful')
+            value = this._settings.get_int('current-full-capacity-end-threshold');
+        else if (limit === 'bal')
+            value = this._settings.get_int('current-balanced-end-threshold');
+        else if (limit === 'max')
+            value = this._settings.get_int('current-maxlife-end-threshold');
+
+        return value;
+    }
+
+    getCurrentStartValue(limit) {
+        let value = 0;
+        if (limit === 'ful')
+            value = this._settings.get_int('current-full-capacity-start-threshold');
+        else if (limit === 'bal')
+            value = this._settings.get_int('current-balanced-start-threshold');
+        else if (limit === 'max')
+            value = this._settings.get_int('current-maxlife-start-threshold');
+
+        return value;
     }
 
     notify(msg, action = '') {
@@ -264,7 +376,7 @@ class ChargeLimit {
         } else if (action === 'uninstalled') {
             notifyTitle = _('Battery Health Charging');
             notifyIcon = 'success-symbolic';
-        } else if (action === 'changed') {
+        } else if (action === 'update') {
             notifyTitle = _('Battery Health Charging');
             notifyIcon = 'battery-level-100-charged-symbolic';
         } else {
@@ -281,8 +393,8 @@ class ChargeLimit {
             notification.addAction(_('Log Out'), () => {
                 this._systemActions.activateLogout();
             });
-        } else if ((action === 'uninstalled') || (action === 'changed')) {
-            notification.setUrgency(2);
+        } else if ((action === 'uninstalled') || (action === 'update')) {
+            notification.setUrgency(1);
         } else if (action === 'show-settings') {
             notification.addAction(_('Settings'), () => {
                 Util.spawn(['gnome-extensions', 'prefs', Me.metadata.uuid]);
@@ -301,9 +413,6 @@ class ChargeLimit {
     }
 }
 
-/**
- * Init
- */
 function init() {
     ExtensionUtils.initTranslations(Me.metadata.uuid);
     return new ChargeLimit();

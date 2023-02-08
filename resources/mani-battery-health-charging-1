@@ -1,11 +1,13 @@
 [Unit]
 Description=Set file permission for battery charge threshold
 After=multi-user.target
-StartLimitBurst=0
+StartLimitInterval=30
+StartLimitBurst=40
 
 [Service]
 Type=oneshot
 Restart=on-failure
+RestartSec=500ms
 ExecStart=/bin/bash -c "/bin/chmod a+rw /sys/class/power_supply/BAT0/charge_control_end_threshold && /bin/chmod a+rw /sys/class/power_supply/BAT0/charge_control_start_threshold"
 
 [Install]
