@@ -160,7 +160,7 @@ var Threshold = GObject.registerClass({
             Gio.SettingsBindFlags.DEFAULT
         );
 
-        if (isChargeStartThresholdSupported) {
+        if (isChargeStartThresholdSupported) { // if isChargeStartThresholdSupported
             settings.bind(
                 'full-capacity-start-threshold',
                 this._full_capacity_start_threshold,
@@ -193,24 +193,21 @@ var Threshold = GObject.registerClass({
             settings.connect('changed::maxlife-end-threshold', () => {
                 this._maxlife_start_threshold.set_range(this._maxlife_end_threshold.value - 10, this._maxlife_end_threshold.value - 2);
             });
-        }  // isChargeStartThresholdSupported
+        }  //  endif isChargeStartThresholdSupported
 
         this._full_capacity_end_threshold_apply.connect('clicked', () => {
             this._updateCurrentValueFullCap(settings);
-            if (isChargeStartThresholdSupported)
-                this._updateCurrentValueFullCapLabel(settings);
+            this._updateCurrentValueFullCapLabel(settings);
         });
 
         this._balanced_end_threshold_apply.connect('clicked', () => {
             this._updateCurrentValueBalance(settings);
-            if (isChargeStartThresholdSupported)
-                this._updateCurrentValueBalanceLabel(settings);
+            this._updateCurrentValueBalanceLabel(settings);
         });
 
         this._maxlife_end_threshold_apply.connect('clicked', () => {
             this._updateCurrentValueMaxlife(settings);
-            if (isChargeStartThresholdSupported)
-                this._updateCurrentValueMaxlifeLabel(settings);
+            this._updateCurrentValueMaxlifeLabel(settings);
         });
 
         if (isChargeStartThresholdSupported) {
@@ -254,6 +251,33 @@ var Threshold = GObject.registerClass({
         });
     }
 
+    _updateCurrentValueFullCap(settings) {
+        settings.set_int('current-full-capacity-end-threshold',
+            settings.get_int('full-capacity-end-threshold'));
+        if (isChargeStartThresholdSupported) {
+            settings.set_int('current-full-capacity-start-threshold',
+                settings.get_int('full-capacity-start-threshold'));
+        }
+    }
+
+    _updateCurrentValueBalance(settings) {
+        settings.set_int('current-balanced-end-threshold',
+            settings.get_int('balanced-end-threshold'));
+        if (isChargeStartThresholdSupported) {
+            settings.set_int('current-balanced-start-threshold',
+                settings.get_int('balanced-start-threshold'));
+        }
+    }
+
+    _updateCurrentValueMaxlife(settings) {
+        settings.set_int('current-maxlife-end-threshold',
+            settings.get_int('maxlife-end-threshold'));
+        if (isChargeStartThresholdSupported) {
+            settings.set_int('current-maxlife-start-threshold',
+                settings.get_int('maxlife-start-threshold'));
+        }
+    }
+
     _updateCurrentValueFullCapLabel(settings) {
         this._full_capacity_end_threshold_actual_value.set_label(
             settings.get_int('current-full-capacity-end-threshold').toString());
@@ -281,32 +305,6 @@ var Threshold = GObject.registerClass({
         }
     }
 
-    _updateCurrentValueFullCap(settings) {
-        settings.set_int('current-full-capacity-end-threshold',
-            settings.get_int('full-capacity-end-threshold'));
-        if (isChargeStartThresholdSupported) {
-            settings.set_int('current-full-capacity-start-threshold',
-                settings.get_int('full-capacity-start-threshold'));
-        }
-    }
-
-    _updateCurrentValueBalance(settings) {
-        settings.set_int('current-balanced-end-threshold',
-            settings.get_int('balanced-end-threshold'));
-        if (isChargeStartThresholdSupported) {
-            settings.set_int('current-balanced-start-threshold',
-                settings.get_int('balanced-start-threshold'));
-        }
-    }
-
-    _updateCurrentValueMaxlife(settings) {
-        settings.set_int('current-maxlife-end-threshold',
-            settings.get_int('maxlife-end-threshold'));
-        if (isChargeStartThresholdSupported) {
-            settings.set_int('current-maxlife-start-threshold',
-                settings.get_int('maxlife-start-threshold'));
-        }
-    }
 });
 
 function fillPreferencesWindow(window) {
