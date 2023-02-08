@@ -89,8 +89,11 @@ var Threshold = GObject.registerClass({
     InternalChildren: [
         'customize_threshold',
         'default_threshold',
+        'full_capacity_end_threshold_row',
         'full_capacity_start_threshold_row',
+        'balanced_end_threshold_row',
         'balanced_start_threshold_row',
+        'maxlife_end_threshold_row',
         'maxlife_start_threshold_row',
         'full_capacity_end_threshold',
         'balanced_end_threshold',
@@ -114,6 +117,22 @@ var Threshold = GObject.registerClass({
 }, class Threshold extends Adw.PreferencesPage {
     constructor(settings) {
         super({});
+
+        this._updateRangeSubtitle(this._full_capacity_end_threshold_row, 90, 100);
+        this._updateRangeSubtitle(this._balanced_end_threshold_row, 70, 80);
+        this._updateRangeSubtitle(this._maxlife_end_threshold_row, 50, 60);
+
+        if (isChargeStartThresholdSupported) { // if isChargeStartThresholdSupported
+            this._updateRangeSubtitle(this._full_capacity_start_threshold_row,
+                settings.get_int('full-capacity-end-threshold') - 10,
+                settings.get_int('full-capacity-end-threshold') - 2);
+            this._updateRangeSubtitle(this._balanced_start_threshold_row,
+                settings.get_int('balanced-end-threshold') - 10,
+                settings.get_int('balanced-end-threshold') - 2);
+            this._updateRangeSubtitle(this._maxlife_start_threshold_row,
+                settings.get_int('maxlife-end-threshold') - 10,
+                settings.get_int('maxlife-end-threshold') - 2);
+        }  //  endif isChargeStartThresholdSupported
 
         this._updateCurrentValueFullCapLabel(settings);
         this._updateCurrentValueBalanceLabel(settings);
@@ -183,15 +202,24 @@ var Threshold = GObject.registerClass({
             );
 
             settings.connect('changed::full-capacity-end-threshold', () => {
-                this._full_capacity_start_threshold.set_range(this._full_capacity_end_threshold.value - 10, this._full_capacity_end_threshold.value - 2);
+                let fullCapStartRangeLower = this._full_capacity_end_threshold.value - 10;
+                let fullCapStartRangeUpper = this._full_capacity_end_threshold.value - 2;
+                this._full_capacity_start_threshold.set_range(fullCapStartRangeLower, fullCapStartRangeUpper);
+                this._updateRangeSubtitle(this._full_capacity_start_threshold_row, fullCapStartRangeLower, fullCapStartRangeUpper);
             });
 
             settings.connect('changed::balanced-end-threshold', () => {
-                this._balanced_start_threshold.set_range(this._balanced_end_threshold.value - 10, this._balanced_end_threshold.value - 2);
+                let balStartRangeLower = this._balanced_end_threshold.value - 10;
+                let balStartRangeUpper = this._balanced_end_threshold.value - 2;
+                this._balanced_start_threshold.set_range(balStartRangeLower, balStartRangeUpper);
+                this._updateRangeSubtitle(this._balanced_start_threshold_row, balStartRangeLower, balStartRangeUpper);
             });
 
             settings.connect('changed::maxlife-end-threshold', () => {
-                this._maxlife_start_threshold.set_range(this._maxlife_end_threshold.value - 10, this._maxlife_end_threshold.value - 2);
+                let maxLifeRangeLower = this._maxlife_end_threshold.value - 10;
+                let maxlifeRangeUpper = this._maxlife_end_threshold.value - 2;
+                this._maxlife_start_threshold.set_range(maxLifeRangeLower, maxlifeRangeUpper);
+                this._updateRangeSubtitle(this._maxlife_start_threshold_row, maxLifeRangeLower, maxlifeRangeUpper);
             });
         }  //  endif isChargeStartThresholdSupported
 
@@ -249,6 +277,10 @@ var Threshold = GObject.registerClass({
             this._updateCurrentValueBalanceLabel(settings);
             this._updateCurrentValueMaxlifeLabel(settings);
         });
+    }
+
+    _updateRangeSubtitle(row, lowerValue, upperValue) {
+        row.set_subtitle(_('<i>Accepted Value : %d to %d</i>').format(lowerValue, upperValue));
     }
 
     _updateCurrentValueFullCap(settings) {
