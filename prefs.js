@@ -23,6 +23,7 @@ var Preferences = GObject.registerClass({
         'icon_style_mode_row',
         'icon_style_mode',
         'show_system_indicator',
+        'service_installer',
         'install_service',
         'install_service_button',
     ],
@@ -30,6 +31,7 @@ var Preferences = GObject.registerClass({
     constructor(settings) {
         super({});
 
+        this._isServiceSettingsNeeded();
         this._updateInstallationLabelIcon(settings);
         this._iconModeSensitiveCheck(settings);
 
@@ -61,6 +63,12 @@ var Preferences = GObject.registerClass({
         settings.connect('changed::default-threshold', () => {
             this._iconModeSensitiveCheck(settings);
         });
+    }
+
+    _isServiceSettingsNeeded () {
+        if(!Driver.isServiceInstalled() && !Driver.checkAuthRequired()) {
+            this._service_installer.visible = false;
+        }
     }
 
     _iconModeSensitiveCheck(settings) {

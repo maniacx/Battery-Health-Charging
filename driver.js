@@ -6,6 +6,7 @@ const Config = imports.misc.config;
 
 const END_THRESHOLD_DEVICE_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold';
 const START_THRESHOLD_DEVICE_PATH = '/sys/class/power_supply/BAT0/charge_control_start_threshold';
+const SERVICE_PATH = '/etc/systemd/system/mani-battery-health-charging.service';
 
 function fileExists(path) {
     try {
@@ -43,6 +44,12 @@ function isChargeStartThresholdSupported() {
     if (fileExists(START_THRESHOLD_DEVICE_PATH))
         return true;
 
+    return false;
+}
+
+function isServiceInstalled() {
+    if (fileExists(SERVICE_PATH))
+        return true;
     return false;
 }
 
