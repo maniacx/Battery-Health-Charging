@@ -6,10 +6,10 @@ cd "${0%/*}"
 echo "Packing extension..."
 gnome-extensions pack ./ \
     --extra-source=icons/ \
+    --extra-source=lib/ \
+    --extra-source=preferences/ \
     --extra-source=resources/ \
-    --extra-source=driver.js \
-    --extra-source=preference.ui \
-    --extra-source=threshold.ui \
+    --extra-source=ui/ \
     --podir=po \
     --force \
 
