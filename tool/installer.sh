@@ -45,18 +45,6 @@ function recent_polkit() {
     fi
 }
 
-function check_support() {
-    RECENT_STR=", stand-alone polkit rules $(recent_polkit)"
-    if which rtcwake >/dev/null 2>&1
-    then
-        echo "rtcwake supported${RECENT_STR}"
-        exit ${EXIT_SUCCESS}
-    else
-        echo "rtcwake unsupported${RECENT_STR}"
-        exit ${EXIT_FAILED}
-    fi
-}
-
 function fail() {
     echo "$(gtxt "Failed")${1}" >&2 && exit ${EXIT_FAILED}
 }
@@ -101,7 +89,7 @@ do
             shift
             shift
             ;;
-        supported|install|check|update|uninstall)
+        install|check|update|uninstall)
             if [ -z "$ACTION" ]
             then
                 ACTION="$1"
@@ -149,11 +137,6 @@ function print_rules_javascript() {
     fi
 
 }
-
-if [ "$ACTION" = "supported" ]
-then
-    check_support
-fi
 
 if [ "$ACTION" = "check" ]
 then
