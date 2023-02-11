@@ -11,6 +11,10 @@ function runInstaller() {
     Driver.runInstaller();
 }
 
+function runUpdater() {
+    Driver.runUpdater();
+}
+
 function runUninstaller() {
     Driver.runUninstaller();
 }
@@ -48,10 +52,18 @@ var General = GObject.registerClass({
         );
 
         this._install_service.connect('clicked', () => {
-            if (settings.get_boolean('install-service'))
+            let installType = settings.get_int('install-service');
+            switch (installType) {
+            case 0:
                 runUninstaller();
-            else
+                break;
+            case 1:
                 runInstaller();
+                break;
+            case 2:
+                runUpdater();
+                break;
+            }
         });
 
         settings.connect('changed::install-service', () => {
@@ -73,12 +85,20 @@ var General = GObject.registerClass({
     }
 
     _updateInstallationLabelIcon(settings) {
-        if (settings.get_boolean('install-service')) {
+        let installType = settings.get_int('install-service');
+        switch (installType) {
+        case 0:
             this._install_service_button.set_label(_('Remove'));
             this._install_service_button.set_icon_name('user-trash-symbolic');
-        } else {
+            break;
+        case 1:
             this._install_service_button.set_label(_('Install'));
             this._install_service_button.set_icon_name('emblem-system-symbolic');
+            break;
+        case 2:
+            this._install_service_button.set_label(_('Update'));
+            this._install_service_button.set_icon_name('software-update-available-symbolic');
+            break;
         }
     }
 });

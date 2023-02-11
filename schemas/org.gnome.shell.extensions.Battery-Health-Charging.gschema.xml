@@ -17,8 +17,8 @@
             <default>true</default>
             <summary>Toggle to show systemindicator</summary>
         </key>
-        <key name="install-service" type="b">
-            <default>false</default>
+        <key name="install-service" type="i">
+            <default>1</default>
             <summary>Install service</summary>
         </key>
         <key name="default-threshold" type="b">
