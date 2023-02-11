@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE policyconfig PUBLIC "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN" "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+<policyconfig>
+        <vendor>Battery Health Charging</vendor>
+        <vendor_url>https://github.com/maniacx/Battery-Health-Charging</vendor_url>
+
+        <action id="{{ACTION_ID}}">
+                <description>Control battery thresholds</description>
+                <message>No Authorization required to control battery thresholds.</message>
+                <defaults>
+                        <allow_any>yes</allow_any>
+                        <allow_inactive>yes</allow_inactive>
+                        <allow_active>yes</allow_active>
+                </defaults>
+                <annotate key="org.freedesktop.policykit.exec.path">{{PATH}}</annotate>
+                <annotate key="{{ACTION_BASE}.polkit-rule.version">3.0.0</annotate>
+        </action>
+</policyconfig>

@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# shutdowntimerctl - This script can configure the shutdown and rtc wake alarm schedule.
+#
+# This file is part of the gnome-shell extension ShutdownTimer@Deminder.
+
+### To Do
