@@ -29,7 +29,7 @@ var General = GObject.registerClass({
 }, class General extends Adw.PreferencesPage {
     constructor(settings) {
         super({});
-        this._isServiceSettingsNeeded();
+
         this._updateInstallationLabelIcon(settings);
         this._iconModeSensitiveCheck(settings);
 
@@ -61,11 +61,6 @@ var General = GObject.registerClass({
         settings.connect('changed::default-threshold', () => {
             this._iconModeSensitiveCheck(settings);
         });
-    }
-
-    _isServiceSettingsNeeded() {
-        if (!Driver.isServiceInstalled() && !Driver.checkAuthRequired())
-            this._service_installer.visible = false;
     }
 
     _iconModeSensitiveCheck(settings) {
