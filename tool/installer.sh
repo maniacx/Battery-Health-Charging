@@ -144,12 +144,18 @@ then
     then
         if [ -f "${ACTION_OUT}" ]
         then
-            echo "Your $EXTENSION_NAME installation needs updating!"
+            echo "Your $EXTENSION_NAME installation needs updating policies!"
             exit ${EXIT_NEEDS_UPDATE}
         else
             echo "Not installed"
             exit ${EXIT_NOT_INSTALLED}
         fi
+    else
+       if ! cmp --silent "${TOOL_IN}" "${TOOL_OUT}"
+       then
+            echo "Your $EXTENSION_NAME installation needs updating tool!"
+            exit ${EXIT_NEEDS_UPDATE}
+       fi
     fi
     echo "Installed"
 
