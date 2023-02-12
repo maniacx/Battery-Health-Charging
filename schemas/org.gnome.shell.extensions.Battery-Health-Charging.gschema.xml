@@ -5,8 +5,7 @@
         id="org.gnome.shell.extensions.Battery-Health-Charging">
         <key name="charging-mode" type="s" >
             <default>"ful"</default>
-            <summary>Selected Charging mode</summary>
-            <description>'ful' = Full Capacity mode, 'bal' = balance mode, 'max' = maximum lifespan mode</description>
+            <summary>'ful' = Full Capacity mode, 'bal' = balance mode, 'max' = maximum lifespan mode</summary>
         </key>
         <key name="device-type" type="i">
             <default>0</default>
@@ -14,8 +13,7 @@
         </key>
         <key name="icon-style-type" type="i">
             <default>1</default>
-            <summary>Selected icon style type</summary>
-            <description> 0 = symbols and percentage, 1 = symbol only, 2 = percetage highlighted</description>
+            <summary>0 = symbols and percentage, 1 = symbol only, 2 = percetage highlighted</summary>
         </key>
         <key name="show-system-indicator" type="b">
             <default>true</default>
