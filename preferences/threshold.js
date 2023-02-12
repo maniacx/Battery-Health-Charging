@@ -25,18 +25,12 @@ var Threshold = GObject.registerClass({
         'full_capacity_end_threshold_actual_value',
         'balanced_end_threshold_actual_value',
         'maxlife_end_threshold_actual_value',
-        'full_capacity_end_threshold_apply',
-        'balanced_end_threshold_apply',
-        'maxlife_end_threshold_apply',
         'full_capacity_start_threshold',
         'balanced_start_threshold',
         'maxlife_start_threshold',
         'full_capacity_start_threshold_actual_value',
         'balanced_start_threshold_actual_value',
         'maxlife_start_threshold_actual_value',
-        'full_capacity_start_threshold_apply',
-        'balanced_start_threshold_apply',
-        'maxlife_start_threshold_apply',
     ],
 }, class Threshold extends Adw.PreferencesPage {
     constructor(settings) {
@@ -147,7 +141,7 @@ var Threshold = GObject.registerClass({
                 this._updateRangeSubtitle(this._maxlife_start_threshold_row, maxLifeRangeLower, maxlifeRangeUpper);
             });
         }  //  endif isChargeStartThresholdSupported
-
+/*
         this._full_capacity_end_threshold_apply.connect('clicked', () => {
             this._updateCurrentValueFullCap(settings);
             this._updateCurrentValueFullCapLabel(settings);
@@ -178,7 +172,7 @@ var Threshold = GObject.registerClass({
                 this._updateCurrentValueMaxlife(settings);
                 this._updateCurrentValueMaxlifeLabel(settings);
             });
-        } // isChargeStartThresholdSupported
+        } // isChargeStartThresholdSupported*/
 
         this._default_threshold.connect('clicked', () => {
             const keys = [

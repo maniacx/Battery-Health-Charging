@@ -6,10 +6,10 @@
     <property name="icon-name">battery-level-100-charged-symbolic</property>
     <child>
       <object class="AdwPreferencesGroup">
-        <property name="header-suffix">
+        <child>
           <object class="GtkBox" id="primary_button_box">
             <property name="valign">center</property>
-            <property name="halign">start</property>
+            <property name="halign">center</property>
             <property name="hexpand">1</property>
             <property name="homogeneous">1</property>
             <property name="margin_top">0</property>
@@ -31,12 +31,29 @@
               </object>
             </child>
           </object>
-        </property>
+        </child>
       </object>
     </child>
     <child>
       <object class="AdwPreferencesGroup">
         <property name="title" translatable="yes">Full Capacity Mode</property>
+        <property name="header-suffix">
+          <object class="GtkButton" id="reset">
+            <property name="halign">start</property>
+            <property name="valign">center</property>
+            <property name="margin-start">6</property>
+            <property name="sensitive" bind-source="customize_threshold" bind-property="active" bind-flags="sync-create" />
+            <child>
+              <object class="AdwButtonContent">
+                <property name="icon-name">emblem-ok-symbolic</property>
+                <property name="label" translatable="yes">Apply</property>
+              </object>
+            </child>
+            <style>
+              <class name="suggested-action" />
+            </style>
+          </object>
+        </property>
         <child>
           <object class="AdwActionRow" id="full_capacity_end_threshold_row">
             <property name="title" translatable="yes">Stop charging threshold value</property>
@@ -54,23 +71,11 @@
                         <property name="tooltip-text" translatable="yes">Current Value</property>
                       </object>
                     </child>
+                    <style>
+                      <class name="suggested-action" />
+                    </style>
                   </object>
                 </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="full_capacity_end_threshold_apply">
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <property name="tooltip-text" translatable="yes">Apply</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon_name">emblem-ok-symbolic</property>
-                  </object>
-                </child>
-                <style>
-                  <class name="suggested-action" />
-                </style>
               </object>
             </child>
             <child>
@@ -101,24 +106,11 @@
                         <property name="tooltip-text" translatable="yes">Current Value</property>
                       </object>
                     </child>
+                    <style>
+                      <class name="suggested-action" />
+                    </style>
                   </object>
                 </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="full_capacity_start_threshold_apply">
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <property name="can_focus">1</property>
-                <property name="tooltip-text" translatable="yes">Apply</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon_name">emblem-ok-symbolic</property>
-                  </object>
-                </child>
-                <style>
-                  <class name="suggested-action" />
-                </style>
               </object>
             </child>
             <child>
@@ -154,24 +146,11 @@
                         <property name="tooltip-text" translatable="yes">Current Value</property>
                       </object>
                     </child>
+                    <style>
+                      <class name="suggested-action" />
+                    </style>
                   </object>
                 </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="balanced_end_threshold_apply">
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <property name="can_focus">1</property>
-                <property name="tooltip-text" translatable="yes">Apply</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon_name">emblem-ok-symbolic</property>
-                  </object>
-                </child>
-                <style>
-                  <class name="suggested-action" />
-                </style>
               </object>
             </child>
             <child>
@@ -202,24 +181,11 @@
                         <property name="tooltip-text" translatable="yes">Current Value</property>
                       </object>
                     </child>
+                    <style>
+                      <class name="suggested-action" />
+                    </style>
                   </object>
                 </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="balanced_start_threshold_apply">
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <property name="can_focus">1</property>
-                <property name="tooltip-text" translatable="yes">Apply</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon_name">emblem-ok-symbolic</property>
-                  </object>
-                </child>
-                <style>
-                  <class name="suggested-action" />
-                </style>
               </object>
             </child>
             <child>
@@ -255,26 +221,14 @@
                         <property name="tooltip-text" translatable="yes">Current Value</property>
                       </object>
                     </child>
+                    <style>
+                      <class name="suggested-action" />
+                    </style>
                   </object>
                 </child>
               </object>
             </child>
-            <child>
-              <object class="GtkButton" id="maxlife_end_threshold_apply">
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <property name="can_focus">1</property>
-                <property name="tooltip-text" translatable="yes">Apply</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon_name">emblem-ok-symbolic</property>
-                  </object>
-                </child>
-                <style>
-                  <class name="suggested-action" />
-                </style>
-              </object>
-            </child>
+            <child />
             <child>
               <object class="GtkSpinButton" id="maxlife_end_threshold">
                 <property name="valign">center</property>
@@ -303,24 +257,11 @@
                         <property name="tooltip-text" translatable="yes">Current Value</property>
                       </object>
                     </child>
+                    <style>
+                      <class name="suggested-action" />
+                    </style>
                   </object>
                 </child>
-              </object>
-            </child>
-            <child>
-              <object class="GtkButton" id="maxlife_start_threshold_apply">
-                <property name="halign">start</property>
-                <property name="valign">center</property>
-                <property name="can_focus">1</property>
-                <property name="tooltip-text" translatable="yes">Apply</property>
-                <child>
-                  <object class="GtkImage">
-                    <property name="icon_name">emblem-ok-symbolic</property>
-                  </object>
-                </child>
-                <style>
-                  <class name="suggested-action" />
-                </style>
               </object>
             </child>
             <child>
