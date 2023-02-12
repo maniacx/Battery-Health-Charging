@@ -8,6 +8,10 @@
             <summary>Selected Charging mode</summary>
             <description>'ful' = Full Capacity mode, 'bal' = balance mode, 'max' = maximum lifespan mode</description>
         </key>
+        <key name="device-type" type="i">
+            <default>0</default>
+            <summary>Type fo device found during init</summary>
+        </key>
         <key name="icon-style-type" type="i">
             <default>1</default>
             <summary>Selected icon style type</summary>
