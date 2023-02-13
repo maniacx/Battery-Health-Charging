@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="Battery-Health-Charging@maniacx.github.com">
   <template class="BHC_Threshold_Secondary" parent="AdwPreferencesPage">
-    <property name="name">Threshold</property>
+    <property name="name">BAT1 Threshold</property>
     <property name="title" translatable="yes">BAT1 Threshold</property>
     <property name="icon-name">battery-level-100-charged-symbolic</property>
     <child>
@@ -38,7 +38,7 @@
       <object class="AdwPreferencesGroup">
         <property name="title" translatable="yes">Full Capacity Mode</property>
         <property name="header-suffix">
-          <object class="GtkButton" id="reset">
+          <object class="GtkButton" id="apply_settings_2">
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="margin-start">6</property>

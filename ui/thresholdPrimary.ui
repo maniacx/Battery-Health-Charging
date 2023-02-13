@@ -38,7 +38,7 @@
       <object class="AdwPreferencesGroup">
         <property name="title" translatable="yes">Full Capacity Mode</property>
         <property name="header-suffix">
-          <object class="GtkButton" id="reset">
+          <object class="GtkButton" id="apply_settings">
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="margin-start">6</property>

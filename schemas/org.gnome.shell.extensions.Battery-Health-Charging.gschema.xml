@@ -27,6 +27,10 @@
             <default>false</default>
             <summary>Toggle between default and customized threshold</summary>
         </key>
+        <key name="apply-threshold" type="b">
+            <default>false</default>
+            <summary>Toggles when apply changes</summary>
+        </key>
         <key name="full-capacity-end-threshold" type="i">
             <default>100</default>
             <summary>full capacity mode end threshold adjustment value</summary>
@@ -51,7 +55,6 @@
             <default>58</default>
             <summary>maxlife mode start threshold adjustment value</summary>
         </key>
-
         <key name="current-full-capacity-end-threshold" type="i">
             <default>100</default>
             <summary>full capacity mode end threshold applied value</summary>
@@ -73,6 +76,67 @@
             <summary>maxlife mode end threshold applied value</summary>
         </key>
         <key name="current-maxlife-start-threshold" type="i">
+            <default>58</default>
+            <summary>maxlife mode start threshold applied value</summary>
+        </key>
+        <key name="charging-mode2" type="s" >
+            <default>"ful"</default>
+            <summary>'ful' = Full Capacity mode, 'bal' = balance mode, 'max' = maximum lifespan mode</summary>
+        </key>
+        <key name="default-threshold2" type="b">
+            <default>false</default>
+            <summary>Toggle between default and customized threshold</summary>
+        </key>
+        <key name="apply-threshold2" type="b">
+            <default>false</default>
+            <summary>Toggles when apply changes</summary>
+        </key>
+        <key name="full-capacity-end-threshold2" type="i">
+            <default>100</default>
+            <summary>full capacity mode end threshold adjustment value</summary>
+        </key>
+        <key name="full-capacity-start-threshold2" type="i">
+            <default>98</default>
+            <summary>full capacity mode start threshold adjustment value</summary>
+        </key>
+        <key name="balanced-end-threshold2" type="i">
+            <default>80</default>
+            <summary>balance mode end threshold adjustment value</summary>
+        </key>
+        <key name="balanced-start-threshold2" type="i">
+            <default>78</default>
+            <summary>balance mode start threshold adjustment value</summary>
+        </key>
+        <key name="maxlife-end-threshold2" type="i">
+            <default>60</default>
+            <summary>maxlife mode end threshold adjustment value</summary>
+        </key>
+        <key name="maxlife-start-threshold2" type="i">
+            <default>58</default>
+            <summary>maxlife mode start threshold adjustment value</summary>
+        </key>
+
+        <key name="current-full-capacity-end-threshold2" type="i">
+            <default>100</default>
+            <summary>full capacity mode end threshold applied value</summary>
+        </key>
+        <key name="current-full-capacity-start-threshold2" type="i">
+            <default>98</default>
+            <summary>full capacity mode start threshold applied value</summary>
+        </key>
+        <key name="current-balanced-end-threshold2" type="i">
+            <default>80</default>
+            <summary>balance mode end threshold applied value</summary>
+        </key>
+        <key name="current-balanced-start-threshold2" type="i">
+            <default>78</default>
+            <summary>balance mode start threshold applied value</summary>
+        </key>
+        <key name="current-maxlife-end-threshold2" type="i">
+            <default>60</default>
+            <summary>maxlife mode end threshold applied value</summary>
+        </key>
+        <key name="current-maxlife-start-threshold2" type="i">
             <default>58</default>
             <summary>maxlife mode start threshold applied value</summary>
         </key>
