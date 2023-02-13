@@ -11,6 +11,8 @@ function fillPreferencesWindow(window) {
     const settings = ExtensionUtils.getSettings();
     let type = settings.get_int('device-type');
 
+    window.set_default_size(650, 675);
+
     window.add(new General(settings));
 
     if (Driver.deviceInfo[type][2] === '1')
