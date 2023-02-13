@@ -2,16 +2,10 @@
 const {Adw, GLib, GObject, Gio} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
+const Driver = Me.imports.lib.driver;
 const gettextDomain = Me.metadata['gettext-domain'];
 const Gettext = imports.gettext.domain(gettextDomain);
 const _ = Gettext.gettext;
-
-/*
-Device that support start threshold
-
-*/
-const device = [false, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false];
-let type = 1;
 
 var ThresholdPrimary = GObject.registerClass({
     GTypeName: 'BHC_Threshold_Primary',
@@ -43,11 +37,12 @@ var ThresholdPrimary = GObject.registerClass({
     constructor(settings) {
         super({});
 
+        this.type = settings.get_int('device-type');
         this._updateRangeSubtitle(this._full_capacity_end_threshold_row, 90, 100);
         this._updateRangeSubtitle(this._balanced_end_threshold_row, 70, 80);
         this._updateRangeSubtitle(this._maxlife_end_threshold_row, 50, 60);
 
-        if (device[type]) { // if StartThresholdSupported
+        if (Driver.deviceInfo[this.type][0] === '1') { // if StartThresholdSupported
             this._updateRangeSubtitle(this._full_capacity_start_threshold_row,
                 settings.get_int('full-capacity-end-threshold') - 10,
                 settings.get_int('full-capacity-end-threshold') - 2);
@@ -61,7 +56,7 @@ var ThresholdPrimary = GObject.registerClass({
 
         this._updateCurrentValueLabel(settings);
 
-        if (!device[type]) {
+        if (!(Driver.deviceInfo[this.type][0] === '1')) {
             this._full_capacity_start_threshold_row.visible = false;
             this._balanced_start_threshold_row.visible = false;
             this._maxlife_start_threshold_row.visible = false;
@@ -106,7 +101,7 @@ var ThresholdPrimary = GObject.registerClass({
             Gio.SettingsBindFlags.DEFAULT
         );
 
-        if (device[type]) { // if StartThresholdSupported
+        if (Driver.deviceInfo[this.type][0] === '1') { // if StartThresholdSupported
             settings.bind(
                 'full-capacity-start-threshold',
                 this._full_capacity_start_threshold,
@@ -190,7 +185,7 @@ var ThresholdPrimary = GObject.registerClass({
         settings.set_int('current-maxlife-end-threshold',
             settings.get_int('maxlife-end-threshold'));
 
-        if (device[type]) {
+        if (Driver.deviceInfo[this.type][0] === '1') {
             settings.set_int('current-full-capacity-start-threshold',
                 settings.get_int('full-capacity-start-threshold'));
             settings.set_int('current-balanced-start-threshold',
@@ -208,7 +203,7 @@ var ThresholdPrimary = GObject.registerClass({
         this._maxlife_end_threshold_actual_value.set_label(
             settings.get_int('current-maxlife-end-threshold').toString());
 
-        if (device[type]) {
+        if (Driver.deviceInfo[this.type][0] === '1') {
             this._full_capacity_start_threshold_actual_value.set_label(
                 settings.get_int('current-full-capacity-start-threshold').toString());
             this._balanced_start_threshold_actual_value.set_label(
