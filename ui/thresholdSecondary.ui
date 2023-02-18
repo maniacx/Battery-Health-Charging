@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <interface domain="Battery-Health-Charging@maniacx.github.com">
   <template class="BHC_Threshold_Secondary" parent="AdwPreferencesPage">
-    <property name="name">BAT1 Threshold</property>
-    <property name="title" translatable="yes">BAT1 Threshold</property>
+    <property name="name">Threshold2</property>
+    <property name="title" translatable="yes">Battery 2</property>
     <property name="icon-name">battery-level-100-charged-symbolic</property>
     <child>
       <object class="AdwPreferencesGroup">

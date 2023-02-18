@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="Battery-Health-Charging@maniacx.github.com">
+  <menu id="info_menu_model">
+    <section>
+      <item>
+        <attribute name="label" translatable="yes">Project page</attribute>
+        <attribute name="action">prefs.open-readme</attribute>
+      </item>
+      <item>
+        <attribute name="label" translatable="yes">Report a Bug</attribute>
+        <attribute name="action">prefs.open-bug-report</attribute>
+      </item>
+    </section>
+  </menu>
+
+  <object class="GtkMenuButton" id="info_menu">
+    <property name="menu-model">info_menu_model</property>
+    <property name="icon-name">open-menu-symbolic</property>
+  </object>
+
+  <object class="AdwPreferencesPage" id="menu_util"></object>
+</interface>

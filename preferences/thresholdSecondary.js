@@ -7,8 +7,6 @@ const gettextDomain = Me.metadata['gettext-domain'];
 const Gettext = imports.gettext.domain(gettextDomain);
 const _ = Gettext.gettext;
 
-let type = 1;
-
 var ThresholdSecondary = GObject.registerClass({
     GTypeName: 'BHC_Threshold_Secondary',
     Template: `file://${GLib.build_filenamev([Me.path, 'ui', 'thresholdSecondary.ui'])}`,
@@ -72,14 +70,14 @@ var ThresholdSecondary = GObject.registerClass({
             'default-threshold2',
             this._customize_threshold_2,
             'active',
-            Gio.SettingsBindFlags.DEFAULT
+            Gio.SettingsBindFlags.INVERT_BOOLEAN
         );
 
         settings.bind(
             'default-threshold2',
             this._default_threshold_2,
             'active',
-            Gio.SettingsBindFlags.INVERT_BOOLEAN
+            Gio.SettingsBindFlags.DEFAULT
         );
 
         settings.bind(
@@ -126,22 +124,22 @@ var ThresholdSecondary = GObject.registerClass({
             );
 
             settings.connect('changed::full-capacity-end-threshold2', () => {
-                let fullCapStartRangeLower = this._full_capacity_end_threshold_2.value - 10;
-                let fullCapStartRangeUpper = this._full_capacity_end_threshold_2.value - 2;
+                const fullCapStartRangeLower = this._full_capacity_end_threshold_2.value - 10;
+                const fullCapStartRangeUpper = this._full_capacity_end_threshold_2.value - 2;
                 this._full_capacity_start_threshold_2.set_range(fullCapStartRangeLower, fullCapStartRangeUpper);
                 this._updateRangeSubtitle(this._full_capacity_start_threshold_row_2, fullCapStartRangeLower, fullCapStartRangeUpper);
             });
 
             settings.connect('changed::balanced-end-threshold2', () => {
-                let balStartRangeLower = this._balanced_end_threshold_2.value - 10;
-                let balStartRangeUpper = this._balanced_end_threshold_2.value - 2;
+                const balStartRangeLower = this._balanced_end_threshold_2.value - 10;
+                const balStartRangeUpper = this._balanced_end_threshold_2.value - 2;
                 this._balanced_start_threshold_2.set_range(balStartRangeLower, balStartRangeUpper);
                 this._updateRangeSubtitle(this._balanced_start_threshold_row_2, balStartRangeLower, balStartRangeUpper);
             });
 
             settings.connect('changed::maxlife-end-threshold2', () => {
-                let maxLifeRangeLower = this._maxlife_end_threshold_2.value - 10;
-                let maxlifeRangeUpper = this._maxlife_end_threshold_2.value - 2;
+                const maxLifeRangeLower = this._maxlife_end_threshold_2.value - 10;
+                const maxlifeRangeUpper = this._maxlife_end_threshold_2.value - 2;
                 this._maxlife_start_threshold_2.set_range(maxLifeRangeLower, maxlifeRangeUpper);
                 this._updateRangeSubtitle(this._maxlife_start_threshold_row_2, maxLifeRangeLower, maxlifeRangeUpper);
             });
@@ -150,7 +148,8 @@ var ThresholdSecondary = GObject.registerClass({
         this._apply_settings_2.connect('clicked', () => {
             this._updateCurrentValues(settings);
             this._updateCurrentValueLabel(settings);
-            settings.set_boolean('apply-threshold2', !settings.get_boolean('apply-threshold2'));
+            Driver.setThresholdLimit2(settings.get_string('charging-mode2'));
+            settings.set_boolean('dummy-apply-threshold2', !settings.get_boolean('dummy-apply-threshold2'));
         });
 
         this._default_threshold_2.connect('clicked', () => {
@@ -172,6 +171,7 @@ var ThresholdSecondary = GObject.registerClass({
                 settings.reset(key);
             });
             this._updateCurrentValueLabel(settings);
+            Driver.setThresholdLimit2(settings.get_string('charging-mode2'));
         });
     }
 

@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schemalist>
-    <schema
-        path="/org/gnome/shell/extensions/Battery-Health-Charging/"
-        id="org.gnome.shell.extensions.Battery-Health-Charging">
-        <key name="charging-mode" type="s" >
+<schemalist gettext-domain="gnome-shell-extensions">
+    <schema path="/org/gnome/shell/extensions/Battery-Health-Charging/" id="org.gnome.shell.extensions.Battery-Health-Charging">
+        <key name="charging-mode" type="s">
             <default>"ful"</default>
             <summary>'ful' = Full Capacity mode, 'bal' = balance mode, 'max' = maximum lifespan mode</summary>
         </key>
         <key name="device-type" type="i">
             <default>0</default>
             <summary>Type fo device found during init</summary>
+        </key>
+        <key name="show-battery-panel2" type="b">
+            <default>false</default>
+            <summary>show battery panel 2 if true</summary>
         </key>
         <key name="icon-style-type" type="i">
             <default>1</default>
@@ -19,17 +21,29 @@
             <default>true</default>
             <summary>Toggle to show systemindicator</summary>
         </key>
+        <key name="show-notifications" type="b">
+            <default>true</default>
+            <summary>Toggle to show notifications</summary>
+        </key>
         <key name="install-service" type="i">
             <default>1</default>
             <summary>Install service</summary>
         </key>
-        <key name="default-threshold" type="b">
+        <key name="ctl-path" type="s">
+            <default>""</default>
+            <summary>Path of ctl</summary>
+        </key>
+        <key name="root-mode" type="b">
             <default>false</default>
+            <summary>Is Root needed</summary>
+        </key>
+        <key name="default-threshold" type="b">
+            <default>true</default>
             <summary>Toggle between default and customized threshold</summary>
         </key>
-        <key name="apply-threshold" type="b">
+        <key name="dummy-apply-threshold" type="b">
             <default>false</default>
-            <summary>Toggles when apply changes</summary>
+            <summary>Toggles when apply changes. Used only to _updatePanelMenu</summary>
         </key>
         <key name="full-capacity-end-threshold" type="i">
             <default>100</default>
@@ -79,17 +93,17 @@
             <default>58</default>
             <summary>maxlife mode start threshold applied value</summary>
         </key>
-        <key name="charging-mode2" type="s" >
+        <key name="charging-mode2" type="s">
             <default>"ful"</default>
             <summary>'ful' = Full Capacity mode, 'bal' = balance mode, 'max' = maximum lifespan mode</summary>
         </key>
         <key name="default-threshold2" type="b">
-            <default>false</default>
+            <default>true</default>
             <summary>Toggle between default and customized threshold</summary>
         </key>
-        <key name="apply-threshold2" type="b">
+        <key name="dummy-apply-threshold2" type="b">
             <default>false</default>
-            <summary>Toggles when apply changes</summary>
+            <summary>Toggles when apply changes. Used only to _updatePanelMenu</summary>
         </key>
         <key name="full-capacity-end-threshold2" type="i">
             <default>100</default>
@@ -115,7 +129,6 @@
             <default>58</default>
             <summary>maxlife mode start threshold adjustment value</summary>
         </key>
-
         <key name="current-full-capacity-end-threshold2" type="i">
             <default>100</default>
             <summary>full capacity mode end threshold applied value</summary>

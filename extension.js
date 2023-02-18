@@ -2,7 +2,7 @@
 
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
-const Panel = Me.imports.lib.thresholdpanel;
+const Panel = Me.imports.lib.thresholdPanel;
 
 var thresholdPanel = null;
 

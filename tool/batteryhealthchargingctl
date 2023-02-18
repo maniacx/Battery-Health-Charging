@@ -1,7 +1,75 @@
 #!/bin/bash
 
-# shutdowntimerctl - This script can configure the shutdown and rtc wake alarm schedule.
+# batteryhealthchargingctl - This script for setting charging limit
 #
-# This file is part of the gnome-shell extension ShutdownTimer@Deminder.
+# This file is part of the gnome-shell extension Battery-Health-Charging@maniacx.github.com.
 
-### To Do
+BAT0_END_PATH='/sys/class/power_supply/BAT0/charge_control_end_threshold';
+BAT0_START_PATH='/sys/class/power_supply/BAT0/charge_control_start_threshold';
+BAT1_END_PATH='/sys/class/power_supply/BAT1/charge_control_end_threshold';
+BAT1_START_PATH='/sys/class/power_supply/BAT1/charge_control_start_threshold';
+LG_PATH='/sys/devices/platform/lg-laptop/battery_care_limit';
+LENOVA_PATH='/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode';
+SONY_PATH='/sys/devices/platform/sony-laptop/battery_care_limiter';
+HUWAEI_PATH='/sys/devices/platform/huawei-wmi/charge_thresholds';
+SAMSUNG_PATH='/sys/devices/platform/samsung/battery_life_extender';
+ACER_PATH='/sys/bus/wmi/drivers/acer-wmi-battery/health_mode';
+BATC_END_PATH='/sys/class/power_supply/BATC/charge_control_end_threshold';
+BATT_END_PATH='/sys/class/power_supply/BATT/charge_control_end_threshold';
+TP_BAT0_END='/sys/devices/platform/smapi/BAT0/stop_charge_thresh';
+TP_BAT0_START='/sys/devices/platform/smapi/BAT0/start_charge_thresh';
+TP_BAT1_END='/sys/devices/platform/smapi/BAT1/stop_charge_thresh';
+TP_BAT1_START='/sys/devices/platform/smapi/BAT1/start_charge_thresh';
+
+case "$1" in
+    BAT0_END_PATH)
+        echo "$2" > "$BAT0_END_PATH"
+		;;
+    BAT0_START_PATH)
+        echo "$2" > "$BAT0_START_PATH"
+		;;
+    BAT1_END_PATH)
+        echo "$2" > "$BAT1_END_PATH"
+		;;
+    BAT1_START_PATH)
+        echo "$2" > "$BAT1_START_PATH"
+		;;
+    LG_PATH)
+        echo "$2" > "$LG_PATH"
+		;;
+    LENOVA_PATH)
+        echo "$2" > "$LENOVA_PATH"
+		;;
+    SONY_PATH)
+        echo "$2" > "$SONY_PATH"
+		;;
+    HUWAEI_PATH)
+        echo "$2 $3" > "$HUWAEI_PATH"
+		;;
+    SAMSUNG_PATH)
+        echo "$2" > "$SAMSUNG_PATH"
+		;;
+    ACER_PATH)
+        echo "$2" > "$ACER_PATH"
+		;;
+    BATC_END_PATH)
+        echo "$2" > "$BATC_END_PATH"
+		;;
+    BATT_END_PATH)
+        echo "$2" > "$BATT_END_PATH"
+		;;
+    TP_BAT0_END)
+        echo "$2" > "$TP_BAT0_END"
+		;;
+    TP_BAT0_START)
+        echo "$2" > "$TP_BAT0_START"
+		;;
+    TP_BAT1_END)
+        echo "$2" > "$TP_BAT1_END"
+		;;
+    TP_BAT1_START)
+        echo "$2" > "$TP_BAT1_START"
+		;;
+	*)
+		echo "Unknown" >&2
+esac
