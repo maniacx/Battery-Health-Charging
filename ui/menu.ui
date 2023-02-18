@@ -10,6 +10,10 @@
         <attribute name="label" translatable="yes">Report a Bug</attribute>
         <attribute name="action">prefs.open-bug-report</attribute>
       </item>
+      <item>
+        <attribute name="label" translatable="yes">Rate this extension</attribute>
+        <attribute name="action">prefs.open-rating</attribute>
+      </item>
     </section>
   </menu>
 

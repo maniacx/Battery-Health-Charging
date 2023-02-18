@@ -39,6 +39,11 @@ function addMenuToHeader(window, builder) {
             name: 'open-bug-report',
             link: 'https://github.com/maniacx/Battery-Health-Charging/issues',
         },
+        {
+            name: 'open-rating',
+            link: 'https://extensions.gnome.org/extension/5724/battery-health-charging',
+        },
+
     ];
 
     actions.forEach(action => {
