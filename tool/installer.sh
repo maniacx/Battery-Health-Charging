@@ -1,10 +1,12 @@
 #!/bin/bash
 
-# installer.sh - This script installs a policykit rule for the Shutdown Timer gnome-shell extension.
+# installer.sh - This script installs a policykit rule for the Battery Health Charging gnome-shell extension.
 #
-# This file is part of the gnome-shell extension ShutdownTimer@Deminder.
-
+# This file is part of the gnome-shell extension Battery-Health-Charging@maniacx.github.com
+#
 # Authors: Martin Koppehel <psl.kontakt@gmail.com>, Fin Christensen <christensen.fin@gmail.com> (cpupower extension), Deminder <tremminder@gmail.com>
+# Original script here https://github.com/Deminder/ShutdownTimer
+# Modified by maniacx@github.com
 
 set -e
 
@@ -30,12 +32,6 @@ EXIT_MUST_BE_ROOT=6
 
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )" #stackoverflow 59895
 
-export TEXTDOMAINDIR="$DIR/../locale"
-export TEXTDOMAIN="Battery-Health-Charging@maniacx.github.com"
-function gtxt() {
-    gettext "$1"
-}
-
 function recent_polkit() {
     printf -v versions '%s\n%s' "$(pkaction --version | cut -d' ' -f3)" "0.106"
     if [[ $versions != "$(sort -V <<< "$versions")" ]];then
@@ -46,13 +42,12 @@ function recent_polkit() {
 }
 
 function fail() {
-    echo "$(gtxt "Failed")${1}" >&2 && exit ${EXIT_FAILED}
+    echo "Failed ${1}" >&2 && exit ${EXIT_FAILED}
 }
-DEFAULT_SUCCESS_MSG=$(gtxt 'Success')
+DEFAULT_SUCCESS_MSG="Success"
 
 function success() {
-    echo -n "${1:-$DEFAULT_SUCCESS_MSG}"
-    echo -e "\U1F7E2"
+    echo "${1:-$DEFAULT_SUCCESS_MSG}"
 }
 
 
@@ -62,7 +57,7 @@ function success() {
 ########################
 
 function usage() {
-    echo "Usage: installer.sh [options] {supported,install,check,update,uninstall}"
+    echo "Usage: installer.sh [options] {install,check,update,uninstall}"
     echo
     echo "Available options:"
     echo "  --tool-user USER   Set the user of the tool (default: \$USER)"
@@ -173,19 +168,19 @@ then
         exit ${EXIT_MUST_BE_ROOT}
     fi
 
-    echo -n "$(gtxt 'Installing') ${TOOL_NAME} $(gtxt 'tool')... "
+    echo -n "Installing ${TOOL_NAME} tool... "
     mkdir -p "${CFC_DIR}"
     install "${TOOL_IN}" "${TOOL_OUT}" || fail
     success
 
     if [ ! -z "$ACTION_IN" ];then
-        echo "$(gtxt 'Using legacy policykit install')..."
-        echo -n "$(gtxt 'Installing') $(gtxt 'policykit action')..."
+        echo "Using legacy policykit install..."
+        echo -n "Installing policykit action..."
         (print_policy_xml > "${ACTION_OUT}" 2>/dev/null && chmod 0644 "${ACTION_OUT}") || fail
         success
     fi
 
-    echo -n "$(gtxt 'Installing') $(gtxt 'policykit rule')..."
+    echo -n "Installing policykit rule..."
     mkdir -p "${RULE_DIR}"
     (print_rules_javascript > "${RULE_OUT}" 2>/dev/null && chmod 0644 "${RULE_OUT}")  || fail
     success
@@ -207,38 +202,38 @@ then
     if [ -f "$LEG_CFG_OUT" ]
     then
         # remove legacy "tool" install
-        echo -n "$(gtxt 'Uninstalling') $(gtxt 'tool')..."
-        rm "${LEG_CFG_OUT}" || fail " - $(gtxt 'cannot remove') ${LEG_CFG_OUT}" && success
+        echo -n "Uninstalling tool..."
+        rm "${LEG_CFG_OUT}" || fail " - "cannot remove" ${LEG_CFG_OUT}" && success
     fi
 
     if [ -f "$ACTION_OUT" ]
     then
         # remove legacy "policykit action" install
-        echo -n "$(gtxt 'Uninstalling') $(gtxt 'policykit action')..."
-        rm "${ACTION_OUT}" || fail " - $(gtxt 'cannot remove') ${ACTION_OUT}" && success
+        echo -n "Uninstalling policykit action..."
+        rm "${ACTION_OUT}" || fail " - "cannot remove" ${ACTION_OUT}" && success
     fi
     LEG_RULE_OUT="/usr/share/polkit-1/rules.d/10-dem.batteryhealthcharging.setthreshold.rules"
     if [ -f "$LEG_RULE_OUT" ]
     then
         # remove legacy "policykit action" install
-        echo -n "$(gtxt 'Uninstalling') $(gtxt 'policykit rule')..."
-        rm "${LEG_RULE_OUT}" || fail " - $(gtxt 'cannot remove') ${LEG_RULE_OUT}" && success
+        echo -n "Uninstalling policykit rule..."
+        rm "${LEG_RULE_OUT}" || fail " - "cannot remove" ${LEG_RULE_OUT}" && success
     fi
 
-    echo -n "$(gtxt 'Uninstalling') ${TOOL_NAME} $(gtxt 'tool')... "
+    echo -n "Uninstalling ${TOOL_NAME} tool... "
     if [ -f "${TOOL_OUT}" ]
     then
-        rm "${TOOL_OUT}" || fail " - $(gtxt 'cannot remove') ${TOOL_OUT}" && success
+        rm "${TOOL_OUT}" || fail " - cannot remove ${TOOL_OUT}" && success
     else
-        echo "$(gtxt 'tool') $(gtxt 'not installed at') ${TOOL_OUT}"
+        echo "tool not installed at ${TOOL_OUT}"
     fi
 
-    echo -n "$(gtxt 'Uninstalling') $(gtxt 'policykit rule')... "
+    echo -n "Uninstalling policykit rule... "
     if [ -f "${RULE_OUT}" ]
     then
-        rm "${RULE_OUT}" || fail " - $(gtxt 'cannot remove') ${RULE_OUT}" && success
+        rm "${RULE_OUT}" || fail " - cannot remove ${RULE_OUT}" && success
     else
-        echo "$(gtxt 'policy rule') $(gtxt 'not installed at') ${RULE_OUT}"
+        echo "policy rule not installed at ${RULE_OUT}"
     fi
 
     exit ${EXIT_SUCCESS}
