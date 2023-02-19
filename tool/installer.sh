@@ -83,7 +83,7 @@ do
             shift
             shift
             ;;
-        install|check|update|uninstall)
+        install|update|uninstall)
             if [ -z "$ACTION" ]
             then
                 ACTION="$1"
@@ -131,30 +131,6 @@ function print_rules_javascript() {
     fi
 
 }
-
-if [ "$ACTION" = "check" ]
-then
-    if ! print_rules_javascript | cmp --silent "${RULE_OUT}"
-    then
-        if [ -f "${ACTION_OUT}" ]
-        then
-            echo "Your $EXTENSION_NAME installation needs updating policies!"
-            exit ${EXIT_NEEDS_UPDATE}
-        else
-            echo "Not installed"
-            exit ${EXIT_NOT_INSTALLED}
-        fi
-    else
-       if ! cmp --silent "${TOOL_IN}" "${TOOL_OUT}"
-       then
-            echo "Your $EXTENSION_NAME installation needs updating tool!"
-            exit ${EXIT_NEEDS_UPDATE}
-       fi
-    fi
-    echo "Installed"
-
-    exit ${EXIT_SUCCESS}
-fi
 
 TOOL_NAME=$(basename ${TOOL_OUT})
 
