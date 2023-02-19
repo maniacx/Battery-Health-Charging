@@ -17,7 +17,7 @@ set -e
 EXTENSION_NAME="Battery Health Charging"
 ACTION_BASE="dem.batteryhealthcharging"
 RULE_BASE="$ACTION_BASE.setthreshold"
-CFC_BASE="batteryhealthchargingctl"
+BHC_BASE="batteryhealthchargingctl"
 RESOURCES_DIR="resources"
 VERSION=1
 
@@ -63,8 +63,7 @@ function usage() {
     exit ${EXIT_INVALID_ARG}
 }
 
-if [ $# -lt 1 ]
-then
+if [ $# -lt 1 ];then
     usage
 fi
 
@@ -100,7 +99,7 @@ do
 done
 
 
-CFC_DIR="/usr/local/bin"
+BHC_DIR="/usr/local/bin"
 RULE_DIR="/etc/polkit-1/rules.d"
 
 RULE_IN="${DIR}/../${RESOURCES_DIR}/10-$RULE_BASE.rules"
@@ -108,9 +107,9 @@ if [[ "$(recent_polkit)" != "available" ]];then
     RULE_IN="${RULE_IN}.legacy"
     ACTION_IN="${DIR}/../${RESOURCES_DIR}/${ACTION_BASE}.policy.in"
 fi
-TOOL_IN="${DIR}/../${RESOURCES_DIR}/$CFC_BASE"
+TOOL_IN="${DIR}/../${RESOURCES_DIR}/$BHC_BASE"
 
-TOOL_OUT="${CFC_DIR}/${CFC_BASE}-${TOOL_USER}"
+TOOL_OUT="${BHC_DIR}/${BHC_BASE}-${TOOL_USER}"
 RULE_OUT="${RULE_DIR}/10-${RULE_BASE}-${TOOL_USER}.rules"
 ACTION_ID="${RULE_BASE}.${TOOL_USER}"
 ACTION_OUT="/usr/share/polkit-1/actions/${ACTION_ID}.policy"
@@ -133,8 +132,7 @@ function print_rules_javascript() {
 
 TOOL_NAME=$(basename ${TOOL_OUT})
 
-if [ "$ACTION" = "install" ]
-then
+if [ "$ACTION" = "install" ];then
     if [ "${EUID}" -ne 0 ]; then
         echo "The install action must be run as root for security reasons!"
         echo "Please have a look at https://github.com/martin31821/cpupower/issues/102"
@@ -143,7 +141,7 @@ then
     fi
 
     echo -n "Installing ${TOOL_NAME} tool... "
-    mkdir -p "${CFC_DIR}"
+    mkdir -p "${BHC_DIR}"
     install "${TOOL_IN}" "${TOOL_OUT}" || fail
     success
 
@@ -162,49 +160,28 @@ then
     exit ${EXIT_SUCCESS}
 fi
 
-if [ "$ACTION" = "update" ]
-then
+if [ "$ACTION" = "update" ];then
     "${BASH_SOURCE[0]}" --tool-user "${TOOL_USER}" uninstall || exit $?
     "${BASH_SOURCE[0]}" --tool-user "${TOOL_USER}" install || exit $?
 
     exit ${EXIT_SUCCESS}
 fi
 
-if [ "$ACTION" = "uninstall" ]
-then
-    LEG_CFG_OUT="/usr/bin/batteryhealthchargingctl-$TOOL_USER"
-    if [ -f "$LEG_CFG_OUT" ]
-    then
-        # remove legacy "tool" install
-        echo -n "Uninstalling tool..."
-        rm "${LEG_CFG_OUT}" || fail " - "cannot remove" ${LEG_CFG_OUT}" && success
-    fi
-
-    if [ -f "$ACTION_OUT" ]
-    then
+if [ "$ACTION" = "uninstall" ];then
+    if [ -f "$ACTION_OUT" ];then
         # remove legacy "policykit action" install
         echo -n "Uninstalling policykit action..."
         rm "${ACTION_OUT}" || fail " - "cannot remove" ${ACTION_OUT}" && success
     fi
-    LEG_RULE_OUT="/usr/share/polkit-1/rules.d/10-dem.batteryhealthcharging.setthreshold.rules"
-    if [ -f "$LEG_RULE_OUT" ]
-    then
-        # remove legacy "policykit action" install
-        echo -n "Uninstalling policykit rule..."
-        rm "${LEG_RULE_OUT}" || fail " - "cannot remove" ${LEG_RULE_OUT}" && success
-    fi
-
     echo -n "Uninstalling ${TOOL_NAME} tool... "
-    if [ -f "${TOOL_OUT}" ]
-    then
+    if [ -f "${TOOL_OUT}" ];then
         rm "${TOOL_OUT}" || fail " - cannot remove ${TOOL_OUT}" && success
     else
         echo "tool not installed at ${TOOL_OUT}"
     fi
 
     echo -n "Uninstalling policykit rule... "
-    if [ -f "${RULE_OUT}" ]
-    then
+    if [ -f "${RULE_OUT}" ];then
         rm "${RULE_OUT}" || fail " - cannot remove ${RULE_OUT}" && success
     else
         echo "policy rule not installed at ${RULE_OUT}"
