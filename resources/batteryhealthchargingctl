@@ -21,6 +21,17 @@ TP_BAT0_START='/sys/devices/platform/smapi/BAT0/start_charge_thresh';
 TP_BAT1_END='/sys/devices/platform/smapi/BAT1/stop_charge_thresh';
 TP_BAT1_START='/sys/devices/platform/smapi/BAT1/start_charge_thresh';
 
+EXTENSION_NAME="Battery Health Charging"
+ACTION_BASE="dem.batteryhealthcharging"
+RULE_BASE="$ACTION_BASE.setthreshold"
+BHC_BASE="batteryhealthchargingctl"
+BHC_DIR="/usr/local/bin"
+RULE_DIR="/etc/polkit-1/rules.d"
+LEGACY_POLKIT=false
+
+EXIT_SUCCESS=0
+EXIT_NEEDS_UPDATE=1
+
 case "$1" in
     BAT0_END_PATH)
         echo "$2" > "$BAT0_END_PATH"
@@ -69,6 +80,61 @@ case "$1" in
         ;;
     TP_BAT1_START)
         echo "$2" > "$TP_BAT1_START"
+        ;;
+    CHECKINSTALLATION)
+    printf -v versions '%s\n%s' "$(pkaction --version | cut -d' ' -f3)" "0.106"
+    if [[ $versions != "$(sort -V <<< "$versions")" ]];then
+        LEGACY_POLKIT=false
+    else
+        LEGACY_POLKIT=true
+    fi
+        EXTDIR=$2
+        TOOL_USER=$3
+        RULE_IN="${EXTDIR}/10-${RULE_BASE}.rules"
+        if [[ "$LEGACY_POLKIT" = true ]];then
+            RULE_IN="${RULE_IN}.legacy"
+            ACTION_IN="${EXTDIR}/${ACTION_BASE}.policy.in"
+        fi
+        TOOL_IN="${EXTDIR}/${BHC_BASE}"
+        TOOL_OUT="${BHC_DIR}/${BHC_BASE}-${TOOL_USER}"
+        RULE_OUT="${RULE_DIR}/10-${RULE_BASE}-${TOOL_USER}.rules"
+        ACTION_ID="${RULE_BASE}.${TOOL_USER}"
+        ACTION_OUT="/usr/share/polkit-1/actions/${ACTION_ID}.policy"
+
+        if [[ "$LEGACY_POLKIT" = true ]];then
+            echo "Your $EXTENSION_NAME checking legacy rules and policies !"
+            if ! sed -e "s:{{RULE_BASE}}:${RULE_BASE}:g" "${RULE_IN}" | \
+                cmp --silent "${RULE_OUT}"
+            then
+                echo "Your $EXTENSION_NAME installation needs to update rules !"
+                exit ${EXIT_NEEDS_UPDATE}
+            else
+                if ! sed -e "s:{{PATH}}:${TOOL_OUT}:g" \
+                    -e "s:{{ACTION_BASE}}:${ACTION_BASE}:g" \
+                    -e "s:{{ACTION_ID}}:${ACTION_ID}:g" "${ACTION_IN}" | \
+                    cmp --silent "${ACTION_OUT}"
+                then
+                    echo "Your $EXTENSION_NAME installation needs to update policies!"
+                    exit ${EXIT_NEEDS_UPDATE}
+                fi
+            fi
+        else
+            echo "Your $EXTENSION_NAME checking rules !"
+            if ! sed -e "s:{{TOOL_OUT}}:${TOOL_OUT}:g" \
+                -e "s:{{TOOL_USER}}:${TOOL_USER}:g" "${RULE_IN}" | \
+                cmp --silent "${RULE_OUT}"
+            then
+                echo "Your $EXTENSION_NAME installation needs updating rules!"
+                exit ${EXIT_NEEDS_UPDATE}
+            fi
+        fi
+        echo "Your $EXTENSION_NAME checking ctl !"
+        if ! cmp --silent "${TOOL_IN}" "${TOOL_OUT}";then
+            echo "Your $EXTENSION_NAME installation needs updating ctl!"
+            exit ${EXIT_NEEDS_UPDATE}
+        fi
+        echo "Your $EXTENSION_NAME installation is up to date "
+        exit ${EXIT_SUCCESS}
         ;;
     *)
         echo "Unknown" >&2
