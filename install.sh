@@ -7,7 +7,7 @@ echo "Packing extension..."
 gnome-extensions pack ./ \
     --extra-source=icons/ \
     --extra-source=lib/ \
-    --extra-source=polkit/ \
+    --extra-source=resources/ \
     --extra-source=preferences/ \
     --extra-source=tool/ \
     --extra-source=ui/ \

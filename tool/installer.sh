@@ -18,9 +18,8 @@ EXTENSION_NAME="Battery Health Charging"
 ACTION_BASE="dem.batteryhealthcharging"
 RULE_BASE="$ACTION_BASE.setthreshold"
 CFC_BASE="batteryhealthchargingctl"
-POLKIT_DIR="polkit"
+RESOURCES_DIR="resources"
 VERSION=1
-
 
 EXIT_SUCCESS=0
 EXIT_INVALID_ARG=1
@@ -104,12 +103,12 @@ done
 CFC_DIR="/usr/local/bin"
 RULE_DIR="/etc/polkit-1/rules.d"
 
-RULE_IN="${DIR}/../${POLKIT_DIR}/10-$RULE_BASE.rules"
+RULE_IN="${DIR}/../${RESOURCES_DIR}/10-$RULE_BASE.rules"
 if [[ "$(recent_polkit)" != "available" ]];then
     RULE_IN="${RULE_IN}.legacy"
-    ACTION_IN="${DIR}/../${POLKIT_DIR}/${ACTION_BASE}.policy.in"
+    ACTION_IN="${DIR}/../${RESOURCES_DIR}/${ACTION_BASE}.policy.in"
 fi
-TOOL_IN="${DIR}/$CFC_BASE"
+TOOL_IN="${DIR}/../${RESOURCES_DIR}/$CFC_BASE"
 
 TOOL_OUT="${CFC_DIR}/${CFC_BASE}-${TOOL_USER}"
 RULE_OUT="${RULE_DIR}/10-${RULE_BASE}-${TOOL_USER}.rules"
