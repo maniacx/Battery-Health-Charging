@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-17 21:01-0600\n"
+"POT-Creation-Date: 2023-02-19 14:27-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,50 +65,46 @@ msgstr ""
 msgid "Please update polkit from extension settings under Installation."
 msgstr ""
 
-#: lib/notifier.js:75
-msgid "Unknown Error"
-msgstr ""
-
-#: lib/notifier.js:79 lib/notifier.js:83
+#: lib/notifier.js:75 lib/notifier.js:79
 msgid "Installation Successfull. Please save your work and logout."
 msgstr ""
 
-#: lib/notifier.js:87
+#: lib/notifier.js:83
 msgid "Uninstallation Successfull."
+msgstr ""
+
+#: lib/notifier.js:91
+#, javascript-format
+msgid ""
+"Battery 1\n"
+"Charge thresholds are set to %d / %d %%"
+msgstr ""
+
+#: lib/notifier.js:93
+#, javascript-format
+msgid "Charge thresholds are set to %d / %d %%"
 msgstr ""
 
 #: lib/notifier.js:95
 #, javascript-format
 msgid ""
 "Battery 1\n"
-"Charge thresholds are set to %d / %d %%"
-msgstr ""
-
-#: lib/notifier.js:97
-#, javascript-format
-msgid "Charge thresholds are set to %d / %d %%"
-msgstr ""
-
-#: lib/notifier.js:99
-#, javascript-format
-msgid ""
-"Battery 1\n"
 "Charging Limit is set to %d%%"
 msgstr ""
 
-#: lib/notifier.js:101 lib/thresholdPanel.js:209 lib/thresholdPanel.js:271
+#: lib/notifier.js:97 lib/thresholdPanel.js:209 lib/thresholdPanel.js:271
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr ""
 
-#: lib/notifier.js:110
+#: lib/notifier.js:106
 #, javascript-format
 msgid ""
 "Battery 2\n"
 "Charge thresholds are set to %d / %d %%"
 msgstr ""
 
-#: lib/notifier.js:112
+#: lib/notifier.js:108
 #, javascript-format
 msgid ""
 "Battery 2\n"
