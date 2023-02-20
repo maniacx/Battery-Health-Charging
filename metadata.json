@@ -1,12 +1,12 @@
 {
   "uuid": "Battery-Health-Charging@maniacx.github.com",
   "name": "Battery Health Charging",
-  "description": "Battery Health Charging extension sets the limit of battery charging to maximize battery health mainly for Asus laptop. Since users usually keep their AC adapter connected while using their laptop, the battery is often in a state of  high-power(98-100%) for extended length of time which causes a reduction in battery life.\nSimilar to the MyAsus app on Windows OS, you can set the limit to stop charging at one of the 3 following modes.\n\n1. Full Capacity Mode (100%): Battery is charged to its full capacity for longer use on battery power.\n\n2. Balanced Mode(80%): This mode is recommended when using the Notebook on battery power during meetings or conferences.\n\n3. Maximum Lifespan Mode(60%): This mode is recommended when the Notebook is always powered by AC adapter.\n\nFor more information about modes, compatibility, translation, bugs/issues visit:\nhttps://github.com/maniacx/Battery-Health-Charging",
+  "description": "Battery Health Charging extension sets the limit of battery charging to maximize battery health for laptop. Since users usually keep their AC adapter connected while using their laptop, the battery is often in a state of  high-power(98-100%) for extended length of time which causes a reduction in battery life.\nYou can set the limit to stop charging at one of the 2 or 3 (if device supports it) following modes.\n\n1. Full Capacity Mode: Battery is charged to its full capacity for longer use on battery power.\n\n2. Balanced Mode (if device supports it): This mode is recommended when using the Notebook on battery power during meetings or conferences.\n\n3. Maximum Lifespan Mode(60%): This mode is recommended when the Notebook is always powered by AC adapter.\n\nFor more information about modes, compatibility, translation, bugs/issues visit:\nhttps://github.com/maniacx/Battery-Health-Charging",
   "url": "https://github.com/maniacx/Battery-Health-Charging",
   "shell-version": [
     "43"
   ],
-  "version": 3,
+  "version": 4,
   "settings-schema": "org.gnome.shell.extensions.Battery-Health-Charging",
   "gettext-domain": "Battery-Health-Charging@maniacx.github.com"
 }
