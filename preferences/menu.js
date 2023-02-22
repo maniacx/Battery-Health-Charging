@@ -50,7 +50,7 @@ function addMenuToHeader(window, builder) {
         const act = new Gio.SimpleAction({name: action.name});
         act.connect(
             'activate',
-            _ => Gtk.show_uri(window, action.link, Gdk.CURRENT_TIME)
+            _ => Gio.AppInfo.launch_default_for_uri_async(action.link, null, null, null)
         );
         actionGroup.add_action(act);
     });
