@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-02-20 11:17-0600\n"
+"POT-Creation-Date: 2023-02-22 22:01-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -80,78 +80,78 @@ msgid ""
 "Charge thresholds are set to %d / %d %%"
 msgstr ""
 
-#: lib/notifier.js:93
+#: lib/notifier.js:94
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr ""
 
-#: lib/notifier.js:95
+#: lib/notifier.js:98
 #, javascript-format
 msgid ""
 "Battery 1\n"
 "Charging Limit is set to %d%%"
 msgstr ""
 
-#: lib/notifier.js:97 lib/thresholdPanel.js:211 lib/thresholdPanel.js:273
+#: lib/notifier.js:100 lib/thresholdPanel.js:226 lib/thresholdPanel.js:287
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr ""
 
-#: lib/notifier.js:106
+#: lib/notifier.js:109
 #, javascript-format
 msgid ""
 "Battery 2\n"
 "Charge thresholds are set to %d / %d %%"
 msgstr ""
 
-#: lib/notifier.js:108
+#: lib/notifier.js:112
 #, javascript-format
 msgid ""
 "Battery 2\n"
 "Charging Limit is set to %d%%"
 msgstr ""
 
-#: lib/thresholdPanel.js:32 lib/thresholdPanel.js:185
+#: lib/thresholdPanel.js:34 lib/thresholdPanel.js:201
 msgid "Battery"
 msgstr ""
 
-#: lib/thresholdPanel.js:35 lib/thresholdPanel.js:177
+#: lib/thresholdPanel.js:37 lib/thresholdPanel.js:193
 #: preferences/thresholdPrimary.js:42
 msgid "Battery 1"
 msgstr ""
 
-#: lib/thresholdPanel.js:45 lib/thresholdPanel.js:184
+#: lib/thresholdPanel.js:47 lib/thresholdPanel.js:200
 msgid "Battery Charging Mode"
 msgstr ""
 
-#: lib/thresholdPanel.js:48 ui/thresholdPrimary.ui:39
+#: lib/thresholdPanel.js:50 ui/thresholdPrimary.ui:39
 #: ui/thresholdSecondary.ui:39
 msgid "Full Capacity Mode"
 msgstr ""
 
-#: lib/thresholdPanel.js:50 ui/thresholdPrimary.ui:131
+#: lib/thresholdPanel.js:52 ui/thresholdPrimary.ui:131
 #: ui/thresholdSecondary.ui:131
 msgid "Balanced Mode"
 msgstr ""
 
-#: lib/thresholdPanel.js:51 ui/thresholdPrimary.ui:206
+#: lib/thresholdPanel.js:53 ui/thresholdPrimary.ui:206
 #: ui/thresholdSecondary.ui:206
 msgid "Maximum Lifespan Mode"
 msgstr ""
 
-#: lib/thresholdPanel.js:178
+#: lib/thresholdPanel.js:194
 msgid "Battery 1 Charging Mode"
 msgstr ""
 
-#: lib/thresholdPanel.js:180 ui/thresholdSecondary.ui:5
+#: lib/thresholdPanel.js:196 ui/thresholdSecondary.ui:5
 msgid "Battery 2"
 msgstr ""
 
-#: lib/thresholdPanel.js:181
+#: lib/thresholdPanel.js:197
 msgid "Battery 2 Charging Mode"
 msgstr ""
 
-#: lib/thresholdPanel.js:209 lib/thresholdPanel.js:271
+#: lib/thresholdPanel.js:223 lib/thresholdPanel.js:284
 #, javascript-format
 msgid ""
 "Device will stop charging at %d%%\n"
