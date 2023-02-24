@@ -1,5 +1,4 @@
 'use strict';
-
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Panel = Me.imports.lib.thresholdPanel;

@@ -1,6 +1,6 @@
 'use strict';
 
-const {Gdk, Gtk, Gio} = imports.gi;
+const {Gtk, Gio} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 
 const Me = ExtensionUtils.getCurrentExtension();
