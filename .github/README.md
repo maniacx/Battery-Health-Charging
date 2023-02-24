@@ -40,6 +40,7 @@ As of **Version 4** if your device needs **privileged access** (root) to change 
 ![Battery-Health-Charging](https://github.com/maniacx/Battery-Health-Charging/blob/main/.github/Usage.png)
 
 ## Compatibilty
+Conflicts with other battery charging threshold controls apps / extensions / local workarounds scripts, so better to disable or remove before using this extension.
 Devices which have one or more the below paths are compatible.
 If your device has ability to change threshold using command line and is not listed or supported please raise an [issue](https://github.com/maniacx/Battery-Health-Charging/issues)
 ```bash
@@ -97,6 +98,22 @@ If root is needed, this extension will prompt to install polkit script. After in
 Logout re-login, and you can start using the extension.
 ***Note: Remember to uninstall this polkit script before uninstalling this extension by clicking on "Remove" under installation.***
 
+## Polkit Installation / Deprecated Systemd Service from Version 3.
+**PolKit Installation:** The extension will automatically detect if device needs privileged permission (root) to change threshold/mode.
+If device require privileged permission (root), it will notify user to install polkit from extension settings.
+If device doesn't require privileged permission (root) there will no prompt and option to install polkit.
+Installing polkit will require privileged (root) access and will need to logout and re-login.
+
+**Removal of Deprecated Systemd Service from Version 3:** In Version 3 or earlier, this extension required users to install systemd service to set threshold using privileged permission (root).
+But as of version 4 and above this extension doesn't use systemd service (deprecated) and uses polkit instead for controlling threshold using privileged permission (root).
+
+For users who installed this extension earlier than version 4, you will get a notiifed to remove the deprecated systemd service files.
+To remove this service file click remove (privileged (root) access needed) and reboot the system.
+Or if you rather remove it manually you can do so in command line. And rebooting the system
+```bash
+sudo rm -f /etc/systemd/system/multi-user.target.wants/mani-battery-health-charging.service
+sudo rm -f /etc/systemd/system/mani-battery-health-charging.service
+```
 ## Translation
 Open the po/Battery-Health-Charging.pot file on github. It contains each text displayed in this  extension. You can use "poedit" app for adding your translation. Submit the information by raising an issue for this repo on github. You can also compile the translation file yourself and test it on your device.
 Tutorial: https://youtu.be/WmWjwE-M4D0
