@@ -53,14 +53,14 @@ var General = GObject.registerClass({
         settings.bind(
             'show-system-indicator',
             this._show_system_indicator,
-            'state',
+            'active',
             Gio.SettingsBindFlags.DEFAULT
         );
 
         settings.bind(
             'show-notifications',
             this._show_notifications,
-            'state',
+            'active',
             Gio.SettingsBindFlags.DEFAULT
         );
 
