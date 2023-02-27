@@ -25,6 +25,10 @@
             <default>true</default>
             <summary>Toggle to show notifications</summary>
         </key>
+        <key name="show-preferences" type="b">
+            <default>true</default>
+            <summary>Toggle to show notifications</summary>
+        </key>
         <key name="install-service" type="i">
             <default>1</default>
             <summary>Install service</summary>

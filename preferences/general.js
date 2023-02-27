@@ -27,6 +27,7 @@ var General = GObject.registerClass({
         'icon_style_mode',
         'show_system_indicator',
         'show_notifications',
+        'show_preferences',
         'service_installer',
         'install_service',
         'install_service_button',
@@ -60,6 +61,13 @@ var General = GObject.registerClass({
         settings.bind(
             'show-notifications',
             this._show_notifications,
+            'active',
+            Gio.SettingsBindFlags.DEFAULT
+        );
+
+        settings.bind(
+            'show-preferences',
+            this._show_preferences,
             'active',
             Gio.SettingsBindFlags.DEFAULT
         );
