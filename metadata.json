@@ -4,7 +4,7 @@
   "description": "Battery Health Charging: An extension to maximize the battery life of laptops by setting their charging threshold/modes.\n\nCompatible with Asus, Huwaei, LG, Lenovo, Samsung, Sony, Thinkpad, Toshiba, AppleIntelSMC, Acer.\n\nFor more information about modes, compatibility, translation, bugs/issues visit:\nhttps://github.com/maniacx/Battery-Health-Charging",
   "url": "https://github.com/maniacx/Battery-Health-Charging",
   "shell-version": [
-    "43"
+    "43", "44"
   ],
   "version": 6,
   "settings-schema": "org.gnome.shell.extensions.Battery-Health-Charging",
