@@ -46,8 +46,8 @@
         </child>
         <child>
           <object class="AdwActionRow">
-            <property name="title" translatable="yes">Show preferences icon</property>
-            <property name="subtitle" translatable="yes">Adds a shortcut to extension preferences in the panel</property>
+            <property name="title" translatable="yes">Show preferences button</property>
+            <property name="subtitle" translatable="yes">Adds a button to open extension preferences from quick settings panel</property>
             <property name="activatable-widget">show_preferences</property>
             <child>
               <object class="GtkSwitch" id="show_preferences">
