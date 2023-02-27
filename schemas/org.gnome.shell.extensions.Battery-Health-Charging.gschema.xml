@@ -27,7 +27,11 @@
         </key>
         <key name="show-preferences" type="b">
             <default>true</default>
-            <summary>Toggle to show notifications</summary>
+            <summary>Toggle to show preference in quickmenu</summary>
+        </key>
+        <key name="show-quickmenu-subtitle" type="b">
+            <default>true</default>
+            <summary>Toggle to show quickmenu subtitle</summary>
         </key>
         <key name="install-service" type="i">
             <default>1</default>

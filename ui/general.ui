@@ -56,6 +56,18 @@
             </child>
           </object>
         </child>
+        <child>
+          <object class="AdwActionRow" id="show_quickmenu_subtitle_row">
+            <property name="title" translatable="yes">Display subtitle with current mode on quick menu button</property>
+            <property name="subtitle" translatable="yes">Displays the current mode in the text form (subtitle) on the quick menu button</property>
+            <property name="activatable-widget">show_quickmenu_subtitle</property>
+            <child>
+              <object class="GtkSwitch" id="show_quickmenu_subtitle">
+                <property name="valign">center</property>
+              </object>
+            </child>
+          </object>
+        </child>
       </object>
     </child>
     <child>

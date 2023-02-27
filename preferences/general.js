@@ -2,12 +2,16 @@
 const {Adw, Gio, GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
+const Config = imports.misc.config;
 
 const Driver = Me.imports.lib.driver;
 
 const gettextDomain = Me.metadata['gettext-domain'];
 const Gettext = imports.gettext.domain(gettextDomain);
 const _ = Gettext.gettext;
+
+const [major] = Config.PACKAGE_VERSION.split('.');
+const shellVersion = Number.parseInt(major);
 
 function runInstaller() {
     Driver.runInstaller();
@@ -30,6 +34,8 @@ var General = GObject.registerClass({
         'show_system_indicator',
         'show_notifications',
         'show_preferences',
+        'show_quickmenu_subtitle_row',
+        'show_quickmenu_subtitle',
         'service_installer',
         'install_service',
         'install_service_button',
@@ -43,6 +49,9 @@ var General = GObject.registerClass({
         this._iconModeSensitiveCheck(settings);
 
         this._deviceHaveDualBattery = Driver.deviceInfo[this._type][1] === '1';
+
+        this._show_quickmenu_subtitle_row.visible = shellVersion >= 44;
+
         if (this._rootMode) {
             this._service_installer.visible = true;
             this._updateInstallationLabelIcon(settings);
@@ -77,6 +86,15 @@ var General = GObject.registerClass({
             'active',
             Gio.SettingsBindFlags.DEFAULT
         );
+
+        if (shellVersion >= 44) {
+            settings.bind(
+                'show-quickmenu-subtitle',
+                this._show_quickmenu_subtitle,
+                'active',
+                Gio.SettingsBindFlags.DEFAULT
+            );
+        }
 
         if (this._rootMode) {
             this._install_service.connect('clicked', () => {
