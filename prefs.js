@@ -1,7 +1,7 @@
 'use strict';
-
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
+
 const {General} = Me.imports.preferences.general;
 const {ThresholdPrimary} = Me.imports.preferences.thresholdPrimary;
 const {ThresholdSecondary} = Me.imports.preferences.thresholdSecondary;
@@ -22,10 +22,10 @@ function fillPreferencesWindow(window) {
 
     window.add(new General(settings));
 
-    if (Driver.deviceInfo[type][2] === '1')
+    if (Driver.deviceInfo[type][2] === '1') // Laptop has customizable threshold
         window.add(new ThresholdPrimary(settings));
 
-    if (Driver.deviceInfo[type][1] === '1')
+    if (Driver.deviceInfo[type][1] === '1') // Laptop has dual battery
         window.add(new ThresholdSecondary(settings));
 }
 

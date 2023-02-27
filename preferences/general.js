@@ -1,8 +1,10 @@
 'use strict';
-const {Adw, GLib, GObject, Gio} = imports.gi;
+const {Adw, Gio, GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
+
 const Driver = Me.imports.lib.driver;
+
 const gettextDomain = Me.metadata['gettext-domain'];
 const Gettext = imports.gettext.domain(gettextDomain);
 const _ = Gettext.gettext;
