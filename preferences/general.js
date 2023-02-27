@@ -37,9 +37,13 @@ var General = GObject.registerClass({
 }, class General extends Adw.PreferencesPage {
     constructor(settings) {
         super({});
-        this.type = settings.get_int('device-type');
+
+        this._type = settings.get_int('device-type');
+        this._rootMode = settings.get_boolean('root-mode');
         this._iconModeSensitiveCheck(settings);
-        if (settings.get_boolean('root-mode')) {
+
+        this._deviceHaveDualBattery = Driver.deviceInfo[this._type][1] === '1';
+        if (this._rootMode) {
             this._service_installer.visible = true;
             this._updateInstallationLabelIcon(settings);
         } else {
@@ -74,29 +78,31 @@ var General = GObject.registerClass({
             Gio.SettingsBindFlags.DEFAULT
         );
 
-        this._install_service.connect('clicked', () => {
-            const installType = settings.get_int('install-service');
-            switch (installType) {
-                case 0:
-                    runUninstaller();
-                    break;
-                case 1:
-                    runInstaller();
-                    break;
-                case 2:
-                    runUpdater();
-                    break;
-            }
-        });
+        if (this._rootMode) {
+            this._install_service.connect('clicked', () => {
+                const installType = settings.get_int('install-service');
+                switch (installType) {
+                    case 0:
+                        runUninstaller();
+                        break;
+                    case 1:
+                        runInstaller();
+                        break;
+                    case 2:
+                        runUpdater();
+                        break;
+                }
+            });
 
-        settings.connect('changed::install-service', () => {
-            this._updateInstallationLabelIcon(settings);
-        });
+            settings.connect('changed::install-service', () => {
+                this._updateInstallationLabelIcon(settings);
+            });
+        }
 
         settings.connect('changed::default-threshold', () => {
             this._iconModeSensitiveCheck(settings);
         });
-        if (Driver.deviceInfo[this.type][1] === '1') {
+        if (this._deviceHaveDualBattery) {
             settings.connect('changed::default-threshold2', () => {
                 this._iconModeSensitiveCheck(settings);
             });
@@ -107,7 +113,7 @@ var General = GObject.registerClass({
         if (!settings.get_boolean('default-threshold')) {
             this._icon_style_mode_row.sensitive = false;
             settings.set_int('icon-style-type', 1);
-        } else if (!settings.get_boolean('default-threshold2') && (Driver.deviceInfo[this.type][1] === '1')) {
+        } else if (!settings.get_boolean('default-threshold2') && this._deviceHaveDualBattery) {
             this._icon_style_mode_row.sensitive = false;
             settings.set_int('icon-style-type', 1);
         } else {

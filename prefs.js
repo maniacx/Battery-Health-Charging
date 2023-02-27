@@ -12,7 +12,7 @@ function fillPreferencesWindow(window) {
     const settings = ExtensionUtils.getSettings();
 
     if (settings.get_int('device-type') === 0)
-        Driver.checkDeviceType();
+        Driver.checkInCompatibility();
 
     const type = settings.get_int('device-type');
 
