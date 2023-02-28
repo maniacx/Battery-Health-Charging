@@ -13,8 +13,11 @@ class FeatureMenuToggle extends QuickSettings.QuickMenuToggle {
         super._init({
             title: 'Feature Name',
             iconName: 'selection-mode-symbolic',
-            toggleMode: true,
         });
+
+        const _box = this.get_first_child();
+        const content = _box.get_first_child();
+        content.toggleMode = true;
 
         // This function is unique to this class. It adds a nice header with an
         // icon, title and optional subtitle. It's recommended you do so for
