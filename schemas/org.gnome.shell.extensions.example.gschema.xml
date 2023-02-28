@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schemalist gettext-domain="gnome-shell-extensions">
+    <schema path="/org/gnome/shell/extensions/example/" id="org.gnome.shell.extensions.example">
+        <key name="feature-enabled" type="b">
+            <default>false</default>
+            <summary>show battery panel 2 if true</summary>
+        </key>
+    </schema>
+</schemalist>

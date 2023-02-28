@@ -1,0 +1,11 @@
+{
+  "uuid": "example@maniacx.github.com",
+  "name": "example",
+  "description": "example",
+  "shell-version": [
+    "43", "44"
+  ],
+  "version": 6,
+  "settings-schema": "org.gnome.shell.extensions.example",
+  "gettext-domain": "example@maniacx.github.com"
+}
