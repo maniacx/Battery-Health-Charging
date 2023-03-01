@@ -14,10 +14,22 @@ class FeatureMenuToggle extends QuickSettings.QuickMenuToggle {
             title: 'Feature Name',
             iconName: 'selection-mode-symbolic',
         });
+        this.bind_property('toggle-mode',
+          this.get_first_child().get_children()[0],
+          'toggle-mode',
+          GObject.BindingFlags.SYNC_CREATE);
+        this.bind_property('checked',
+          this.get_first_child().get_children()[0],
+          'checked',
+          (GObject.BindingFlags.SYNC_CREATE |
+           GObject.BindingFlags.BIDIRECTIONAL));
+        this.bind_property('checked',
+          this.get_first_child().get_children()[1],
+          'checked',
+          (GObject.BindingFlags.SYNC_CREATE |
+           GObject.BindingFlags.BIDIRECTIONAL));
 
-        const _box = this.get_first_child();
-        const content = _box.get_first_child();
-        content.toggleMode = true;
+        this.toggleMode = true;
 
         // This function is unique to this class. It adds a nice header with an
         // icon, title and optional subtitle. It's recommended you do so for
