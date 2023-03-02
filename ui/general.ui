@@ -10,7 +10,6 @@
         <child>
           <object class="AdwActionRow" id="icon_style_mode_row">
             <property name="title" translatable="yes">Choose icon style</property>
-            <property name="subtitle" translatable="yes">In threshold settings, if &lt;b&gt;Customise&lt;/b&gt; mode is selected, icon type will switch to &lt;b&gt;Symbols Only&lt;/b&gt; and this option will be disabled</property>
             <property name="activatable-widget">icon_style_mode</property>
             <child>
               <object class="GtkDropDown" id="icon_style_mode">

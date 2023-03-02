@@ -50,6 +50,11 @@ var General = GObject.registerClass({
 
         this._deviceHaveDualBattery = Driver.deviceInfo[this._type][1] === '1';
 
+        if (Driver.deviceInfo[this._type][2] === '1')
+            this._icon_style_mode_row.set_subtitle(_('Select the style of indicator and menu icon.\nIn threshold settings, if <b>Customise</b> mode is selected, icon type will switch to <b>Symbols Only</b> and this option will be disabled'));
+        else
+            this._icon_style_mode_row.set_subtitle(_('Select the style of indicator and menu icon'));
+
         this._show_quickmenu_subtitle_row.visible = shellVersion >= 44;
 
         if (this._rootMode) {
