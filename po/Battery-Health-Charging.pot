@@ -3,55 +3,51 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-01 23:35-0600\n"
-"PO-Revision-Date: 2023-03-01 23:41-0600\n"
-"Last-Translator: Valeria Cubero Tapia <vct@duck.com>\n"
-"Language-Team: Spanish <LL@li.org>\n"
-"Language: es\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.1.1\n"
 
 #: lib/notifier.js:37 lib/notifier.js:40 lib/notifier.js:43
 msgid "Battery Health Charging"
-msgstr "Battery Health Charging"
+msgstr ""
 
 #: lib/notifier.js:46
 msgid "Battery Health Charging Gnome Extension Error"
-msgstr "Battery Health Charging (Error de la extensión)"
+msgstr ""
 
 #: lib/notifier.js:59
 msgid "Log Out"
-msgstr "Cerrar sesión"
+msgstr ""
 
 #: lib/notifier.js:65 ui/general.ui:9
 msgid "Settings"
-msgstr "Configuración"
+msgstr ""
 
 #: lib/notifier.js:69
 msgid "Remove files and restart"
-msgstr "Eliminar ficheros y reiniciar"
+msgstr ""
 
 #: lib/notifier.js:85
 msgid ""
 "Unsupported Gnome version.\n"
 "This extension is compatible only with Gnome version 43 and above."
 msgstr ""
-"Versión de Gnome no compatible.\n"
-"Esta extensión solo es compatible con versiones de Gnome 43 o superiores."
 
 #: lib/notifier.js:89
 msgid ""
 "Unsupported device.\n"
 "This extension is not compatible with your device."
 msgstr ""
-"Dispositivo no compatible.\n"
-"Esta extensión no es compatible con su dispositivo."
 
 #: lib/notifier.js:93
 msgid ""
@@ -60,30 +56,22 @@ msgid ""
 "Root privileges and a system restart are required. Please save your work and "
 "restart."
 msgstr ""
-"Se han encontrado ficheros de servicio de versiones anteriores. Remuévalos "
-"para continuar usando la extensión\n"
-"Se necesitan privilegios de superusuario y reiniciar. Por favor, guardesu "
-"trabajo y reinicie."
 
 #: lib/notifier.js:97
 msgid "Please install polkit from extension settings under Installation."
 msgstr ""
-"Por favor, instale el script de polkit en las opciones de extensión, sección "
-"Instalación."
 
 #: lib/notifier.js:101
 msgid "Please update polkit from extension settings under Installation."
 msgstr ""
-"Por favor, actualice el script de polkit en las opciones de extensión, "
-"sección Instalación."
 
 #: lib/notifier.js:105 lib/notifier.js:109
 msgid "Installation Successfull. Please save your work and logout."
-msgstr "Instalación correcta. Por favor, guarde su trabajo y cierre su sesión."
+msgstr ""
 
 #: lib/notifier.js:113
 msgid "Uninstallation Successfull."
-msgstr "Desinstalación correcta."
+msgstr ""
 
 #: lib/notifier.js:121
 #, javascript-format
@@ -91,13 +79,11 @@ msgid ""
 "Battery 1\n"
 "Charge thresholds are set to %d / %d %%"
 msgstr ""
-"Batería 1\n"
-"Límites de carga establecidos a %d / %d %%"
 
 #: lib/notifier.js:124
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
-msgstr "Límites de carga establecidos a %d / %d %%"
+msgstr ""
 
 #: lib/notifier.js:128
 #, javascript-format
@@ -105,13 +91,11 @@ msgid ""
 "Battery 1\n"
 "Charging Limit is set to %d%%"
 msgstr ""
-"Batería 1\n"
-"Límite de carga establecido a %d%%"
 
 #: lib/notifier.js:130 lib/thresholdPanel.js:304
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
-msgstr "Límite de carga establecido a %d%%"
+msgstr ""
 
 #: lib/notifier.js:139
 #, javascript-format
@@ -119,8 +103,6 @@ msgid ""
 "Battery 2\n"
 "Charge thresholds are set to %d / %d %%"
 msgstr ""
-"Batería 2\n"
-"Límites de carga establecidos a %d / %d %%"
 
 #: lib/notifier.js:142
 #, javascript-format
@@ -128,39 +110,37 @@ msgid ""
 "Battery 2\n"
 "Charging Limit is set to %d%%"
 msgstr ""
-"Batería 2\n"
-"Límite de carga establecido a %d%%"
 
 #: lib/thresholdPanel.js:44
 msgid "Battery"
-msgstr "Batería"
+msgstr ""
 
 #: lib/thresholdPanel.js:45 preferences/thresholdPrimary.js:45
 msgid "Battery 1"
-msgstr "Batería 1"
+msgstr ""
 
 #: lib/thresholdPanel.js:46 ui/thresholdSecondary.ui:5
 msgid "Battery 2"
-msgstr "Batería 2"
+msgstr ""
 
 #: lib/thresholdPanel.js:54 lib/thresholdPanel.js:296
 msgid "Battery Charging Mode"
-msgstr "Modo de carga de la batería"
+msgstr ""
 
 #: lib/thresholdPanel.js:92 ui/thresholdPrimary.ui:39
 #: ui/thresholdSecondary.ui:39
 msgid "Full Capacity Mode"
-msgstr "Capacidad completa"
+msgstr ""
 
 #: lib/thresholdPanel.js:97 ui/thresholdPrimary.ui:131
 #: ui/thresholdSecondary.ui:131
 msgid "Balanced Mode"
-msgstr "Balanceado"
+msgstr ""
 
 #: lib/thresholdPanel.js:102 ui/thresholdPrimary.ui:206
 #: ui/thresholdSecondary.ui:206
 msgid "Maximum Lifespan Mode"
-msgstr "Máxima vida de la batería"
+msgstr ""
 
 #: lib/thresholdPanel.js:301
 #, javascript-format
@@ -168,81 +148,74 @@ msgid ""
 "Device will stop charging at %d%%\n"
 "Device will start charging at %d%%"
 msgstr ""
-"El dispositivo dejará de cargar al alcanzar el %d%%\n"
-"El dispositivo empezará a cargar al alcanzar el %d%%"
 
 #: lib/thresholdPanel.js:352
 msgid "Full Capacity"
-msgstr "Capacidad completa"
+msgstr ""
 
 #: lib/thresholdPanel.js:354
 msgid "Balanced"
-msgstr "Balanceado"
+msgstr ""
 
 #: lib/thresholdPanel.js:356
 msgid "Max Lifespan"
-msgstr "Máxima vida de la batería"
+msgstr ""
 
 #: preferences/general.js:54
-#, fuzzy
 msgid ""
 "Select the type of icon for indicator and menu.\n"
 "In threshold settings, if <b>Customise</b> mode is selected, icon type will "
 "switch to <b>Symbols Only</b> and this option will be disabled"
 msgstr ""
-"Seleccione el tipo de icono para el indicador y el menú.\n"
-"En las opciones de límites, si el modo <b>Personalizado</b> es escogido, el "
-"icono se cambiará a <b>Sólo símbolos</b> y esta opción será deshabilitada"
 
 #: preferences/general.js:56
-#, fuzzy
 msgid "Select the type of icon for indicator and menu"
-msgstr "Seleccione el tipo de icono para el indicador y el menú"
+msgstr ""
 
 #: preferences/general.js:151
 msgid "Remove"
-msgstr "Remover"
+msgstr ""
 
 #: preferences/general.js:155
 msgid "Install"
-msgstr "Instalar"
+msgstr ""
 
 #: preferences/general.js:159
 msgid "Update"
-msgstr "Actualizar"
+msgstr ""
 
 #: preferences/thresholdPrimary.js:47
 msgid "Threshold"
-msgstr "Límite"
+msgstr ""
 
 #: preferences/thresholdPrimary.js:184 preferences/thresholdSecondary.js:178
 #, javascript-format
 msgid "<i>Accepted Value : %d to %d</i>"
-msgstr "<i>Valores aceptados: desde el %d al %d</i>"
+msgstr ""
 
 #: ui/general.ui:5
 msgid "General"
-msgstr "General"
+msgstr ""
 
 #: ui/general.ui:12
 msgid "Choose icon style"
-msgstr "Escoja el estilo del icono"
+msgstr ""
 
 #: ui/general.ui:24
 msgid "Show system indicator"
-msgstr "Mostrar indicador del sistema"
+msgstr ""
 
 #: ui/general.ui:25
 msgid "Shows an icon in system tray"
-msgstr "Muestra un icono en la bandeja del sistema"
+msgstr ""
 
 #: ui/general.ui:36
 msgid "Show notifications"
-msgstr "Mostrar notificaciones"
+msgstr ""
 
 #: ui/general.ui:37
 msgid "Shows notifications when the threshold is changed"
-msgstr "Muestra una notificación cuando se cambian los límites"
+msgstr ""
 
 #: ui/general.ui:48
 msgid "Show preferences button"
@@ -264,15 +237,15 @@ msgstr ""
 
 #: ui/general.ui:74
 msgid "Installation"
-msgstr "Instalación"
+msgstr ""
 
 #: ui/general.ui:77
 msgid "Install privileges for this user"
-msgstr "Configurar privilegios para este usuario"
+msgstr ""
 
 #: ui/general.ui:78
 msgid "Install / Update / Remove"
-msgstr "Instalar / Actualizar / Remover"
+msgstr ""
 
 #: ui/general.ui:81
 msgid ""
@@ -286,57 +259,48 @@ msgid ""
 "extension.\n"
 "<b>Remove</b> this polkit policy script before uninstalling this extension."
 msgstr ""
-"Este dispositivo necesita privilegios de superusuario para cambiar el límite "
-"de carga. Active el script de polkit y de acceso a este usuario.\n"
-"\n"
-"<b>Se necesitan privilegios de superusuario</b> para instalar, actualizar o "
-"eliminar el script de polkit.\n"
-"\n"
-"<b>Instalar / Actualizar </b> el script de polkit y continuar usando esta "
-"extensión.\n"
-"<b>Remueva</b> el script de polkit antes de desinstalar la extensión."
 
 #: ui/general.ui:105
 msgid "Symbols Only"
-msgstr "Sólo símbolos"
+msgstr ""
 
 #: ui/general.ui:106
 msgid "Symbol and Percentage"
-msgstr "Símbolos y porcentaje"
+msgstr ""
 
 #: ui/general.ui:107
 msgid "Percentage Highlighted"
-msgstr "Enfatizar porcentaje"
+msgstr ""
 
 #: ui/menu.ui:6
 msgid "Project page"
-msgstr "Página del proyecto"
+msgstr ""
 
 #: ui/menu.ui:10
 msgid "Report a Bug"
-msgstr "Reportar un error"
+msgstr ""
 
 #: ui/menu.ui:14
 msgid "Rate this extension"
-msgstr "Valorar la extensión"
+msgstr ""
 
 #: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
 msgid "Customize"
-msgstr "Personalizado"
+msgstr ""
 
 #: ui/thresholdPrimary.ui:29 ui/thresholdSecondary.ui:29
 msgid "Default"
-msgstr "Por defecto"
+msgstr ""
 
 #: ui/thresholdPrimary.ui:49 ui/thresholdSecondary.ui:49
 msgid "Apply"
-msgstr "Aplicar"
+msgstr ""
 
 #: ui/thresholdPrimary.ui:59 ui/thresholdPrimary.ui:134
 #: ui/thresholdPrimary.ui:209 ui/thresholdSecondary.ui:59
 #: ui/thresholdSecondary.ui:134 ui/thresholdSecondary.ui:209
 msgid "Stop charging threshold value"
-msgstr "Valor final de la carga"
+msgstr ""
 
 #: ui/thresholdPrimary.ui:71 ui/thresholdPrimary.ui:106
 #: ui/thresholdPrimary.ui:146 ui/thresholdPrimary.ui:181
@@ -345,16 +309,10 @@ msgstr "Valor final de la carga"
 #: ui/thresholdSecondary.ui:146 ui/thresholdSecondary.ui:181
 #: ui/thresholdSecondary.ui:221 ui/thresholdSecondary.ui:257
 msgid "Current Value"
-msgstr "Valor actual"
+msgstr ""
 
 #: ui/thresholdPrimary.ui:94 ui/thresholdPrimary.ui:169
 #: ui/thresholdPrimary.ui:245 ui/thresholdSecondary.ui:94
 #: ui/thresholdSecondary.ui:169 ui/thresholdSecondary.ui:245
 msgid "Start charging threshold value"
-msgstr "Valor de inicio de la carga"
-
-#~ msgid "Battery 1 Charging Mode"
-#~ msgstr "Modo de carga de la Batería 1"
-
-#~ msgid "Battery 2 Charging Mode"
-#~ msgstr "Modo de carga de la Batería 2"
+msgstr ""
