@@ -14,8 +14,8 @@
             <summary>show battery panel 2 if true</summary>
         </key>
         <key name="icon-style-type" type="i">
-            <default>1</default>
-            <summary>0 = symbols and percentage, 1 = symbol only, 2 = percetage highlighted</summary>
+            <default>0</default>
+            <summary>icon sytle 0 = symbol only, 1 = symbols and percentage, 2 = percetage highlighted</summary>
         </key>
         <key name="show-system-indicator" type="b">
             <default>true</default>

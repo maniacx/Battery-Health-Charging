@@ -135,10 +135,10 @@ var General = GObject.registerClass({
     _iconModeSensitiveCheck(settings) {
         if (!settings.get_boolean('default-threshold')) {
             this._icon_style_mode_row.sensitive = false;
-            settings.set_int('icon-style-type', 1);
+            settings.set_int('icon-style-type', 0);
         } else if (!settings.get_boolean('default-threshold2') && this._deviceHaveDualBattery) {
             this._icon_style_mode_row.sensitive = false;
-            settings.set_int('icon-style-type', 1);
+            settings.set_int('icon-style-type', 0);
         } else {
             this._icon_style_mode_row.sensitive = true;
         }

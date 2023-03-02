@@ -102,8 +102,8 @@
   </template>
   <object class="GtkStringList" id="icon_style_model">
     <items>
-      <item translatable="yes">Symbol and Percentage</item>
       <item translatable="yes">Symbols Only</item>
+      <item translatable="yes">Symbol and Percentage</item>
       <item translatable="yes">Percentage Highlighted</item>
     </items>
   </object>
