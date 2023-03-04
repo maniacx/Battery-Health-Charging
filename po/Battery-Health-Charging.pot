@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-02 23:25-0600\n"
+"POT-Creation-Date: 2023-03-03 10:39-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -81,7 +81,7 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:124 lib/thresholdPanel.js:314
+#: lib/notifier.js:124 lib/thresholdPanel.js:313
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr ""
@@ -94,7 +94,7 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:130 lib/thresholdPanel.js:318
+#: lib/notifier.js:130 lib/thresholdPanel.js:317
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr ""
@@ -129,7 +129,7 @@ msgid "Battery 2"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:58 lib/thresholdPanel.js:308
+#: lib/thresholdPanel.js:58 lib/thresholdPanel.js:307
 msgid "Battery Charging Mode"
 msgstr ""
 
@@ -152,17 +152,17 @@ msgid "Maximum Lifespan Mode"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:367
+#: lib/thresholdPanel.js:365
 msgid "Full Capacity"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:370
+#: lib/thresholdPanel.js:368
 msgid "Balanced"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:373
+#: lib/thresholdPanel.js:371
 msgid "Max Lifespan"
 msgstr ""
 

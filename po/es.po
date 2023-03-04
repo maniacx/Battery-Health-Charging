@@ -95,7 +95,7 @@ msgstr ""
 "Límites de carga establecidos a %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:124 lib/thresholdPanel.js:314
+#: lib/notifier.js:124 lib/thresholdPanel.js:313
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "Límites de carga establecidos: %d/%d %%"
@@ -110,7 +110,7 @@ msgstr ""
 "Límite de carga establecido a %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:130 lib/thresholdPanel.js:318
+#: lib/notifier.js:130 lib/thresholdPanel.js:317
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "Límite de carga establecido: %d%%"
@@ -149,7 +149,7 @@ msgid "Battery 2"
 msgstr "Batería 2"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:58 lib/thresholdPanel.js:308
+#: lib/thresholdPanel.js:58 lib/thresholdPanel.js:307
 msgid "Battery Charging Mode"
 msgstr "Modo de carga"
 
@@ -172,17 +172,17 @@ msgid "Maximum Lifespan Mode"
 msgstr "Aumentar la vida de la batería"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:367
+#: lib/thresholdPanel.js:365
 msgid "Full Capacity"
 msgstr "Completa"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:370
+#: lib/thresholdPanel.js:368
 msgid "Balanced"
 msgstr "Balanceado"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:373
+#: lib/thresholdPanel.js:371
 msgid "Max Lifespan"
 msgstr "Vida máxima"
 
@@ -328,7 +328,7 @@ msgstr "Personalizado"
 
 #: ui/thresholdPrimary.ui:29 ui/thresholdSecondary.ui:29
 msgid "Default"
-msgstr "Por defecto"
+msgstr "Predeterminadas"
 
 #: ui/thresholdPrimary.ui:49 ui/thresholdSecondary.ui:49
 msgid "Apply"
@@ -354,17 +354,3 @@ msgstr "Valor actual"
 #: ui/thresholdSecondary.ui:169 ui/thresholdSecondary.ui:245
 msgid "Start charging threshold value"
 msgstr "Valor de inicio de la carga"
-
-#, javascript-format
-#~ msgid ""
-#~ "Device will stop charging at %d%%\n"
-#~ "Device will start charging at %d%%"
-#~ msgstr ""
-#~ "El dispositivo dejará de cargar al alcanzar el %d%%\n"
-#~ "El dispositivo empezará a cargar al alcanzar el %d%%"
-
-#~ msgid "Battery 1 Charging Mode"
-#~ msgstr "Modo de carga de la Batería 1"
-
-#~ msgid "Battery 2 Charging Mode"
-#~ msgstr "Modo de carga de la Batería 2"
