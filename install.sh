@@ -5,6 +5,7 @@ cd "${0%/*}"
 
 echo "Packing extension..."
 gnome-extensions pack ./ \
+    --extra-source=devices/ \
     --extra-source=icons/ \
     --extra-source=lib/ \
     --extra-source=resources/ \

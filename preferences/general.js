@@ -44,20 +44,26 @@ var General = GObject.registerClass({
     constructor(settings) {
         super({});
 
-        this._type = settings.get_int('device-type');
-        this._rootMode = settings.get_boolean('root-mode');
+        this._deviceHaveVariableThreshold = false;
+        this._deviceNeedRootPermission = false;
+        this._deviceHaveDualBattery = false;
+
+        if (Driver.currentDevice !== null) {
+            this._deviceHaveVariableThreshold = Driver.currentDevice.deviceHaveVariableThreshold;
+            this._deviceNeedRootPermission = Driver.currentDevice.deviceNeedRootPermission;
+            this._deviceHaveDualBattery = Driver.currentDevice.deviceHaveDualBattery;
+        }
+
         this._iconModeSensitiveCheck(settings);
 
-        this._deviceHaveDualBattery = Driver.deviceInfo[this._type][1] === '1';
-
-        if (Driver.deviceInfo[this._type][2] === '1')
+        if (this._deviceHaveVariableThreshold)
             this._icon_style_mode_row.set_subtitle(_('Select the type of icon for indicator and menu.\nIn threshold settings, if <b>Customise</b> mode is selected, icon type will switch to <b>Symbols Only</b> and this option will be disabled'));
         else
             this._icon_style_mode_row.set_subtitle(_('Select the type of icon for indicator and menu'));
 
         this._show_quickmenu_subtitle_row.visible = shellVersion >= 44;
 
-        if (this._rootMode) {
+        if (this._deviceNeedRootPermission) {
             this._service_installer.visible = true;
             this._updateInstallationLabelIcon(settings);
         } else {
@@ -101,7 +107,7 @@ var General = GObject.registerClass({
             );
         }
 
-        if (this._rootMode) {
+        if (this._deviceNeedRootPermission) {
             this._install_service.connect('clicked', () => {
                 const installType = settings.get_int('install-service');
                 switch (installType) {

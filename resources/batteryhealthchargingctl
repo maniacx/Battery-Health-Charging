@@ -9,9 +9,9 @@ BAT0_START_PATH='/sys/class/power_supply/BAT0/charge_control_start_threshold';
 BAT1_END_PATH='/sys/class/power_supply/BAT1/charge_control_end_threshold';
 BAT1_START_PATH='/sys/class/power_supply/BAT1/charge_control_start_threshold';
 LG_PATH='/sys/devices/platform/lg-laptop/battery_care_limit';
-LENOVA_PATH='/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode';
+LENOVO_PATH='/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode';
 SONY_PATH='/sys/devices/platform/sony-laptop/battery_care_limiter';
-HUWAEI_PATH='/sys/devices/platform/huawei-wmi/charge_thresholds';
+HUAWEI_PATH='/sys/devices/platform/huawei-wmi/charge_thresholds';
 SAMSUNG_PATH='/sys/devices/platform/samsung/battery_life_extender';
 ACER_PATH='/sys/bus/wmi/drivers/acer-wmi-battery/health_mode';
 BATC_END_PATH='/sys/class/power_supply/BATC/charge_control_end_threshold';
@@ -33,53 +33,81 @@ EXIT_SUCCESS=0
 EXIT_NEEDS_UPDATE=1
 
 case "$1" in
-    BAT0_END_PATH)
+    BAT0_END)
         echo "$2" > "$BAT0_END_PATH"
+        exit ${EXIT_SUCCESS}
         ;;
-    BAT0_START_PATH)
-        echo "$2" > "$BAT0_START_PATH"
+    BAT0_END_START)
+        echo "$2" > "$BAT0_END_PATH"
+        echo "$3" > "$BAT0_START_PATH"
+        exit ${EXIT_SUCCESS}
         ;;
-    BAT1_END_PATH)
+    BAT1_END)
         echo "$2" > "$BAT1_END_PATH"
+        exit ${EXIT_SUCCESS}
         ;;
-    BAT1_START_PATH)
-        echo "$2" > "$BAT1_START_PATH"
+    BAT1_END_START)
+        echo "$2" > "$BAT1_END_PATH"
+        echo "$3" > "$BAT1_START_PATH"
+        exit ${EXIT_SUCCESS}
         ;;
-    LG_PATH)
+    LG)
         echo "$2" > "$LG_PATH"
+        exit ${EXIT_SUCCESS}
         ;;
-    LENOVA_PATH)
-        echo "$2" > "$LENOVA_PATH"
+    LENOVO)
+        echo "$2" > "$LENOVO_PATH"
+        exit ${EXIT_SUCCESS}
         ;;
-    SONY_PATH)
+    SONY)
         echo "$2" > "$SONY_PATH"
+        exit ${EXIT_SUCCESS}
         ;;
-    HUWAEI_PATH)
-        echo "$2 $3" > "$HUWAEI_PATH"
+    HUAWEI)
+        echo "$3 $2" > "$HUAWEI_PATH"
+        exit ${EXIT_SUCCESS}
         ;;
-    SAMSUNG_PATH)
+    SAMSUNG)
         echo "$2" > "$SAMSUNG_PATH"
+        exit ${EXIT_SUCCESS}
         ;;
-    ACER_PATH)
+    ACER)
         echo "$2" > "$ACER_PATH"
+        exit ${EXIT_SUCCESS}
         ;;
-    BATC_END_PATH)
+    BATC_END)
         echo "$2" > "$BATC_END_PATH"
+        exit ${EXIT_SUCCESS}
         ;;
-    BATT_END_PATH)
+    BATT_END)
         echo "$2" > "$BATT_END_PATH"
+        exit ${EXIT_SUCCESS}
         ;;
-    TP_BAT0_END)
+    TP_BAT0_END_START)
         echo "$2" > "$TP_BAT0_END"
+        echo "$3" > "$TP_BAT0_START"
+        exit ${EXIT_SUCCESS}
         ;;
-    TP_BAT0_START)
-        echo "$2" > "$TP_BAT0_START"
-        ;;
-    TP_BAT1_END)
+    TP_BAT1_END_START)
         echo "$2" > "$TP_BAT1_END"
+        echo "$3" > "$TP_BAT1_START"
+        exit ${EXIT_SUCCESS}
         ;;
-    TP_BAT1_START)
-        echo "$2" > "$TP_BAT1_START"
+    DELL_SMBIOS_BAT_READ)
+        smbios-battery-ctl --get-charging-cfg
+        exit ${EXIT_SUCCESS}
+        ;;
+    DELL_SMBIOS_BAT_WRITE)
+        ARG2=$2
+        if [ "$ARG2" = "adv" ];then
+            smbios-battery-ctl --set-charging-mode='adaptive'
+        elif [ "$ARG2" = "exp" ];then
+            smbios-battery-ctl --set-charging-mode='express'
+        else
+            smbios-battery-ctl --set-charging-mode='custom'
+            smbios-battery-ctl --set-custom-charge-interval=$3 $ARG2
+        fi
+        exit ${EXIT_SUCCESS}
         ;;
     CHECKINSTALLATION)
     printf -v versions '%s\n%s' "$(pkaction --version | cut -d' ' -f3)" "0.106"
@@ -102,11 +130,11 @@ case "$1" in
         ACTION_OUT="/usr/share/polkit-1/actions/${ACTION_ID}.policy"
 
         if [[ "$LEGACY_POLKIT" = true ]];then
-            echo "Your $EXTENSION_NAME checking legacy rules and policies !"
+            echo "$EXTENSION_NAME: checking legacy rules and policies !"
             if ! sed -e "s:{{RULE_BASE}}:${RULE_BASE}:g" "${RULE_IN}" | \
                 cmp --silent "${RULE_OUT}"
             then
-                echo "Your $EXTENSION_NAME installation needs to update rules !"
+                echo "$EXTENSION_NAME: installation needs to update rules !"
                 exit ${EXIT_NEEDS_UPDATE}
             else
                 if ! sed -e "s:{{PATH}}:${TOOL_OUT}:g" \
@@ -114,28 +142,29 @@ case "$1" in
                     -e "s:{{ACTION_ID}}:${ACTION_ID}:g" "${ACTION_IN}" | \
                     cmp --silent "${ACTION_OUT}"
                 then
-                    echo "Your $EXTENSION_NAME installation needs to update policies!"
+                    echo "$EXTENSION_NAME: installation needs to update policies!"
                     exit ${EXIT_NEEDS_UPDATE}
                 fi
             fi
         else
-            echo "Your $EXTENSION_NAME checking rules !"
+            echo "$EXTENSION_NAME: checking rules !"
             if ! sed -e "s:{{TOOL_OUT}}:${TOOL_OUT}:g" \
                 -e "s:{{TOOL_USER}}:${TOOL_USER}:g" "${RULE_IN}" | \
                 cmp --silent "${RULE_OUT}"
             then
-                echo "Your $EXTENSION_NAME installation needs updating rules!"
+                echo "$EXTENSION_NAME: installation needs updating rules!"
                 exit ${EXIT_NEEDS_UPDATE}
             fi
         fi
-        echo "Your $EXTENSION_NAME checking ctl !"
+        echo "$EXTENSION_NAME: checking ctl !"
         if ! cmp --silent "${TOOL_IN}" "${TOOL_OUT}";then
-            echo "Your $EXTENSION_NAME installation needs updating ctl!"
+            echo "$EXTENSION_NAME: installation needs updating ctl!"
             exit ${EXIT_NEEDS_UPDATE}
         fi
-        echo "Your $EXTENSION_NAME installation is up to date "
+        echo "$EXTENSION_NAME: installation is up to date "
         exit ${EXIT_SUCCESS}
         ;;
     *)
         echo "Unknown" >&2
 esac
+

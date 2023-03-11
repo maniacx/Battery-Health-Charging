@@ -280,32 +280,20 @@
   </template>
   <object class="GtkAdjustment" id="full_capacity_end_threshold_adjustment_2">
     <property name="step-increment">1.0</property>
-    <property name="upper">100.0</property>
-    <property name="lower">90.0</property>
   </object>
   <object class="GtkAdjustment" id="full_capacity_start_threshold_adjustment_2">
     <property name="step-increment">1.0</property>
-    <property name="upper">98.0</property>
-    <property name="lower">80.0</property>
   </object>
   <object class="GtkAdjustment" id="balanced_end_threshold_adjustment_2">
     <property name="step-increment">1.0</property>
-    <property name="upper">80.0</property>
-    <property name="lower">70.0</property>
   </object>
   <object class="GtkAdjustment" id="balanced_start_threshold_adjustment_2">
     <property name="step-increment">1.0</property>
-    <property name="upper">78.0</property>
-    <property name="lower">60.0</property>
   </object>
   <object class="GtkAdjustment" id="maxlife_end_threshold_adjustment_2">
     <property name="step-increment">1.0</property>
-    <property name="upper">60.0</property>
-    <property name="lower">50.0</property>
   </object>
   <object class="GtkAdjustment" id="maxlife_start_threshold_adjustment_2">
     <property name="step-increment">1.0</property>
-    <property name="upper">58.0</property>
-    <property name="lower">40.0</property>
   </object>
 </interface>
