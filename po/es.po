@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-03-17 13:43-0400\n"
-"PO-Revision-Date: 2023-03-17 13:53-0400\n"
+"PO-Revision-Date: 2023-03-17 18:21-0400\n"
 "Last-Translator: Valeria Cubero Tapia <vct@duck.com>\n"
 "Language-Team: Spanish <LL@li.org>\n"
 "Language: es\n"
@@ -139,11 +139,11 @@ msgstr ""
 
 #: lib/notifier.js:153
 msgid "Charging Mode is set to adaptive"
-msgstr ""
+msgstr "Modo de carga establecido a adaptable"
 
 #: lib/notifier.js:155
 msgid "Charging Mode is set to express"
-msgstr ""
+msgstr "Modo de carga establecido a rápido"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
 #: lib/thresholdPanel.js:54
@@ -186,22 +186,22 @@ msgstr "Aumentar la vida de la batería"
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:119
 msgid "Adaptive Mode"
-msgstr ""
+msgstr "Adaptable"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:122
 msgid "Express Mode"
-msgstr ""
+msgstr "Rápido"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:355
 msgid "Charging Mode: Adaptive"
-msgstr ""
+msgstr "Modo de carga: Adaptable"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:358
 msgid "Charging Mode: Express"
-msgstr ""
+msgstr "Modo de carga: Rápido"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:411
@@ -221,12 +221,12 @@ msgstr "Vida máxima"
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:420
 msgid "Adaptive"
-msgstr ""
+msgstr "Adaptable"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:423
 msgid "Express"
-msgstr ""
+msgstr "Rápido"
 
 #: preferences/general.js:60
 msgid ""
