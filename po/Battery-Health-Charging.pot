@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-03 10:39-0600\n"
+"POT-Creation-Date: 2023-03-17 13:43-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgid "Battery Health Charging"
 msgstr ""
 
 #: lib/notifier.js:46
-msgid "Battery Health Charging Gnome Extension Error"
+msgid "Battery Health Charging Error"
 msgstr ""
 
 #: lib/notifier.js:59
@@ -73,7 +73,11 @@ msgstr ""
 msgid "Uninstallation Successfull."
 msgstr ""
 
-#: lib/notifier.js:121
+#: lib/notifier.js:117
+msgid "Battery Health Charging encountered an unexpected error."
+msgstr ""
+
+#: lib/notifier.js:124
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -81,12 +85,12 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:124 lib/thresholdPanel.js:313
+#: lib/notifier.js:127 lib/thresholdPanel.js:346
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr ""
 
-#: lib/notifier.js:128
+#: lib/notifier.js:131
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -94,106 +98,144 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:130 lib/thresholdPanel.js:317
+#: lib/notifier.js:133 lib/thresholdPanel.js:350
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr ""
 
-#: lib/notifier.js:139
+#: lib/notifier.js:141
 #, javascript-format
 msgid ""
 "Battery 2\n"
 "Charge thresholds are set to %d / %d %%"
 msgstr ""
 
-#: lib/notifier.js:142
+#: lib/notifier.js:144
 #, javascript-format
 msgid ""
 "Battery 2\n"
 "Charging Limit is set to %d%%"
 msgstr ""
 
+#: lib/notifier.js:153
+msgid "Charging Mode is set to adaptive"
+msgstr ""
+
+#: lib/notifier.js:155
+msgid "Charging Mode is set to express"
+msgstr ""
+
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel.js:45
+#: lib/thresholdPanel.js:54
 msgid "Battery"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel.js:47 preferences/thresholdPrimary.js:45
+#: lib/thresholdPanel.js:56 preferences/thresholdPrimary.js:46
 msgid "Battery 1"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel.js:49 ui/thresholdSecondary.ui:5
+#: lib/thresholdPanel.js:58 ui/thresholdSecondary.ui:5
 msgid "Battery 2"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:58 lib/thresholdPanel.js:307
+#: lib/thresholdPanel.js:67 lib/thresholdPanel.js:340
 msgid "Battery Charging Mode"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:100 ui/thresholdPrimary.ui:39
+#: lib/thresholdPanel.js:102 ui/thresholdPrimary.ui:39
 #: ui/thresholdSecondary.ui:39
 msgid "Full Capacity Mode"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:106 ui/thresholdPrimary.ui:131
+#: lib/thresholdPanel.js:108 ui/thresholdPrimary.ui:131
 #: ui/thresholdSecondary.ui:131
 msgid "Balanced Mode"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:112 ui/thresholdPrimary.ui:206
+#: lib/thresholdPanel.js:114 ui/thresholdPrimary.ui:206
 #: ui/thresholdSecondary.ui:206
 msgid "Maximum Lifespan Mode"
 msgstr ""
 
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:119
+msgid "Adaptive Mode"
+msgstr ""
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:122
+msgid "Express Mode"
+msgstr ""
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:355
+msgid "Charging Mode: Adaptive"
+msgstr ""
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:358
+msgid "Charging Mode: Express"
+msgstr ""
+
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:365
+#: lib/thresholdPanel.js:411
 msgid "Full Capacity"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:368
+#: lib/thresholdPanel.js:414
 msgid "Balanced"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:371
+#: lib/thresholdPanel.js:417
 msgid "Max Lifespan"
 msgstr ""
 
-#: preferences/general.js:54
+#. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
+#: lib/thresholdPanel.js:420
+msgid "Adaptive"
+msgstr ""
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
+#: lib/thresholdPanel.js:423
+msgid "Express"
+msgstr ""
+
+#: preferences/general.js:60
 msgid ""
 "Select the type of icon for indicator and menu.\n"
 "In threshold settings, if <b>Customise</b> mode is selected, icon type will "
 "switch to <b>Symbols Only</b> and this option will be disabled"
 msgstr ""
 
-#: preferences/general.js:56
+#: preferences/general.js:62
 msgid "Select the type of icon for indicator and menu"
 msgstr ""
 
-#: preferences/general.js:151
+#: preferences/general.js:157
 msgid "Remove"
 msgstr ""
 
-#: preferences/general.js:155
+#: preferences/general.js:161
 msgid "Install"
 msgstr ""
 
-#: preferences/general.js:159
+#: preferences/general.js:165
 msgid "Update"
 msgstr ""
 
-#: preferences/thresholdPrimary.js:47
+#: preferences/thresholdPrimary.js:48
 msgid "Threshold"
 msgstr ""
 
-#: preferences/thresholdPrimary.js:184 preferences/thresholdSecondary.js:178
+#: preferences/thresholdPrimary.js:190 preferences/thresholdSecondary.js:182
 #, javascript-format
 msgid "<i>Accepted Value : %d to %d</i>"
 msgstr ""
