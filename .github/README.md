@@ -123,11 +123,16 @@ Since users usually keep their AC adapter connected while using their laptop, th
 '/sys/bus/wmi/drivers/acer-wmi-battery/health_mode'
 ```
 ### Dell
+
+**NOTE: The Express mode may cause battery health to diminish more quickly than other modes.**
+
 * 5 presets Express, Adaptive, Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
-* Express and Adaptive are fixed mode. You can find the description of Express charge mode and adaptive mode on dell website.
+* Express and Adaptive are fixed mode. You can find the description of Express charge mode and adaptive mode on dell [website](https://www.dell.com/support/manuals/en-us/dcpm2.1/userguide_dell-v1/configuraci%C3%B3n-de-bater%C3%ADa?guid=guid-0fbbbeff-4928-4def-89af-3d28d0a231ce&lang=en-us).
 * Full Capacity Mode, Balance Mode, and Maximum Life Span mode are **custom mode** with end/start threshold values set to 100/95%, 80/75%, and 60/55%.
 * Each custom mode preset end threshold value can customize between 100-80 %, 80-65 %, and 65-55 % respectively.
 * Each custom mode preset start threshold value can customize between 95-75 %, 80-60 %, and 60-50 % respectively.
+* Full capacity mode is equivalent to what Dell refers to as **Standard**
+* Balance mode is almost equivalent to what Dell refers to as **Primarily AC**
 * The differnce between end and start threshold cannot be less than 5%.
 * Depends on executable package **smbios-battery-ctl** which is provided by **smbios-utils** https://github.com/dell/libsmbios
 * This Extension supports dell through smbios-utils package smbios-battery-ctl
