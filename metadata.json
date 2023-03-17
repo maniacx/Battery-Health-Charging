@@ -6,7 +6,7 @@
   "shell-version": [
     "43", "44"
   ],
-  "version": 7,
+  "version": 8,
   "settings-schema": "org.gnome.shell.extensions.Battery-Health-Charging",
   "gettext-domain": "Battery-Health-Charging@maniacx.github.com"
 }
