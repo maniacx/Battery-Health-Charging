@@ -6,16 +6,16 @@ const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
 const {fileExists, readFileInt, runCommandCtl} = Helper;
 
-const TP_BAT0_END ='/sys/devices/platform/smapi/BAT0/stop_charge_thresh';
-const TP_BAT0_START ='/sys/devices/platform/smapi/BAT0/start_charge_thresh';
-const TP_BAT1_END ='/sys/devices/platform/smapi/BAT1/stop_charge_thresh';
-const TP_BAT1_START ='/sys/devices/platform/smapi/BAT1/start_charge_thresh';
+const TP_BAT0_END = '/sys/devices/platform/smapi/BAT0/stop_charge_thresh';
+const TP_BAT0_START = '/sys/devices/platform/smapi/BAT0/start_charge_thresh';
+const TP_BAT1_END = '/sys/devices/platform/smapi/BAT1/stop_charge_thresh';
+const TP_BAT1_START = '/sys/devices/platform/smapi/BAT1/start_charge_thresh';
 
 var ThinkpadLegacyDualBattery = GObject.registerClass({
     Signals: {'read-completed': {}},
 }, class ThinkpadLegacyDualBattery extends GObject.Object {
     name = 'Thinkpad Legacy with Dual Battery';
-    type = 16;
+    type = 13;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = true;
     deviceHaveStartThreshold = true;
@@ -96,7 +96,7 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
     Signals: {'read-completed': {}},
 }, class ThinkpadLegacySingleBatteryBAT0 extends GObject.Object {
     name = 'Thinkpad Legacy with Single Battery BAT0';
-    type = 17;
+    type = 14;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
     deviceHaveStartThreshold = true;
@@ -142,7 +142,7 @@ var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
     Signals: {'read-completed': {}},
 }, class ThinkpadLegacySingleBatteryBAT1 extends GObject.Object {
     name = 'Thinkpad Legacy with Single Battery BAT1';
-    type = 18;
+    type = 15;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
     deviceHaveStartThreshold = true;

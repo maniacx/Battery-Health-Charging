@@ -12,7 +12,7 @@ var AcerSingleBattery = GObject.registerClass({
     Signals: {'read-completed': {}},
 }, class AcerSingleBattery extends GObject.Object {
     name = 'Acer with Single Battery';
-    type = 20;
+    type = 17;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
     deviceHaveStartThreshold = false;

@@ -10,7 +10,7 @@ var DellSmBiosSingleBattery = GObject.registerClass({
     Signals: {'read-completed': {}},
 }, class DellSmBiosSingleBattery extends GObject.Object {
     name = 'Dell wth smbios with Single Battery';
-    type = 21;
+    type = 22;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
     deviceHaveStartThreshold = true;

@@ -13,7 +13,7 @@ var MsiSingleBattery = GObject.registerClass({
     Signals: {'read-completed': {}},
 }, class MsiSingleBattery extends GObject.Object {
     name = 'Msi with Single Battery';
-    type = 22;
+    type = 18;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
     deviceHaveStartThreshold = false;

@@ -6,7 +6,6 @@ const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
 const {fileExists, readFileInt, runCommandCtl} = Helper;
 
-const VENDOR_THINKPAD = '/sys/devices/platform/smapi';
 const BAT0_END_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold';
 const BAT0_START_PATH = '/sys/class/power_supply/BAT0/charge_control_start_threshold';
 const BAT1_END_PATH = '/sys/class/power_supply/BAT1/charge_control_end_threshold';
@@ -16,7 +15,7 @@ var ThinkpadDualBattery = GObject.registerClass({
     Signals: {'read-completed': {}},
 }, class ThinkpadDualBattery extends GObject.Object {
     name = 'Thinkpad with Dual Battery';
-    type = 13;
+    type = 19;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = true;
     deviceHaveStartThreshold = true;
@@ -27,8 +26,6 @@ var ThinkpadDualBattery = GObject.registerClass({
     iconForMaxLifeMode = 'max060';
 
     isAvailable() {
-        if (!fileExists(VENDOR_THINKPAD))
-            return false;
         if (!fileExists(BAT1_START_PATH))
             return false;
         if (!fileExists(BAT1_END_PATH))
@@ -99,7 +96,7 @@ var ThinkpadSingleBatteryBAT0 = GObject.registerClass({
     Signals: {'read-completed': {}},
 }, class ThinkpadSingleBatteryBAT0 extends GObject.Object {
     name = 'Thinkpad with Single Battery BAT0';
-    type = 14;
+    type = 20;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
     deviceHaveStartThreshold = true;
@@ -110,8 +107,6 @@ var ThinkpadSingleBatteryBAT0 = GObject.registerClass({
     iconForMaxLifeMode = 'max060';
 
     isAvailable() {
-        if (!fileExists(VENDOR_THINKPAD))
-            return false;
         if (!fileExists(BAT0_START_PATH))
             return false;
         if (!fileExists(BAT0_END_PATH))
@@ -147,7 +142,7 @@ var ThinkpadSingleBatteryBAT1 = GObject.registerClass({
     Signals: {'read-completed': {}},
 }, class ThinkpadSingleBatteryBAT1 extends GObject.Object {
     name = 'Thinkpad with Single Battery BAT1';
-    type = 15;
+    type = 21;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
     deviceHaveStartThreshold = true;
@@ -158,8 +153,6 @@ var ThinkpadSingleBatteryBAT1 = GObject.registerClass({
     iconForMaxLifeMode = 'max060';
 
     isAvailable() {
-        if (!fileExists(VENDOR_THINKPAD))
-            return false;
         if (!fileExists(BAT1_START_PATH))
             return false;
         if (!fileExists(BAT1_END_PATH))

@@ -40,7 +40,7 @@ var ThresholdPrimary = GObject.registerClass({
         super({});
 
         this._currentDevice = Driver.currentDevice;
-        this.deviceIsDell = this._currentDevice.type === 21;
+        this.deviceIsDell = this._currentDevice.type === 22;
 
         if (this._currentDevice.deviceHaveDualBattery)  // if laptop have dual battery
             this.set_title(_('Battery 1'));

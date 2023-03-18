@@ -13,7 +13,7 @@ var AppleSingleBattery = GObject.registerClass({
     Signals: {'read-completed': {}},
 }, class AppleSingleBattery extends GObject.Object {
     name = 'Apple with Single Battery';
-    type = 19;
+    type = 16;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
     deviceHaveStartThreshold = false;
