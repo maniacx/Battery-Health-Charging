@@ -6,7 +6,7 @@ const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
 const {fileExists, readFile, runCommandCtl} = Helper;
 
-const HUAWEI_PATH = '/sys/devices/platform/huawei-wmi/charge_thresholds';
+const HUAWEI_PATH = '/sys/devices/platform/huawei-wmi/charge_control_thresholds';
 
 var HuaweiSingleBattery = GObject.registerClass({
     Signals: {'read-completed': {}},
