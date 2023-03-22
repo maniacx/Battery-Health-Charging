@@ -20,6 +20,7 @@ TP_BAT0_END='/sys/devices/platform/smapi/BAT0/stop_charge_thresh';
 TP_BAT0_START='/sys/devices/platform/smapi/BAT0/start_charge_thresh';
 TP_BAT1_END='/sys/devices/platform/smapi/BAT1/stop_charge_thresh';
 TP_BAT1_START='/sys/devices/platform/smapi/BAT1/start_charge_thresh';
+PANASONIC_PATH='/sys/devices/platform/panasonic/eco_mode';
 
 EXTENSION_NAME="Battery Health Charging"
 ACTION_BASE="dem.batteryhealthcharging"
@@ -73,6 +74,10 @@ case "$1" in
         ;;
     ACER)
         echo "$2" > "$ACER_PATH"
+        exit ${EXIT_SUCCESS}
+        ;;
+    PANASONIC)
+        echo "$2" > "$PANASONIC_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     BATC_END)
