@@ -6,6 +6,7 @@ const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
 const {fileExists, readFileInt, runCommandCtl} = Helper;
 
+const VENDOR_THINKPAD = '/sys/devices/platform/thinkpad_acpi';
 const BAT0_END_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold';
 const BAT0_START_PATH = '/sys/class/power_supply/BAT0/charge_control_start_threshold';
 const BAT1_END_PATH = '/sys/class/power_supply/BAT1/charge_control_end_threshold';
@@ -26,6 +27,8 @@ var ThinkpadDualBattery = GObject.registerClass({
     iconForMaxLifeMode = 'max060';
 
     isAvailable() {
+        if (!fileExists(VENDOR_THINKPAD))
+            return false;
         if (!fileExists(BAT1_START_PATH))
             return false;
         if (!fileExists(BAT1_END_PATH))
@@ -107,6 +110,8 @@ var ThinkpadSingleBatteryBAT0 = GObject.registerClass({
     iconForMaxLifeMode = 'max060';
 
     isAvailable() {
+        if (!fileExists(VENDOR_THINKPAD))
+            return false;
         if (!fileExists(BAT0_START_PATH))
             return false;
         if (!fileExists(BAT0_END_PATH))
@@ -153,6 +158,8 @@ var ThinkpadSingleBatteryBAT1 = GObject.registerClass({
     iconForMaxLifeMode = 'max060';
 
     isAvailable() {
+        if (!fileExists(VENDOR_THINKPAD))
+            return false;
         if (!fileExists(BAT1_START_PATH))
             return false;
         if (!fileExists(BAT1_END_PATH))
