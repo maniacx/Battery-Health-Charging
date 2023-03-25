@@ -33,69 +33,73 @@ LEGACY_POLKIT=false
 EXIT_SUCCESS=0
 EXIT_NEEDS_UPDATE=1
 
-case "$1" in
+TOOLCMD=$1
+ARG1=${2:-0}
+ARG2=${3:-0}
+
+case "$TOOLCMD" in
     BAT0_END)
-        echo "$2" > "$BAT0_END_PATH"
+        echo "$ARG1" > "$BAT0_END_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     BAT0_END_START)
-        echo "$2" > "$BAT0_END_PATH"
-        echo "$3" > "$BAT0_START_PATH"
+        echo "$ARG1" > "$BAT0_END_PATH"
+        echo "$ARG2" > "$BAT0_START_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     BAT1_END)
-        echo "$2" > "$BAT1_END_PATH"
+        echo "$ARG1" > "$BAT1_END_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     BAT1_END_START)
-        echo "$2" > "$BAT1_END_PATH"
-        echo "$3" > "$BAT1_START_PATH"
+        echo "$ARG1" > "$BAT1_END_PATH"
+        echo "$ARG2" > "$BAT1_START_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     LG)
-        echo "$2" > "$LG_PATH"
+        echo "$ARG1" > "$LG_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     LENOVO)
-        echo "$2" > "$LENOVO_PATH"
+        echo "$ARG1" > "$LENOVO_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     SONY)
-        echo "$2" > "$SONY_PATH"
+        echo "$ARG1" > "$SONY_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     HUAWEI)
-        echo "$3 $2" > "$HUAWEI_PATH"
+        echo "$ARG2 $ARG1" > "$HUAWEI_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     SAMSUNG)
-        echo "$2" > "$SAMSUNG_PATH"
+        echo "$ARG1" > "$SAMSUNG_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     ACER)
-        echo "$2" > "$ACER_PATH"
+        echo "$ARG1" > "$ACER_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     PANASONIC)
-        echo "$2" > "$PANASONIC_PATH"
+        echo "$ARG1" > "$PANASONIC_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     BATC_END)
-        echo "$2" > "$BATC_END_PATH"
+        echo "$ARG1" > "$BATC_END_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     BATT_END)
-        echo "$2" > "$BATT_END_PATH"
+        echo "$ARG1" > "$BATT_END_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     TP_BAT0_END_START)
-        echo "$2" > "$TP_BAT0_END"
-        echo "$3" > "$TP_BAT0_START"
+        echo "$ARG1" > "$TP_BAT0_END"
+        echo "$ARG2" > "$TP_BAT0_START"
         exit ${EXIT_SUCCESS}
         ;;
     TP_BAT1_END_START)
-        echo "$2" > "$TP_BAT1_END"
-        echo "$3" > "$TP_BAT1_START"
+        echo "$ARG1" > "$TP_BAT1_END"
+        echo "$ARG2" > "$TP_BAT1_START"
         exit ${EXIT_SUCCESS}
         ;;
     DELL_SMBIOS_BAT_READ)
@@ -103,14 +107,13 @@ case "$1" in
         exit ${EXIT_SUCCESS}
         ;;
     DELL_SMBIOS_BAT_WRITE)
-        ARG2=$2
-        if [ "$ARG2" = "adv" ];then
+        if [ "$ARG1" = "adv" ];then
             smbios-battery-ctl --set-charging-mode='adaptive'
-        elif [ "$ARG2" = "exp" ];then
+        elif [ "$ARG1" = "exp" ];then
             smbios-battery-ctl --set-charging-mode='express'
         else
             smbios-battery-ctl --set-charging-mode='custom'
-            smbios-battery-ctl --set-custom-charge-interval=$3 $ARG2
+            smbios-battery-ctl --set-custom-charge-interval="$ARG2" "$ARG1"
         fi
         exit ${EXIT_SUCCESS}
         ;;
@@ -121,8 +124,8 @@ case "$1" in
     else
         LEGACY_POLKIT=true
     fi
-        EXTDIR=$2
-        TOOL_USER=$3
+        EXTDIR=$ARG1
+        TOOL_USER=$ARG2
         RULE_IN="${EXTDIR}/10-${RULE_BASE}.rules"
         if [[ "$LEGACY_POLKIT" = true ]];then
             RULE_IN="${RULE_IN}.legacy"
