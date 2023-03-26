@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-17 13:43-0400\n"
-"PO-Revision-Date: 2023-03-17 18:21-0400\n"
+"POT-Creation-Date: 2023-03-26 14:02-0700\n"
+"PO-Revision-Date: 2023-03-26 14:05-0700\n"
 "Last-Translator: Valeria Cubero Tapia <vct@duck.com>\n"
 "Language-Team: Spanish <LL@li.org>\n"
 "Language: es\n"
@@ -33,11 +33,7 @@ msgstr "Cerrar sesión"
 msgid "Settings"
 msgstr "Configuración"
 
-#: lib/notifier.js:69
-msgid "Remove files and restart"
-msgstr "Eliminar ficheros y reiniciar"
-
-#: lib/notifier.js:85
+#: lib/notifier.js:81
 msgid ""
 "Unsupported Gnome version.\n"
 "This extension is compatible only with Gnome version 43 and above."
@@ -45,7 +41,7 @@ msgstr ""
 "Versión de Gnome no compatible.\n"
 "Esta extensión solo es compatible con versiones de Gnome 43 o superiores."
 
-#: lib/notifier.js:89
+#: lib/notifier.js:85
 msgid ""
 "Unsupported device.\n"
 "This extension is not compatible with your device."
@@ -53,43 +49,31 @@ msgstr ""
 "Dispositivo no compatible.\n"
 "Esta extensión no es compatible con su dispositivo."
 
-#: lib/notifier.js:93
-msgid ""
-"Found unused service files from previous version of this extension. Remove "
-"to continue running this extension\n"
-"Root privileges and a system restart are required. Please save your work and "
-"restart."
-msgstr ""
-"Se han encontrado ficheros de servicio de versiones anteriores. Remuévalos "
-"para continuar usando la extensión\n"
-"Se necesitan privilegios de superusuario y reiniciar. Por favor, guarde su "
-"trabajo y reinicie."
-
-#: lib/notifier.js:97
+#: lib/notifier.js:89
 msgid "Please install polkit from extension settings under Installation."
 msgstr ""
 "Por favor, instale el script de polkit en las opciones de extensión, sección "
 "Instalación."
 
-#: lib/notifier.js:101
+#: lib/notifier.js:93
 msgid "Please update polkit from extension settings under Installation."
 msgstr ""
 "Por favor, actualice el script de polkit en las opciones de extensión, "
 "sección Instalación."
 
-#: lib/notifier.js:105 lib/notifier.js:109
+#: lib/notifier.js:97 lib/notifier.js:101
 msgid "Installation Successfull. Please save your work and logout."
 msgstr "Instalación correcta. Por favor, guarde su trabajo y cierre su sesión."
 
-#: lib/notifier.js:113
+#: lib/notifier.js:105
 msgid "Uninstallation Successfull."
 msgstr "Desinstalación correcta."
 
-#: lib/notifier.js:117
+#: lib/notifier.js:109
 msgid "Battery Health Charging encountered an unexpected error."
 msgstr "Battery Health Charging encontró un error inesperado."
 
-#: lib/notifier.js:124
+#: lib/notifier.js:116
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -99,12 +83,12 @@ msgstr ""
 "Límites de carga establecidos a %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:127 lib/thresholdPanel.js:346
+#: lib/notifier.js:119 lib/thresholdPanel.js:346
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "Límites de carga establecidos: %d/%d %%"
 
-#: lib/notifier.js:131
+#: lib/notifier.js:123
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -114,12 +98,12 @@ msgstr ""
 "Límite de carga establecido a %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:133 lib/thresholdPanel.js:350
+#: lib/notifier.js:125 lib/thresholdPanel.js:350
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "Límite de carga establecido: %d%%"
 
-#: lib/notifier.js:141
+#: lib/notifier.js:133
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -128,7 +112,7 @@ msgstr ""
 "Batería 2 - \n"
 "Límites de carga establecidos a %d / %d %%"
 
-#: lib/notifier.js:144
+#: lib/notifier.js:136
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -137,11 +121,12 @@ msgstr ""
 "Batería 2 - \n"
 "Límite de carga establecido a %d%%"
 
-#: lib/notifier.js:153
+#: lib/notifier.js:145
 msgid "Charging Mode is set to adaptive"
 msgstr "Modo de carga establecido a adaptable"
 
-#: lib/notifier.js:155
+#: lib/notifier.js:147
+#, fuzzy
 msgid "Charging Mode is set to express"
 msgstr "Modo de carga establecido a rápido"
 
@@ -190,6 +175,7 @@ msgstr "Adaptable"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:122
+#, fuzzy
 msgid "Express Mode"
 msgstr "Rápido"
 
@@ -200,6 +186,7 @@ msgstr "Modo de carga: Adaptable"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:358
+#, fuzzy
 msgid "Charging Mode: Express"
 msgstr "Modo de carga: Rápido"
 
@@ -228,7 +215,7 @@ msgstr "Adaptable"
 msgid "Express"
 msgstr "Rápido"
 
-#: preferences/general.js:60
+#: preferences/general.js:61
 msgid ""
 "Select the type of icon for indicator and menu.\n"
 "In threshold settings, if <b>Customise</b> mode is selected, icon type will "
@@ -238,19 +225,19 @@ msgstr ""
 "En las opciones de límites, si el modo <b>Personalizado</b> es escogido, el "
 "icono se cambiará a <b>Solo símbolos</b> y esta opción será deshabilitada"
 
-#: preferences/general.js:62
+#: preferences/general.js:63
 msgid "Select the type of icon for indicator and menu"
 msgstr "Seleccione el tipo de icono para el indicador y el menú"
 
-#: preferences/general.js:157
+#: preferences/general.js:176
 msgid "Remove"
 msgstr "Remover"
 
-#: preferences/general.js:161
+#: preferences/general.js:180
 msgid "Install"
 msgstr "Instalar"
 
-#: preferences/general.js:165
+#: preferences/general.js:184
 msgid "Update"
 msgstr "Actualizar"
 
@@ -272,53 +259,61 @@ msgid "Choose icon style"
 msgstr "Escoja el estilo del icono"
 
 #: ui/general.ui:24
-msgid "Show system indicator"
-msgstr "Mostrar indicador del sistema"
-
-#: ui/general.ui:25
-msgid "Shows an icon in system tray"
-msgstr "Muestra un icono en la bandeja del sistema"
-
-#: ui/general.ui:36
 msgid "Show notifications"
 msgstr "Mostrar notificaciones"
 
-#: ui/general.ui:37
+#: ui/general.ui:25
 msgid "Shows notifications when the threshold is changed"
 msgstr "Muestra una notificación cuando se cambian los límites"
 
-#: ui/general.ui:48
+#: ui/general.ui:36
 msgid "Show preferences button"
 msgstr "Mostrar botón de preferencias"
 
-#: ui/general.ui:49
+#: ui/general.ui:37
 msgid "Adds a button to open extension preferences from quick settings panel"
 msgstr "Añade un botón para abrir la configuración al panel de acceso rápido"
 
-#: ui/general.ui:60
+#: ui/general.ui:48
 msgid "Display subtitle with current mode on quick menu button"
 msgstr "Mostrar texto con el modo bajo el botón de acceso rápido"
 
-#: ui/general.ui:61
+#: ui/general.ui:49
 msgid ""
 "Displays the current mode in the text form (subtitle) on the quick menu "
 "button"
 msgstr ""
 "Muestra el modo actual de carga bajo el botón del panel de acceso rápido"
 
-#: ui/general.ui:74
+#: ui/general.ui:60
+msgid "Show system indicator"
+msgstr "Mostrar indicador del sistema"
+
+#: ui/general.ui:61
+msgid "Shows an icon in system tray"
+msgstr "Muestra un icono en la bandeja del sistema"
+
+#: ui/general.ui:72
+msgid "Indicator index"
+msgstr ""
+
+#: ui/general.ui:73
+msgid "The position relative of indicator icon to other items"
+msgstr ""
+
+#: ui/general.ui:91
 msgid "Installation"
 msgstr "Instalación"
 
-#: ui/general.ui:77
+#: ui/general.ui:94
 msgid "Install privileges for this user"
 msgstr "Configurar privilegios para este usuario"
 
-#: ui/general.ui:78
+#: ui/general.ui:95
 msgid "Install / Update / Remove"
 msgstr "Instalar / Actualizar / Remover"
 
-#: ui/general.ui:81
+#: ui/general.ui:98
 msgid ""
 "This device requires root privileges to change the charging limit. Setup a "
 "privileged script and give user access via polkit.\n"
@@ -340,15 +335,15 @@ msgstr ""
 "extensión.\n"
 "<b>Remueva</b> el script de polkit antes de desinstalar la extensión."
 
-#: ui/general.ui:105
+#: ui/general.ui:122
 msgid "Symbols Only"
 msgstr "Sólo símbolos"
 
-#: ui/general.ui:106
+#: ui/general.ui:123
 msgid "Symbol and Percentage"
 msgstr "Símbolos y porcentaje"
 
-#: ui/general.ui:107
+#: ui/general.ui:124
 msgid "Percentage Highlighted"
 msgstr "Enfatizar porcentaje"
 
@@ -396,3 +391,17 @@ msgstr "Valor actual"
 #: ui/thresholdSecondary.ui:169 ui/thresholdSecondary.ui:245
 msgid "Start charging threshold value"
 msgstr "Valor de inicio de la carga"
+
+#~ msgid "Remove files and restart"
+#~ msgstr "Eliminar ficheros y reiniciar"
+
+#~ msgid ""
+#~ "Found unused service files from previous version of this extension. "
+#~ "Remove to continue running this extension\n"
+#~ "Root privileges and a system restart are required. Please save your work "
+#~ "and restart."
+#~ msgstr ""
+#~ "Se han encontrado ficheros de servicio de versiones anteriores. "
+#~ "Remuévalos para continuar usando la extensión\n"
+#~ "Se necesitan privilegios de superusuario y reiniciar. Por favor, guarde "
+#~ "su trabajo y reinicie."
