@@ -21,18 +21,6 @@
         </child>
         <child>
           <object class="AdwActionRow">
-            <property name="title" translatable="yes">Show system indicator</property>
-            <property name="subtitle" translatable="yes">Shows an icon in system tray</property>
-            <property name="activatable-widget">show_system_indicator</property>
-            <child>
-              <object class="GtkSwitch" id="show_system_indicator">
-                <property name="valign">center</property>
-              </object>
-            </child>
-          </object>
-        </child>
-        <child>
-          <object class="AdwActionRow">
             <property name="title" translatable="yes">Show notifications</property>
             <property name="subtitle" translatable="yes">Shows notifications when the threshold is changed</property>
             <property name="activatable-widget">show_notifications</property>
@@ -63,6 +51,35 @@
             <child>
               <object class="GtkSwitch" id="show_quickmenu_subtitle">
                 <property name="valign">center</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">Show system indicator</property>
+            <property name="subtitle" translatable="yes">Shows an icon in system tray</property>
+            <property name="activatable-widget">show_system_indicator</property>
+            <child>
+              <object class="GtkSwitch" id="show_system_indicator">
+                <property name="valign">center</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">Indicator index</property>
+            <property name="subtitle" translatable="yes">The position relative of indicator icon to other items</property>
+            <property name="activatable-widget">indicator_position</property>
+            <property name="sensitive" bind-source="show_system_indicator" bind-property="active" bind-flags="sync-create" />
+            <child>
+              <object class="GtkSpinButton" id="indicator_position">
+                <property name="valign">center</property>
+                <property name="adjustment">indicator_position_adjustment</property>
+                <property name="numeric">True</property>
+                <property name="snap-to-ticks">True</property>
+                <property name="update-policy">if-valid</property>
               </object>
             </child>
           </object>
@@ -106,5 +123,8 @@
       <item translatable="yes">Symbol and Percentage</item>
       <item translatable="yes">Percentage Highlighted</item>
     </items>
+  </object>
+  <object class="GtkAdjustment" id="indicator_position_adjustment">
+    <property name="step-increment">1.0</property>
   </object>
 </interface>

@@ -17,10 +17,6 @@
             <default>0</default>
             <summary>icon sytle 0 = symbol only, 1 = symbols and percentage, 2 = percetage highlighted</summary>
         </key>
-        <key name="show-system-indicator" type="b">
-            <default>true</default>
-            <summary>Toggle to show systemindicator</summary>
-        </key>
         <key name="show-notifications" type="b">
             <default>true</default>
             <summary>Toggle to show notifications</summary>
@@ -28,6 +24,22 @@
         <key name="show-preferences" type="b">
             <default>true</default>
             <summary>Toggle to show preference in quickmenu</summary>
+        </key>
+        <key name="show-system-indicator" type="b">
+            <default>true</default>
+            <summary>Toggle to show systemindicator</summary>
+        </key>
+        <key type="i" name="indicator-position">
+            <default>0</default>
+            <summary>Visible position offset of status icon in indicator menu</summary>
+        </key>
+        <key type="i" name="indicator-position-index">
+            <default>0</default>
+            <summary>Real position offset of status icon in indicator menu that include invisible one</summary>
+        </key>
+        <key type="i" name="indicator-position-max">
+            <default>1</default>
+            <summary>Last item index in indicator menu</summary>
         </key>
         <key name="show-quickmenu-subtitle" type="b">
             <default>true</default>

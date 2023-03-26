@@ -31,11 +31,12 @@ var General = GObject.registerClass({
     InternalChildren: [
         'icon_style_mode_row',
         'icon_style_mode',
-        'show_system_indicator',
         'show_notifications',
         'show_preferences',
         'show_quickmenu_subtitle_row',
         'show_quickmenu_subtitle',
+        'show_system_indicator',
+        'indicator_position',
         'service_installer',
         'install_service',
         'install_service_button',
@@ -63,6 +64,8 @@ var General = GObject.registerClass({
 
         this._show_quickmenu_subtitle_row.visible = shellVersion >= 44;
 
+        this._setIndicatorPosistionRange(settings);
+
         if (this._deviceNeedRootPermission) {
             this._service_installer.visible = true;
             this._updateInstallationLabelIcon(settings);
@@ -74,13 +77,6 @@ var General = GObject.registerClass({
             'icon-style-type',
             this._icon_style_mode,
             'selected',
-            Gio.SettingsBindFlags.DEFAULT
-        );
-
-        settings.bind(
-            'show-system-indicator',
-            this._show_system_indicator,
-            'active',
             Gio.SettingsBindFlags.DEFAULT
         );
 
@@ -107,6 +103,20 @@ var General = GObject.registerClass({
             );
         }
 
+        settings.bind(
+            'show-system-indicator',
+            this._show_system_indicator,
+            'active',
+            Gio.SettingsBindFlags.DEFAULT
+        );
+
+        settings.bind(
+            'indicator-position',
+            this._indicator_position,
+            'value',
+            Gio.SettingsBindFlags.DEFAULT
+        );
+
         if (this._deviceNeedRootPermission) {
             this._install_service.connect('clicked', () => {
                 const installType = settings.get_int('install-service');
@@ -131,11 +141,16 @@ var General = GObject.registerClass({
         settings.connect('changed::default-threshold', () => {
             this._iconModeSensitiveCheck(settings);
         });
+
         if (this._deviceHaveDualBattery) {
             settings.connect('changed::default-threshold2', () => {
                 this._iconModeSensitiveCheck(settings);
             });
         }
+
+        settings.connect('changed::indicator-position-max', () => {
+            this._setIndicatorPosistionRange(settings);
+        });
     }
 
     _iconModeSensitiveCheck(settings) {
@@ -148,6 +163,10 @@ var General = GObject.registerClass({
         } else {
             this._icon_style_mode_row.sensitive = true;
         }
+    }
+
+    _setIndicatorPosistionRange(settings) {
+        this._indicator_position.set_range(0, settings.get_int('indicator-position-max'));
     }
 
     _updateInstallationLabelIcon(settings) {
