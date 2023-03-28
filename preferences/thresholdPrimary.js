@@ -50,17 +50,17 @@ var ThresholdPrimary = GObject.registerClass({
         // Set range for end threshold value
         this._full_capacity_end_threshold.set_range(80, 100);
         this._balanced_end_threshold.set_range(65, 85);
-        this._maxlife_end_threshold.set_range(this.deviceIsDell ? 55 : 50, 70);
+        this._maxlife_end_threshold.set_range(this.deviceIsDell ? 55 : 50, 85);
 
         // Set range for end threshold subtitle
         this._updateRangeSubtitle(this._full_capacity_end_threshold_row, 80, 100);
         this._updateRangeSubtitle(this._balanced_end_threshold_row, 65, 85);
-        this._updateRangeSubtitle(this._maxlife_end_threshold_row, this.deviceIsDell ? 55 : 50, 70);
+        this._updateRangeSubtitle(this._maxlife_end_threshold_row, this.deviceIsDell ? 55 : 50, 85);
 
         if (this._currentDevice.deviceHaveStartThreshold) { // if StartThresholdSupported
             this._full_capacity_start_threshold.set_range(75, this.deviceIsDell ? 95 : 98);
             this._balanced_start_threshold.set_range(60, this.deviceIsDell ? 80 : 83);
-            this._maxlife_start_threshold.set_range(this.deviceIsDell ? 50 : 40, this.deviceIsDell ? 60 : 68);
+            this._maxlife_start_threshold.set_range(this.deviceIsDell ? 50 : 40, 83);
             this._maxDiffInLimit = this.deviceIsDell ? 5 : 2;
 
             this._updateRangeSubtitle(this._full_capacity_start_threshold_row, 75,
