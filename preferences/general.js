@@ -37,6 +37,7 @@ var General = GObject.registerClass({
         'show_quickmenu_subtitle',
         'show_system_indicator',
         'indicator_position',
+        'amend_power_indicator',
         'service_installer',
         'install_service',
         'install_service_button',
@@ -114,6 +115,13 @@ var General = GObject.registerClass({
             'indicator-position',
             this._indicator_position,
             'value',
+            Gio.SettingsBindFlags.DEFAULT
+        );
+
+        settings.bind(
+            'amend-power-indicator',
+            this._amend_power_indicator,
+            'active',
             Gio.SettingsBindFlags.DEFAULT
         );
 

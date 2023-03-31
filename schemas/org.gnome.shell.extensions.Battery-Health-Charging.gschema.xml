@@ -45,6 +45,10 @@
             <default>1</default>
             <summary>Last item index in indicator menu</summary>
         </key>
+        <key name="amend-power-indicator" type="b">
+            <default>false</default>
+            <summary>Toggle to correct power indicator icon</summary>
+        </key>
         <key name="install-service" type="i">
             <default>1</default>
             <summary>Install service</summary>
