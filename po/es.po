@@ -8,14 +8,14 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-04-01 20:38-0700\n"
-"PO-Revision-Date: 2023-04-01 20:55-0700\n"
+"PO-Revision-Date: 2023-04-02 11:49+0200\n"
 "Last-Translator: Valeria Cubero Tapia <vct@duck.com>\n"
 "Language-Team: Spanish <LL@li.org>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: lib/notifier.js:37 lib/notifier.js:40 lib/notifier.js:43
 msgid "Battery Health Charging"
@@ -309,15 +309,15 @@ msgstr "Muestra un icono en la bandeja del sistema"
 
 #: ui/general.ui:72
 msgid "Indicator index"
-msgstr ""
+msgstr "Índice del indicador"
 
 #: ui/general.ui:73
 msgid "The position relative of indicator icon to other items"
-msgstr ""
+msgstr "Posición relativa del indicador"
 
 #: ui/general.ui:89
 msgid "Change battery indicator icon behavior"
-msgstr ""
+msgstr "Cambiar el comportamiento del indicador"
 
 #: ui/general.ui:90
 msgid ""
@@ -327,6 +327,12 @@ msgid ""
 "May conflict with other extension that changes the behavior, style or text "
 "of battery indicator in system tray and quick settings panel"
 msgstr ""
+"El indicador cambia a <b>cargando</b> en el panel principal y de acceso "
+"rápido cuando los límites están activos y el dispositivo está siendo "
+"alimentado por AC.\n"
+"Puede generar conflictos con otras extensiones que cambian el "
+"comportamiento, estilo o texto de los indicadores de batería en los paneles "
+"del sistema o acceso rápido"
 
 #: ui/general.ui:103
 msgid "Installation"
