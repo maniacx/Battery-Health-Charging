@@ -35,8 +35,7 @@
       </object>
     </child>
     <child>
-      <object class="AdwPreferencesGroup">
-        <property name="title" translatable="yes">Full Capacity Mode</property>
+      <object class="AdwPreferencesGroup" id="full_capacity_mode_preference_group">
         <property name="header-suffix">
           <object class="GtkButton" id="apply_settings">
             <property name="halign">start</property>
@@ -127,8 +126,7 @@
       </object>
     </child>
     <child>
-      <object class="AdwPreferencesGroup">
-        <property name="title" translatable="yes">Balanced Mode</property>
+      <object class="AdwPreferencesGroup" id="balanced_mode_preference_group">
         <child>
           <object class="AdwActionRow" id="balanced_end_threshold_row">
             <property name="title" translatable="yes">Stop charging threshold value</property>
@@ -202,8 +200,7 @@
       </object>
     </child>
     <child>
-      <object class="AdwPreferencesGroup">
-        <property name="title" translatable="yes">Maximum Lifespan Mode</property>
+      <object class="AdwPreferencesGroup" id="maxlife_mode_preference_group">
         <child>
           <object class="AdwActionRow" id="maxlife_end_threshold_row">
             <property name="title" translatable="yes">Stop charging threshold value</property>

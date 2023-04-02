@@ -16,6 +16,9 @@ var ThresholdPrimary = GObject.registerClass({
         'customize_threshold',
         'default_threshold',
         'apply_settings',
+        'full_capacity_mode_preference_group',
+        'balanced_mode_preference_group',
+        'maxlife_mode_preference_group',
         'full_capacity_end_threshold_row',
         'full_capacity_start_threshold_row',
         'balanced_end_threshold_row',
@@ -47,6 +50,8 @@ var ThresholdPrimary = GObject.registerClass({
         else
             this.set_title(_('Threshold'));
 
+        this._setPrefGroupTitle(settings);
+
         // Set range for end threshold value
         this._full_capacity_end_threshold.set_range(80, 100);
         this._balanced_end_threshold.set_range(65, 85);
@@ -76,7 +81,6 @@ var ThresholdPrimary = GObject.registerClass({
         this._full_capacity_start_threshold_row.visible = this._currentDevice.deviceHaveStartThreshold;
         this._balanced_start_threshold_row.visible = this._currentDevice.deviceHaveStartThreshold;
         this._maxlife_start_threshold_row.visible = this._currentDevice.deviceHaveStartThreshold;
-
 
         settings.bind(
             'default-threshold',
@@ -112,6 +116,10 @@ var ThresholdPrimary = GObject.registerClass({
             'value',
             Gio.SettingsBindFlags.DEFAULT
         );
+
+        settings.connect('changed::charging-mode', () => {
+            this._setPrefGroupTitle(settings);
+        });
 
         if (this._currentDevice.deviceHaveStartThreshold) { // if StartThresholdSupported
             settings.bind(
@@ -184,6 +192,22 @@ var ThresholdPrimary = GObject.registerClass({
             this._updateCurrentValueLabel(settings);
             settings.set_boolean('dummy-default-threshold', !settings.get_boolean('dummy-default-threshold'));
         });
+    }
+
+    _setPrefGroupTitle(settings) {
+        const chargingMode = settings.get_string('charging-mode');
+        if (chargingMode === 'ful')
+            this._full_capacity_mode_preference_group.set_title(_('Full Capacity Mode (Currently Active)'));
+        else
+            this._full_capacity_mode_preference_group.set_title(_('Full Capacity Mode'));
+        if (chargingMode === 'bal')
+            this._balanced_mode_preference_group.set_title(_('Balanced Mode (Currently Active)'));
+        else
+            this._balanced_mode_preference_group.set_title(_('Balanced Mode'));
+        if (chargingMode === 'max')
+            this._maxlife_mode_preference_group.set_title(_('Maximum Lifespan Mode (Currently Active)'));
+        else
+            this._maxlife_mode_preference_group.set_title(_('Maximum Lifespan Mode'));
     }
 
     _updateRangeSubtitle(row, lowerValue, upperValue) {
