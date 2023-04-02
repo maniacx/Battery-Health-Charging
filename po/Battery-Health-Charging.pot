@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-03-26 14:02-0700\n"
+"POT-Creation-Date: 2023-04-01 20:38-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -113,13 +113,18 @@ msgstr ""
 msgid "Charging Mode is set to express"
 msgstr ""
 
+#: lib/powerIcon.js:138 lib/powerIcon.js:144
+#, javascript-format
+msgid "%d %%"
+msgstr ""
+
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
 #: lib/thresholdPanel.js:54
 msgid "Battery"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel.js:56 preferences/thresholdPrimary.js:46
+#: lib/thresholdPanel.js:56 preferences/thresholdPrimary.js:49
 msgid "Battery 1"
 msgstr ""
 
@@ -134,20 +139,20 @@ msgid "Battery Charging Mode"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:102 ui/thresholdPrimary.ui:39
-#: ui/thresholdSecondary.ui:39
+#: lib/thresholdPanel.js:102 preferences/thresholdPrimary.js:202
+#: preferences/thresholdSecondary.js:194
 msgid "Full Capacity Mode"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:108 ui/thresholdPrimary.ui:131
-#: ui/thresholdSecondary.ui:131
+#: lib/thresholdPanel.js:108 preferences/thresholdPrimary.js:206
+#: preferences/thresholdSecondary.js:198
 msgid "Balanced Mode"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:114 ui/thresholdPrimary.ui:206
-#: ui/thresholdSecondary.ui:206
+#: lib/thresholdPanel.js:114 preferences/thresholdPrimary.js:210
+#: preferences/thresholdSecondary.js:202
 msgid "Maximum Lifespan Mode"
 msgstr ""
 
@@ -196,34 +201,46 @@ msgstr ""
 msgid "Express"
 msgstr ""
 
-#: preferences/general.js:61
+#: preferences/general.js:62
 msgid ""
 "Select the type of icon for indicator and menu.\n"
 "In threshold settings, if <b>Customise</b> mode is selected, icon type will "
 "switch to <b>Symbols Only</b> and this option will be disabled"
 msgstr ""
 
-#: preferences/general.js:63
+#: preferences/general.js:64
 msgid "Select the type of icon for indicator and menu"
 msgstr ""
 
-#: preferences/general.js:176
+#: preferences/general.js:184
 msgid "Remove"
 msgstr ""
 
-#: preferences/general.js:180
+#: preferences/general.js:188
 msgid "Install"
 msgstr ""
 
-#: preferences/general.js:184
+#: preferences/general.js:192
 msgid "Update"
 msgstr ""
 
-#: preferences/thresholdPrimary.js:48
+#: preferences/thresholdPrimary.js:51
 msgid "Threshold"
 msgstr ""
 
-#: preferences/thresholdPrimary.js:190 preferences/thresholdSecondary.js:182
+#: preferences/thresholdPrimary.js:200 preferences/thresholdSecondary.js:192
+msgid "Full Capacity Mode (Currently Active)"
+msgstr ""
+
+#: preferences/thresholdPrimary.js:204 preferences/thresholdSecondary.js:196
+msgid "Balanced Mode (Currently Active)"
+msgstr ""
+
+#: preferences/thresholdPrimary.js:208 preferences/thresholdSecondary.js:200
+msgid "Maximum Lifespan Mode (Currently Active)"
+msgstr ""
+
+#: preferences/thresholdPrimary.js:214 preferences/thresholdSecondary.js:206
 #, javascript-format
 msgid "<i>Accepted Value : %d to %d</i>"
 msgstr ""
@@ -278,19 +295,32 @@ msgstr ""
 msgid "The position relative of indicator icon to other items"
 msgstr ""
 
-#: ui/general.ui:91
+#: ui/general.ui:89
+msgid "Change battery indicator icon behavior"
+msgstr ""
+
+#: ui/general.ui:90
+msgid ""
+"Battery indicator icon switches to <b>charging</b> in system tray and quick "
+"settings panel when charging threshold is enabled and device is powered by "
+"charger.\n"
+"May conflict with other extension that changes the behavior, style or text "
+"of battery indicator in system tray and quick settings panel"
+msgstr ""
+
+#: ui/general.ui:103
 msgid "Installation"
 msgstr ""
 
-#: ui/general.ui:94
+#: ui/general.ui:106
 msgid "Install privileges for this user"
 msgstr ""
 
-#: ui/general.ui:95
+#: ui/general.ui:107
 msgid "Install / Update / Remove"
 msgstr ""
 
-#: ui/general.ui:98
+#: ui/general.ui:110
 msgid ""
 "This device requires root privileges to change the charging limit. Setup a "
 "privileged script and give user access via polkit.\n"
@@ -303,15 +333,15 @@ msgid ""
 "<b>Remove</b> this polkit policy script before uninstalling this extension."
 msgstr ""
 
-#: ui/general.ui:122
+#: ui/general.ui:134
 msgid "Symbols Only"
 msgstr ""
 
-#: ui/general.ui:123
+#: ui/general.ui:135
 msgid "Symbol and Percentage"
 msgstr ""
 
-#: ui/general.ui:124
+#: ui/general.ui:136
 msgid "Percentage Highlighted"
 msgstr ""
 
@@ -335,27 +365,27 @@ msgstr ""
 msgid "Default"
 msgstr ""
 
-#: ui/thresholdPrimary.ui:49 ui/thresholdSecondary.ui:49
+#: ui/thresholdPrimary.ui:48 ui/thresholdSecondary.ui:48
 msgid "Apply"
 msgstr ""
 
-#: ui/thresholdPrimary.ui:59 ui/thresholdPrimary.ui:134
-#: ui/thresholdPrimary.ui:209 ui/thresholdSecondary.ui:59
-#: ui/thresholdSecondary.ui:134 ui/thresholdSecondary.ui:209
+#: ui/thresholdPrimary.ui:58 ui/thresholdPrimary.ui:132
+#: ui/thresholdPrimary.ui:206 ui/thresholdSecondary.ui:58
+#: ui/thresholdSecondary.ui:132 ui/thresholdSecondary.ui:206
 msgid "Stop charging threshold value"
 msgstr ""
 
-#: ui/thresholdPrimary.ui:71 ui/thresholdPrimary.ui:106
-#: ui/thresholdPrimary.ui:146 ui/thresholdPrimary.ui:181
-#: ui/thresholdPrimary.ui:221 ui/thresholdPrimary.ui:257
-#: ui/thresholdSecondary.ui:71 ui/thresholdSecondary.ui:106
-#: ui/thresholdSecondary.ui:146 ui/thresholdSecondary.ui:181
-#: ui/thresholdSecondary.ui:221 ui/thresholdSecondary.ui:257
+#: ui/thresholdPrimary.ui:70 ui/thresholdPrimary.ui:105
+#: ui/thresholdPrimary.ui:144 ui/thresholdPrimary.ui:179
+#: ui/thresholdPrimary.ui:218 ui/thresholdPrimary.ui:254
+#: ui/thresholdSecondary.ui:70 ui/thresholdSecondary.ui:105
+#: ui/thresholdSecondary.ui:144 ui/thresholdSecondary.ui:179
+#: ui/thresholdSecondary.ui:218 ui/thresholdSecondary.ui:254
 msgid "Current Value"
 msgstr ""
 
-#: ui/thresholdPrimary.ui:94 ui/thresholdPrimary.ui:169
-#: ui/thresholdPrimary.ui:245 ui/thresholdSecondary.ui:94
-#: ui/thresholdSecondary.ui:169 ui/thresholdSecondary.ui:245
+#: ui/thresholdPrimary.ui:93 ui/thresholdPrimary.ui:167
+#: ui/thresholdPrimary.ui:242 ui/thresholdSecondary.ui:93
+#: ui/thresholdSecondary.ui:167 ui/thresholdSecondary.ui:242
 msgid "Start charging threshold value"
 msgstr ""
