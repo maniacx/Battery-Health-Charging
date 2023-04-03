@@ -10,11 +10,48 @@ Since users usually keep their AC adapter connected while using their laptop, th
 **2. Balanced Mode:** Stops charging when power is above 80% and resumes charging when power is below 75%. This mode is recommended when using the Notebook on battery power during meetings or conferences. (Threshold are customizable on some laptop. Some laptop don't feature this option.)
 
 **3. Maximum Lifespan Mode:** Stops charging when power is above 60% and resumes charging when power is below 55%. This mode is recommended when the Notebook is always powered by AC adapter.(Threshold are customizable on some laptop. Some laptop the maximum lifespan mode is set to 80%)
-
-## Features and Compatibility
+https://github.com/maniacx/Battery-Health-Charging#features
+## Contents
+>  [**Feature**](https://github.com/maniacx/Battery-Health-Charging#features)<br>
+>  [**Usage**](https://github.com/maniacx/Battery-Health-Charging#usage)<br>
+>  [**Compatibility**](https://github.com/maniacx/Battery-Health-Charging#compatibility)<br>
+>
+>> [Asus](https://github.com/maniacx/Battery-Health-Charging#asus)<br>
+>> [LG](https://github.com/maniacx/Battery-Health-Charging#lg)<br>
+>> [Samsung](https://github.com/maniacx/Battery-Health-Charging#samsung)<br>
+>> [Sony](https://github.com/maniacx/Battery-Health-Charging#sony)<br>
+>> [Huawei](https://github.com/maniacx/Battery-Health-Charging#huawei)<br>
+>> [Toshiba](https://github.com/maniacx/Battery-Health-Charging#toshiba)<br>
+>> [System76](https://github.com/maniacx/Battery-Health-Charging#system76)<br>
+>> [Lenovo](https://github.com/maniacx/Battery-Health-Charging#lenovo)<br>
+>> [Thinkpad](https://github.com/maniacx/Battery-Health-Charging#thinkpad-single-dual-battery)<br>
+>> [Apple](https://github.com/maniacx/Battery-Health-Charging#apple-mac-book-intel)<br>
+>> [Acer](https://github.com/maniacx/Battery-Health-Charging#acer)<br>
+>> [Dell](https://github.com/maniacx/Battery-Health-Charging#dell)<br>
+>> [MSI](https://github.com/maniacx/Battery-Health-Charging#msi)<br>
+>> [Panasonic](https://github.com/maniacx/Battery-Health-Charging#panasonic)<br>
+>> [Intel QC71 (XMG, Eluktronics, Tuxedo)](https://github.com/maniacx/Battery-Health-Charging#intel-qc71-device)<br>
+>
+>  [**Changelogs**](https://github.com/maniacx/Battery-Health-Charging#changelog)<br>
+>  [**Polkit Installation**](https://github.com/maniacx/Battery-Health-Charging#polkit-installation)<br>
+>  [**Bug / Issues /Feature Request**](https://github.com/maniacx/Battery-Health-Charging#bugsissuerequest-feature)<br>
+>  [**Credits and Reference**](https://github.com/maniacx/Battery-Health-Charging#credits-and-reference)<br>
+## Features
 * Conflicts with other battery charging threshold controls apps / extensions / local workarounds scripts, so better to disable or remove before using this extension.
 * The charging mode persists on reboot. As of **Version 4** if your device needs **privileged access** (root) to change the threshold, this extension will prompt you to install polkit script. This way the extension can change the threshold on users input and also restore it on system restarts.
+* Customize threshold (only for device that support custom threshold)
+* Extension Pref icon in quick settings menu. And added option in preference to remove this icon from quick setting.
+* Option to choose 3 set of icons in preference.
+* Shows an icon indicating current mode. And added option in preference to change index and also to disable showing icon
+* Option to change behavior of systems battery indicator. When charging threshold is set and battery level reaches threshold, the default behavior in gnome is system battery indicator will display **On battery - charger unplugged/powered-off** icon and there is no way of knowing if charger is plugged and powered. Upon enabling this option, system battery indicator will display **charging** icon.
+* Displays notification when threshold/mode is changed. And added option in preference to disable notification update
+* Display current mode subtitles in quicksetting toggle (Gnome 44 and above). And added an option in preference to remove this subtitle.
 
+## Usage
+![Battery-Health-Charging](https://github.com/maniacx/Battery-Health-Charging/blob/main/.github/Usage.png)
+![Battery-Health-Charging](https://github.com/maniacx/Battery-Health-Charging/blob/main/.github/Usage2.gif)
+
+## Compatibility
 ### Asus
 * 3 presets Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
 * Default threshold values of these 3 preset modes are set at 100%, 80%, and 60%.
@@ -52,7 +89,7 @@ Since users usually keep their AC adapter connected while using their laptop, th
 * Default end/start threshold values of these 3 preset modes are set at 100/95%, 80/75%, and 60/55%.
 * Each preset end threshold value can be customized between 100-80 %, 80-65 %, and 85-50 % respectively.
 * Each preset start threshold value can be customized between is 98-75 %, 83-60 %, and 83-40 % respectively.
-* The differnce between end and start threshold cannot be less than 2%.
+* The difference between end and start threshold cannot be less than 2%.
 * This Extension supports Huawei laptops having the below path.
 ```bash
 '/sys/devices/platform/huawei-wmi/charge_thresholds'
@@ -70,7 +107,7 @@ Since users usually keep their AC adapter connected while using their laptop, th
 * Default end/start threshold values of these 3 preset modes are set at 100/95%, 80/75%, and 60/55%.
 * Each preset end threshold value can be customized between 100-80 %, 85-65 %, and 85-50 % respectively.
 * Each preset start threshold value can be customized between is 98-75 %, 83-60 %, and 83-40 % respectively.
-* The differnce between end and start threshold cannot be less than 2%.
+* The difference between end and start threshold cannot be less than 2%.
 * This Extension supports System76 laptops having the below path.
 ```bash
 '/sys/class/power_supply/BAT0/charge_control_end_threshold'
@@ -88,7 +125,7 @@ Since users usually keep their AC adapter connected while using their laptop, th
 * Default end/start threshold values of these 3 preset modes are set at 100/95%, 80/75%, and 60/55%.
 * Each preset end threshold value can be customized between 100-80 %, 80-65 %, and 85-50 % respectively.
 * Each preset start threshold value can be customized between is 98-75 %, 83-60 %, and 83-40 % respectively.
-* The differnce between end and start threshold cannot be less than 2%.
+* The difference between end and start threshold cannot be less than 2%.
 * This Extension supports Thinkpad laptops that have pair of below paths.
 ```bash
 '/sys/class/power_supply/BAT0/charge_control_end_threshold'
@@ -123,7 +160,6 @@ Since users usually keep their AC adapter connected while using their laptop, th
 '/sys/bus/wmi/drivers/acer-wmi-battery/health_mode'
 ```
 ### Dell
-
 **NOTE: The Express mode may cause battery health to diminish more quickly than other modes.**
 
 * 5 presets Express, Adaptive, Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
@@ -133,7 +169,7 @@ Since users usually keep their AC adapter connected while using their laptop, th
 * Each custom mode preset start threshold value can customize between 95-75 %, 83-60 %, and 83-50 % respectively.
 * Full capacity mode is equivalent to what Dell refers to as **Standard**
 * Balance mode is almost equivalent to what Dell refers to as **Primarily AC**
-* The differnce between end and start threshold cannot be less than 5%.
+* The difference between end and start threshold cannot be less than 5%.
 * Depends on executable package **smbios-battery-ctl** which is provided by **smbios-utils** https://github.com/dell/libsmbios
 (smbios-utils is third-party package and I am not in any way not responsible for installation, bugs, or damages)
 * This Extension supports dell through smbios-utils package smbios-battery-ctl using following commands
@@ -143,8 +179,6 @@ smbios-battery-ctl --set-charging-mode adaptive
 smbios-battery-ctl --set-charging-mode custom
 smbios-battery-ctl --set-custom-charge-interval low high
 ```
-
-
 ### MSI
 * 3 presets Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
 * Default threshold values of these 3 preset modes are set at 100%, 80%, and 60%.
@@ -159,14 +193,12 @@ Although the module has been submitted lately into the mainline kernel and may n
 ```bash
 '/sys/class/power_supply/BAT0/charge_control_end_threshold'
 ```
-
 ### Panasonic
 * 2 preset Full capacity and Maximum Life Span mode set at 100% and 80%. Fixed threshold (not customizable).
 * This Extension supports Panasonic laptops having the below path.
 ```bash
 '/sys/devices/platform/panasonic/eco_mode'
 ```
-
 ### Intel QC71 Device
 * 3 presets Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
 * Default threshold values of these 3 preset modes are set at 100%, 80%, and 60%.
@@ -174,13 +206,16 @@ Although the module has been submitted lately into the mainline kernel and may n
 * Depends on separate kernel module installation https://github.com/pobrn/qc71_laptop
 (This kernel module is supported by a third party and I am not in any way not responsible for the kernel module installation, bugs, or damages)
 * Support some model from XMG, Eluktronics, Tuxedo, etc using kernel module.
-* This Extension supports few modal of qc71 laptops which have the below paths.
+* This Extension supports qc71 laptops which have the below paths.
 ```bash
 '/sys/class/power_supply/BAT0/charge_control_end_threshold'
 ```
-
-
 ## Changelog
+### Version 11
+Apr 2, 2023
+* Added option to change behavior of system battery indicator
+* In current threshold the text "currently active" will be displayed indicating the current mode
+
 ### Version 10 
 Mar 28, 2023
 * Add option to change index of system indicator in general prefs
@@ -189,15 +224,11 @@ Mar 28, 2023
 * Added support for Panasonic devices and Intel QC71 devices
 
 (Thanks to mascherm for raising issue and testing for Huawei laptops)
-
-
 ### Version 9
 Mar 18, 2023
 * Remove vendor checks for thinkpad.
 
 (Thanks to kir-93 for raising issue and testing for thinkpads)
-
-
 ### Version 8
 Mar 17, 2023
 * Added dell, msi and sys76 
@@ -206,14 +237,10 @@ Mar 17, 2023
 * Changed/widen the range for end and start threshold for custom device
 
 (Thanks to monethass for the testing and support for dell laptop)
+
 (Thanks to asant and anzigo for the testing and support for acer laptop)
 
 See [Full History](https://github.com/maniacx/Battery-Health-Charging/blob/main/.github/CHANGELOG.md)
-
-
-
-## Usage
-![Battery-Health-Charging](https://github.com/maniacx/Battery-Health-Charging/blob/main/.github/Usage.png)
 
 ## Polkit Installation
 #### Polkit Installation: Installation/Update/Removal
@@ -255,6 +282,9 @@ Shutdown Timer - by Deminder
 https://github.com/Deminder/ShutdownTimer
 For polkit resources.
 
+Battery Indicator Icon - by Deminder
+https://github.com/Deminder/battery-indicator-icon
+
 BlurMyshell - by Aunetx
 https://github.com/aunetx/blur-my-shell
 
@@ -292,6 +322,7 @@ asant
 yukina3230
 Valeria
 albanobattistella
+
 
 
 

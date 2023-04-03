@@ -1,5 +1,10 @@
 Battery Health Charging Extension Changelogs
 ============================================
+### Version 11
+Apr 2, 2023
+* Added option to change behavior of system battery indicator
+* In current threshold the text "currently active" will be displayed indicating the current mode
+
 ### Version 10 
 Mar 28, 2023
 * Add option to change index of system indicator in general prefs
