@@ -10,7 +10,7 @@ Since users usually keep their AC adapter connected while using their laptop, th
 **2. Balanced Mode:** Stops charging when power is above 80% and resumes charging when power is below 75%. This mode is recommended when using the Notebook on battery power during meetings or conferences. (Threshold are customizable on some laptop. Some laptop don't feature this option.)
 
 **3. Maximum Lifespan Mode:** Stops charging when power is above 60% and resumes charging when power is below 55%. This mode is recommended when the Notebook is always powered by AC adapter.(Threshold are customizable on some laptop. Some laptop the maximum lifespan mode is set to 80%)
-https://github.com/maniacx/Battery-Health-Charging#features
+
 ## Contents
 >  [**Feature**](https://github.com/maniacx/Battery-Health-Charging#features)<br>
 >  [**Usage**](https://github.com/maniacx/Battery-Health-Charging#usage)<br>
@@ -43,7 +43,8 @@ https://github.com/maniacx/Battery-Health-Charging#features
 * Extension Pref icon in quick settings menu. And added option in preference to remove this icon from quick setting.
 * Option to choose 3 set of icons in preference.
 * Shows an icon indicating current mode. And added option in preference to change index and also to disable showing icon
-* Option to change behavior of systems battery indicator. When charging threshold is set and battery level reaches threshold, the default behavior in gnome is system battery indicator will display **On battery - charger unplugged/powered-off** icon and there is no way of knowing if charger is plugged and powered. Upon enabling this option, system battery indicator will display **charging** icon.
+* Option to change behavior of systems battery indicator. When charging threshold is set and battery level reaches threshold, the default behavior in gnome is system battery indicator will display **On battery - charger unplugged/powered-off** icon and there is no way of knowing if charger is plugged and powered. Upon enabling this option, system battery indicator will display **charging** icon. Note: If this feature is not working for your laptop, kindly raise an issue with your and post the results of power supply name with the following command in terminal ```ls -l /sys/class/power_supply```
+
 * Displays notification when threshold/mode is changed. And added option in preference to disable notification update
 * Display current mode subtitles in quicksetting toggle (Gnome 44 and above). And added an option in preference to remove this subtitle.
 
