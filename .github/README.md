@@ -34,6 +34,7 @@ Since users usually keep their AC adapter connected while using their laptop, th
 >
 >  [**Changelogs**](https://github.com/maniacx/Battery-Health-Charging#changelog)<br>
 >  [**Polkit Installation**](https://github.com/maniacx/Battery-Health-Charging#polkit-installation)<br>
+>  [**Translation**](https://github.com/maniacx/Battery-Health-Charging#translation)<br>
 >  [**Bug / Issues /Feature Request**](https://github.com/maniacx/Battery-Health-Charging#bugsissuerequest-feature)<br>
 >  [**Credits and Reference**](https://github.com/maniacx/Battery-Health-Charging#credits-and-reference)<br>
 ## Features
@@ -260,8 +261,13 @@ ls -l /etc/systemd/system/mani-battery-health-charging.service
 sudo rm -f /etc/systemd/system/mani-battery-health-charging.service
 ```
 ## Translation
-Open the po/Battery-Health-Charging.pot file on github. It contains each text displayed in this extension. You can use "poedit" app for adding your translation. Submit the information by raising an issue for this repo on github. You can also compile the translation file yourself and test it on your device.
-Tutorial: https://youtu.be/WmWjwE-M4D0
+Please contribute translation.
+
+* Method 1: Use crowdin. https://crowdin.com/project/battery-health-charging <br>
+Managed to integrate github with crowdin. The branch used by crowdin is **translation** and sync every 24 hours.
+Benefit of using crowdin, easier to use and lot of pretranslated options available. But need to create an account (free) and authors name get removed from the po files.
+
+* Method 2: Using Poedit / Gtranslator (Available in gnome software). Using poedit Open/create your language.po. Download the po/Battery-Health-Charging.pot file from github. Go to **Translation** and **Update from POT file** , translate and submit a pull-request to the **main** branch on github.
 
 ## Bugs/Issue/Request feature
 Please raise an [issue](https://github.com/maniacx/Battery-Health-Charging/issues) on github.
@@ -323,8 +329,3 @@ asant
 yukina3230
 Valeria
 albanobattistella
-
-
-
-
-
