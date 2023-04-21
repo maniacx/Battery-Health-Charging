@@ -42,37 +42,41 @@ var ThresholdSecondary = GObject.registerClass({
     constructor(settings) {
         super({});
 
-        this._currentDevice = Driver.currentDevice;
+        this._device = Driver.currentDevice;
 
         this._setPrefGroupTitle(settings);
 
         // Set range for end threshold value
-        this._full_capacity_end_threshold_2.set_range(80, 100);
-        this._balanced_end_threshold_2.set_range(65, 85);
-        this._maxlife_end_threshold_2.set_range(50, 85);
+        this._full_capacity_end_threshold_2.set_range(this._device.endFullCapacityRangeMin, this._device.endFullCapacityRangeMax);
+        this._balanced_end_threshold_2.set_range(this._device.endBalancedRangeMin, this._device.endBalancedRangeMax);
+        this._maxlife_end_threshold_2.set_range(this._device.endMaxLifeSpanRangeMin, this._device.endMaxLifeSpanRangeMax);
 
-        this._updateRangeSubtitle(this._full_capacity_end_threshold_row_2, 80, 100);
-        this._updateRangeSubtitle(this._balanced_end_threshold_row_2, 65, 85);
-        this._updateRangeSubtitle(this._maxlife_end_threshold_row_2, 50, 85);
+        // Set range for end threshold subtitle
+        this._updateRangeSubtitle(this._full_capacity_end_threshold_row_2,
+            this._device.endFullCapacityRangeMin, this._device.endFullCapacityRangeMax);
+        this._updateRangeSubtitle(this._balanced_end_threshold_row_2,
+            this._device.endBalancedRangeMin, this._device.endBalancedRangeMax);
+        this._updateRangeSubtitle(this._maxlife_end_threshold_row_2,
+            this._device.endMaxLifeSpanRangeMin, this._device.endMaxLifeSpanRangeMax);
 
-        if (this._currentDevice.deviceHaveStartThreshold) { // if StartThresholdSupported
-            this._full_capacity_start_threshold_2.set_range(75, 98);
-            this._balanced_start_threshold_2.set_range(60, 83);
-            this._maxlife_start_threshold_2.set_range(40, 83);
+        if (this._device.deviceHaveStartThreshold) { // if StartThresholdSupported
+            this._full_capacity_start_threshold_2.set_range(this._device.startFullCapacityRangeMin, this._device.startFullCapacityRangeMax);
+            this._balanced_start_threshold_2.set_range(this._device.startBalancedRangeMin, this._device.startBalancedRangeMax);
+            this._maxlife_start_threshold_2.set_range(this._device.startMaxLifeSpanRangeMin, this._device.startMaxLifeSpanRangeMax);
 
-            this._updateRangeSubtitle(this._full_capacity_start_threshold_row_2, 75,
-                settings.get_int('ful-end-threshold2') - 2);
-            this._updateRangeSubtitle(this._balanced_start_threshold_row_2, 60,
-                settings.get_int('bal-end-threshold2') - 2);
-            this._updateRangeSubtitle(this._maxlife_start_threshold_row_2, 40,
-                settings.get_int('max-end-threshold2') - 2);
+            this._updateRangeSubtitle(this._full_capacity_start_threshold_row_2, this._device.startFullCapacityRangeMin,
+                settings.get_int('ful-end-threshold') - this._device.minDiffLimit);
+            this._updateRangeSubtitle(this._balanced_start_threshold_row_2, this._device.startBalancedRangeMin,
+                settings.get_int('bal-end-threshold') - this._device.minDiffLimit);
+            this._updateRangeSubtitle(this._maxlife_start_threshold_row_2, this._device.startMaxLifeSpanRangeMin,
+                settings.get_int('max-end-threshold') - this._device.minDiffLimit);
         }  //  endif StartThresholdSupported
 
         this._updateCurrentValueLabel(settings);
 
-        this._full_capacity_start_threshold_row_2.visible = this._currentDevice.deviceHaveStartThreshold;
-        this._balanced_start_threshold_row_2.visible = this._currentDevice.deviceHaveStartThreshold;
-        this._maxlife_start_threshold_row_2.visible = this._currentDevice.deviceHaveStartThreshold;
+        this._full_capacity_start_threshold_row_2.visible = this._device.deviceHaveStartThreshold;
+        this._balanced_start_threshold_row_2.visible = this._device.deviceHaveStartThreshold;
+        this._maxlife_start_threshold_row_2.visible = this._device.deviceHaveStartThreshold;
 
         settings.bind(
             'default-threshold2',
@@ -113,7 +117,7 @@ var ThresholdSecondary = GObject.registerClass({
             this._setPrefGroupTitle(settings);
         });
 
-        if (this._currentDevice.deviceHaveStartThreshold) { // if StartThresholdSupported
+        if (this._device.deviceHaveStartThreshold) { // if StartThresholdSupported
             settings.bind(
                 'ful-start-threshold2',
                 this._full_capacity_start_threshold_2,
@@ -135,25 +139,25 @@ var ThresholdSecondary = GObject.registerClass({
                 Gio.SettingsBindFlags.DEFAULT
             );
 
-            settings.connect('changed::ful-end-threshold2', () => {
-                const fullCapStartRangeLower = 75;
-                const fullCapStartRangeUpper = this._full_capacity_end_threshold_2.value - 2;
+            settings.connect('changed::ful-end-threshold', () => {
+                const fullCapStartRangeLower = this._device.startFullCapacityRangeMin;
+                const fullCapStartRangeUpper = this._full_capacity_end_threshold.value - this._device.minDiffLimit;
                 this._full_capacity_start_threshold_2.set_range(fullCapStartRangeLower, fullCapStartRangeUpper);
                 this._updateRangeSubtitle(this._full_capacity_start_threshold_row_2, fullCapStartRangeLower, fullCapStartRangeUpper);
             });
 
-            settings.connect('changed::bal-end-threshold2', () => {
-                const balStartRangeLower = 60;
-                const balStartRangeUpper = this._balanced_end_threshold_2.value - 2;
+            settings.connect('changed::bal-end-threshold', () => {
+                const balStartRangeLower = this._device.startBalancedRangeMin;
+                const balStartRangeUpper = this._balanced_end_threshold.value - this._device.minDiffLimit;
                 this._balanced_start_threshold_2.set_range(balStartRangeLower, balStartRangeUpper);
                 this._updateRangeSubtitle(this._balanced_start_threshold_row_2, balStartRangeLower, balStartRangeUpper);
             });
 
-            settings.connect('changed::max-end-threshold2', () => {
-                const maxLifeRangeLower = 40;
-                const maxlifeRangeUpper = this._maxlife_end_threshold_2.value - 2;
-                this._maxlife_start_threshold_2.set_range(maxLifeRangeLower, maxlifeRangeUpper);
-                this._updateRangeSubtitle(this._maxlife_start_threshold_row_2, maxLifeRangeLower, maxlifeRangeUpper);
+            settings.connect('changed::max-end-threshold', () => {
+                const maxLifeStartRangeLower = this._device.startMaxLifeSpanRangeMin;
+                const maxlifeStartRangeUpper = this._maxlife_end_threshold.value - this._device.minDiffLimit;
+                this._maxlife_start_threshold_2.set_range(maxLifeStartRangeLower, maxlifeStartRangeUpper);
+                this._updateRangeSubtitle(this._maxlife_start_threshold_row_2, maxLifeStartRangeLower, maxlifeStartRangeUpper);
             });
         }  //  endif StartThresholdSupported
 
@@ -214,7 +218,7 @@ var ThresholdSecondary = GObject.registerClass({
         settings.set_int('current-max-end-threshold2',
             settings.get_int('max-end-threshold2'));
 
-        if (this._currentDevice.deviceHaveStartThreshold) {
+        if (this._device.deviceHaveStartThreshold) {
             settings.set_int('current-ful-start-threshold2',
                 settings.get_int('ful-start-threshold2'));
             settings.set_int('current-bal-start-threshold2',
@@ -232,7 +236,7 @@ var ThresholdSecondary = GObject.registerClass({
         this._maxlife_end_threshold_actual_value_2.set_label(
             settings.get_int('current-max-end-threshold2').toString());
 
-        if (this._currentDevice.deviceHaveStartThreshold) {
+        if (this._device.deviceHaveStartThreshold) {
             this._full_capacity_start_threshold_actual_value_2.set_label(
                 settings.get_int('current-ful-start-threshold2').toString());
             this._balanced_start_threshold_actual_value_2.set_label(

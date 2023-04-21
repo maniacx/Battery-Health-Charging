@@ -18,9 +18,11 @@ var SonySingleBattery = GObject.registerClass({
     deviceHaveStartThreshold = false;
     deviceHaveVariableThreshold = false;
     deviceHaveBalancedMode = true;
-    iconForFullCapMode = 'ful100';
-    iconForBalanceMode = 'bal080';
-    iconForMaxLifeMode = 'max050';
+    deviceHaveAdaptiveMode = false;
+    deviceHaveExpressMode = false;
+    iconForFullCapMode = '100';
+    iconForBalanceMode = '080';
+    iconForMaxLifeMode = '050';
 
     isAvailable() {
         if (!fileExists(SONY_PATH))

@@ -18,9 +18,10 @@ var PanasonicSingleBattery = GObject.registerClass({
     deviceHaveStartThreshold = false;
     deviceHaveVariableThreshold = false;
     deviceHaveBalancedMode = false;
-    iconForFullCapMode = 'ful100';
-    iconForBalanceMode = null;
-    iconForMaxLifeMode = 'max080';
+    deviceHaveAdaptiveMode = false;
+    deviceHaveExpressMode = false;
+    iconForFullCapMode = '100';
+    iconForMaxLifeMode = '080';
 
     isAvailable() {
         if (!fileExists(PANASONIC_PATH))

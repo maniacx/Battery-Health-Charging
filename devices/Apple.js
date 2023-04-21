@@ -19,9 +19,17 @@ var AppleSingleBattery = GObject.registerClass({
     deviceHaveStartThreshold = false;
     deviceHaveVariableThreshold = true;
     deviceHaveBalancedMode = true;
-    iconForFullCapMode = 'ful100';
-    iconForBalanceMode = 'bal080';
-    iconForMaxLifeMode = 'max060';
+    deviceHaveAdaptiveMode = false;
+    deviceHaveExpressMode = false;
+    iconForFullCapMode = '100';
+    iconForBalanceMode = '080';
+    iconForMaxLifeMode = '060';
+    endFullCapacityRangeMax = 100;
+    endFullCapacityRangeMin = 80;
+    endBalancedRangeMax = 85;
+    endBalancedRangeMin = 65;
+    endMaxLifeSpanRangeMax = 85;
+    endMaxLifeSpanRangeMin = 50;
 
     isAvailable() {
         if (!fileExists(VENDOR_APPLE))

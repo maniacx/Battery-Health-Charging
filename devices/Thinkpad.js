@@ -22,9 +22,24 @@ var ThinkpadDualBattery = GObject.registerClass({
     deviceHaveStartThreshold = true;
     deviceHaveVariableThreshold = true;
     deviceHaveBalancedMode = true;
-    iconForFullCapMode = 'ful100';
-    iconForBalanceMode = 'bal080';
-    iconForMaxLifeMode = 'max060';
+    deviceHaveAdaptiveMode = false;
+    deviceHaveExpressMode = false;
+    iconForFullCapMode = '100';
+    iconForBalanceMode = '080';
+    iconForMaxLifeMode = '060';
+    endFullCapacityRangeMax = 100;
+    endFullCapacityRangeMin = 80;
+    endBalancedRangeMax = 85;
+    endBalancedRangeMin = 65;
+    endMaxLifeSpanRangeMax = 85;
+    endMaxLifeSpanRangeMin = 50;
+    startFullCapacityRangeMax = 98;
+    startFullCapacityRangeMin = 75;
+    startBalancedRangeMax = 83;
+    startBalancedRangeMin = 60;
+    startMaxLifeSpanRangeMax = 83;
+    startMaxLifeSpanRangeMin = 40;
+    minDiffLimit = 2;
 
     isAvailable() {
         if (!fileExists(VENDOR_THINKPAD))
@@ -105,9 +120,24 @@ var ThinkpadSingleBatteryBAT0 = GObject.registerClass({
     deviceHaveStartThreshold = true;
     deviceHaveVariableThreshold = true;
     deviceHaveBalancedMode = true;
-    iconForFullCapMode = 'ful100';
-    iconForBalanceMode = 'bal080';
-    iconForMaxLifeMode = 'max060';
+    deviceHaveAdaptiveMode = false;
+    deviceHaveExpressMode = false;
+    iconForFullCapMode = '100';
+    iconForBalanceMode = '080';
+    iconForMaxLifeMode = '060';
+    endFullCapacityRangeMax = 100;
+    endFullCapacityRangeMin = 80;
+    endBalancedRangeMax = 85;
+    endBalancedRangeMin = 65;
+    endMaxLifeSpanRangeMax = 85;
+    endMaxLifeSpanRangeMin = 50;
+    startFullCapacityRangeMax = 98;
+    startFullCapacityRangeMin = 75;
+    startBalancedRangeMax = 83;
+    startBalancedRangeMin = 60;
+    startMaxLifeSpanRangeMax = 83;
+    startMaxLifeSpanRangeMin = 40;
+    minDiffLimit = 2;
 
     isAvailable() {
         if (!fileExists(VENDOR_THINKPAD))
@@ -153,9 +183,24 @@ var ThinkpadSingleBatteryBAT1 = GObject.registerClass({
     deviceHaveStartThreshold = true;
     deviceHaveVariableThreshold = true;
     deviceHaveBalancedMode = true;
-    iconForFullCapMode = 'ful100';
-    iconForBalanceMode = 'bal080';
-    iconForMaxLifeMode = 'max060';
+    deviceHaveAdaptiveMode = false;
+    deviceHaveExpressMode = false;
+    iconForFullCapMode = '100';
+    iconForBalanceMode = '080';
+    iconForMaxLifeMode = '060';
+    endFullCapacityRangeMax = 100;
+    endFullCapacityRangeMin = 80;
+    endBalancedRangeMax = 85;
+    endBalancedRangeMin = 65;
+    endMaxLifeSpanRangeMax = 85;
+    endMaxLifeSpanRangeMin = 50;
+    startFullCapacityRangeMax = 98;
+    startFullCapacityRangeMin = 75;
+    startBalancedRangeMax = 83;
+    startBalancedRangeMin = 60;
+    startMaxLifeSpanRangeMax = 83;
+    startMaxLifeSpanRangeMin = 40;
+    minDiffLimit = 2;
 
     isAvailable() {
         if (!fileExists(VENDOR_THINKPAD))

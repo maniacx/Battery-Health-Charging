@@ -42,10 +42,9 @@ var ThresholdPrimary = GObject.registerClass({
     constructor(settings) {
         super({});
 
-        this._currentDevice = Driver.currentDevice;
-        this.deviceIsDell = this._currentDevice.type === 22;
+        this._device = Driver.currentDevice;
 
-        if (this._currentDevice.deviceHaveDualBattery)  // if laptop have dual battery
+        if (this._device.deviceHaveDualBattery)  // if laptop have dual battery
             this.set_title(_('Battery 1'));
         else
             this.set_title(_('Threshold'));
@@ -53,34 +52,36 @@ var ThresholdPrimary = GObject.registerClass({
         this._setPrefGroupTitle(settings);
 
         // Set range for end threshold value
-        this._full_capacity_end_threshold.set_range(80, 100);
-        this._balanced_end_threshold.set_range(65, 85);
-        this._maxlife_end_threshold.set_range(this.deviceIsDell ? 55 : 50, 85);
+        this._full_capacity_end_threshold.set_range(this._device.endFullCapacityRangeMin, this._device.endFullCapacityRangeMax);
+        this._balanced_end_threshold.set_range(this._device.endBalancedRangeMin, this._device.endBalancedRangeMax);
+        this._maxlife_end_threshold.set_range(this._device.endMaxLifeSpanRangeMin, this._device.endMaxLifeSpanRangeMax);
 
         // Set range for end threshold subtitle
-        this._updateRangeSubtitle(this._full_capacity_end_threshold_row, 80, 100);
-        this._updateRangeSubtitle(this._balanced_end_threshold_row, 65, 85);
-        this._updateRangeSubtitle(this._maxlife_end_threshold_row, this.deviceIsDell ? 55 : 50, 85);
+        this._updateRangeSubtitle(this._full_capacity_end_threshold_row,
+            this._device.endFullCapacityRangeMin, this._device.endFullCapacityRangeMax);
+        this._updateRangeSubtitle(this._balanced_end_threshold_row,
+            this._device.endBalancedRangeMin, this._device.endBalancedRangeMax);
+        this._updateRangeSubtitle(this._maxlife_end_threshold_row,
+            this._device.endMaxLifeSpanRangeMin, this._device.endMaxLifeSpanRangeMax);
 
-        if (this._currentDevice.deviceHaveStartThreshold) { // if StartThresholdSupported
-            this._full_capacity_start_threshold.set_range(75, this.deviceIsDell ? 95 : 98);
-            this._balanced_start_threshold.set_range(60, this.deviceIsDell ? 80 : 83);
-            this._maxlife_start_threshold.set_range(this.deviceIsDell ? 50 : 40, 83);
-            this._maxDiffInLimit = this.deviceIsDell ? 5 : 2;
+        if (this._device.deviceHaveStartThreshold) { // if StartThresholdSupported
+            this._full_capacity_start_threshold.set_range(this._device.startFullCapacityRangeMin, this._device.startFullCapacityRangeMax);
+            this._balanced_start_threshold.set_range(this._device.startBalancedRangeMin, this._device.startBalancedRangeMax);
+            this._maxlife_start_threshold.set_range(this._device.startMaxLifeSpanRangeMin, this._device.startMaxLifeSpanRangeMax);
 
-            this._updateRangeSubtitle(this._full_capacity_start_threshold_row, 75,
-                settings.get_int('ful-end-threshold') - this._maxDiffInLimit);
-            this._updateRangeSubtitle(this._balanced_start_threshold_row, 60,
-                settings.get_int('bal-end-threshold') - this._maxDiffInLimit);
-            this._updateRangeSubtitle(this._maxlife_start_threshold_row, this.deviceIsDell ? 50 : 40,
-                settings.get_int('max-end-threshold') - this._maxDiffInLimit);
+            this._updateRangeSubtitle(this._full_capacity_start_threshold_row, this._device.startFullCapacityRangeMin,
+                settings.get_int('ful-end-threshold') - this._device.minDiffLimit);
+            this._updateRangeSubtitle(this._balanced_start_threshold_row, this._device.startBalancedRangeMin,
+                settings.get_int('bal-end-threshold') - this._device.minDiffLimit);
+            this._updateRangeSubtitle(this._maxlife_start_threshold_row, this._device.startMaxLifeSpanRangeMin,
+                settings.get_int('max-end-threshold') - this._device.minDiffLimit);
         }  //  endif StartThresholdSupported
 
         this._updateCurrentValueLabel(settings);
 
-        this._full_capacity_start_threshold_row.visible = this._currentDevice.deviceHaveStartThreshold;
-        this._balanced_start_threshold_row.visible = this._currentDevice.deviceHaveStartThreshold;
-        this._maxlife_start_threshold_row.visible = this._currentDevice.deviceHaveStartThreshold;
+        this._full_capacity_start_threshold_row.visible = this._device.deviceHaveStartThreshold;
+        this._balanced_start_threshold_row.visible = this._device.deviceHaveStartThreshold;
+        this._maxlife_start_threshold_row.visible = this._device.deviceHaveStartThreshold;
 
         settings.bind(
             'default-threshold',
@@ -121,7 +122,7 @@ var ThresholdPrimary = GObject.registerClass({
             this._setPrefGroupTitle(settings);
         });
 
-        if (this._currentDevice.deviceHaveStartThreshold) { // if StartThresholdSupported
+        if (this._device.deviceHaveStartThreshold) { // if StartThresholdSupported
             settings.bind(
                 'ful-start-threshold',
                 this._full_capacity_start_threshold,
@@ -144,22 +145,22 @@ var ThresholdPrimary = GObject.registerClass({
             );
 
             settings.connect('changed::ful-end-threshold', () => {
-                const fullCapStartRangeLower = 75;
-                const fullCapStartRangeUpper = this._full_capacity_end_threshold.value - this._maxDiffInLimit;
+                const fullCapStartRangeLower = this._device.startFullCapacityRangeMin;
+                const fullCapStartRangeUpper = this._full_capacity_end_threshold.value - this._device.minDiffLimit;
                 this._full_capacity_start_threshold.set_range(fullCapStartRangeLower, fullCapStartRangeUpper);
                 this._updateRangeSubtitle(this._full_capacity_start_threshold_row, fullCapStartRangeLower, fullCapStartRangeUpper);
             });
 
             settings.connect('changed::bal-end-threshold', () => {
-                const balStartRangeLower = 60;
-                const balStartRangeUpper = this._balanced_end_threshold.value - this._maxDiffInLimit;
+                const balStartRangeLower = this._device.startBalancedRangeMin;
+                const balStartRangeUpper = this._balanced_end_threshold.value - this._device.minDiffLimit;
                 this._balanced_start_threshold.set_range(balStartRangeLower, balStartRangeUpper);
                 this._updateRangeSubtitle(this._balanced_start_threshold_row, balStartRangeLower, balStartRangeUpper);
             });
 
             settings.connect('changed::max-end-threshold', () => {
-                const maxLifeStartRangeLower = this.deviceIsDell ? 50 : 40;
-                const maxlifeStartRangeUpper = this._maxlife_end_threshold.value - this._maxDiffInLimit;
+                const maxLifeStartRangeLower = this._device.startMaxLifeSpanRangeMin;
+                const maxlifeStartRangeUpper = this._maxlife_end_threshold.value - this._device.minDiffLimit;
                 this._maxlife_start_threshold.set_range(maxLifeStartRangeLower, maxlifeStartRangeUpper);
                 this._updateRangeSubtitle(this._maxlife_start_threshold_row, maxLifeStartRangeLower, maxlifeStartRangeUpper);
             });
@@ -222,7 +223,7 @@ var ThresholdPrimary = GObject.registerClass({
         settings.set_int('current-max-end-threshold',
             settings.get_int('max-end-threshold'));
 
-        if (this._currentDevice.deviceHaveStartThreshold) {
+        if (this._device.deviceHaveStartThreshold) {
             settings.set_int('current-ful-start-threshold',
                 settings.get_int('ful-start-threshold'));
             settings.set_int('current-bal-start-threshold',
@@ -240,7 +241,7 @@ var ThresholdPrimary = GObject.registerClass({
         this._maxlife_end_threshold_actual_value.set_label(
             settings.get_int('current-max-end-threshold').toString());
 
-        if (this._currentDevice.deviceHaveStartThreshold) {
+        if (this._device.deviceHaveStartThreshold) {
             this._full_capacity_start_threshold_actual_value.set_label(
                 settings.get_int('current-ful-start-threshold').toString());
             this._balanced_start_threshold_actual_value.set_label(

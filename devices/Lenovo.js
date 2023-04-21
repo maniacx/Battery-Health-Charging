@@ -18,9 +18,10 @@ var LenovoSingleBattery = GObject.registerClass({
     deviceHaveStartThreshold = false;
     deviceHaveVariableThreshold = false;
     deviceHaveBalancedMode = false;
-    iconForFullCapMode = 'ful100';
-    iconForBalanceMode = null;
-    iconForMaxLifeMode = 'max060';
+    deviceHaveAdaptiveMode = false;
+    deviceHaveExpressMode = false;
+    iconForFullCapMode = '100';
+    iconForMaxLifeMode = '060';
 
     isAvailable() {
         if (!fileExists(LENOVO_PATH))

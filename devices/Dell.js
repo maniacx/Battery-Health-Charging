@@ -16,9 +16,24 @@ var DellSmBiosSingleBattery = GObject.registerClass({
     deviceHaveStartThreshold = true;
     deviceHaveVariableThreshold = true;
     deviceHaveBalancedMode = true;
-    iconForFullCapMode = 'ful100';
-    iconForBalanceMode = 'bal080';
-    iconForMaxLifeMode = 'max060';
+    deviceHaveAdaptiveMode = true;
+    deviceHaveExpressMode = true;
+    iconForFullCapMode = '100';
+    iconForBalanceMode = '080';
+    iconForMaxLifeMode = '060';
+    endFullCapacityRangeMax = 100;
+    endFullCapacityRangeMin = 80;
+    endBalancedRangeMax = 85;
+    endBalancedRangeMin = 65;
+    endMaxLifeSpanRangeMax = 85;
+    endMaxLifeSpanRangeMin = 55;
+    startFullCapacityRangeMax = 95;
+    startFullCapacityRangeMin = 75;
+    startBalancedRangeMax = 80;
+    startBalancedRangeMin = 60;
+    startMaxLifeSpanRangeMax = 80;
+    startMaxLifeSpanRangeMin = 50;
+    minDiffLimit = 5;
 
     isAvailable() {
         const havePath = GLib.find_program_in_path('smbios-battery-ctl');

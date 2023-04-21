@@ -20,9 +20,10 @@ var ToshibaSingleBatteryBAT0 = GObject.registerClass({
     deviceHaveStartThreshold = false;
     deviceHaveVariableThreshold = false;
     deviceHaveBalancedMode = false;
-    iconForFullCapMode = 'ful100';
-    iconForBalanceMode = null;
-    iconForMaxLifeMode = 'max080';
+    deviceHaveAdaptiveMode = false;
+    deviceHaveExpressMode = false;
+    iconForFullCapMode = '100';
+    iconForMaxLifeMode = '080';
 
     isAvailable() {
         if (!fileExists(VENDOR_TOSHIBA))
@@ -67,9 +68,10 @@ var ToshibaSingleBatteryBAT1 = GObject.registerClass({
     deviceHaveStartThreshold = false;
     deviceHaveVariableThreshold = false;
     deviceHaveBalancedMode = false;
-    iconForFullCapMode = 'ful100';
-    iconForBalanceMode = null;
-    iconForMaxLifeMode = 'max080';
+    deviceHaveAdaptiveMode = false;
+    deviceHaveExpressMode = false;
+    iconForFullCapMode = '100';
+    iconForMaxLifeMode = '080';
 
     isAvailable() {
         if (!fileExists(VENDOR_TOSHIBA))
