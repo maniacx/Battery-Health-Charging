@@ -1,9 +1,13 @@
 'use strict';
 const Main = imports.ui.main;
+const Config = imports.misc.config;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
-const Panel = Me.imports.lib.thresholdPanel;
-const PowerIcon = Me.imports.lib.powerIcon;
+const [major] = Config.PACKAGE_VERSION.split('.');
+const shellVersion = Number.parseInt(major);
+
+const Panel = shellVersion > 43 ? Me.imports.lib.thresholdPanel : Me.imports.lib.thresholdPanel42;
+const PowerIcon = shellVersion > 43 ? Me.imports.lib.powerIcon : Me.imports.lib.powerIcon42;
 
 var thresholdPanel = null;
 var powerIcon = null;
