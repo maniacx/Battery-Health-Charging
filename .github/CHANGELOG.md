@@ -1,5 +1,10 @@
 Battery Health Charging Extension Changelogs
 ============================================
+Apr 23, 2023
+* Added support for Gnome42
+* For Single Battery Devices, Click on quick toggle will change mode. (Full Capacity Mode = default color. Other modes = highlighed color)
+* For Dual Battery Devices, Click on quick toggle will switch battery panel mode. (Same as earlier version)
+
 ### Version 11
 Apr 2, 2023
 * Added option to change behavior of system battery indicator

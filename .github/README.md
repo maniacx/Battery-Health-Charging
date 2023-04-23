@@ -213,6 +213,12 @@ Although the module has been submitted lately into the mainline kernel and may n
 '/sys/class/power_supply/BAT0/charge_control_end_threshold'
 ```
 ## Changelog
+### Version 12
+Apr 23, 2023
+* Added support for Gnome42
+* For Single Battery Devices, Click on quick toggle will change mode. (Full Capacity Mode = default color. Other modes = highlighed color)
+* For Dual Battery Devices, Click on quick toggle will switch battery panel mode. (Same as earlier version)
+
 ### Version 11
 Apr 2, 2023
 * Added option to change behavior of system battery indicator
@@ -229,18 +235,6 @@ Mar 28, 2023
 ### Version 9
 Mar 18, 2023
 * Remove vendor checks for thinkpad.
-
-(Thanks to kir-93 for raising issue and testing for thinkpads)
-### Version 8
-Mar 17, 2023
-* Added dell, msi and sys76 
-* Seperated devices in different class
-* Removed delay timer and update UI with signal on completion of writing and reading threshold value
-* Changed/widen the range for end and start threshold for custom device
-
-(Thanks to monethass for the testing and support for dell laptop)
-
-(Thanks to asant and anzigo for the testing and support for acer laptop)
 
 See [Full History](https://github.com/maniacx/Battery-Health-Charging/blob/main/.github/CHANGELOG.md)
 
