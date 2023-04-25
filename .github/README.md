@@ -213,6 +213,14 @@ Although the module has been submitted lately into the mainline kernel and may n
 '/sys/class/power_supply/BAT0/charge_control_end_threshold'
 ```
 ## Changelog
+### Version 14
+Apr 25, 2023
+* Gnome43/44: changed ornament from DOT to CHECK to match the power-profile quicktogglemenu ornament.
+
+### Version 14
+Apr 24, 2023
+* Fix for Gnome43 which broke with version 12
+
 ### Version 12
 Apr 23, 2023
 * Added support for Gnome42
@@ -232,9 +240,6 @@ Mar 28, 2023
 * Added support for Panasonic devices and Intel QC71 devices
 
 (Thanks to mascherm for raising issue and testing for Huawei laptops)
-### Version 9
-Mar 18, 2023
-* Remove vendor checks for thinkpad.
 
 See [Full History](https://github.com/maniacx/Battery-Health-Charging/blob/main/.github/CHANGELOG.md)
 

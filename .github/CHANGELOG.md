@@ -1,5 +1,14 @@
 Battery Health Charging Extension Changelogs
 ============================================
+### Version 14
+Apr 25, 2023
+* Gnome43/44: changed ornament from DOT to CHECK to match the power-profile quicktogglemenu ornament.
+
+### Version 14
+Apr 24, 2023
+* Fix for Gnome43 which broke with version 12
+
+### Version 12
 Apr 23, 2023
 * Added support for Gnome42
 * For Single Battery Devices, Click on quick toggle will change mode. (Full Capacity Mode = default color. Other modes = highlighed color)
