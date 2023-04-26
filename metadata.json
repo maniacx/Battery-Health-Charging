@@ -1,12 +1,12 @@
 {
   "uuid": "Battery-Health-Charging@maniacx.github.com",
   "name": "Battery Health Charging",
-  "description": "Battery Health Charging: An extension to maximize the battery life of laptops by setting their charging threshold or modes.\n\nCompatible with Asus, LG, Samsung, Sony, Huawei, Toshiba, System76, Lenovo, Thinkpad, Apple Macbook (Intel), Acer, Dell, MSI, Panasonic, IntelQC71.\nPlease read about the compatibility and dependencies of the device on github link below.\n\nFor more information about modes, compatibility, translation, bugs/issues visit:\nhttps://github.com/maniacx/Battery-Health-Charging",
+  "description": "Battery Health Charging: An extension to maximize the battery life of laptops by setting their charging threshold or modes.\n\nCompatible with\n- Asus \n- LG \n- Samsung \n- Sony \n- Huawei \n- Toshiba \n- System76 \n- Lenovo \n- Thinkpad \n- Panasonic \n- Acer (dependecies: kernel module) \n- MSI (dependecies: kernel module) \n- Tuxedo IntelQC71 (dependecies: kernel module) \n- XMG IntelQC71 (dependecies: kernel module) \n- Eluktronics IntelQC71 (dependecies: kernel module) \n- Dell (dependecies: package) \n- Apple Macbook Intel-series chip (dependecies: kernel module) \n- Apple Macbook M-series chip (dependecies: custom kernel) \n\nPlease read about the compatibility and dependencies of the device on github link below.\n\nhttps://github.com/maniacx/Battery-Health-Charging",
   "url": "https://github.com/maniacx/Battery-Health-Charging",
   "shell-version": [
     "42", "43", "44"
   ],
-  "version": 14,
+  "version": 15,
   "settings-schema": "org.gnome.shell.extensions.Battery-Health-Charging",
   "gettext-domain": "Battery-Health-Charging@maniacx.github.com"
 }
