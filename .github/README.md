@@ -25,12 +25,13 @@ Since users usually keep their AC adapter connected while using their laptop, th
 >> [System76](https://github.com/maniacx/Battery-Health-Charging#system76)<br>
 >> [Lenovo](https://github.com/maniacx/Battery-Health-Charging#lenovo)<br>
 >> [Thinkpad](https://github.com/maniacx/Battery-Health-Charging#thinkpad-single-dual-battery)<br>
->> [Apple](https://github.com/maniacx/Battery-Health-Charging#apple-mac-book-intel)<br>
->> [Acer](https://github.com/maniacx/Battery-Health-Charging#acer)<br>
->> [Dell](https://github.com/maniacx/Battery-Health-Charging#dell)<br>
->> [MSI](https://github.com/maniacx/Battery-Health-Charging#msi)<br>
 >> [Panasonic](https://github.com/maniacx/Battery-Health-Charging#panasonic)<br>
->> [Intel QC71 (XMG, Eluktronics, Tuxedo)](https://github.com/maniacx/Battery-Health-Charging#intel-qc71-device)<br>
+>> [Acer](https://github.com/maniacx/Battery-Health-Charging#acer)<br>
+>> [MSI](https://github.com/maniacx/Battery-Health-Charging#msi)<br>
+>> [Intel QC71 (XMG, Eluktronics, Tuxedo)](https://github.com/maniacx/Battery-Health-Charging#intel-qc71-devices-xmg-eluktronics-tuxedo)<br>
+>> [Dell](https://github.com/maniacx/Battery-Health-Charging#dell)<br>
+>> [Apple Macbook Intel-series chip](https://github.com/maniacx/Battery-Health-Charging#apple-macbook-intel-series-chip)<br>
+>> [Apple Macbook M-series chip](https://github.com/maniacx/Battery-Health-Charging#apple-macbook-m-series-chip-asahi-linux-kernel)<br>
 >
 >  [**Changelogs**](https://github.com/maniacx/Battery-Health-Charging#changelog)<br>
 >  [**Polkit Installation**](https://github.com/maniacx/Battery-Health-Charging#polkit-installation)<br>
@@ -142,15 +143,11 @@ Since users usually keep their AC adapter connected while using their laptop, th
 '/sys/devices/platform/smapi/BAT1/stop_charge_thresh'
 '/sys/devices/platform/smapi/BAT1/start_charge_thresh'
 ```
-### Apple Mac book (intel)
-* 3 presets Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
-* Default threshold values of these 3 preset modes are set at 100%, 80%, and 60%.
-* Each preset threshold value can be customized between 100-80 %, 85-65 %, and 85-50 % respectively.
-* Depends on separate kernel module installation https://github.com/c---/applesmc-next
-(This kernel module is supported by a third party and I am not in any way not responsible for the kernel module installation, bugs, or damages)
-* This Extension supports Apple laptops having one of the below paths.
+### Panasonic
+* 2 preset Full capacity and Maximum Life Span mode set at 100% and 80%. Fixed threshold (not customizable).
+* This Extension supports Panasonic laptops having the below path.
 ```bash
-'/sys/class/power_supply/BAT0/charge_control_end_threshold'
+'/sys/devices/platform/panasonic/eco_mode'
 ```
 ### Acer
 * 2 preset Full capacity and Maximum Life Span modes set at 100% and 80%. Fixed threshold (not customizable).
@@ -160,6 +157,31 @@ Since users usually keep their AC adapter connected while using their laptop, th
 * This Extension supports Acer laptops having the below path.
 ```bash
 '/sys/bus/wmi/drivers/acer-wmi-battery/health_mode'
+```
+### MSI
+* 3 presets Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
+* Default threshold values of these 3 preset modes are set at 100%, 80%, and 60%.
+* Each preset threshold value can be customized between 100-80 %, 85-65 %, and 85-50 % respectively.
+* Full capacity mode is equivalent to what Msi refers to as **Best for Mobility**
+* Balanced mode is equivalent to what Msi refers to as **Balance**
+* Maximum Life Span mode is equivalent to what Msi refers to as **Best for Battery**
+* Depends on separate kernel module installation https://github.com/BeardOverflow/msi-ec
+(This kernel module is supported by a third party and I am not in any way not responsible for the kernel module installation, bugs, or damages)
+Although the module has been submitted lately into the mainline kernel and may not be needed.
+* This Extension supports MSI laptops having one of the below paths.
+```bash
+'/sys/class/power_supply/BAT0/charge_control_end_threshold'
+```
+### Intel QC71 Devices (XMG, Eluktronics, Tuxedo)
+* 3 presets Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
+* Default threshold values of these 3 preset modes are set at 100%, 80%, and 60%.
+* Each preset threshold value can be customized between 100-80 %, 85-65 %, and 85-50 % respectively.
+* Depends on separate kernel module installation https://github.com/pobrn/qc71_laptop
+(This kernel module is supported by a third party and I am not in any way not responsible for the kernel module installation, bugs, or damages)
+* Support some model from XMG, Eluktronics, Tuxedo, etc using kernel module.
+* This Extension supports qc71 laptops which have the below paths.
+```bash
+'/sys/class/power_supply/BAT0/charge_control_end_threshold'
 ```
 ### Dell
 **NOTE: The Express mode may cause battery health to diminish more quickly than other modes.**
@@ -181,38 +203,33 @@ smbios-battery-ctl --set-charging-mode adaptive
 smbios-battery-ctl --set-charging-mode custom
 smbios-battery-ctl --set-custom-charge-interval low high
 ```
-### MSI
+### Apple Macbook Intel-series chip
 * 3 presets Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
 * Default threshold values of these 3 preset modes are set at 100%, 80%, and 60%.
 * Each preset threshold value can be customized between 100-80 %, 85-65 %, and 85-50 % respectively.
-* Full capacity mode is equivalent to what Msi refers to as **Best for Mobility**
-* Balanced mode is equivalent to what Msi refers to as **Balance**
-* Maximum Life Span mode is equivalent to what Msi refers to as **Best for Battery**
-* Depends on separate kernel module installation https://github.com/BeardOverflow/msi-ec
+* Depends on separate kernel module installation https://github.com/c---/applesmc-next
 (This kernel module is supported by a third party and I am not in any way not responsible for the kernel module installation, bugs, or damages)
-Although the module has been submitted lately into the mainline kernel and may not be needed.
-* This Extension supports MSI laptops having one of the below paths.
+* This Extension supports Apple laptops having one of the below paths.
 ```bash
 '/sys/class/power_supply/BAT0/charge_control_end_threshold'
 ```
-### Panasonic
-* 2 preset Full capacity and Maximum Life Span mode set at 100% and 80%. Fixed threshold (not customizable).
-* This Extension supports Panasonic laptops having the below path.
-```bash
-'/sys/devices/platform/panasonic/eco_mode'
-```
-### Intel QC71 Device
+### Apple Macbook M-series chip (Asahi Linux Kernel)
 * 3 presets Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
-* Default threshold values of these 3 preset modes are set at 100%, 80%, and 60%.
-* Each preset threshold value can be customized between 100-80 %, 85-65 %, and 85-50 % respectively.
-* Depends on separate kernel module installation https://github.com/pobrn/qc71_laptop
-(This kernel module is supported by a third party and I am not in any way not responsible for the kernel module installation, bugs, or damages)
-* Support some model from XMG, Eluktronics, Tuxedo, etc using kernel module.
-* This Extension supports qc71 laptops which have the below paths.
+* Default end/start threshold values of these 3 preset modes are set at 100/95%, 80/75%, and 60/55%.
+* Each preset end threshold value can be customized between 100-80 %, 85-65 %, and 85-52 % respectively.
+* Each preset start threshold value can be customized between is 98-75 %, 83-60 %, and 83-50 % respectively.
+* The difference between end and start threshold cannot be less than 2%.
+* This Extension supports Macbooks using Asahi Linux having the below path.
 ```bash
-'/sys/class/power_supply/BAT0/charge_control_end_threshold'
+'/sys/class/power_supply/macsmc-battery/charge_control_end_threshold';
+'/sys/class/power_supply/macsmc-battery/charge_control_start_threshold';
 ```
+
 ## Changelog
+### Version 15
+Apr 27, 2023
+* Added support to Apple Macbook M processora running Asahi Linux
+
 ### Version 14
 Apr 25, 2023
 * Gnome43/44: changed ornament from DOT to CHECK to match the power-profile quicktogglemenu ornament.
@@ -261,12 +278,7 @@ sudo rm -f /etc/systemd/system/mani-battery-health-charging.service
 ```
 ## Translation
 Please contribute translation.
-
-* Method 1: Use crowdin. https://crowdin.com/project/battery-health-charging <br>
-Managed to integrate github with crowdin. The branch used by crowdin is **translation** and sync every 24 hours.
-Benefit of using crowdin, easier to use and lot of pretranslated options available. But need to create an account (free) and authors name get removed from the po files.
-
-* Method 2: Using Poedit / Gtranslator (Available in gnome software). Using poedit Open/create your language.po. Download the po/Battery-Health-Charging.pot file from github. Go to **Translation** and **Update from POT file** , translate and submit a pull-request to the **main** branch on github.
+Using Poedit / Gtranslator (Available in gnome software). Using poedit Open/create your language.po. Download the po/Battery-Health-Charging.pot file from github. Go to **Translation** and **Update from POT file** , translate and submit a pull-request to the **main** branch on github.
 
 ## Bugs/Issue/Request feature
 Please raise an [issue](https://github.com/maniacx/Battery-Health-Charging/issues) on github.

@@ -1,5 +1,9 @@
 Battery Health Charging Extension Changelogs
 ============================================
+### Version 15
+Apr 27, 2023
+* Added support to Apple Macbook M processora running Asahi Linux
+
 ### Version 14
 Apr 25, 2023
 * Gnome43/44: changed ornament from DOT to CHECK to match the power-profile quicktogglemenu ornament.
