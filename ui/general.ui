@@ -87,7 +87,7 @@
         <child>
           <object class="AdwActionRow">
             <property name="title" translatable="yes">Change battery indicator icon behavior</property>
-            <property name="subtitle" translatable="yes">Battery indicator icon switches to &lt;b&gt;charging&lt;/b&gt; in system tray and quick settings panel when charging threshold is enabled and device is powered by charger.&#xA;May conflict with other extension that changes the behavior, style or text of battery indicator in system tray and quick settings panel</property>
+            <property name="subtitle" translatable="yes">Switches battery indicator icon to &lt;b&gt;charging&lt;/b&gt; in the system tray and quick settings panel when device is plugged into power source, even when charging is disabled due to charge threshold.</property>
             <property name="activatable-widget">amend_power_indicator</property>
             <child>
               <object class="GtkSwitch" id="amend_power_indicator">
