@@ -44,26 +44,28 @@ var HuaweiSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let returnError = false;
+        let limitValue = ['0', '0'];
         const settings = ExtensionUtils.getSettings();
         const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
         const startValue = settings.get_int(`current-${chargingMode}-start-threshold`);
+        limitValue = readFile(HUAWEI_PATH).split(' ');
+        if ((endValue === parseInt(limitValue[1])) && (startValue === parseInt(limitValue[0]))) {
+            this.endLimitValue = endValue;
+            this.startLimitValue = startValue;
+            this.emit('read-completed');
+            return 0;
+        }
         let status = await runCommandCtl('HUAWEI', `${endValue}`, `${startValue}`, false);
         if (status === 0)  {
-            const limitValue = readFile(HUAWEI_PATH).split(' ');
+            limitValue = readFile(HUAWEI_PATH).split(' ');
             this.endLimitValue = parseInt(limitValue[1]);
             this.startLimitValue = parseInt(limitValue[0]);
-            if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue))
+            if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
                 this.emit('read-completed');
-            else
-                returnError = true;
-        } else {
-            returnError = true;
+                return 0;
+            }
         }
-        if (returnError) {
-            log('Battery Health Charging: Error threshold values not updated');
-            status = 1;
-        }
-        return status;
+        log('Battery Health Charging: Error threshold values not updated');
+        return 1;
     }
 });

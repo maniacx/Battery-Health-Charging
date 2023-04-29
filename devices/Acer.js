@@ -30,32 +30,33 @@ var AcerSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let returnError = false;
-        let endValue;
+        let healthMode;
         if (chargingMode === 'ful')
-            endValue = 0;
+            healthMode = 0;
         else if (chargingMode === 'max')
-            endValue = 1;
-        let status = await runCommandCtl('ACER', `${endValue}`, null, false);
+            healthMode = 1;
+        if (readFileInt(ACER_PATH) === healthMode) {
+            if (healthMode === 1)
+                this.endLimitValue = 80;
+            else
+                this.endLimitValue = 100;
+            this.emit('read-completed');
+            return 0;
+        }
+        let status = await runCommandCtl('ACER', `${healthMode}`, null, false);
         if (status === 0)  {
             const endLimitValue = readFileInt(ACER_PATH);
-            if (endValue === endLimitValue) {
+            if (healthMode === endLimitValue) {
                 if (endLimitValue === 1)
                     this.endLimitValue = 80;
                 else
                     this.endLimitValue = 100;
                 this.emit('read-completed');
-            } else {
-                returnError = true;
+                return 0;
             }
-        } else {
-            returnError = true;
         }
-        if (returnError) {
-            log('Battery Health Charging: Error threshold values not updated');
-            status = 1;
-        }
-        return status;
+        log('Battery Health Charging: Error threshold values not updated');
+        return 1;
     }
 });
 

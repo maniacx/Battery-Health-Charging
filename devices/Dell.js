@@ -43,28 +43,57 @@ var DellSmBiosSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        const Settings = ExtensionUtils.getSettings();
-        let endValue = null;
-        let startValue = null;
-        if ((chargingMode === 'adv') || (chargingMode === 'exp')) {
-            endValue = chargingMode;
-        } else {
-            const endValueInt = Settings.get_int(`current-${chargingMode}-end-threshold`);
-            let startValueInt = Settings.get_int(`current-${chargingMode}-start-threshold`);
-            if ((endValueInt - startValueInt) < 5)
-                startValueInt = endValueInt - 5;
-            endValue = `${endValueInt}`;
-            startValue = `${startValueInt}`;
+        const settings = ExtensionUtils.getSettings();
+        let output, filteredOutput, splitOutput, firstLine, secondLine, endValue, startValue;
+        if (chargingMode !== 'adv' && chargingMode !== 'exp') {
+            endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
+            startValue = settings.get_int(`current-${chargingMode}-start-threshold`);
+            if ((endValue - startValue) < 5)
+                startValue = endValue - 5;
         }
-        await runCommandCtl('DELL_SMBIOS_BAT_WRITE', endValue, startValue, false);
-        const output = await runCommandCtl('DELL_SMBIOS_BAT_READ', null, null, true);
-        const filteredOutput = output.trim().replace('(', '').replace(')', '').replace(',', '').replace(/:/g, '');
-        const splitOutput = filteredOutput.split('\n');
-        const firstLine = splitOutput[0].split(' ');
+        output = await runCommandCtl('DELL_SMBIOS_BAT_READ', null, null, true);
+        filteredOutput = output.trim().replace('(', '').replace(')', '').replace(',', '').replace(/:/g, '');
+        splitOutput = filteredOutput.split('\n');
+        firstLine = splitOutput[0].split(' ');
+        if (firstLine[0] === 'Charging' && firstLine[1] === 'mode') {
+            let modeRead = firstLine[2];
+            if (((modeRead === 'adaptive') && (chargingMode === 'adv')) || ((modeRead === 'express') && (chargingMode === 'exp'))) {
+                this.mode = chargingMode;
+                this.startLimitValue = 100;
+                this.endLimitValue = 95;
+                this.emit('read-completed');
+                return 0;
+            } else if ((modeRead === 'custom') && ((chargingMode === 'ful') || (chargingMode === 'bal') || (chargingMode === 'max'))) {
+                secondLine = splitOutput[1].split(' ');
+                if (secondLine[0] === 'Charging' && secondLine[1] === 'interval') {
+                    if ((parseInt(secondLine[2]) === startValue) && (parseInt(secondLine[3]) === endValue)) {
+                        this.mode = chargingMode;
+                        this.startLimitValue = startValue;
+                        this.endLimitValue = endValue;
+                        this.emit('read-completed');
+                        return 0;
+                    }
+                }
+            }
+        }
+
+        let arg2, arg3;
+        if (chargingMode === 'adv' || chargingMode === 'exp') {
+            arg2 = chargingMode;
+            arg3 = null;
+        } else {
+            arg2 = `${endValue}`;
+            arg3 = `${startValue}`;
+        }
+        await runCommandCtl('DELL_SMBIOS_BAT_WRITE', arg2, arg3, false);
+        output = await runCommandCtl('DELL_SMBIOS_BAT_READ', null, null, true);
+        filteredOutput = output.trim().replace('(', '').replace(')', '').replace(',', '').replace(/:/g, '');
+        splitOutput = filteredOutput.split('\n');
+        firstLine = splitOutput[0].split(' ');
         if (firstLine[0] === 'Charging' && firstLine[1] === 'mode') {
             this.mode = firstLine[2];
             if (firstLine[2] === 'custom') {
-                const secondLine = splitOutput[1].split(' ');
+                secondLine = splitOutput[1].split(' ');
                 if (secondLine[0] === 'Charging' && secondLine[1] === 'interval') {
                     this.startLimitValue = parseInt(secondLine[2]);
                     this.endLimitValue = parseInt(secondLine[3]);

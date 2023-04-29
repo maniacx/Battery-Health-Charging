@@ -30,31 +30,32 @@ var LenovoSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let returnError = false;
-        let endValue;
+        let conservationMode;
         if (chargingMode === 'ful')
-            endValue = 0;
+            conservationMode = 0;
         else if (chargingMode === 'max')
-            endValue = 1;
-        let status = await runCommandCtl('LENOVO', `${endValue}`, null, false);
+            conservationMode = 1;
+        if (readFileInt(LENOVO_PATH) === conservationMode) {
+            if (conservationMode === 1)
+                this.endLimitValue = 60;
+            else
+                this.endLimitValue = 100;
+            this.emit('read-completed');
+            return 0;
+        }
+        let status = await runCommandCtl('LENOVO', `${conservationMode}`, null, false);
         if (status === 0)  {
             const endLimitValue = readFileInt(LENOVO_PATH);
-            if (endValue === endLimitValue) {
+            if (conservationMode === endLimitValue) {
                 if (endLimitValue === 1)
                     this.endLimitValue = 60;
                 else
                     this.endLimitValue = 100;
                 this.emit('read-completed');
-            } else {
-                returnError = true;
+                return 0;
             }
-        } else {
-            returnError = true;
         }
-        if (returnError) {
-            log('Battery Health Charging: Error threshold values not updated');
-            status = 1;
-        }
+        log('Battery Health Charging: Error threshold values not updated');
         return status;
     }
 });

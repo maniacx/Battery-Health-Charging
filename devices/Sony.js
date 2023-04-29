@@ -31,33 +31,31 @@ var SonySingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let returnError = false;
-        let endValue;
+        let batteryCareLimiter;
         if (chargingMode === 'ful')
-            endValue = 100;
+            batteryCareLimiter = 100;
         else if (chargingMode === 'bal')
-            endValue = 80;
+            batteryCareLimiter = 80;
         else if (chargingMode === 'max')
-            endValue = 50;
-        let status = await runCommandCtl('SONY', `${endValue}`, null, false);
+            batteryCareLimiter = 50;
+        if (readFileInt(SONY_PATH) === batteryCareLimiter) {
+            this.endLimitValue = batteryCareLimiter;
+            this.emit('read-completed');
+            return 0;
+        }
+        let status = await runCommandCtl('SONY', `${batteryCareLimiter}`, null, false);
         if (status === 0)  {
             let endLimitValue = readFileInt(SONY_PATH);
             if (endLimitValue === 0)
                 endLimitValue = 100;
-            if (endValue === endLimitValue) {
+            if (batteryCareLimiter === endLimitValue) {
                 this.endLimitValue = endLimitValue;
                 this.emit('read-completed');
-            } else {
-                returnError = true;
+                return 0;
             }
-        } else {
-            returnError = true;
         }
-        if (returnError) {
-            log('Battery Health Charging: Error threshold values not updated');
-            status = 1;
-        }
-        return status;
+        log('Battery Health Charging: Error threshold values not updated');
+        return 1;
     }
 });
 

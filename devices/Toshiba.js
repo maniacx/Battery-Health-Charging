@@ -34,27 +34,26 @@ var ToshibaSingleBatteryBAT0 = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let returnError = false;
         let endValue;
         if (chargingMode === 'ful')
             endValue = 100;
         else if (chargingMode === 'max')
             endValue = 80;
+        if (readFileInt(BAT0_END_PATH) ===     endValue) {
+            this.endLimitValue = endValue;
+            this.emit('read-completed');
+            return 0;
+        }
         let status = await runCommandCtl('BAT0_END', `${endValue}`, null, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(BAT0_END_PATH);
-            if (endValue === this.endLimitValue)
+            if (endValue === this.endLimitValue) {
                 this.emit('read-completed');
-            else
-                returnError = true;
-        } else {
-            returnError = true;
+                return 0;
+            }
         }
-        if (returnError) {
-            log('Battery Health Charging: Error threshold values not updated');
-            status = 1;
-        }
-        return status;
+        log('Battery Health Charging: Error threshold values not updated');
+        return 1;
     }
 });
 
@@ -82,27 +81,26 @@ var ToshibaSingleBatteryBAT1 = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let returnError = false;
         let endValue;
         if (chargingMode === 'ful')
             endValue = 100;
         else if (chargingMode === 'max')
             endValue = 80;
+        if (readFileInt(BAT1_END_PATH) === endValue) {
+            this.endLimitValue = endValue;
+            this.emit('read-completed');
+            return 0;
+        }
         let status = await runCommandCtl('BAT1_END', `${endValue}`, null, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(BAT1_END_PATH);
-            if (endValue === this.endLimitValue)
+            if (endValue === this.endLimitValue) {
                 this.emit('read-completed');
-            else
-                returnError = true;
-        } else {
-            returnError = true;
+                return 0;
+            }
         }
-        if (returnError) {
-            log('Battery Health Charging: Error threshold values not updated');
-            status = 1;
-        }
-        return status;
+        log('Battery Health Charging: Error threshold values not updated');
+        return 1;
     }
 });
 

@@ -30,32 +30,33 @@ var SamsungSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let returnError = false;
-        let endValue;
+        let batteryLifeExtender;
         if (chargingMode === 'ful')
-            endValue = 0;
+            batteryLifeExtender = 0;
         else if (chargingMode === 'max')
-            endValue = 1;
-        let status = await runCommandCtl('SAMSUNG', `${endValue}`, null, false);
+            batteryLifeExtender = 1;
+        if (readFileInt(SAMSUNG_PATH) === batteryLifeExtender) {
+            if (batteryLifeExtender === 1)
+                this.endLimitValue = 80;
+            else
+                this.endLimitValue = 100;
+            this.emit('read-completed');
+            return 0;
+        }
+        let status = await runCommandCtl('SAMSUNG', `${batteryLifeExtender}`, null, false);
         if (status === 0)  {
             const endLimitValue = readFileInt(SAMSUNG_PATH);
-            if (endValue === endLimitValue) {
+            if (batteryLifeExtender === endLimitValue) {
                 if (endLimitValue === 1)
                     this.endLimitValue = 80;
                 else
                     this.endLimitValue = 100;
                 this.emit('read-completed');
-            } else {
-                returnError = true;
+                return 0;
             }
-        } else {
-            returnError = true;
         }
-        if (returnError) {
-            log('Battery Health Charging: Error threshold values not updated');
-            status = 1;
-        }
-        return status;
+        log('Battery Health Charging: Error threshold values not updated');
+        return 1;
     }
 });
 

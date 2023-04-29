@@ -53,49 +53,49 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let returnError = false;
         const settings = ExtensionUtils.getSettings();
         const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
         const startValue = settings.get_int(`current-${chargingMode}-start-threshold`);
+        if ((readFileInt(TP_BAT0_END) === endValue) && (readFileInt(TP_BAT0_START) === startValue)) {
+            this.endLimitValue = endValue;
+            this.startLimitValue = startValue;
+            this.emit('read-completed');
+            return 0;
+        }
         let status = await runCommandCtl('TP_BAT0_END_START', `${endValue}`, `${startValue}`, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(TP_BAT0_END);
             this.startLimitValue = readFileInt(TP_BAT0_START);
-            if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue))
+            if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
                 this.emit('read-completed');
-            else
-                returnError = true;
-        } else {
-            returnError = true;
+                return 0;
+            }
         }
-        if (returnError) {
-            log('Battery Health Charging: Error threshold values not updated');
-            status = 1;
-        }
-        return status;
+        log('Battery Health Charging: Error threshold values not updated');
+        return 1;
     }
 
     async setThresholdLimit2(chargingMode2) {
-        let returnError = false;
         const settings = ExtensionUtils.getSettings();
         const endValue = settings.get_int(`current-${chargingMode2}-end-threshold2`);
         const startValue = settings.get_int(`current-${chargingMode2}-start-threshold2`);
+        if ((readFileInt(TP_BAT1_END) === endValue) && (readFileInt(TP_BAT1_START) === startValue)) {
+            this.endLimit2Value = endValue;
+            this.startLimit2Value = startValue;
+            this.emit('read-completed');
+            return 0;
+        }
         let status = await runCommandCtl('TP_BAT1_END_START', `${endValue}`, `${startValue}`, false);
         if (status === 0)  {
             this.endLimit2Value = readFileInt(TP_BAT1_END);
             this.startLimit2Value = readFileInt(TP_BAT1_START);
-            if ((endValue === this.endLimit2Value) && (startValue === this.startLimit2Value))
+            if ((endValue === this.endLimit2Value) && (startValue === this.startLimit2Value)) {
                 this.emit('read-completed');
-            else
-                returnError = true;
-        } else {
-            returnError = true;
+                return 0;
+            }
         }
-        if (returnError) {
-            log('Battery Health Charging: Error threshold2 values not updated');
-            status = 1;
-        }
-        return status;
+        log('Battery Health Charging: Error threshold2 values not updated');
+        return 1;
     }
 
     async setThresholdLimitDual() {
@@ -145,26 +145,26 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let returnError = false;
         const settings = ExtensionUtils.getSettings();
         const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
         const startValue = settings.get_int(`current-${chargingMode}-start-threshold`);
+        if ((readFileInt(TP_BAT0_END) === endValue) && (readFileInt(TP_BAT0_START) === startValue)) {
+            this.endLimitValue = endValue;
+            this.startLimitValue = startValue;
+            this.emit('read-completed');
+            return 0;
+        }
         let status = await runCommandCtl('TP_BAT0_END_START', `${endValue}`, `${startValue}`, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(TP_BAT0_END);
             this.startLimitValue = readFileInt(TP_BAT0_START);
-            if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue))
+            if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
                 this.emit('read-completed');
-            else
-                returnError = true;
-        } else {
-            returnError = true;
+                return 0;
+            }
         }
-        if (returnError) {
-            log('Battery Health Charging: Error threshold values not updated');
-            status = 1;
-        }
-        return status;
+        log('Battery Health Charging: Error threshold values not updated');
+        return 1;
     }
 });
 
@@ -206,26 +206,26 @@ var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let returnError = false;
         const settings = ExtensionUtils.getSettings();
         const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
         const startValue = settings.get_int(`current-${chargingMode}-start-threshold`);
+        if ((readFileInt(TP_BAT1_END) === endValue) && (readFileInt(TP_BAT1_START) === startValue)) {
+            this.endLimitValue = endValue;
+            this.startLimitValue = startValue;
+            this.emit('read-completed');
+            return 0;
+        }
         let status = await runCommandCtl('TP_BAT1_END_START', `${endValue}`, `${startValue}`, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(TP_BAT1_END);
             this.startLimitValue = readFileInt(TP_BAT1_START);
-            if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue))
+            if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
                 this.emit('read-completed');
-            else
-                returnError = true;
-        } else {
-            returnError = true;
+                return 0;
+            }
         }
-        if (returnError) {
-            log('Battery Health Charging: Error threshold values not updated');
-            status = 1;
-        }
-        return status;
+        log('Battery Health Charging: Error threshold values not updated');
+        return 1;
     }
 });
 

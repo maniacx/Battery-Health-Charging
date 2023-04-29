@@ -41,24 +41,23 @@ var QC71SingleBatteryBAT0 = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let returnError = false;
         const settings = ExtensionUtils.getSettings();
         const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
+        if (readFileInt(BAT0_END_PATH) === endValue) {
+            this.endLimitValue = endValue;
+            this.emit('read-completed');
+            return 0;
+        }
         let status = await runCommandCtl('BAT0_END', `${endValue}`, null, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(BAT0_END_PATH);
-            if (endValue === this.endLimitValue)
+            if (endValue === this.endLimitValue) {
                 this.emit('read-completed');
-            else
-                returnError = true;
-        } else {
-            returnError = true;
+                return 0;
+            }
         }
-        if (returnError) {
-            log('Battery Health Charging: Error threshold values not updated');
-            status = 1;
-        }
-        return status;
+        log('Battery Health Charging: Error threshold values not updated');
+        return 1;
     }
 });
 

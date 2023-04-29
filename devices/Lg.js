@@ -30,27 +30,26 @@ var LgSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let returnError = false;
-        let endValue;
+        let batteryCareLimit;
         if (chargingMode === 'ful')
-            endValue = 100;
+            batteryCareLimit = 100;
         else if (chargingMode === 'max')
-            endValue = 80;
-        let status = await runCommandCtl('LG', `${endValue}`, null, false);
+            batteryCareLimit = 80;
+        if (readFileInt(LG_PATH) === batteryCareLimit) {
+            this.endLimitValue = batteryCareLimit;
+            this.emit('read-completed');
+            return 0;
+        }
+        let status = await runCommandCtl('LG', `${batteryCareLimit}`, null, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(LG_PATH);
-            if (endValue === this.endLimitValue)
+            if (batteryCareLimit === this.endLimitValue) {
                 this.emit('read-completed');
-            else
-                returnError = true;
-        } else {
-            returnError = true;
+                return 0;
+            }
         }
-        if (returnError) {
-            log('Battery Health Charging: Error threshold values not updated');
-            status = 1;
-        }
-        return status;
+        log('Battery Health Charging: Error threshold values not updated');
+        return 1;
     }
 });
 
