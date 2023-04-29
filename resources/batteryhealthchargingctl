@@ -124,6 +124,20 @@ case "$TOOLCMD" in
         fi
         exit ${EXIT_SUCCESS}
         ;;
+    DELL_CCTK_BAT_READ)
+        /opt/dell/dcc/cctk --PrimaryBattChargeCfg
+        exit ${EXIT_SUCCESS}
+        ;;
+    DELL_CCTK_BAT_WRITE)
+        if [ "$ARG1" = "adv" ];then
+            /opt/dell/dcc/cctk --PrimaryBattChargeCfg=Adaptive
+        elif [ "$ARG1" = "exp" ];then
+            /opt/dell/dcc/cctk --PrimaryBattChargeCfg=Express
+        else
+            /opt/dell/dcc/cctk --PrimaryBattChargeCfg=Custom:$ARG2-$ARG1
+        fi
+        exit ${EXIT_SUCCESS}
+        ;;
     CHECKINSTALLATION)
     printf -v versions '%s\n%s' "$(pkaction --version | cut -d' ' -f3)" "0.106"
     if [[ $versions != "$(sort -V <<< "$versions")" ]];then
