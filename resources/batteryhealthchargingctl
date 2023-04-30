@@ -23,6 +23,7 @@ TP_BAT1_START='/sys/devices/platform/smapi/BAT1/start_charge_thresh';
 PANASONIC_PATH='/sys/devices/platform/panasonic/eco_mode';
 ASAHI_END_PATH='/sys/class/power_supply/macsmc-battery/charge_control_end_threshold';
 ASAHI_START_PATH='/sys/class/power_supply/macsmc-battery/charge_control_start_threshold';
+TUXEDO_PATH='/sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile'
 
 EXTENSION_NAME="Battery Health Charging"
 ACTION_BASE="dem.batteryhealthcharging"
@@ -107,6 +108,10 @@ case "$TOOLCMD" in
     ASAHI_END_START)
         echo "$ARG1" > "$ASAHI_END_PATH"
         echo "$ARG2" > "$ASAHI_START_PATH"
+        exit ${EXIT_SUCCESS}
+        ;;
+    TUXEDO)
+        echo "$ARG1" > "$TUXEDO_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     DELL_SMBIOS_BAT_READ)
