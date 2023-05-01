@@ -1,12 +1,19 @@
 Battery Health Charging Extension Changelogs
 ============================================
+### Version 16
+May 01, 2023
+* Extension only writes new threshold if new mode/threshold is different than the current mode/threshold. 
+* Added support for Dell laptop using cctk
+* Added support for Tuxedo laptops using tuxedo-keyboard (Thanks r_wraith)
+* Added support for few gigabyte aero/aorus module (Thanks tangalbert919)
+
 ### Version 15
 Apr 27, 2023
-* Added support to Apple Macbook M processora running Asahi Linux
+* Added support to Apple Macbook M processora running Asahi Linux (teohhanhui)
 
 ### Version 14
 Apr 25, 2023
-* Gnome43/44: changed ornament from DOT to CHECK to match the power-profile quicktogglemenu ornament.
+* Gnome43/44: changed ornament from DOT to CHECK to match the power-profile quicktogglemenu ornament. (Thanks ai)
 
 ### Version 14
 Apr 24, 2023
@@ -14,14 +21,15 @@ Apr 24, 2023
 
 ### Version 12
 Apr 23, 2023
-* Added support for Gnome42
-* For Single Battery Devices, Click on quick toggle will change mode. (Full Capacity Mode = default color. Other modes = highlighed color)
+* Added support for Gnome42 (Thanks ViBE-HU)
+* For Single Battery Devices, Click on quick toggle will change mode. (Full Capacity Mode = default color. Other modes = highlighed color) (Thanks f_cristobal)
 * For Dual Battery Devices, Click on quick toggle will switch battery panel mode. (Same as earlier version)
 
 ### Version 11
 Apr 2, 2023
 * Added option to change behavior of system battery indicator
 * In current threshold the text "currently active" will be displayed indicating the current mode
+
 
 ### Version 10 
 Mar 28, 2023

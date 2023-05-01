@@ -29,7 +29,10 @@ Since users usually keep their AC adapter connected while using their laptop, th
 >> [Acer](https://github.com/maniacx/Battery-Health-Charging#acer)<br>
 >> [MSI](https://github.com/maniacx/Battery-Health-Charging#msi)<br>
 >> [Intel QC71 (XMG, Eluktronics, Tuxedo)](https://github.com/maniacx/Battery-Health-Charging#intel-qc71-devices-xmg-eluktronics-tuxedo)<br>
->> [Dell](https://github.com/maniacx/Battery-Health-Charging#dell)<br>
+>> [Tuxedo](https://github.com/maniacx/Battery-Health-Charging#tuxedo)<br>
+>> [Gigabyte (Aero Aorus)](https://github.com/maniacx/Battery-Health-Charging#gigabyte-devices-aero-aorus)<br>
+>> [Dell (libsmbios)](https://github.com/maniacx/Battery-Health-Charging#dell-libsmbios)<br>
+>> [Dell (Dell command configure cctk)](https://github.com/maniacx/Battery-Health-Charging#dell-dell-command-configure-cctk)<br>
 >> [Apple Macbook Intel-series chip](https://github.com/maniacx/Battery-Health-Charging#apple-macbook-intel-series-chip)<br>
 >> [Apple Macbook M-series chip](https://github.com/maniacx/Battery-Health-Charging#apple-macbook-m-series-chip-asahi-linux-kernel)<br>
 >
@@ -151,8 +154,8 @@ Since users usually keep their AC adapter connected while using their laptop, th
 ```
 ### Acer
 * 2 preset Full capacity and Maximum Life Span modes set at 100% and 80%. Fixed threshold (not customizable).
-* Maximum Life Span mode is the what Samsung refers to as **smart charging mode**
-* Depends on separate kernel module installation https://github.com/frederik-h/acer-wmi-battery
+* Maximum Life Span mode is the what Acer refers to as **Battery Limit charge**
+* Depends on separate kernel module (dkms) installation https://github.com/frederik-h/acer-wmi-battery
 (This kernel module is supported by a third party and I am not in any way not responsible for the kernel module installation, bugs or damages)
 * This Extension supports Acer laptops having the below path.
 ```bash
@@ -165,7 +168,7 @@ Since users usually keep their AC adapter connected while using their laptop, th
 * Full capacity mode is equivalent to what Msi refers to as **Best for Mobility**
 * Balanced mode is equivalent to what Msi refers to as **Balance**
 * Maximum Life Span mode is equivalent to what Msi refers to as **Best for Battery**
-* Depends on separate kernel module installation https://github.com/BeardOverflow/msi-ec
+* Depends on separate kernel module (dkms) installation https://github.com/BeardOverflow/msi-ec
 (This kernel module is supported by a third party and I am not in any way not responsible for the kernel module installation, bugs, or damages)
 Although the module has been submitted lately into the mainline kernel and may not be needed.
 * This Extension supports MSI laptops having one of the below paths.
@@ -176,14 +179,36 @@ Although the module has been submitted lately into the mainline kernel and may n
 * 3 presets Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
 * Default threshold values of these 3 preset modes are set at 100%, 80%, and 60%.
 * Each preset threshold value can be customized between 100-80 %, 85-65 %, and 85-50 % respectively.
-* Depends on separate kernel module installation https://github.com/pobrn/qc71_laptop
+* Depends on separate kernel module (dkms) installation https://github.com/pobrn/qc71_laptop
 (This kernel module is supported by a third party and I am not in any way not responsible for the kernel module installation, bugs, or damages)
 * Support some model from XMG, Eluktronics, Tuxedo, etc using kernel module.
 * This Extension supports qc71 laptops which have the below paths.
 ```bash
 '/sys/class/power_supply/BAT0/charge_control_end_threshold'
 ```
-### Dell
+### Tuxedo
+* 2/3 preset Full capacity, Balanced and Maximum Life Span mode set at 100%, 90% and 80%. Fixed threshold (not customizable).
+* Maximum Life Span mode is what Sony refers to as **Stationary**
+* Depends on separate kernel module (dkms) installation https://github.com/tuxedocomputers/tuxedo-keyboard
+(This kernel module is supported by a third party and I am not in any way not responsible for the kernel module installation, bugs, or damages)
+* This Extension supports Tuxedo laptops having the below path.
+```bash
+'/sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profiles_available'
+'/sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile'
+```
+### Gigabyte Devices (Aero, Aorus)
+* 3 presets Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
+* Default threshold values of these 3 preset modes are set at 100%, 80%, and 60%.
+* Each preset threshold value can be customized between 100-80 %, 85-65 %, and 85-60 % respectively.
+* Depends on separate kernel module (dkms) installation https://github.com/tangalbert919/gigabyte-laptop-wmi
+(This kernel module is supported by a third party and I am not in any way not responsible for the kernel module installation, bugs, or damages)
+* Support some model from Aero, Aorus etc using kernel module.
+* This Extension supports gigabyte laptops which have the below paths.
+```bash
+'/sys/devices/platform/gigabyte_laptop/charge_mode';
+'/sys/devices/platform/gigabyte_laptop/charge_limit'
+```
+### Dell (libsmbios)
 **NOTE: The Express mode may cause battery health to diminish more quickly than other modes.**
 
 * 5 presets Express, Adaptive, Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
@@ -203,11 +228,31 @@ smbios-battery-ctl --set-charging-mode adaptive
 smbios-battery-ctl --set-charging-mode custom
 smbios-battery-ctl --set-custom-charge-interval low high
 ```
+### Dell (Dell command configure cctk)
+**NOTE: The Express mode may cause battery health to diminish more quickly than other modes.**
+**NOTE: Doesnt support changing threshold with bios password**
+
+* 5 presets Express, Adaptive, Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
+* Express and Adaptive are fixed mode. You can find the description of Express charge mode and adaptive mode on dell [website](https://www.dell.com/support/manuals/en-us/dcpm2.1/userguide_dell-v1/configuraci%C3%B3n-de-bater%C3%ADa?guid=guid-0fbbbeff-4928-4def-89af-3d28d0a231ce&lang=en-us).
+* Full Capacity Mode, Balance Mode, and Maximum Life Span mode are **custom mode** with end/start threshold values set to 100/95%, 80/75%, and 60/55%.
+* Each custom mode preset end threshold value can customize between 100-80 %, 85-65 %, and 85-55 % respectively.
+* Each custom mode preset start threshold value can customize between 95-75 %, 83-60 %, and 83-50 % respectively.
+* Full capacity mode is equivalent to what Dell refers to as **Standard**
+* Balance mode is almost equivalent to what Dell refers to as **Primarily AC**
+* The difference between end and start threshold cannot be less than 5%.
+* Depends on executable package **cctk**  provided by [dell command configure](https://www.dell.com/support/kbdoc/en-us/000178000/dell-command-configure)
+(Dell command configure is third-party package and I am not in any way not responsible for installation, bugs, or damages)
+* This Extension supports dell through smbios-utils package smbios-battery-ctl using following commands
+```
+/opt/dell/dcc/cctk --PrimaryBattChargeCfg=Express
+/opt/dell/dcc/cctk --PrimaryBattChargeCfg=Adaptive
+/opt/dell/dcc/cctk --PrimaryBattChargeCfg=Custom:low-high
+```
 ### Apple Macbook Intel-series chip
 * 3 presets Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
 * Default threshold values of these 3 preset modes are set at 100%, 80%, and 60%.
 * Each preset threshold value can be customized between 100-80 %, 85-65 %, and 85-50 % respectively.
-* Depends on separate kernel module installation https://github.com/c---/applesmc-next
+* Depends on separate kernel module  (dkms) installation https://github.com/c---/applesmc-next
 (This kernel module is supported by a third party and I am not in any way not responsible for the kernel module installation, bugs, or damages)
 * This Extension supports Apple laptops having one of the below paths.
 ```bash
@@ -226,13 +271,20 @@ smbios-battery-ctl --set-custom-charge-interval low high
 ```
 
 ## Changelog
+### Version 16
+May 01, 2023
+* Extension only writes new threshold if new mode/threshold is different than the current mode/threshold. 
+* Added support for Dell laptop using cctk
+* Added support for Tuxedo laptops using tuxedo-keyboard (Thanks r_wraith)
+* Added support for few gigabyte aero/aorus module (Thanks tangalbert919)
+
 ### Version 15
 Apr 27, 2023
-* Added support to Apple Macbook M processora running Asahi Linux
+* Added support to Apple Macbook M processora running Asahi Linux (teohhanhui)
 
 ### Version 14
 Apr 25, 2023
-* Gnome43/44: changed ornament from DOT to CHECK to match the power-profile quicktogglemenu ornament.
+* Gnome43/44: changed ornament from DOT to CHECK to match the power-profile quicktogglemenu ornament. (Thanks ai)
 
 ### Version 14
 Apr 24, 2023
@@ -240,23 +292,14 @@ Apr 24, 2023
 
 ### Version 12
 Apr 23, 2023
-* Added support for Gnome42
-* For Single Battery Devices, Click on quick toggle will change mode. (Full Capacity Mode = default color. Other modes = highlighed color)
+* Added support for Gnome42 (Thanks ViBE-HU)
+* For Single Battery Devices, Click on quick toggle will change mode. (Full Capacity Mode = default color. Other modes = highlighed color) (Thanks f_cristobal)
 * For Dual Battery Devices, Click on quick toggle will switch battery panel mode. (Same as earlier version)
 
 ### Version 11
 Apr 2, 2023
 * Added option to change behavior of system battery indicator
 * In current threshold the text "currently active" will be displayed indicating the current mode
-
-### Version 10 
-Mar 28, 2023
-* Add option to change index of system indicator in general prefs
-* Re-add vendor checks for thinkpad with correct path as it conflicts with huawei which also uses the same sysfs path.
-* Fix for Huawei. Used correct sysfs path.
-* Added support for Panasonic devices and Intel QC71 devices
-
-(Thanks to mascherm for raising issue and testing for Huawei laptops)
 
 See [Full History](https://github.com/maniacx/Battery-Health-Charging/blob/main/.github/CHANGELOG.md)
 
@@ -340,3 +383,8 @@ asant
 yukina3230
 Valeria
 albanobattistella
+teohhanhui
+ai
+ViBE-HU
+
+
