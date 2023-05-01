@@ -4,28 +4,28 @@
 #
 # This file is part of the gnome-shell extension Battery-Health-Charging@maniacx.github.com.
 
-BAT0_END_PATH='/sys/class/power_supply/BAT0/charge_control_end_threshold';
-BAT0_START_PATH='/sys/class/power_supply/BAT0/charge_control_start_threshold';
-BAT1_END_PATH='/sys/class/power_supply/BAT1/charge_control_end_threshold';
-BAT1_START_PATH='/sys/class/power_supply/BAT1/charge_control_start_threshold';
-LG_PATH='/sys/devices/platform/lg-laptop/battery_care_limit';
-LENOVO_PATH='/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode';
-SONY_PATH='/sys/devices/platform/sony-laptop/battery_care_limiter';
-HUAWEI_PATH='/sys/devices/platform/huawei-wmi/charge_control_thresholds';
-SAMSUNG_PATH='/sys/devices/platform/samsung/battery_life_extender';
-ACER_PATH='/sys/bus/wmi/drivers/acer-wmi-battery/health_mode';
-BATC_END_PATH='/sys/class/power_supply/BATC/charge_control_end_threshold';
-BATT_END_PATH='/sys/class/power_supply/BATT/charge_control_end_threshold';
-TP_BAT0_END='/sys/devices/platform/smapi/BAT0/stop_charge_thresh';
-TP_BAT0_START='/sys/devices/platform/smapi/BAT0/start_charge_thresh';
-TP_BAT1_END='/sys/devices/platform/smapi/BAT1/stop_charge_thresh';
-TP_BAT1_START='/sys/devices/platform/smapi/BAT1/start_charge_thresh';
-PANASONIC_PATH='/sys/devices/platform/panasonic/eco_mode';
-ASAHI_END_PATH='/sys/class/power_supply/macsmc-battery/charge_control_end_threshold';
-ASAHI_START_PATH='/sys/class/power_supply/macsmc-battery/charge_control_start_threshold';
+BAT0_END_PATH='/sys/class/power_supply/BAT0/charge_control_end_threshold'
+BAT0_START_PATH='/sys/class/power_supply/BAT0/charge_control_start_threshold'
+BAT1_END_PATH='/sys/class/power_supply/BAT1/charge_control_end_threshold'
+BAT1_START_PATH='/sys/class/power_supply/BAT1/charge_control_start_threshold'
+LG_PATH='/sys/devices/platform/lg-laptop/battery_care_limit'
+LENOVO_PATH='/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
+SONY_PATH='/sys/devices/platform/sony-laptop/battery_care_limiter'
+HUAWEI_PATH='/sys/devices/platform/huawei-wmi/charge_control_thresholds'
+SAMSUNG_PATH='/sys/devices/platform/samsung/battery_life_extender'
+ACER_PATH='/sys/bus/wmi/drivers/acer-wmi-battery/health_mode'
+BATC_END_PATH='/sys/class/power_supply/BATC/charge_control_end_threshold'
+BATT_END_PATH='/sys/class/power_supply/BATT/charge_control_end_threshold'
+TP_BAT0_END='/sys/devices/platform/smapi/BAT0/stop_charge_thresh'
+TP_BAT0_START='/sys/devices/platform/smapi/BAT0/start_charge_thresh'
+TP_BAT1_END='/sys/devices/platform/smapi/BAT1/stop_charge_thresh'
+TP_BAT1_START='/sys/devices/platform/smapi/BAT1/start_charge_thresh'
+PANASONIC_PATH='/sys/devices/platform/panasonic/eco_mode'
+ASAHI_END_PATH='/sys/class/power_supply/macsmc-battery/charge_control_end_threshold'
+ASAHI_START_PATH='/sys/class/power_supply/macsmc-battery/charge_control_start_threshold'
 TUXEDO_PATH='/sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile'
-GIGABYTE_MODE='/sys/devices/platform/gigabyte_laptop/charge_mode';
-GIGABYTE_LIMIT='/sys/devices/platform/gigabyte_laptop/charge_limit';
+GIGABYTE_MODE='/sys/devices/platform/gigabyte_laptop/charge_mode'
+GIGABYTE_LIMIT='/sys/devices/platform/gigabyte_laptop/charge_limit'
 
 EXTENSION_NAME="Battery Health Charging"
 ACTION_BASE="dem.batteryhealthcharging"
@@ -148,7 +148,7 @@ case "$TOOLCMD" in
         elif [ "$ARG1" = "exp" ];then
             /opt/dell/dcc/cctk --PrimaryBattChargeCfg=Express
         else
-            /opt/dell/dcc/cctk --PrimaryBattChargeCfg=Custom:$ARG2-$ARG1
+            /opt/dell/dcc/cctk --PrimaryBattChargeCfg=Custom:"$ARG2"-"$ARG1"
         fi
         exit ${EXIT_SUCCESS}
         ;;
