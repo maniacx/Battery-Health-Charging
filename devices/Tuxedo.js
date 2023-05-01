@@ -1,5 +1,5 @@
 'use strict';
-/* Tuxedo Laptop using dkms https://github.com/tuxedocomputers/tuxedo-keyboard */
+/* Tuxedo Laptops using dkms https://github.com/tuxedocomputers/tuxedo-keyboard */
 const {GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();

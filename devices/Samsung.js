@@ -1,5 +1,5 @@
 'use strict';
-/* Samsung Laptop*/
+/* Samsung Laptops */
 const {GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();

@@ -1,5 +1,5 @@
 'use strict';
-/* Asus Laptops with BAT0, BAT1, BATC and BATT */
+/* Asus Laptops */
 const {GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();

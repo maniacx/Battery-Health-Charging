@@ -1,5 +1,5 @@
 'use strict';
-/* MSI = Needs MSI-ec https://github.com/BeardOverflow/msi-ec */
+/* MSI Laptops using dkms https://github.com/BeardOverflow/msi-ec */
 const {GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();

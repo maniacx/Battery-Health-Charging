@@ -1,5 +1,5 @@
 'use strict';
-/* Apple Mac book with Intel processors. install dkms https://github.com/c---/applesmc-next  */
+/* Apple Mac book with Intel processors using dkms https://github.com/c---/applesmc-next  */
 const {GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();

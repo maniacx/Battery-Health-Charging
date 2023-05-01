@@ -1,5 +1,5 @@
 'use strict';
-/* Thinkpad Legacy with Dual Battery, Single Battery BAT0, and Single Battery BAT1  */
+/* Thinkpad Legacy Laptops using dkms https://github.com/linux-thinkpad/tp_smapi  */
 const {GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();

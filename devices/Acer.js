@@ -1,5 +1,5 @@
 'use strict';
-/* Acer Laptop. Currently see https://github.com/frederik-h/acer-wmi-battery/issues */
+/* Acer Laptops using dkms https://github.com/frederik-h/acer-wmi-battery/issues */
 const {GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();

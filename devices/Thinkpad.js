@@ -1,5 +1,5 @@
 'use strict';
-/* Thinkpad with Dual Battery, Single Battery BAT0, and Single Battery BAT1  */
+/* Thinkpad Laptops */
 const {GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();

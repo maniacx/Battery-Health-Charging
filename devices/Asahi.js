@@ -1,5 +1,5 @@
 'use strict';
-/* Apple Mac book with M-series processor - Asahi linux Laptop https://asahilinux.org/ */
+/* Apple Mac book with M-series processor - Asahi linux Laptops https://asahilinux.org/ */
 const {GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();

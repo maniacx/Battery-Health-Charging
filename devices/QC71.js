@@ -1,5 +1,5 @@
 'use strict';
-/* Generic and Intel QC71 device Laptops with BAT0. For QC71 device dependencies https://github.com/pobrn/qc71_laptop */
+/* Intel QC71 Laptops using dkms  https://github.com/pobrn/qc71_laptop */
 const {GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
