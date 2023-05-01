@@ -24,6 +24,8 @@ PANASONIC_PATH='/sys/devices/platform/panasonic/eco_mode';
 ASAHI_END_PATH='/sys/class/power_supply/macsmc-battery/charge_control_end_threshold';
 ASAHI_START_PATH='/sys/class/power_supply/macsmc-battery/charge_control_start_threshold';
 TUXEDO_PATH='/sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile'
+GIGABYTE_MODE='/sys/devices/platform/gigabyte_laptop/charge_mode';
+GIGABYTE_LIMIT='/sys/devices/platform/gigabyte_laptop/charge_limit';
 
 EXTENSION_NAME="Battery Health Charging"
 ACTION_BASE="dem.batteryhealthcharging"
@@ -112,6 +114,13 @@ case "$TOOLCMD" in
         ;;
     TUXEDO)
         echo "$ARG1" > "$TUXEDO_PATH"
+        exit ${EXIT_SUCCESS}
+        ;;
+    GIGABYTE_THRESHOLD)
+        if [ "$ARG1" = "true" ]; then
+            echo "1" > "$GIGABYTE_MODE"
+        fi
+        echo "$ARG2" > "$GIGABYTE_LIMIT"
         exit ${EXIT_SUCCESS}
         ;;
     DELL_SMBIOS_BAT_READ)
