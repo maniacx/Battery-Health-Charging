@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-26 19:38-0400\n"
-"PO-Revision-Date: 2023-04-26 19:50-0400\n"
+"POT-Creation-Date: 2023-05-01 13:56-0500\n"
+"PO-Revision-Date: 2023-05-01 13:56-0500\n"
 "Last-Translator: Valeria Cubero Tapia <vct@duck.com>\n"
 "Language-Team: Spanish <LL@li.org>\n"
 "Language: es\n"
@@ -122,11 +122,11 @@ msgstr ""
 "Límite de carga establecido a %d%%"
 
 #: lib/notifier.js:137
-msgid "Charging Mode is set to express"
+msgid "Charging Mode is set to Express"
 msgstr "Modo de carga establecido a express"
 
 #: lib/notifier.js:141
-msgid "Charging Mode is set to adaptive"
+msgid "Charging Mode is set to Adaptive"
 msgstr "Modo de carga establecido a adaptable"
 
 #: lib/powerIcon42.js:134 lib/powerIcon.js:133 lib/powerIcon.js:139
@@ -189,12 +189,12 @@ msgid "Charging Limit: %d%%"
 msgstr "Límite de carga: %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:404 lib/thresholdPanel.js:340
+#: lib/thresholdPanel42.js:405 lib/thresholdPanel.js:341
 msgid "Charging Mode: Adaptive"
 msgstr "Modo de carga: Adaptable"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:406 lib/thresholdPanel.js:343
+#: lib/thresholdPanel42.js:409 lib/thresholdPanel.js:347
 msgid "Charging Mode: Express"
 msgstr "Modo de carga: Express"
 
@@ -209,27 +209,27 @@ msgid "Battery Charging Mode"
 msgstr "Modo de carga"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:395
+#: lib/thresholdPanel.js:400
 msgid "Full Capacity"
 msgstr "Completa"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:398
+#: lib/thresholdPanel.js:403
 msgid "Balanced"
 msgstr "Balanceado"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:401
+#: lib/thresholdPanel.js:406
 msgid "Max Lifespan"
 msgstr "Vida máxima"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:404
+#: lib/thresholdPanel.js:409
 msgid "Adaptive"
 msgstr "Adaptable"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:407
+#: lib/thresholdPanel.js:412
 msgid "Express"
 msgstr "Rápido"
 
