@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-01 13:56-0500\n"
-"PO-Revision-Date: 2023-05-04 05:15\n"
+"PO-Revision-Date: 2023-05-04 15:14\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -19,11 +19,11 @@ msgstr ""
 
 #: lib/notifier.js:32
 msgid "Battery Health Charging"
-msgstr ""
+msgstr "Battery Health Charging"
 
 #: lib/notifier.js:42
 msgid "Battery Health Charging Error"
-msgstr ""
+msgstr "Błąd Battery Health Charging"
 
 #: lib/notifier.js:55
 msgid "Log Out"
@@ -36,12 +36,14 @@ msgstr "Ustawienia"
 #: lib/notifier.js:77
 msgid "Unsupported Gnome version.\n"
 "This extension is compatible only with Gnome version 42 and above."
-msgstr ""
+msgstr "Nieobsługiwana wersja Gnome.\n"
+"To rozszerzenie jest kompatybilne tylko z wersją Gnome 42 i wyższą."
 
 #: lib/notifier.js:81
 msgid "Unsupported device.\n"
 "This extension is not compatible with your device."
-msgstr ""
+msgstr "Nieobsługiwane urządzenie.\n"
+"To rozszerzenie nie jest kompatybilne z twoim urządzeniem."
 
 #: lib/notifier.js:85
 msgid "Please install polkit from extension settings under Installation."
@@ -53,11 +55,11 @@ msgstr ""
 
 #: lib/notifier.js:93 lib/notifier.js:97
 msgid "Installation Successfull. Please save your work and logout."
-msgstr ""
+msgstr "Instalacja zakończona pomyślnie. Zapisz swoją pracę i wyloguj."
 
 #: lib/notifier.js:101
 msgid "Uninstallation Successfull."
-msgstr ""
+msgstr "Odinstalowanie zakończone pomyślnie."
 
 #: lib/notifier.js:105
 msgid "Battery Health Charging encountered an unexpected error."
@@ -67,13 +69,14 @@ msgstr ""
 #, javascript-format
 msgid "Battery 1\n"
 "Charge thresholds are set to %d / %d %%"
-msgstr ""
+msgstr "Bateria 1\n"
+"Progi ładowania ustawione na %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/notifier.js:114 lib/thresholdPanel.js:332
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
-msgstr ""
+msgstr "Progi ładowania ustawione na %d / %d %%"
 
 #: lib/notifier.js:119
 #, javascript-format
@@ -92,30 +95,32 @@ msgstr "Limit ładowania ustawiony na %d%%"
 #, javascript-format
 msgid "Battery 2\n"
 "Charge thresholds are set to %d / %d %%"
-msgstr ""
+msgstr "Bateria 2\n"
+"Progi ładowania ustawione na %d / %d %%"
 
 #: lib/notifier.js:132
 #, javascript-format
 msgid "Battery 2\n"
 "Charging Limit is set to %d%%"
-msgstr ""
+msgstr "Bateria 2\n"
+"Limit ładowania ustawiony na %d%%"
 
 #: lib/notifier.js:137
 msgid "Charging Mode is set to Express"
-msgstr ""
+msgstr "Tryb ładowania jest ustawiony na ekspresowy"
 
 #: lib/notifier.js:141
 msgid "Charging Mode is set to Adaptive"
-msgstr ""
+msgstr "Tryb ładowania jest ustawiony na adaptacyjny"
 
 #: lib/powerIcon42.js:134 lib/powerIcon.js:133 lib/powerIcon.js:139
 #, javascript-format
 msgid "%d %%"
-msgstr ""
+msgstr "%d %%"
 
 #: lib/powerIcon42.js:138
 msgid "Charging stopped (Threshold)"
-msgstr ""
+msgstr "Ładowanie zatrzymane (próg)"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
 #: lib/thresholdPanel42.js:204 lib/thresholdPanel42.js:217
@@ -133,7 +138,7 @@ msgstr "Bateria 1"
 #: lib/thresholdPanel42.js:223 lib/thresholdPanel.js:98
 #: preferences/thresholdPrimary.js:203 preferences/thresholdSecondary.js:198
 msgid "Full Capacity Mode"
-msgstr ""
+msgstr "Tryb pełnej pojemności"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:227 lib/thresholdPanel.js:104
@@ -160,12 +165,12 @@ msgstr "Tryb ekspresowy"
 #: lib/thresholdPanel42.js:398
 #, javascript-format
 msgid "Charge thresholds: %d / %d %%"
-msgstr ""
+msgstr "Progi ładowania: %d / %d %%"
 
 #: lib/thresholdPanel42.js:401
 #, javascript-format
 msgid "Charging Limit: %d%%"
-msgstr ""
+msgstr "Limit ładowania: %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:405 lib/thresholdPanel.js:341
@@ -219,7 +224,7 @@ msgstr ""
 
 #: preferences/general.js:64
 msgid "Select the type of icon for indicator and menu"
-msgstr ""
+msgstr "Wybierz typ ikony dla wskaźnika i menu"
 
 #: preferences/general.js:184
 msgid "Remove"
@@ -235,7 +240,7 @@ msgstr "Zaktualizuj"
 
 #: preferences/thresholdPrimary.js:50
 msgid "Threshold"
-msgstr ""
+msgstr "Próg"
 
 #: preferences/thresholdPrimary.js:201 preferences/thresholdSecondary.js:196
 msgid "Full Capacity Mode (Currently Active)"
@@ -260,7 +265,7 @@ msgstr "Ogólne"
 
 #: ui/general.ui:12
 msgid "Choose icon style"
-msgstr ""
+msgstr "Wybierz styl ikony"
 
 #: ui/general.ui:24
 msgid "Show notifications"
@@ -292,11 +297,11 @@ msgstr ""
 
 #: ui/general.ui:61
 msgid "Shows an icon in system tray"
-msgstr ""
+msgstr "Pokazuje ikonę w zasobniku systemowym"
 
 #: ui/general.ui:72
 msgid "Indicator index"
-msgstr ""
+msgstr "Indeks wskaźnika"
 
 #: ui/general.ui:73
 msgid "The position relative of indicator icon to other items"
@@ -304,11 +309,11 @@ msgstr ""
 
 #: ui/general.ui:89
 msgid "Change battery indicator icon behavior"
-msgstr ""
+msgstr "Zmień zachowanie ikony wskaźnika baterii"
 
 #: ui/general.ui:90
 msgid "Switches battery indicator icon to <b>charging</b> in the system tray and quick settings panel when device is plugged into power source, even when charging is disabled due to charge threshold."
-msgstr ""
+msgstr "Przełącza ikonę wskaźnika baterii na <b>ładowanie</b> w zasobniku systemowym i panelu szybkich ustawień, gdy urządzenie jest podłączone do źródła zasilania, nawet gdy ładowanie jest wyłączone z powodu progu opłat."
 
 #: ui/general.ui:103
 msgid "Installation"
@@ -320,7 +325,7 @@ msgstr ""
 
 #: ui/general.ui:107
 msgid "Install / Update / Remove"
-msgstr ""
+msgstr "Zainstaluj / Aktualizuj / Usuń"
 
 #: ui/general.ui:110
 msgid "This device requires root privileges to change the charging limit. Setup a privileged script and give user access via polkit.\n\n"
@@ -347,23 +352,23 @@ msgstr "Strona projektu"
 
 #: ui/menu.ui:10
 msgid "Report a Bug"
-msgstr ""
+msgstr "Zgłoś błąd"
 
 #: ui/menu.ui:14
 msgid "Rate this extension"
-msgstr ""
+msgstr "Oceń to rozszerzenie"
 
 #: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
 msgid "Customize"
-msgstr ""
+msgstr "Dostosuj"
 
 #: ui/thresholdPrimary.ui:29 ui/thresholdSecondary.ui:29
 msgid "Default"
-msgstr ""
+msgstr "Domyślny"
 
 #: ui/thresholdPrimary.ui:48 ui/thresholdSecondary.ui:48
 msgid "Apply"
-msgstr ""
+msgstr "Zastosuj"
 
 #: ui/thresholdPrimary.ui:58 ui/thresholdPrimary.ui:132
 #: ui/thresholdPrimary.ui:206 ui/thresholdSecondary.ui:58
