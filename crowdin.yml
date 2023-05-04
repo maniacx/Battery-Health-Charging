@@ -1,0 +1,3 @@
+files:
+  - source: /po/Battery-Health-Charging.pot
+    translation: /po/%osx_locale%.po
