@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-01 13:56-0500\n"
-"PO-Revision-Date: 2023-05-04 15:14\n"
+"PO-Revision-Date: 2023-05-07 04:51\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -47,11 +47,11 @@ msgstr "Nieobsługiwane urządzenie.\n"
 
 #: lib/notifier.js:85
 msgid "Please install polkit from extension settings under Installation."
-msgstr ""
+msgstr "Zainstaluj polkit z ustawień rozszerzenia w Instalacji."
 
 #: lib/notifier.js:89
 msgid "Please update polkit from extension settings under Installation."
-msgstr ""
+msgstr "Proszę zaktualizować polkit z ustawień rozszerzenia w Instalacji."
 
 #: lib/notifier.js:93 lib/notifier.js:97
 msgid "Installation Successfull. Please save your work and logout."
@@ -63,7 +63,7 @@ msgstr "Odinstalowanie zakończone pomyślnie."
 
 #: lib/notifier.js:105
 msgid "Battery Health Charging encountered an unexpected error."
-msgstr ""
+msgstr "Ładowanie baterii napotkało nieoczekiwany błąd."
 
 #: lib/notifier.js:109
 #, javascript-format
@@ -220,7 +220,8 @@ msgstr "Ekspresowy"
 #: preferences/general.js:62
 msgid "Select the type of icon for indicator and menu.\n"
 "In threshold settings, if <b>Customise</b> mode is selected, icon type will switch to <b>Symbols Only</b> and this option will be disabled"
-msgstr ""
+msgstr "Wybierz typ ikony dla wskaźnika i menu.\n"
+"W ustawieniach progowych, jeśli wybrano tryb <b>Dostosuj</b>  typ ikony przełączy się tylko na <b>Tylko symbole</b> i ta opcja zostanie wyłączona"
 
 #: preferences/general.js:64
 msgid "Select the type of icon for indicator and menu"
@@ -244,15 +245,15 @@ msgstr "Próg"
 
 #: preferences/thresholdPrimary.js:201 preferences/thresholdSecondary.js:196
 msgid "Full Capacity Mode (Currently Active)"
-msgstr ""
+msgstr "Tryb pełnej pojemności (Aktywny)"
 
 #: preferences/thresholdPrimary.js:205 preferences/thresholdSecondary.js:200
 msgid "Balanced Mode (Currently Active)"
-msgstr ""
+msgstr "Tryb zrównoważony (Aktywny)"
 
 #: preferences/thresholdPrimary.js:209 preferences/thresholdSecondary.js:204
 msgid "Maximum Lifespan Mode (Currently Active)"
-msgstr ""
+msgstr "Tryb maksymalnej żywotności (Aktywny)"
 
 #: preferences/thresholdPrimary.js:215 preferences/thresholdSecondary.js:210
 #, javascript-format
@@ -269,31 +270,31 @@ msgstr "Wybierz styl ikony"
 
 #: ui/general.ui:24
 msgid "Show notifications"
-msgstr ""
+msgstr "Włącz notyfikacje"
 
 #: ui/general.ui:25
 msgid "Shows notifications when the threshold is changed"
-msgstr ""
+msgstr "Pokazuje powiadomienia, gdy próg zostanie zmieniony"
 
 #: ui/general.ui:36
 msgid "Show preferences button"
-msgstr ""
+msgstr "Pokaż przycisk ustawień"
 
 #: ui/general.ui:37
 msgid "Adds a button to open extension preferences from quick settings panel"
-msgstr ""
+msgstr "Dodaje przycisk, aby otworzyć ustawienia rozszerzeń z panelu szybkich ustawień"
 
 #: ui/general.ui:48
 msgid "Display subtitle with current mode on quick menu button"
-msgstr ""
+msgstr "Wyświetlaj napisy z bieżącym trybem na przycisku szybkiego menu"
 
 #: ui/general.ui:49
 msgid "Displays the current mode in the text form (subtitle) on the quick menu button"
-msgstr ""
+msgstr "Wyświetla tekst bieżącego trybu na przycisku szybkiego menu"
 
 #: ui/general.ui:60
 msgid "Show system indicator"
-msgstr ""
+msgstr "Pokaż wskaźnik aplikacji systemowej"
 
 #: ui/general.ui:61
 msgid "Shows an icon in system tray"
@@ -305,7 +306,7 @@ msgstr "Indeks wskaźnika"
 
 #: ui/general.ui:73
 msgid "The position relative of indicator icon to other items"
-msgstr ""
+msgstr "Pozycja względna ikony wskaźnika dla innych elementów"
 
 #: ui/general.ui:89
 msgid "Change battery indicator icon behavior"
@@ -321,7 +322,7 @@ msgstr "Instalacja"
 
 #: ui/general.ui:106
 msgid "Install privileges for this user"
-msgstr ""
+msgstr "Zainstaluj uprawnienia tego użytkownika"
 
 #: ui/general.ui:107
 msgid "Install / Update / Remove"
@@ -332,7 +333,10 @@ msgid "This device requires root privileges to change the charging limit. Setup 
 "<b>Root privileges are required</b> to install, update or remove the polkit policy script.\n\n"
 "<b>Install / Update </b> this polkit policy script and continue using this extension.\n"
 "<b>Remove</b> this polkit policy script before uninstalling this extension."
-msgstr ""
+msgstr "To urządzenie wymaga uprawnień roota, aby zmienić limit ładowania. Skonfiguruj uprzywilejowany skrypt i daj dostęp użytkownikowi poprzez polkit.\n\n"
+"<b>Uprawnienia roota są wymagane</b> do instalacji, aktualizacji lub usunięcia skryptu zasad polkit.\n\n"
+"<b>Zainstaluj / zaktualizuj </b> ten skrypt zasad polkit i kontynuuj korzystanie z tego rozszerzenia.\n"
+"<b>Usuń</b> ten skrypt zasad polkit przed odinstalowaniem tego rozszerzenia."
 
 #: ui/general.ui:134
 msgid "Symbols Only"
@@ -344,7 +348,7 @@ msgstr "Symbol i procent"
 
 #: ui/general.ui:136
 msgid "Percentage Highlighted"
-msgstr ""
+msgstr "Procent Wyróżniony"
 
 #: ui/menu.ui:6
 msgid "Project page"
@@ -374,7 +378,7 @@ msgstr "Zastosuj"
 #: ui/thresholdPrimary.ui:206 ui/thresholdSecondary.ui:58
 #: ui/thresholdSecondary.ui:132 ui/thresholdSecondary.ui:206
 msgid "Stop charging threshold value"
-msgstr ""
+msgstr "Zatrzymaj ładowanie wartości progowej"
 
 #: ui/thresholdPrimary.ui:70 ui/thresholdPrimary.ui:105
 #: ui/thresholdPrimary.ui:144 ui/thresholdPrimary.ui:179
@@ -389,5 +393,5 @@ msgstr "Obecna wartość"
 #: ui/thresholdPrimary.ui:242 ui/thresholdSecondary.ui:93
 #: ui/thresholdSecondary.ui:167 ui/thresholdSecondary.ui:242
 msgid "Start charging threshold value"
-msgstr ""
+msgstr "Rozpocznij wartość progową ładowania"
 
