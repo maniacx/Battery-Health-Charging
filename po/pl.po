@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-01 13:56-0500\n"
-"PO-Revision-Date: 2023-05-07 04:51\n"
+"POT-Creation-Date: 2023-05-07 08:42-0500\n"
+"PO-Revision-Date: 2023-05-07 14:08\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -219,13 +219,12 @@ msgstr "Ekspresowy"
 
 #: preferences/general.js:62
 msgid "Select the type of icon for indicator and menu.\n"
-"In threshold settings, if <b>Customise</b> mode is selected, icon type will switch to <b>Symbols Only</b> and this option will be disabled"
-msgstr "Wybierz typ ikony dla wskaźnika i menu.\n"
-"W ustawieniach progowych, jeśli wybrano tryb <b>Dostosuj</b>  typ ikony przełączy się tylko na <b>Tylko symbole</b> i ta opcja zostanie wyłączona"
+"In threshold settings, if <b>Customise</b> mode is selected, icon type will switch to <b>Symbols Only</b> and this option will be disabled."
+msgstr ""
 
 #: preferences/general.js:64
-msgid "Select the type of icon for indicator and menu"
-msgstr "Wybierz typ ikony dla wskaźnika i menu"
+msgid "Select the type of icon for indicator and menu."
+msgstr ""
 
 #: preferences/general.js:184
 msgid "Remove"
@@ -273,40 +272,40 @@ msgid "Show notifications"
 msgstr "Włącz notyfikacje"
 
 #: ui/general.ui:25
-msgid "Shows notifications when the threshold is changed"
-msgstr "Pokazuje powiadomienia, gdy próg zostanie zmieniony"
+msgid "Shows notifications when the threshold is changed."
+msgstr ""
 
 #: ui/general.ui:36
 msgid "Show preferences button"
 msgstr "Pokaż przycisk ustawień"
 
 #: ui/general.ui:37
-msgid "Adds a button to open extension preferences from quick settings panel"
-msgstr "Dodaje przycisk, aby otworzyć ustawienia rozszerzeń z panelu szybkich ustawień"
+msgid "Adds a button to open extension preferences from quick settings panel."
+msgstr ""
 
 #: ui/general.ui:48
 msgid "Display subtitle with current mode on quick menu button"
 msgstr "Wyświetlaj napisy z bieżącym trybem na przycisku szybkiego menu"
 
 #: ui/general.ui:49
-msgid "Displays the current mode in the text form (subtitle) on the quick menu button"
-msgstr "Wyświetla tekst bieżącego trybu na przycisku szybkiego menu"
+msgid "Displays the current mode in the text form (subtitle) on the quick menu button."
+msgstr ""
 
 #: ui/general.ui:60
 msgid "Show system indicator"
 msgstr "Pokaż wskaźnik aplikacji systemowej"
 
 #: ui/general.ui:61
-msgid "Shows an icon in system tray"
-msgstr "Pokazuje ikonę w zasobniku systemowym"
+msgid "Shows an icon in system tray."
+msgstr ""
 
 #: ui/general.ui:72
 msgid "Indicator index"
 msgstr "Indeks wskaźnika"
 
 #: ui/general.ui:73
-msgid "The position relative of indicator icon to other items"
-msgstr "Pozycja względna ikony wskaźnika dla innych elementów"
+msgid "The position relative of indicator icon to other items."
+msgstr ""
 
 #: ui/general.ui:89
 msgid "Change battery indicator icon behavior"

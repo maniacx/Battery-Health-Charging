@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-01 13:56-0500\n"
-"PO-Revision-Date: 2023-05-04 05:26\n"
+"POT-Creation-Date: 2023-05-07 08:42-0500\n"
+"PO-Revision-Date: 2023-05-07 14:15\n"
 "Last-Translator: \n"
 "Language-Team: Hungarian\n"
 "Language: hu_HU\n"
@@ -215,12 +215,12 @@ msgstr "ExpressCharge™"
 
 #: preferences/general.js:62
 msgid "Select the type of icon for indicator and menu.\n"
-"In threshold settings, if <b>Customise</b> mode is selected, icon type will switch to <b>Symbols Only</b> and this option will be disabled"
+"In threshold settings, if <b>Customise</b> mode is selected, icon type will switch to <b>Symbols Only</b> and this option will be disabled."
 msgstr "Értesítési területen megjelenő ikon kiválasztása.\n"
 "Ez a beállítás egyedi küszöbértékek használata esetében nem elérhető és kizárólag csak ikon jelenik meg"
 
 #: preferences/general.js:64
-msgid "Select the type of icon for indicator and menu"
+msgid "Select the type of icon for indicator and menu."
 msgstr "Értesítési területen megjelenő ikon kiválasztása"
 
 #: preferences/general.js:184
@@ -269,7 +269,7 @@ msgid "Show notifications"
 msgstr "Értesítések"
 
 #: ui/general.ui:25
-msgid "Shows notifications when the threshold is changed"
+msgid "Shows notifications when the threshold is changed."
 msgstr "Értesítés megjelenítése töltési küszöb elérésekor"
 
 #: ui/general.ui:36
@@ -277,32 +277,33 @@ msgid "Show preferences button"
 msgstr "Beállítások gomb"
 
 #: ui/general.ui:37
-msgid "Adds a button to open extension preferences from quick settings panel"
-msgstr "Beállítások gomb megjelenítése a rendszermenüben"
+msgid "Adds a button to open extension preferences from quick settings panel."
+msgstr "Adds a button to open extension preferences from quick settings panel."
 
 #: ui/general.ui:48
 msgid "Display subtitle with current mode on quick menu button"
 msgstr "Felirat megjelenítése a panelen"
 
 #: ui/general.ui:49
-msgid "Displays the current mode in the text form (subtitle) on the quick menu button"
-msgstr "Töltési mód nevének megjelenítése a panelen"
+msgid "Displays the current mode in the text form (subtitle) on the quick menu button."
+msgstr "Displays the current mode in the text form (subtitle) on the quick menu button."
 
 #: ui/general.ui:60
 msgid "Show system indicator"
 msgstr "Értesítési ikon"
 
 #: ui/general.ui:61
-msgid "Shows an icon in system tray"
-msgstr "Ikon megjelenítése az értesítési területen"
+msgid "Shows an icon in system tray."
+msgstr "Shows an icon in system tray."
 
 #: ui/general.ui:72
 msgid "Indicator index"
 msgstr "Elhelyezés"
 
 #: ui/general.ui:73
-msgid "The position relative of indicator icon to other items"
-msgstr "Ikon helyzetének módosítása a többi értesítési ikonhoz képest"
+msgid "The position relative of indicator icon to other items."
+msgstr "Értesítési területen megjelenő ikon kiválasztása.\n"
+"Ez a beállítás egyedi küszöbértékek használata esetében nem elérhető és kizárólag csak ikon jelenik meg"
 
 #: ui/general.ui:89
 msgid "Change battery indicator icon behavior"

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-01 13:56-0500\n"
-"PO-Revision-Date: 2023-05-04 15:14\n"
+"POT-Creation-Date: 2023-05-07 08:42-0500\n"
+"PO-Revision-Date: 2023-05-07 14:08\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr_FR\n"
@@ -110,7 +110,7 @@ msgstr ""
 #: lib/powerIcon42.js:134 lib/powerIcon.js:133 lib/powerIcon.js:139
 #, javascript-format
 msgid "%d %%"
-msgstr ""
+msgstr "%d %%"
 
 #: lib/powerIcon42.js:138
 msgid "Charging stopped (Threshold)"
@@ -213,11 +213,11 @@ msgstr ""
 
 #: preferences/general.js:62
 msgid "Select the type of icon for indicator and menu.\n"
-"In threshold settings, if <b>Customise</b> mode is selected, icon type will switch to <b>Symbols Only</b> and this option will be disabled"
+"In threshold settings, if <b>Customise</b> mode is selected, icon type will switch to <b>Symbols Only</b> and this option will be disabled."
 msgstr ""
 
 #: preferences/general.js:64
-msgid "Select the type of icon for indicator and menu"
+msgid "Select the type of icon for indicator and menu."
 msgstr ""
 
 #: preferences/general.js:184
@@ -266,7 +266,7 @@ msgid "Show notifications"
 msgstr ""
 
 #: ui/general.ui:25
-msgid "Shows notifications when the threshold is changed"
+msgid "Shows notifications when the threshold is changed."
 msgstr ""
 
 #: ui/general.ui:36
@@ -274,7 +274,7 @@ msgid "Show preferences button"
 msgstr ""
 
 #: ui/general.ui:37
-msgid "Adds a button to open extension preferences from quick settings panel"
+msgid "Adds a button to open extension preferences from quick settings panel."
 msgstr ""
 
 #: ui/general.ui:48
@@ -282,7 +282,7 @@ msgid "Display subtitle with current mode on quick menu button"
 msgstr ""
 
 #: ui/general.ui:49
-msgid "Displays the current mode in the text form (subtitle) on the quick menu button"
+msgid "Displays the current mode in the text form (subtitle) on the quick menu button."
 msgstr ""
 
 #: ui/general.ui:60
@@ -290,7 +290,7 @@ msgid "Show system indicator"
 msgstr ""
 
 #: ui/general.ui:61
-msgid "Shows an icon in system tray"
+msgid "Shows an icon in system tray."
 msgstr ""
 
 #: ui/general.ui:72
@@ -298,7 +298,7 @@ msgid "Indicator index"
 msgstr ""
 
 #: ui/general.ui:73
-msgid "The position relative of indicator icon to other items"
+msgid "The position relative of indicator icon to other items."
 msgstr ""
 
 #: ui/general.ui:89
