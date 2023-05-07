@@ -45,11 +45,6 @@ var AsusSingleBatteryBAT0 = GObject.registerClass({
     async setThresholdLimit(chargingMode) {
         const settings = ExtensionUtils.getSettings();
         const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
-        if (readFileInt(BAT0_END_PATH) === endValue) {
-            this.endLimitValue = endValue;
-            this.emit('read-completed');
-            return 0;
-        }
         let status = await runCommandCtl('BAT0_END', `${endValue}`, null, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(BAT0_END_PATH);
