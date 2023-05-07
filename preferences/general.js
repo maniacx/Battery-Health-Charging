@@ -59,9 +59,9 @@ var General = GObject.registerClass({
         this._iconModeSensitiveCheck(settings);
 
         if (this._deviceHaveVariableThreshold)
-            this._icon_style_mode_row.set_subtitle(_('Select the type of icon for indicator and menu.\nIn threshold settings, if <b>Customise</b> mode is selected, icon type will switch to <b>Symbols Only</b> and this option will be disabled'));
+            this._icon_style_mode_row.set_subtitle(_('Select the type of icon for indicator and menu.\nIn threshold settings, if <b>Customise</b> mode is selected, icon type will switch to <b>Symbols Only</b> and this option will be disabled.'));
         else
-            this._icon_style_mode_row.set_subtitle(_('Select the type of icon for indicator and menu'));
+            this._icon_style_mode_row.set_subtitle(_('Select the type of icon for indicator and menu.'));
 
         this._show_quickmenu_subtitle_row.visible = shellVersion >= 44;
 

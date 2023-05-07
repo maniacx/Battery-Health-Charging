@@ -22,7 +22,7 @@
         <child>
           <object class="AdwActionRow">
             <property name="title" translatable="yes">Show notifications</property>
-            <property name="subtitle" translatable="yes">Shows notifications when the threshold is changed</property>
+            <property name="subtitle" translatable="yes">Shows notifications when the threshold is changed.</property>
             <property name="activatable-widget">show_notifications</property>
             <child>
               <object class="GtkSwitch" id="show_notifications">
@@ -34,7 +34,7 @@
         <child>
           <object class="AdwActionRow">
             <property name="title" translatable="yes">Show preferences button</property>
-            <property name="subtitle" translatable="yes">Adds a button to open extension preferences from quick settings panel</property>
+            <property name="subtitle" translatable="yes">Adds a button to open extension preferences from quick settings panel.</property>
             <property name="activatable-widget">show_preferences</property>
             <child>
               <object class="GtkSwitch" id="show_preferences">
@@ -46,7 +46,7 @@
         <child>
           <object class="AdwActionRow" id="show_quickmenu_subtitle_row">
             <property name="title" translatable="yes">Display subtitle with current mode on quick menu button</property>
-            <property name="subtitle" translatable="yes">Displays the current mode in the text form (subtitle) on the quick menu button</property>
+            <property name="subtitle" translatable="yes">Displays the current mode in the text form (subtitle) on the quick menu button.</property>
             <property name="activatable-widget">show_quickmenu_subtitle</property>
             <child>
               <object class="GtkSwitch" id="show_quickmenu_subtitle">
@@ -58,7 +58,7 @@
         <child>
           <object class="AdwActionRow">
             <property name="title" translatable="yes">Show system indicator</property>
-            <property name="subtitle" translatable="yes">Shows an icon in system tray</property>
+            <property name="subtitle" translatable="yes">Shows an icon in system tray.</property>
             <property name="activatable-widget">show_system_indicator</property>
             <child>
               <object class="GtkSwitch" id="show_system_indicator">
@@ -70,7 +70,7 @@
         <child>
           <object class="AdwActionRow">
             <property name="title" translatable="yes">Indicator index</property>
-            <property name="subtitle" translatable="yes">The position relative of indicator icon to other items</property>
+            <property name="subtitle" translatable="yes">The position relative of indicator icon to other items.</property>
             <property name="activatable-widget">indicator_position</property>
             <property name="sensitive" bind-source="show_system_indicator" bind-property="active" bind-flags="sync-create" />
             <child>

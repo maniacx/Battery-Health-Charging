@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-01 20:38-0700\n"
-"PO-Revision-Date: 2023-04-04 16:37+0200\n"
+"POT-Creation-Date: 2023-05-07 08:42-0500\n"
+"PO-Revision-Date: 2023-05-07 10:46-0500\n"
 "Last-Translator: Viktor Sokyrko <victor_sokyko@windowslive.com>\n"
 "Language-Team: Ukrainian\n"
 "Language: uk\n"
@@ -36,12 +36,14 @@ msgid "Settings"
 msgstr "Налаштування"
 
 #: lib/notifier.js:77
-msgid "Unsupported Gnome version.\n"
+msgid ""
+"Unsupported Gnome version.\n"
 "This extension is compatible only with Gnome version 42 and above."
 msgstr ""
 
 #: lib/notifier.js:81
-msgid "Unsupported device.\n"
+msgid ""
+"Unsupported device.\n"
 "This extension is not compatible with your device."
 msgstr ""
 
@@ -67,7 +69,8 @@ msgstr ""
 
 #: lib/notifier.js:109
 #, javascript-format
-msgid "Battery 1\n"
+msgid ""
+"Battery 1\n"
 "Charge thresholds are set to %d / %d %%"
 msgstr ""
 
@@ -79,7 +82,8 @@ msgstr ""
 
 #: lib/notifier.js:119
 #, javascript-format
-msgid "Battery 1\n"
+msgid ""
+"Battery 1\n"
 "Charging Limit is set to %d%%"
 msgstr ""
 
@@ -91,13 +95,15 @@ msgstr ""
 
 #: lib/notifier.js:127
 #, javascript-format
-msgid "Battery 2\n"
+msgid ""
+"Battery 2\n"
 "Charge thresholds are set to %d / %d %%"
 msgstr ""
 
 #: lib/notifier.js:132
 #, javascript-format
-msgid "Battery 2\n"
+msgid ""
+"Battery 2\n"
 "Charging Limit is set to %d%%"
 msgstr ""
 
@@ -214,12 +220,14 @@ msgid "Express"
 msgstr ""
 
 #: preferences/general.js:62
-msgid "Select the type of icon for indicator and menu.\n"
-"In threshold settings, if <b>Customise</b> mode is selected, icon type will switch to <b>Symbols Only</b> and this option will be disabled"
+msgid ""
+"Select the type of icon for indicator and menu.\n"
+"In threshold settings, if <b>Customise</b> mode is selected, icon type will "
+"switch to <b>Symbols Only</b> and this option will be disabled."
 msgstr ""
 
 #: preferences/general.js:64
-msgid "Select the type of icon for indicator and menu"
+msgid "Select the type of icon for indicator and menu."
 msgstr ""
 
 #: preferences/general.js:184
@@ -268,7 +276,7 @@ msgid "Show notifications"
 msgstr "Показувати повідомлення"
 
 #: ui/general.ui:25
-msgid "Shows notifications when the threshold is changed"
+msgid "Shows notifications when the threshold is changed."
 msgstr ""
 
 #: ui/general.ui:36
@@ -276,7 +284,7 @@ msgid "Show preferences button"
 msgstr ""
 
 #: ui/general.ui:37
-msgid "Adds a button to open extension preferences from quick settings panel"
+msgid "Adds a button to open extension preferences from quick settings panel."
 msgstr ""
 
 #: ui/general.ui:48
@@ -284,7 +292,9 @@ msgid "Display subtitle with current mode on quick menu button"
 msgstr ""
 
 #: ui/general.ui:49
-msgid "Displays the current mode in the text form (subtitle) on the quick menu button"
+msgid ""
+"Displays the current mode in the text form (subtitle) on the quick menu "
+"button."
 msgstr ""
 
 #: ui/general.ui:60
@@ -292,7 +302,7 @@ msgid "Show system indicator"
 msgstr ""
 
 #: ui/general.ui:61
-msgid "Shows an icon in system tray"
+msgid "Shows an icon in system tray."
 msgstr ""
 
 #: ui/general.ui:72
@@ -300,7 +310,7 @@ msgid "Indicator index"
 msgstr ""
 
 #: ui/general.ui:73
-msgid "The position relative of indicator icon to other items"
+msgid "The position relative of indicator icon to other items."
 msgstr ""
 
 #: ui/general.ui:89
@@ -308,7 +318,10 @@ msgid "Change battery indicator icon behavior"
 msgstr ""
 
 #: ui/general.ui:90
-msgid "Switches battery indicator icon to <b>charging</b> in the system tray and quick settings panel when device is plugged into power source, even when charging is disabled due to charge threshold."
+msgid ""
+"Switches battery indicator icon to <b>charging</b> in the system tray and "
+"quick settings panel when device is plugged into power source, even when "
+"charging is disabled due to charge threshold."
 msgstr ""
 
 #: ui/general.ui:103
@@ -324,9 +337,15 @@ msgid "Install / Update / Remove"
 msgstr ""
 
 #: ui/general.ui:110
-msgid "This device requires root privileges to change the charging limit. Setup a privileged script and give user access via polkit.\n\n"
-"<b>Root privileges are required</b> to install, update or remove the polkit policy script.\n\n"
-"<b>Install / Update </b> this polkit policy script and continue using this extension.\n"
+msgid ""
+"This device requires root privileges to change the charging limit. Setup a "
+"privileged script and give user access via polkit.\n"
+"\n"
+"<b>Root privileges are required</b> to install, update or remove the polkit "
+"policy script.\n"
+"\n"
+"<b>Install / Update </b> this polkit policy script and continue using this "
+"extension.\n"
 "<b>Remove</b> this polkit policy script before uninstalling this extension."
 msgstr ""
 
@@ -386,4 +405,3 @@ msgstr ""
 #: ui/thresholdSecondary.ui:167 ui/thresholdSecondary.ui:242
 msgid "Start charging threshold value"
 msgstr ""
-
