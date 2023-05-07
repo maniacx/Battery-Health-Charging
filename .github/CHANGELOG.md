@@ -1,7 +1,15 @@
 Battery Health Charging Extension Changelogs
 ============================================
+### Version 17
+May 08, 2023
+* Strings correction
+* Used suggested crowdin translations for incomplete translation
+* Few asus device do not restore threshold on resume after suspend. Fixed. (Thanks AbrarSL)
+* Used session-mode.
+
 ### Version 16
 May 01, 2023
+* Added Hungarian translation (Thanks ViBE-HU)
 * Extension only writes new threshold if new mode/threshold is different than the current mode/threshold. 
 * Added support for Dell laptop using cctk
 * Added support for Tuxedo laptops using tuxedo-keyboard (Thanks r_wraith)
@@ -15,7 +23,7 @@ Apr 27, 2023
 Apr 25, 2023
 * Gnome43/44: changed ornament from DOT to CHECK to match the power-profile quicktogglemenu ornament. (Thanks ai)
 
-### Version 14
+### Version 13
 Apr 24, 2023
 * Fix for Gnome43 which broke with version 12
 

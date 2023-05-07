@@ -271,8 +271,16 @@ smbios-battery-ctl --set-custom-charge-interval low high
 ```
 
 ## Changelog
+### Version 17
+May 08, 2023
+* Strings correction
+* Used suggested crowdin translations for incomplete translation
+* Few asus device do not restore threshold on resume after suspend. Fixed. (Thanks AbrarSL)
+* Used session-mode.
+
 ### Version 16
 May 01, 2023
+* Added Hungarian translation (Thanks ViBE-HU)
 * Extension only writes new threshold if new mode/threshold is different than the current mode/threshold. 
 * Added support for Dell laptop using cctk
 * Added support for Tuxedo laptops using tuxedo-keyboard (Thanks r_wraith)
@@ -286,7 +294,7 @@ Apr 27, 2023
 Apr 25, 2023
 * Gnome43/44: changed ornament from DOT to CHECK to match the power-profile quicktogglemenu ornament. (Thanks ai)
 
-### Version 14
+### Version 13
 Apr 24, 2023
 * Fix for Gnome43 which broke with version 12
 
@@ -295,11 +303,6 @@ Apr 23, 2023
 * Added support for Gnome42 (Thanks ViBE-HU)
 * For Single Battery Devices, Click on quick toggle will change mode. (Full Capacity Mode = default color. Other modes = highlighed color) (Thanks f_cristobal)
 * For Dual Battery Devices, Click on quick toggle will switch battery panel mode. (Same as earlier version)
-
-### Version 11
-Apr 2, 2023
-* Added option to change behavior of system battery indicator
-* In current threshold the text "currently active" will be displayed indicating the current mode
 
 See [Full History](https://github.com/maniacx/Battery-Health-Charging/blob/main/.github/CHANGELOG.md)
 
