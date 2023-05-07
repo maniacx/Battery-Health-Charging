@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-01 13:56-0500\n"
+"POT-Creation-Date: 2023-05-07 08:42-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -221,11 +221,11 @@ msgstr ""
 msgid ""
 "Select the type of icon for indicator and menu.\n"
 "In threshold settings, if <b>Customise</b> mode is selected, icon type will "
-"switch to <b>Symbols Only</b> and this option will be disabled"
+"switch to <b>Symbols Only</b> and this option will be disabled."
 msgstr ""
 
 #: preferences/general.js:64
-msgid "Select the type of icon for indicator and menu"
+msgid "Select the type of icon for indicator and menu."
 msgstr ""
 
 #: preferences/general.js:184
@@ -274,7 +274,7 @@ msgid "Show notifications"
 msgstr ""
 
 #: ui/general.ui:25
-msgid "Shows notifications when the threshold is changed"
+msgid "Shows notifications when the threshold is changed."
 msgstr ""
 
 #: ui/general.ui:36
@@ -282,7 +282,7 @@ msgid "Show preferences button"
 msgstr ""
 
 #: ui/general.ui:37
-msgid "Adds a button to open extension preferences from quick settings panel"
+msgid "Adds a button to open extension preferences from quick settings panel."
 msgstr ""
 
 #: ui/general.ui:48
@@ -292,7 +292,7 @@ msgstr ""
 #: ui/general.ui:49
 msgid ""
 "Displays the current mode in the text form (subtitle) on the quick menu "
-"button"
+"button."
 msgstr ""
 
 #: ui/general.ui:60
@@ -300,7 +300,7 @@ msgid "Show system indicator"
 msgstr ""
 
 #: ui/general.ui:61
-msgid "Shows an icon in system tray"
+msgid "Shows an icon in system tray."
 msgstr ""
 
 #: ui/general.ui:72
@@ -308,7 +308,7 @@ msgid "Indicator index"
 msgstr ""
 
 #: ui/general.ui:73
-msgid "The position relative of indicator icon to other items"
+msgid "The position relative of indicator icon to other items."
 msgstr ""
 
 #: ui/general.ui:89
