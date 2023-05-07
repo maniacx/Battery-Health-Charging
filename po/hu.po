@@ -1,21 +1,22 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# ViBE <vibe@protonmail.com>, 2023.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: battery-health-charging\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-07 08:42-0500\n"
-"PO-Revision-Date: 2023-05-07 14:15\n"
-"Last-Translator: \n"
-"Language-Team: Hungarian\n"
-"Language: hu_HU\n"
+"PO-Revision-Date: 2023-05-07 08:49-0500\n"
+"Last-Translator: ViBE <vibe@protonmail.com>\n"
+"Language-Team: Hungarian <vibe@protonmail.com>\n"
+"Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Crowdin-Project: battery-health-charging\n"
-"X-Crowdin-Project-ID: 579277\n"
-"X-Crowdin-Language: hu\n"
-"X-Crowdin-File: /crowdin_trial/po/Battery-Health-Charging.pot\n"
-"X-Crowdin-File-ID: 37\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: lib/notifier.js:32
 msgid "Battery Health Charging"
@@ -34,15 +35,19 @@ msgid "Settings"
 msgstr "Beállítások"
 
 #: lib/notifier.js:77
-msgid "Unsupported Gnome version.\n"
+msgid ""
+"Unsupported Gnome version.\n"
 "This extension is compatible only with Gnome version 42 and above."
-msgstr "Nem támogatott GNOME verzió.\n"
+msgstr ""
+"Nem támogatott GNOME verzió.\n"
 "Ez a kiterjesztés a GNOME Shell 42 vagy újabb verziójával kompatibilis."
 
 #: lib/notifier.js:81
-msgid "Unsupported device.\n"
+msgid ""
+"Unsupported device.\n"
 "This extension is not compatible with your device."
-msgstr "Nem támogatott eszköz.\n"
+msgstr ""
+"Nem támogatott eszköz.\n"
 "Ez a kiterjesztés nem kompatibilis ezzel az eszközzel."
 
 #: lib/notifier.js:85
@@ -55,7 +60,8 @@ msgstr "Kérem, frissítse a szabályokat a kiterjesztés beállításaiban!"
 
 #: lib/notifier.js:93 lib/notifier.js:97
 msgid "Installation Successfull. Please save your work and logout."
-msgstr "Szabályok létrehozva. Kérem, fejezze be a munkamenetet és jelentkezzen ki!"
+msgstr ""
+"Szabályok létrehozva. Kérem, fejezze be a munkamenetet és jelentkezzen ki!"
 
 #: lib/notifier.js:101
 msgid "Uninstallation Successfull."
@@ -67,7 +73,8 @@ msgstr "Battery Health Charging: váratlan hiba történt."
 
 #: lib/notifier.js:109
 #, javascript-format
-msgid "Battery 1\n"
+msgid ""
+"Battery 1\n"
 "Charge thresholds are set to %d / %d %%"
 msgstr "1. akkumulátor töltési küszöbszintje beállítva %d / %d %%-ra"
 
@@ -79,7 +86,8 @@ msgstr "Töltési küszöbszint beállítva %d / %d %%-ra"
 
 #: lib/notifier.js:119
 #, javascript-format
-msgid "Battery 1\n"
+msgid ""
+"Battery 1\n"
 "Charging Limit is set to %d%%"
 msgstr "1. akkumulátor töltési küszöbszintje beállítva %d%%-ra"
 
@@ -91,13 +99,15 @@ msgstr "Töltési küszöbszint beállítva %d%%-ra"
 
 #: lib/notifier.js:127
 #, javascript-format
-msgid "Battery 2\n"
+msgid ""
+"Battery 2\n"
 "Charge thresholds are set to %d / %d %%"
 msgstr "2. akkumulátor töltési küszöbszintje beállítva %d / %d %%-ra"
 
 #: lib/notifier.js:132
 #, javascript-format
-msgid "Battery 2\n"
+msgid ""
+"Battery 2\n"
 "Charging Limit is set to %d%%"
 msgstr "2. akkumulátor töltési küszöbszintje beállítva %d%%-ra"
 
@@ -214,10 +224,14 @@ msgid "Express"
 msgstr "ExpressCharge™"
 
 #: preferences/general.js:62
-msgid "Select the type of icon for indicator and menu.\n"
-"In threshold settings, if <b>Customise</b> mode is selected, icon type will switch to <b>Symbols Only</b> and this option will be disabled."
-msgstr "Értesítési területen megjelenő ikon kiválasztása.\n"
-"Ez a beállítás egyedi küszöbértékek használata esetében nem elérhető és kizárólag csak ikon jelenik meg"
+msgid ""
+"Select the type of icon for indicator and menu.\n"
+"In threshold settings, if <b>Customise</b> mode is selected, icon type will "
+"switch to <b>Symbols Only</b> and this option will be disabled."
+msgstr ""
+"Értesítési területen megjelenő ikon kiválasztása.\n"
+"Ez a beállítás egyedi küszöbértékek használata esetében nem elérhető és "
+"kizárólag csak ikon jelenik meg"
 
 #: preferences/general.js:64
 msgid "Select the type of icon for indicator and menu."
@@ -278,15 +292,17 @@ msgstr "Beállítások gomb"
 
 #: ui/general.ui:37
 msgid "Adds a button to open extension preferences from quick settings panel."
-msgstr "Adds a button to open extension preferences from quick settings panel."
+msgstr "Beállítások gomb megjelenítése a rendszermenüben"
 
 #: ui/general.ui:48
 msgid "Display subtitle with current mode on quick menu button"
 msgstr "Felirat megjelenítése a panelen"
 
 #: ui/general.ui:49
-msgid "Displays the current mode in the text form (subtitle) on the quick menu button."
-msgstr "Displays the current mode in the text form (subtitle) on the quick menu button."
+msgid ""
+"Displays the current mode in the text form (subtitle) on the quick menu "
+"button."
+msgstr "Töltési mód nevének megjelenítése a panelen"
 
 #: ui/general.ui:60
 msgid "Show system indicator"
@@ -294,7 +310,7 @@ msgstr "Értesítési ikon"
 
 #: ui/general.ui:61
 msgid "Shows an icon in system tray."
-msgstr "Shows an icon in system tray."
+msgstr "Ikon megjelenítése az értesítési területen"
 
 #: ui/general.ui:72
 msgid "Indicator index"
@@ -302,16 +318,21 @@ msgstr "Elhelyezés"
 
 #: ui/general.ui:73
 msgid "The position relative of indicator icon to other items."
-msgstr "Értesítési területen megjelenő ikon kiválasztása.\n"
-"Ez a beállítás egyedi küszöbértékek használata esetében nem elérhető és kizárólag csak ikon jelenik meg"
+msgstr "Ikon helyzetének módosítása a többi értesítési ikonhoz képest"
 
 #: ui/general.ui:89
 msgid "Change battery indicator icon behavior"
 msgstr "Akkumulátor állapotjelző ikon felülírása"
 
 #: ui/general.ui:90
-msgid "Switches battery indicator icon to <b>charging</b> in the system tray and quick settings panel when device is plugged into power source, even when charging is disabled due to charge threshold."
-msgstr "Akkumulátor töltöttségi állapota helyett a <b>töltési folyamat</b> ikonja jelenik meg a rendszermenüben akkor is, ha az eszköz akkumulátora nem töltődik."
+msgid ""
+"Switches battery indicator icon to <b>charging</b> in the system tray and "
+"quick settings panel when device is plugged into power source, even when "
+"charging is disabled due to charge threshold."
+msgstr ""
+"Akkumulátor töltöttségi állapota helyett a <b>töltési folyamat</b> ikonja "
+"jelenik meg a rendszermenüben akkor is, ha az eszköz akkumulátora nem "
+"töltődik."
 
 #: ui/general.ui:103
 msgid "Installation"
@@ -326,13 +347,24 @@ msgid "Install / Update / Remove"
 msgstr "Létrehozás / Frissítés / Eltávolítás"
 
 #: ui/general.ui:110
-msgid "This device requires root privileges to change the charging limit. Setup a privileged script and give user access via polkit.\n\n"
-"<b>Root privileges are required</b> to install, update or remove the polkit policy script.\n\n"
-"<b>Install / Update </b> this polkit policy script and continue using this extension.\n"
+msgid ""
+"This device requires root privileges to change the charging limit. Setup a "
+"privileged script and give user access via polkit.\n"
+"\n"
+"<b>Root privileges are required</b> to install, update or remove the polkit "
+"policy script.\n"
+"\n"
+"<b>Install / Update </b> this polkit policy script and continue using this "
+"extension.\n"
 "<b>Remove</b> this polkit policy script before uninstalling this extension."
-msgstr "Az akkumulátor töltésének szabályozásához egyedi szabályok létrehozása szükséges.\n\n"
-"<b>Rendszergazdai jogosultság szükséges</b> ezen szabályok létrehozásához.\n\n"
-"<b>Létrehozás / Frissítés</b> paranccsal létrehozhatók a kiterjesztés működéséhez szükséges szabályok.\n"
+msgstr ""
+"Az akkumulátor töltésének szabályozásához egyedi szabályok létrehozása "
+"szükséges.\n"
+"\n"
+"<b>Rendszergazdai jogosultság szükséges</b> ezen szabályok létrehozásához.\n"
+"\n"
+"<b>Létrehozás / Frissítés</b> paranccsal létrehozhatók a kiterjesztés "
+"működéséhez szükséges szabályok.\n"
 "<b>Eltávolítás</b> paranccsal eltávolíthatók a már létrehozott szabályok."
 
 #: ui/general.ui:134
@@ -391,4 +423,3 @@ msgstr "Jelenlegi érték"
 #: ui/thresholdSecondary.ui:167 ui/thresholdSecondary.ui:242
 msgid "Start charging threshold value"
 msgstr "Töltés indítása"
-
