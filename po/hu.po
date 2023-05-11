@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-07 08:42-0500\n"
-"PO-Revision-Date: 2023-05-07 10:51-0500\n"
+"POT-Creation-Date: 2023-05-12 10:21-0500\n"
+"PO-Revision-Date: 2023-05-12 10:27-0500\n"
 "Last-Translator: ViBE <vibe@protonmail.com>\n"
 "Language-Team: Hungarian <vibe@protonmail.com>\n"
 "Language: hu\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: lib/notifier.js:32
 msgid "Battery Health Charging"
@@ -59,12 +59,12 @@ msgid "Please update polkit from extension settings under Installation."
 msgstr "Kérem, frissítse a szabályokat a kiterjesztés beállításaiban!"
 
 #: lib/notifier.js:93 lib/notifier.js:97
-msgid "Installation Successfull. Please save your work and logout."
+msgid "Installation Successful. Please save your work and logout."
 msgstr ""
 "Szabályok létrehozva. Kérem, fejezze be a munkamenetet és jelentkezzen ki!"
 
 #: lib/notifier.js:101
-msgid "Uninstallation Successfull."
+msgid "Uninstallation Successful."
 msgstr "Szabályok eltávolítva."
 
 #: lib/notifier.js:105

@@ -7,27 +7,27 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-07 08:42-0500\n"
-"PO-Revision-Date: 2023-05-07 10:51-0500\n"
+"POT-Creation-Date: 2023-05-12 10:21-0500\n"
+"PO-Revision-Date: 2023-05-12 12:03-0500\n"
 "Last-Translator: Albano Battistella <albano_battistella@hotmail.com>\n"
 "Language-Team: Italian <LL@li.org>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: lib/notifier.js:32
 msgid "Battery Health Charging"
-msgstr "Stato di Carica della Batteria"
+msgstr "Battery Health Charging"
 
 #: lib/notifier.js:42
 msgid "Battery Health Charging Error"
-msgstr "Stato di Carica della Batteria Errore"
+msgstr "Battery Health Charging Errore"
 
 #: lib/notifier.js:55
 msgid "Log Out"
-msgstr "Disconnettersi"
+msgstr "Termina sessione"
 
 #: lib/notifier.js:61 ui/general.ui:9
 msgid "Settings"
@@ -38,6 +38,7 @@ msgid ""
 "Unsupported Gnome version.\n"
 "This extension is compatible only with Gnome version 42 and above."
 msgstr ""
+"Versione di Gnome non supportata.\n"
 "Questa estensione è compatibile solo con Gnome versione 42 e successive."
 
 #: lib/notifier.js:81
@@ -51,21 +52,22 @@ msgstr ""
 #: lib/notifier.js:85
 msgid "Please install polkit from extension settings under Installation."
 msgstr ""
-"Si prega di installare polkit dalle impostazioni di estensione in "
+"Si prega di installare polkit dalle impostazioni dell'estensione in "
 "Installazione."
 
 #: lib/notifier.js:89
 msgid "Please update polkit from extension settings under Installation."
 msgstr ""
-"Si prega di installare polkit dalle impostazioni di estensione in "
+"Si prega di aggiornare polkit dalle impostazioni dell'estensione in "
 "Installazione."
 
 #: lib/notifier.js:93 lib/notifier.js:97
-msgid "Installation Successfull. Please save your work and logout."
-msgstr "Installazione riuscita. Salva il tuo lavoro e disconnettiti."
+msgid "Installation Successful. Please save your work and logout."
+msgstr ""
+"Installazione avvenuta con successo. Salva il tuo lavoro e disconnettiti."
 
 #: lib/notifier.js:101
-msgid "Uninstallation Successfull."
+msgid "Uninstallation Successful."
 msgstr "Disinstallazione riuscita."
 
 #: lib/notifier.js:105
@@ -126,7 +128,7 @@ msgstr "La modalità di ricarica è impostata su Express"
 
 #: lib/notifier.js:141
 msgid "Charging Mode is set to Adaptive"
-msgstr "La modalità di ricarica è impostata su Adattivo"
+msgstr "La modalità di ricarica è impostata su Adattiva"
 
 #: lib/powerIcon42.js:134 lib/powerIcon.js:133 lib/powerIcon.js:139
 #, javascript-format
@@ -153,29 +155,29 @@ msgstr "Batteria 1"
 #: lib/thresholdPanel42.js:223 lib/thresholdPanel.js:98
 #: preferences/thresholdPrimary.js:203 preferences/thresholdSecondary.js:198
 msgid "Full Capacity Mode"
-msgstr "Modalità  Piena Capacità"
+msgstr "Modalità capacità massima"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:227 lib/thresholdPanel.js:104
 #: preferences/thresholdPrimary.js:207 preferences/thresholdSecondary.js:202
 msgid "Balanced Mode"
-msgstr "Modalità Bilanciata"
+msgstr "Modalità bilanciata"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:231 lib/thresholdPanel.js:110
 #: preferences/thresholdPrimary.js:211 preferences/thresholdSecondary.js:206
 msgid "Maximum Lifespan Mode"
-msgstr "Modalità Durata Massima"
+msgstr "Modalità ciclo di vita massimo"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:235 lib/thresholdPanel.js:115
 msgid "Adaptive Mode"
-msgstr "Modalità Adattivo"
+msgstr "Modalità adattiva"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:239 lib/thresholdPanel.js:120
 msgid "Express Mode"
-msgstr "Modalità Express"
+msgstr "Modalità express"
 
 #: lib/thresholdPanel42.js:398
 #, javascript-format
@@ -190,7 +192,7 @@ msgstr "Limite di carica: %d%%"
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:405 lib/thresholdPanel.js:341
 msgid "Charging Mode: Adaptive"
-msgstr "Modalità Di Carica: Adattivo"
+msgstr "Modalità Di Carica: Adattiva"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:409 lib/thresholdPanel.js:347
@@ -205,12 +207,12 @@ msgstr "Batteria"
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
 #: lib/thresholdPanel.js:66 lib/thresholdPanel.js:326
 msgid "Battery Charging Mode"
-msgstr "Modalità Di Ricarica Batteria"
+msgstr "Modalità di ricarica"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:400
 msgid "Full Capacity"
-msgstr "Piena Capacità"
+msgstr "Capacità massima"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:403
@@ -220,12 +222,12 @@ msgstr "Bilanciato"
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:406
 msgid "Max Lifespan"
-msgstr "Durata Massima"
+msgstr "Ciclo vita massimo"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:409
 msgid "Adaptive"
-msgstr "Adattivo"
+msgstr "Adattiva"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:412
@@ -239,13 +241,13 @@ msgid ""
 "switch to <b>Symbols Only</b> and this option will be disabled."
 msgstr ""
 "Selezionare il tipo di icona per indicatore e menu.\n"
-"Nelle impostazioni di soglia, se è selezionata la modalità <b>Personalizza</"
-"b> , il tipo di icona passerà a <b>simboli solo</b> e questa opzione sarà "
-"disabilitata."
+"Nelle impostazioni della soglia, se è selezionata la modalità "
+"<b>Personalizza</b>, il tipo di icona cambierà in <b>Solo simboli</b> e "
+"questa opzione sarà disabilitata."
 
 #: preferences/general.js:64
 msgid "Select the type of icon for indicator and menu."
-msgstr "Seleziona il tipo di icona per indicatore e menu."
+msgstr "Selezionare il tipo di icona per indicatore e menu."
 
 #: preferences/general.js:184
 msgid "Remove"
@@ -265,15 +267,15 @@ msgstr "Soglia"
 
 #: preferences/thresholdPrimary.js:201 preferences/thresholdSecondary.js:196
 msgid "Full Capacity Mode (Currently Active)"
-msgstr "Modalità  Piena Capacità (Attiva)"
+msgstr "Modalità capacità massima (Attiva)"
 
 #: preferences/thresholdPrimary.js:205 preferences/thresholdSecondary.js:200
 msgid "Balanced Mode (Currently Active)"
-msgstr "Modalità Bilanciata (Attiva)"
+msgstr "Modalità bilanciata (Attiva)"
 
 #: preferences/thresholdPrimary.js:209 preferences/thresholdSecondary.js:204
 msgid "Maximum Lifespan Mode (Currently Active)"
-msgstr "Modalità Durata Massima (Attiva)"
+msgstr "Modalità ciclo di vita massimo (Attiva)"
 
 #: preferences/thresholdPrimary.js:215 preferences/thresholdSecondary.js:210
 #, javascript-format
@@ -294,7 +296,7 @@ msgstr "Mostra notifiche"
 
 #: ui/general.ui:25
 msgid "Shows notifications when the threshold is changed."
-msgstr "Mostra notifiche quando la soglia viene modificata."
+msgstr "Mostra notifiche quando la soglia cambia."
 
 #: ui/general.ui:36
 msgid "Show preferences button"
@@ -334,7 +336,8 @@ msgstr "Indicatore indice"
 #: ui/general.ui:73
 msgid "The position relative of indicator icon to other items."
 msgstr ""
-"La posizione relativa dell'icona dell'indicatore rispetto ad altri elementi."
+"Scambia la posizione dell'icona dell'indicatore con un'altra icona nella "
+"barra delle applicazioni."
 
 #: ui/general.ui:89
 msgid "Change battery indicator icon behavior"
@@ -346,10 +349,10 @@ msgid ""
 "quick settings panel when device is plugged into power source, even when "
 "charging is disabled due to charge threshold."
 msgstr ""
-"Commuta l'icona dell'indicatore della batteria a <b>ricarica</b> nel vassoio "
-"di sistema e nel pannello delle impostazioni rapide quando il dispositivo è "
-"collegato alla fonte di alimentazione, anche quando la ricarica è "
-"disabilitata a causa della soglia di ricarica."
+"Imposta l'icona dell'indicatore della batteria su <b>in carica</b> nella "
+"barra delle applicazioni e nel pannello delle impostazioni rapide quando il "
+"dispositivo è collegato alla fonte di alimentazione, anche quando la carica "
+"è disabilitata a causa della soglia di carica."
 
 #: ui/general.ui:103
 msgid "Installation"
@@ -357,7 +360,7 @@ msgstr "Installazione"
 
 #: ui/general.ui:106
 msgid "Install privileges for this user"
-msgstr "Installa privilegi per questo utente"
+msgstr "Installa i privilegi di root per questo utente"
 
 #: ui/general.ui:107
 msgid "Install / Update / Remove"
@@ -375,16 +378,16 @@ msgid ""
 "extension.\n"
 "<b>Remove</b> this polkit policy script before uninstalling this extension."
 msgstr ""
-"Questo dispositivo richiede privilegi di root per modificare il limite di "
-"ricarica. Impostare uno script privilegiato e dare accesso all'utente "
-"tramite polkit.\n"
+"Questo dispositivo richiede i privilegi di root per modificare il limite di "
+"addebito. Imposta uno script privilegiato e concedi l'accesso utente tramite "
+"polkit.\n"
 "\n"
-"<b>Sono richiesti privilegi di root</b> per installare, aggiornare o "
-"rimuovere lo script polkit criteri.\n"
+"<b>Sono richiesti i privilegi di root</b> per installare, aggiornare o "
+"rimuovere lo script della politica polkit.\n"
 "\n"
-"<b>Installa / Aggiorna </b> questo script polkit policy e continua a usare "
-"questa estensione.\n"
-"<b>Rimuovere</b> questo script polkit policy prima di disinstallare questa "
+"<b>Installa/Aggiorna</b> questo script di policy polkit e continua a "
+"utilizzare questa estensione.\n"
+"<b>Rimuovi</b> questo script di policy polkit prima di disinstallare questa "
 "estensione."
 
 #: ui/general.ui:134
