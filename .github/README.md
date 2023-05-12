@@ -23,14 +23,14 @@ Since users usually keep their AC adapter connected while using their laptop, th
 >> [Huawei](https://github.com/maniacx/Battery-Health-Charging#huawei)<br>
 >> [Toshiba](https://github.com/maniacx/Battery-Health-Charging#toshiba)<br>
 >> [System76](https://github.com/maniacx/Battery-Health-Charging#system76)<br>
->> [Lenovo](https://github.com/maniacx/Battery-Health-Charging#lenovo)<br>
+>> [Lenovo (Ideapad, Legion)](https://github.com/maniacx/Battery-Health-Charging#lenovo-ideapad-legion)<br>
 >> [Thinkpad](https://github.com/maniacx/Battery-Health-Charging#thinkpad-single-dual-battery)<br>
 >> [Panasonic](https://github.com/maniacx/Battery-Health-Charging#panasonic)<br>
 >> [Acer](https://github.com/maniacx/Battery-Health-Charging#acer)<br>
 >> [MSI](https://github.com/maniacx/Battery-Health-Charging#msi)<br>
 >> [Intel QC71 (XMG, Eluktronics, Tuxedo)](https://github.com/maniacx/Battery-Health-Charging#intel-qc71-devices-xmg-eluktronics-tuxedo)<br>
 >> [Tuxedo](https://github.com/maniacx/Battery-Health-Charging#tuxedo)<br>
->> [Gigabyte (Aero Aorus)](https://github.com/maniacx/Battery-Health-Charging#gigabyte-devices-aero-aorus)<br>
+>> [Gigabyte (Aero, Aorus)](https://github.com/maniacx/Battery-Health-Charging#gigabyte-devices-aero-aorus)<br>
 >> [Dell (libsmbios)](https://github.com/maniacx/Battery-Health-Charging#dell-libsmbios)<br>
 >> [Dell (Dell command configure cctk)](https://github.com/maniacx/Battery-Health-Charging#dell-dell-command-configure-cctk)<br>
 >> [Apple Macbook Intel-series chip](https://github.com/maniacx/Battery-Health-Charging#apple-macbook-intel-series-chip)<br>
@@ -119,7 +119,7 @@ Since users usually keep their AC adapter connected while using their laptop, th
 '/sys/class/power_supply/BAT0/charge_control_end_threshold'
 '/sys/class/power_supply/BAT0/charge_control_start_threshold'
 ```
-### Lenovo
+### Lenovo (Ideapad, Legion)
 * 2 preset Full capacity and Maximum Life Span mode set at 100% and 60%. Fixed threshold (not customizable).
 * Maximum Life Span mode is what Lenovo refers to as **conservative mode**
 * This Extension supports Lenovo Ideapad Laptop having the below path
@@ -271,6 +271,10 @@ smbios-battery-ctl --set-custom-charge-interval low high
 ```
 
 ## Changelog
+### Version 18
+May 12, 2023
+* Strings correction and translation update (google translate)
+
 ### Version 17
 May 08, 2023
 * Strings correction
@@ -324,7 +328,7 @@ sudo rm -f /etc/systemd/system/mani-battery-health-charging.service
 ```
 ## Translation
 Please contribute translation.
-Using Poedit / Gtranslator (Available in gnome software). Using poedit Open/create your language.po. Download the po/Battery-Health-Charging.pot file from github. Go to **Translation** and **Update from POT file** , translate and submit a pull-request to the **main** branch on github.
+Using Poedit / Gtranslator (Available in gnome software). Using poedit Open/create your language.po. Download the po/Battery-Health-Charging.pot file from github. Go to **Translation** and **Update from POT file** , translate and submit a pull-request to the **main** branch on github. Or raise an issue and I will upload it manaully.
 
 ## Bugs/Issue/Request feature
 Please raise an [issue](https://github.com/maniacx/Battery-Health-Charging/issues) on github.

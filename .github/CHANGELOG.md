@@ -1,5 +1,9 @@
 Battery Health Charging Extension Changelogs
 ============================================
+### Version 18
+May 12, 2023
+* Strings correction and translation update (google translate)
+
 ### Version 17
 May 08, 2023
 * Strings correction
