@@ -22,6 +22,7 @@ var ToshibaSingleBatteryBAT0 = GObject.registerClass({
     deviceHaveBalancedMode = false;
     deviceHaveAdaptiveMode = false;
     deviceHaveExpressMode = false;
+    deviceUsesModeNotValue = false;
     iconForFullCapMode = '100';
     iconForMaxLifeMode = '080';
 
@@ -69,6 +70,7 @@ var ToshibaSingleBatteryBAT1 = GObject.registerClass({
     deviceHaveBalancedMode = false;
     deviceHaveAdaptiveMode = false;
     deviceHaveExpressMode = false;
+    deviceUsesModeNotValue = false;
     iconForFullCapMode = '100';
     iconForMaxLifeMode = '080';
 

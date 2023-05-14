@@ -20,12 +20,12 @@ var LenovoSingleBattery = GObject.registerClass({
     deviceHaveBalancedMode = false;
     deviceHaveAdaptiveMode = false;
     deviceHaveExpressMode = false;
-    iconForFullCapMode = '100';
-    iconForMaxLifeMode = '060';
+    deviceUsesModeNotValue = true;
 
     isAvailable() {
         if (!fileExists(LENOVO_PATH))
             return false;
+        ExtensionUtils.getSettings().set_int('icon-style-type', 0);
         return true;
     }
 
@@ -36,21 +36,14 @@ var LenovoSingleBattery = GObject.registerClass({
         else if (chargingMode === 'max')
             conservationMode = 1;
         if (readFileInt(LENOVO_PATH) === conservationMode) {
-            if (conservationMode === 1)
-                this.endLimitValue = 60;
-            else
-                this.endLimitValue = 100;
+            this.mode = chargingMode;
             this.emit('read-completed');
             return 0;
         }
         let status = await runCommandCtl('LENOVO', `${conservationMode}`, null, false);
         if (status === 0)  {
-            const endLimitValue = readFileInt(LENOVO_PATH);
-            if (conservationMode === endLimitValue) {
-                if (endLimitValue === 1)
-                    this.endLimitValue = 60;
-                else
-                    this.endLimitValue = 100;
+            if (readFileInt(LENOVO_PATH) === conservationMode) {
+                this.mode = chargingMode;
                 this.emit('read-completed');
                 return 0;
             }

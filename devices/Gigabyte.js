@@ -21,6 +21,7 @@ var GigabyteSingleBattery = GObject.registerClass({
     deviceHaveBalancedMode = true;
     deviceHaveAdaptiveMode = false;
     deviceHaveExpressMode = false;
+    deviceUsesModeNotValue = false;
     iconForFullCapMode = '100';
     iconForBalanceMode = '080';
     iconForMaxLifeMode = '060';
@@ -53,8 +54,8 @@ var GigabyteSingleBattery = GObject.registerClass({
         let status = await runCommandCtl('GIGABYTE_THRESHOLD', updateMode, `${endValue}`, false);
         if (status === 0)  {
             if (readFileInt(GIGABYTE_MODE) === 1) {
-                if (endValue === readFileInt(GIGABYTE_LIMIT)) {
-                    this.endLimitValue = readFileInt(GIGABYTE_LIMIT);
+                this.endLimitValue = readFileInt(GIGABYTE_LIMIT);
+                if (endValue === this.endLimitValue) {
                     this.emit('read-completed');
                     return 0;
                 }

@@ -25,7 +25,7 @@ function init() {
 // 2. powerIcon runs in [user] and [unlock-dialog] session mode
 // When charging-threshold applied, the Gnome's System Battery indicator icon sometimes displays unplugged, even though charger is plugged.
 // powerIcon introduces a feature to changes this icon from unplugged to plugged when charger is plugged.
-// Since this icon is a Gnome's System Battery indicator which is displayed in lockscreen, powerIcon need to be enabled in [unlock-dialog] session mode. 
+// Since this icon is a Gnome's System Battery indicator which is displayed in lockscreen, powerIcon need to be enabled in [unlock-dialog] session mode.
 // powerIcon runs in [user] and [unlock-dialog] session mode to apply correct icon to Gnome System Battery indicator icon in System-tray.
 
 function enable() {
@@ -38,7 +38,6 @@ function enable() {
 
     // Destroy thresholdPanel on [unlock-dialog] / create thresholdPanel in [user]
     sessionId = Main.sessionMode.connect('updated', session => {
-
         // enable thresholdPanel when entering from [unlock-dialog] to [user] session-mode.
         if (session.currentMode === 'user' || session.parentMode === 'user') {
             if (thresholdPanel === null)
@@ -58,7 +57,7 @@ function disable() {
         Main.sessionMode.disconnect(sessionId);
         sessionId = null;
     }
-    
+
     if (thresholdPanel !== null) {
         thresholdPanel.destroy();
         thresholdPanel = null;

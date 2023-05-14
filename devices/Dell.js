@@ -21,6 +21,7 @@ var DellSmBiosSingleBattery = GObject.registerClass({
     deviceHaveBalancedMode = true;
     deviceHaveAdaptiveMode = true;
     deviceHaveExpressMode = true;
+    deviceUsesModeNotValue = false;
     iconForFullCapMode = '100';
     iconForBalanceMode = '080';
     iconForMaxLifeMode = '060';
@@ -94,16 +95,28 @@ var DellSmBiosSingleBattery = GObject.registerClass({
         splitOutput = filteredOutput.split('\n');
         firstLine = splitOutput[0].split(' ');
         if (firstLine[0] === 'Charging' && firstLine[1] === 'mode') {
-            this.mode = firstLine[2];
-            if (firstLine[2] === 'custom') {
+            if (firstLine[2] === 'express') {
+                this.mode = 'exp';
+                this.startLimitValue = 100;
+                this.endLimitValue = 95;
+                this.emit('read-completed');
+                return 0;
+            } else if (firstLine[2] === 'adaptive') {
+                this.mode = 'adv';
+                this.startLimitValue = 100;
+                this.endLimitValue = 95;
+                this.emit('read-completed');
+                return 0;
+            } else if (firstLine[2] === 'custom') {
                 secondLine = splitOutput[1].split(' ');
                 if (secondLine[0] === 'Charging' && secondLine[1] === 'interval') {
+                    this.mode = chargingMode;
                     this.startLimitValue = parseInt(secondLine[2]);
                     this.endLimitValue = parseInt(secondLine[3]);
+                    this.emit('read-completed');
+                    return 0;
                 }
             }
-            this.emit('read-completed');
-            return 0;
         }
         log('Battery Health Charging: Error threshold values not updated');
         return 1;
@@ -122,6 +135,7 @@ var DellCCTKSingleBattery = GObject.registerClass({
     deviceHaveBalancedMode = true;
     deviceHaveAdaptiveMode = true;
     deviceHaveExpressMode = true;
+    deviceUsesModeNotValue = false;
     iconForFullCapMode = '100';
     iconForBalanceMode = '080';
     iconForMaxLifeMode = '060';
@@ -158,14 +172,14 @@ var DellCCTKSingleBattery = GObject.registerClass({
         filteredOutput = output.trim().replace('=', ' ').replace(':', ' ').replace('-', ' ');
         splitOutput = filteredOutput.split(' ');
         if (splitOutput[0] === 'PrimaryBattChargeCfg') {
-            let modeRead = splitOutput[1].toLowerCase();
-            if (((modeRead === 'adaptive') && (chargingMode === 'adv')) || ((modeRead === 'express') && (chargingMode === 'exp'))) {
+            let modeRead = splitOutput[1];
+            if (((modeRead === 'Adaptive') && (chargingMode === 'adv')) || ((modeRead === 'Express') && (chargingMode === 'exp'))) {
                 this.mode = chargingMode;
                 this.startLimitValue = 100;
                 this.endLimitValue = 95;
                 this.emit('read-completed');
                 return 0;
-            } else if ((modeRead === 'custom') && ((chargingMode === 'ful') || (chargingMode === 'bal') || (chargingMode === 'max'))) {
+            } else if ((modeRead === 'Custom') && ((chargingMode === 'ful') || (chargingMode === 'bal') || (chargingMode === 'max'))) {
                 if ((parseInt(splitOutput[2]) === startValue) && (parseInt(splitOutput[3]) === endValue)) {
                     this.mode = chargingMode;
                     this.startLimitValue = startValue;
@@ -189,13 +203,26 @@ var DellCCTKSingleBattery = GObject.registerClass({
         filteredOutput = output.trim().replace('=', ' ').replace(':', ' ').replace('-', ' ');
         splitOutput = filteredOutput.split(' ');
         if (splitOutput[0] === 'PrimaryBattChargeCfg') {
-            this.mode = splitOutput[1].toLowerCase();
-            if (this.mode === 'custom') {
+            const outputMode = splitOutput[1];
+            if (outputMode === 'Express') {
+                this.mode = 'exp';
+                this.startLimitValue = 100;
+                this.endLimitValue = 95;
+                this.emit('read-completed');
+                return 0;
+            } else if (outputMode === 'Adaptive') {
+                this.mode = 'adv';
+                this.startLimitValue = 100;
+                this.endLimitValue = 95;
+                this.emit('read-completed');
+                return 0;
+            } else if (outputMode === 'Custom') {
+                this.mode = chargingMode;
                 this.startLimitValue = parseInt(splitOutput[2]);
                 this.endLimitValue = parseInt(splitOutput[3]);
+                this.emit('read-completed');
+                return 0;
             }
-            this.emit('read-completed');
-            return 0;
         }
         log('Battery Health Charging: Error threshold values not updated');
         return 1;

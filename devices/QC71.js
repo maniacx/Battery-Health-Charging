@@ -22,6 +22,7 @@ var QC71SingleBatteryBAT0 = GObject.registerClass({
     deviceHaveBalancedMode = true;
     deviceHaveAdaptiveMode = false;
     deviceHaveExpressMode = false;
+    deviceUsesModeNotValue = false;
     iconForFullCapMode = '100';
     iconForBalanceMode = '080';
     iconForMaxLifeMode = '060';

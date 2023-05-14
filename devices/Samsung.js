@@ -20,12 +20,12 @@ var SamsungSingleBattery = GObject.registerClass({
     deviceHaveBalancedMode = false;
     deviceHaveAdaptiveMode = false;
     deviceHaveExpressMode = false;
-    iconForFullCapMode = '100';
-    iconForMaxLifeMode = '080';
+    deviceUsesModeNotValue = true;
 
     isAvailable() {
         if (!fileExists(SAMSUNG_PATH))
             return false;
+        ExtensionUtils.getSettings().set_int('icon-style-type', 0);
         return true;
     }
 
@@ -36,21 +36,14 @@ var SamsungSingleBattery = GObject.registerClass({
         else if (chargingMode === 'max')
             batteryLifeExtender = 1;
         if (readFileInt(SAMSUNG_PATH) === batteryLifeExtender) {
-            if (batteryLifeExtender === 1)
-                this.endLimitValue = 80;
-            else
-                this.endLimitValue = 100;
+            this.mode = chargingMode;
             this.emit('read-completed');
             return 0;
         }
         let status = await runCommandCtl('SAMSUNG', `${batteryLifeExtender}`, null, false);
         if (status === 0)  {
-            const endLimitValue = readFileInt(SAMSUNG_PATH);
-            if (batteryLifeExtender === endLimitValue) {
-                if (endLimitValue === 1)
-                    this.endLimitValue = 80;
-                else
-                    this.endLimitValue = 100;
+            if (readFileInt(SAMSUNG_PATH) === batteryLifeExtender) {
+                this.mode = chargingMode;
                 this.emit('read-completed');
                 return 0;
             }

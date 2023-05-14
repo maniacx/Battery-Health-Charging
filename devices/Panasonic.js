@@ -20,12 +20,12 @@ var PanasonicSingleBattery = GObject.registerClass({
     deviceHaveBalancedMode = false;
     deviceHaveAdaptiveMode = false;
     deviceHaveExpressMode = false;
-    iconForFullCapMode = '100';
-    iconForMaxLifeMode = '080';
+    deviceUsesModeNotValue = true;
 
     isAvailable() {
         if (!fileExists(PANASONIC_PATH))
             return false;
+        ExtensionUtils.getSettings().set_int('icon-style-type', 0);
         return true;
     }
 
@@ -36,21 +36,14 @@ var PanasonicSingleBattery = GObject.registerClass({
         else if (chargingMode === 'max')
             ecoMode = 1;
         if (readFileInt(PANASONIC_PATH) === ecoMode) {
-            if (ecoMode === 1)
-                this.endLimitValue = 80;
-            else
-                this.endLimitValue = 100;
+            this.mode = chargingMode;
             this.emit('read-completed');
             return 0;
         }
         let status = await runCommandCtl('PANASONIC', `${ecoMode}`, null, false);
         if (status === 0)  {
-            const endLimitValue = readFileInt(PANASONIC_PATH);
-            if (ecoMode === endLimitValue) {
-                if (endLimitValue === 1)
-                    this.endLimitValue = 80;
-                else
-                    this.endLimitValue = 100;
+            if (readFileInt(PANASONIC_PATH) === ecoMode) {
+                this.mode = chargingMode;
                 this.emit('read-completed');
                 return 0;
             }

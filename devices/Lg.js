@@ -20,6 +20,7 @@ var LgSingleBattery = GObject.registerClass({
     deviceHaveBalancedMode = false;
     deviceHaveAdaptiveMode = false;
     deviceHaveExpressMode = false;
+    deviceUsesModeNotValue = false;
     iconForFullCapMode = '100';
     iconForMaxLifeMode = '080';
 

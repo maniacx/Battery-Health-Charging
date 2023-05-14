@@ -21,6 +21,7 @@ var Tuxedo3ModesSingleBattery = GObject.registerClass({
     deviceHaveBalancedMode = true;
     deviceHaveAdaptiveMode = false;
     deviceHaveExpressMode = false;
+    deviceUsesModeNotValue = false;
     iconForFullCapMode = '100';
     iconForBalanceMode = '090';
     iconForMaxLifeMode = '080';
