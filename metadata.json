@@ -7,7 +7,7 @@
     "42", "43", "44"
   ],
   "session-modes": ["user", "unlock-dialog"],
-  "version": 18,
+  "version": 19,
   "settings-schema": "org.gnome.shell.extensions.Battery-Health-Charging",
   "gettext-domain": "Battery-Health-Charging@maniacx.github.com"
 }
