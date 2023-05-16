@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-12 10:21-0500\n"
-"PO-Revision-Date: 2023-05-12 12:37-0500\n"
+"POT-Creation-Date: 2023-05-16 14:58-0500\n"
+"PO-Revision-Date: 2023-05-16 15:09-0500\n"
 "Last-Translator: Viktor Sokyrko <victor_sokyko@windowslive.com>\n"
 "Language-Team: Polish\n"
 "Language: pl\n"
@@ -81,7 +81,7 @@ msgstr ""
 "Progi ładowania ustawione na %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:114 lib/thresholdPanel.js:332
+#: lib/notifier.js:114 lib/thresholdPanel.js:354
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "Progi ładowania ustawione na %d / %d %%"
@@ -96,7 +96,7 @@ msgstr ""
 "Limit ładowania ustawiony na %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:123 lib/thresholdPanel.js:336
+#: lib/notifier.js:123 lib/thresholdPanel.js:358
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "Limit ładowania ustawiony na %d%%"
@@ -120,10 +120,22 @@ msgstr ""
 "Limit ładowania ustawiony na %d%%"
 
 #: lib/notifier.js:137
+msgid "Charging Mode is set to Full Capacity"
+msgstr "Tryb ładowania jest ustawiony na pełna pojemność"
+
+#: lib/notifier.js:141
+msgid "Charging Mode is set to Balanced"
+msgstr "Tryb ładowania jest ustawiony na zrównoważony"
+
+#: lib/notifier.js:145
+msgid "Charging Mode is set to Maximum Lifespan"
+msgstr "Tryb ładowania jest ustawiony na Maksymalna żywotność"
+
+#: lib/notifier.js:149
 msgid "Charging Mode is set to Express"
 msgstr "Tryb ładowania jest ustawiony na ekspresowy"
 
-#: lib/notifier.js:141
+#: lib/notifier.js:153
 msgid "Charging Mode is set to Adaptive"
 msgstr "Tryb ładowania jest ustawiony na adaptacyjny"
 
@@ -155,44 +167,61 @@ msgid "Full Capacity Mode"
 msgstr "Tryb pełnej pojemności"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:227 lib/thresholdPanel.js:104
+#: lib/thresholdPanel42.js:227 lib/thresholdPanel.js:110
 #: preferences/thresholdPrimary.js:207 preferences/thresholdSecondary.js:202
 msgid "Balanced Mode"
 msgstr "Tryb zrównoważony"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:231 lib/thresholdPanel.js:110
+#: lib/thresholdPanel42.js:231 lib/thresholdPanel.js:122
 #: preferences/thresholdPrimary.js:211 preferences/thresholdSecondary.js:206
 msgid "Maximum Lifespan Mode"
 msgstr "Tryb maksymalnej żywotności"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:235 lib/thresholdPanel.js:115
+#: lib/thresholdPanel42.js:235 lib/thresholdPanel.js:133
 msgid "Adaptive Mode"
 msgstr "Tryb adaptacyjny"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:239 lib/thresholdPanel.js:120
+#: lib/thresholdPanel42.js:239 lib/thresholdPanel.js:144
 msgid "Express Mode"
 msgstr "Tryb ekspresowy"
 
-#: lib/thresholdPanel42.js:398
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel42.js:392
 #, javascript-format
 msgid "Charge thresholds: %d / %d %%"
 msgstr "Progi ładowania: %d / %d %%"
 
-#: lib/thresholdPanel42.js:401
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel42.js:396
 #, javascript-format
 msgid "Charging Limit: %d%%"
 msgstr "Limit ładowania: %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:405 lib/thresholdPanel.js:341
+#: lib/thresholdPanel42.js:399 lib/thresholdPanel.js:362
+msgid "Charging Mode: Full Capacity"
+msgstr "Tryb ładowania: Pełna pojemność"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel42.js:401 lib/thresholdPanel.js:365
+msgid "Charging Mode: Balanced"
+msgstr "Tryb ładowania: Zrównoważony"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel42.js:403 lib/thresholdPanel.js:368
+msgid "Charging Mode: Maximum Lifespan"
+msgstr "Tryb ładowania: Maksymalna żywotność"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel42.js:405 lib/thresholdPanel.js:371
 msgid "Charging Mode: Adaptive"
 msgstr "Tryb ładowania: Adaptacyjny"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:409 lib/thresholdPanel.js:347
+#: lib/thresholdPanel42.js:407 lib/thresholdPanel.js:374
 msgid "Charging Mode: Express"
 msgstr "Tryb ładowania: Ekspresowy"
 
@@ -202,36 +231,36 @@ msgid "Battery"
 msgstr "Bateria"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:66 lib/thresholdPanel.js:326
+#: lib/thresholdPanel.js:66 lib/thresholdPanel.js:345
 msgid "Battery Charging Mode"
 msgstr "Tryb ładowania baterii"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:400
+#: lib/thresholdPanel.js:426
 msgid "Full Capacity"
 msgstr "Pełna pojemność"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:403
+#: lib/thresholdPanel.js:429
 msgid "Balanced"
 msgstr "Zrównoważony"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:406
+#: lib/thresholdPanel.js:432
 msgid "Max Lifespan"
 msgstr "Maksymalna żywotność"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:409
+#: lib/thresholdPanel.js:435
 msgid "Adaptive"
 msgstr "Adaptacyjny"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:412
+#: lib/thresholdPanel.js:438
 msgid "Express"
 msgstr "Ekspresowy"
 
-#: preferences/general.js:62
+#: preferences/general.js:67
 msgid ""
 "Select the type of icon for indicator and menu.\n"
 "In threshold settings, if <b>Customise</b> mode is selected, icon type will "
@@ -241,19 +270,19 @@ msgstr ""
 "W ustawieniach progowych, jeśli wybrano tryb <b>Dostosuj</b>  typ ikony "
 "przełączy się tylko na <b>Tylko symbole</b> i ta opcja zostanie wyłączona."
 
-#: preferences/general.js:64
+#: preferences/general.js:69
 msgid "Select the type of icon for indicator and menu."
 msgstr "Wybierz typ ikony dla wskaźnika i menu."
 
-#: preferences/general.js:184
+#: preferences/general.js:190
 msgid "Remove"
 msgstr "Usuń"
 
-#: preferences/general.js:188
+#: preferences/general.js:194
 msgid "Install"
 msgstr "Instaluj"
 
-#: preferences/general.js:192
+#: preferences/general.js:198
 msgid "Update"
 msgstr "Zaktualizuj"
 
