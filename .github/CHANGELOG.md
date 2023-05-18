@@ -1,8 +1,21 @@
 Battery Health Charging Extension Changelogs
 ============================================
+### Version 20
+May 18, 2023
+* Turkey translation update (Thanks sabriunal)
+* Used CHECK Icons (Same as wifi) for displaying selected mode, instead of ugly CHECK ornament unicode.
+* Removed threshold value displayed on panel/notification for lenovo ideapad/legion. When charging limit is enabled (conservation mode), Some models sets threshold to 60% and some models set threhsold to 80%, and the kernel doesnt report what is the current threshold value is, but only informs that charging limit is enabled or disabled. Now it will report only the current mode. conservation mode enabled displays max lifespan mode. conservation mode disable display full capacity mode.
+* Removed threshold value displayed on panel/notification for Samsung laptop. When charging limit is enabled (battery_life_extender), Some models sets threshold to 60% and some models set threhsold to 80%, and the kernel doesnt report what is the current threshold value is, but only informs that charging limit is enabled or disabled. Now it will report only the current mode. battery_life_extender mode enabled, displays max lifespan mode. battery_life_extender mode disable, display full capacity mode.
+* Same goes for panasonic
+
+### Version 19
+May 12, 2023
+* Dutch translation update (Thanks Vistaus)
+
 ### Version 18
 May 12, 2023
 * Strings correction and translation update (google translate)
+* Partial Polland and Ukrainian translation (Thanks viksok) 
 
 ### Version 17
 May 08, 2023
@@ -84,7 +97,7 @@ Mar 3, 2023
 * Destroy notification of this extension on extension disable
 * Destroy notification on when new notification recieved.
 * Added icon on popup menu showing current threshold read
-* Updated spanish translation credit: Valeria
+* Updated Spanish translation credit: Valeria
 
 
 ### Version 6

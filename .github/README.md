@@ -76,7 +76,7 @@ Since users usually keep their AC adapter connected while using their laptop, th
 '/sys/devices/platform/lg-laptop/battery_care_limit'
 ```
 ### Samsung
-* 2 preset Full capacity and Maximum Life Span mode set at 100% and 80%. Fixed threshold (not customizable).
+* 2 preset Full capacity and Maximum Life Span mode set at 100% and 80%(85% in some model). Fixed threshold (not customizable).
 * Maximum Life Span mode is the what Samsung refers to as **smart charging mode**
 * This Extension supports Samsung laptops having the below path.
 ```bash
@@ -120,7 +120,7 @@ Since users usually keep their AC adapter connected while using their laptop, th
 '/sys/class/power_supply/BAT0/charge_control_start_threshold'
 ```
 ### Lenovo (Ideapad, Legion)
-* 2 preset Full capacity and Maximum Life Span mode set at 100% and 60%. Fixed threshold (not customizable).
+* 2 preset Full capacity and Maximum Life Span mode set at 100% and 60%(80% in some model). Fixed threshold (not customizable).
 * Maximum Life Span mode is what Lenovo refers to as **conservative mode**
 * This Extension supports Lenovo Ideapad Laptop having the below path
 ```bash
@@ -147,7 +147,7 @@ Since users usually keep their AC adapter connected while using their laptop, th
 '/sys/devices/platform/smapi/BAT1/start_charge_thresh'
 ```
 ### Panasonic
-* 2 preset Full capacity and Maximum Life Span mode set at 100% and 80%. Fixed threshold (not customizable).
+* 2 preset Full capacity and Maximum Life Span mode set at 100% and 80%(75% in some model). Fixed threshold (not customizable).
 * This Extension supports Panasonic laptops having the below path.
 ```bash
 '/sys/devices/platform/panasonic/eco_mode'
@@ -205,7 +205,7 @@ Although the module has been submitted lately into the mainline kernel and may n
 * Support some model from Aero, Aorus etc using kernel module.
 * This Extension supports gigabyte laptops which have the below paths.
 ```bash
-'/sys/devices/platform/gigabyte_laptop/charge_mode';
+'/sys/devices/platform/gigabyte_laptop/charge_mode'
 '/sys/devices/platform/gigabyte_laptop/charge_limit'
 ```
 ### Dell (libsmbios)
@@ -266,47 +266,27 @@ smbios-battery-ctl --set-custom-charge-interval low high
 * The difference between end and start threshold cannot be less than 2%.
 * This Extension supports Macbooks using Asahi Linux having the below path.
 ```bash
-'/sys/class/power_supply/macsmc-battery/charge_control_end_threshold';
-'/sys/class/power_supply/macsmc-battery/charge_control_start_threshold';
+'/sys/class/power_supply/macsmc-battery/charge_control_end_threshold'
+'/sys/class/power_supply/macsmc-battery/charge_control_start_threshold'
 ```
 
 ## Changelog
+### Version 20
+May 18, 2023
+* Turkey translation update (Thanks Vistaus)
+* Used CHECK Icons (Same as wifi) for displaying selected mode, instead of ugly CHECK ornament unicode.
+* Removed threshold value displayed on panel/notification for lenovo ideapad/legion. When charging limit is enabled (conservation mode), Some models sets threshold to 60% and some models set threhsold to 80%, and the kernel doesnt report what is the current threshold value is, but only informs that charging limit is enabled or disabled. Now it will report only the current mode. conservation mode enabled displays max lifespan mode. conservation mode disable display full capacity mode.
+* Removed threshold value displayed on panel/notification for Samsung laptop. When charging limit is enabled (battery_life_extender), Some models sets threshold to 60% and some models set threhsold to 80%, and the kernel doesnt report what is the current threshold value is, but only informs that charging limit is enabled or disabled. Now it will report only the current mode. battery_life_extender mode enabled, displays max lifespan mode. battery_life_extender mode disable, display full capacity mode.
+* Same goes for panasonic
+
+### Version 19
+May 12, 2023
+* Dutch translation update (Thanks Vistaus)
+
 ### Version 18
 May 12, 2023
 * Strings correction and translation update (google translate)
-
-### Version 17
-May 08, 2023
-* Strings correction
-* Used suggested crowdin translations for incomplete translation
-* Few asus device do not restore threshold on resume after suspend. Fixed. (Thanks AbrarSL)
-* Used session-mode.
-
-### Version 16
-May 01, 2023
-* Added Hungarian translation (Thanks ViBE-HU)
-* Extension only writes new threshold if new mode/threshold is different than the current mode/threshold. 
-* Added support for Dell laptop using cctk
-* Added support for Tuxedo laptops using tuxedo-keyboard (Thanks r_wraith)
-* Added support for few gigabyte aero/aorus module (Thanks tangalbert919)
-
-### Version 15
-Apr 27, 2023
-* Added support to Apple Macbook M processora running Asahi Linux (teohhanhui)
-
-### Version 14
-Apr 25, 2023
-* Gnome43/44: changed ornament from DOT to CHECK to match the power-profile quicktogglemenu ornament. (Thanks ai)
-
-### Version 13
-Apr 24, 2023
-* Fix for Gnome43 which broke with version 12
-
-### Version 12
-Apr 23, 2023
-* Added support for Gnome42 (Thanks ViBE-HU)
-* For Single Battery Devices, Click on quick toggle will change mode. (Full Capacity Mode = default color. Other modes = highlighed color) (Thanks f_cristobal)
-* For Dual Battery Devices, Click on quick toggle will switch battery panel mode. (Same as earlier version)
+* Partial Polland and Ukrainian translation (Thanks viksok) 
 
 See [Full History](https://github.com/maniacx/Battery-Health-Charging/blob/main/.github/CHANGELOG.md)
 
@@ -316,16 +296,8 @@ See [Full History](https://github.com/maniacx/Battery-Health-Charging/blob/main/
 Therefore the extension will notify the user to install polkit from extension settings.
 Installing polkit will require privileged (root) access and will need to logout and re-login.
 * During the extension update, if the polkit/ctl file have change and updated, a extension with notify you to update the polkit.
-* ***If you want to remove/uninstall this extension, please remove/uninstall polkit first using this extension preferences prior to uninstalling this extension.
+* **Please remove/uninstall polkit first using this extension preferences, prior to uninstalling this extension**
 
-#### Deprecated systemd service files from version 3
-For users who installed this extension earlier than version 4 (Feb 20, 2023), and upgraded directly to version 10. (28 Mar 2023). Please check if you have the deprecated systemd service. (Version 4 to Version 9 detected deprecated systemd service files and prompted to remove the service, but as of Version 10, this check for deprecated files have been removed from the extension)
-```bash
-ls -l /etc/systemd/system/multi-user.target.wants/mani-battery-health-charging.service
-sudo rm -f /etc/systemd/system/multi-user.target.wants/mani-battery-health-charging.service
-ls -l /etc/systemd/system/mani-battery-health-charging.service
-sudo rm -f /etc/systemd/system/mani-battery-health-charging.service
-```
 ## Translation
 Please contribute translation.
 Using Poedit / Gtranslator (Available in gnome software). Using poedit Open/create your language.po. Download the po/Battery-Health-Charging.pot file from github. Go to **Translation** and **Update from POT file** , translate and submit a pull-request to the **main** branch on github. Or raise an issue and I will upload it manaully.
@@ -379,19 +351,6 @@ Just Perfection Videos and examples
 https://gitlab.com/justperfection.channel/how-to-create-a-gnome-extension-documentation/-/tree/master/Examples
 
 
-Also Thanks for support 
-Just Perfection
-Andy Holmes
-mascherm
-kir-93
-monethass 
-anzigo
-asant
-yukina3230
-Valeria
-albanobattistella
-teohhanhui
-ai
-ViBE-HU
+Also Thanks for support: Just Perfection. Andy Holmes, mascherm, kir-93, monethass, anzigo, asant, yukina3230, Valeria, albanobattistella, teohhanhui, ai, ViBE-HU, tangalbert919, r_wraith, AbrarSL, viksok, Vistaus, sabriunal
 
 
