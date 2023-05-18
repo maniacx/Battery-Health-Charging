@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-16 14:58-0500\n"
-"PO-Revision-Date: 2023-05-16 15:04-0500\n"
+"POT-Creation-Date: 2023-05-17 22:55-0500\n"
+"PO-Revision-Date: 2023-05-17 22:57-0500\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -214,10 +214,9 @@ msgstr "Mode de charge : Capacité maximale"
 msgid "Charging Mode: Balanced"
 msgstr "Mode de charge : Équilibré"
 
-#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:403 lib/thresholdPanel.js:368
-msgid "Charging Mode: Maximum Lifespan"
-msgstr "Mode de charge : Durée de vie maximale"
+#: lib/thresholdPanel42.js:403
+msgid "Charging Mode: Max. Lifespan"
+msgstr "Mode de charge : Durée vie max"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:405 lib/thresholdPanel.js:371
@@ -238,6 +237,11 @@ msgstr "Batterie"
 #: lib/thresholdPanel.js:66 lib/thresholdPanel.js:345
 msgid "Battery Charging Mode"
 msgstr "Mode de charge"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:368
+msgid "Charging Mode: Maximum Lifespan"
+msgstr "Mode de charge : Durée de vie maximale"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:426

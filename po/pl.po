@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-16 14:58-0500\n"
-"PO-Revision-Date: 2023-05-16 15:09-0500\n"
+"POT-Creation-Date: 2023-05-17 22:55-0500\n"
+"PO-Revision-Date: 2023-05-17 23:06-0500\n"
 "Last-Translator: Viktor Sokyrko <victor_sokyko@windowslive.com>\n"
 "Language-Team: Polish\n"
 "Language: pl\n"
@@ -210,9 +210,8 @@ msgstr "Tryb ładowania: Pełna pojemność"
 msgid "Charging Mode: Balanced"
 msgstr "Tryb ładowania: Zrównoważony"
 
-#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:403 lib/thresholdPanel.js:368
-msgid "Charging Mode: Maximum Lifespan"
+#: lib/thresholdPanel42.js:403
+msgid "Charging Mode: Max. Lifespan"
 msgstr "Tryb ładowania: Maksymalna żywotność"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
@@ -234,6 +233,11 @@ msgstr "Bateria"
 #: lib/thresholdPanel.js:66 lib/thresholdPanel.js:345
 msgid "Battery Charging Mode"
 msgstr "Tryb ładowania baterii"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:368
+msgid "Charging Mode: Maximum Lifespan"
+msgstr "Tryb ładowania: Maksymalna żywotność"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:426

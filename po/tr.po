@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battery-Health-Charging@maniacx.github.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-16 14:58-0500\n"
-"PO-Revision-Date: 2023-05-17 01:39+0300\n"
+"POT-Creation-Date: 2023-05-17 22:55-0500\n"
+"PO-Revision-Date: 2023-05-17 23:08-0500\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.1.1\n"
 
 #: lib/notifier.js:32
 msgid "Battery Health Charging"
@@ -210,9 +210,8 @@ msgstr "Şarj Kipi: Tam Kapasite"
 msgid "Charging Mode: Balanced"
 msgstr "Şarj Kipi: Dengeli"
 
-#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:403 lib/thresholdPanel.js:368
-msgid "Charging Mode: Maximum Lifespan"
+#: lib/thresholdPanel42.js:403
+msgid "Charging Mode: Max. Lifespan"
 msgstr "Şarj Kipi: Azami Ömür"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
@@ -234,6 +233,11 @@ msgstr "Pil"
 #: lib/thresholdPanel.js:66 lib/thresholdPanel.js:345
 msgid "Battery Charging Mode"
 msgstr "Pil Şarj Kipi"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:368
+msgid "Charging Mode: Maximum Lifespan"
+msgstr "Şarj Kipi: Azami Ömür"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:426
