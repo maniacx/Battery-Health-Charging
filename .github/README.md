@@ -273,7 +273,7 @@ smbios-battery-ctl --set-custom-charge-interval low high
 ## Changelog
 ### Version 20
 May 18, 2023
-* Turkey translation update (Thanks Vistaus)
+* Turkish translation update (Thanks sabriunal)
 * Used CHECK Icons (Same as wifi) for displaying selected mode, instead of ugly CHECK ornament unicode.
 * Removed threshold value displayed on panel/notification for lenovo ideapad/legion. When charging limit is enabled (conservation mode), Some models sets threshold to 60% and some models set threhsold to 80%, and the kernel doesnt report what is the current threshold value is, but only informs that charging limit is enabled or disabled. Now it will report only the current mode. conservation mode enabled displays max lifespan mode. conservation mode disable display full capacity mode.
 * Removed threshold value displayed on panel/notification for Samsung laptop. When charging limit is enabled (battery_life_extender), Some models sets threshold to 60% and some models set threhsold to 80%, and the kernel doesnt report what is the current threshold value is, but only informs that charging limit is enabled or disabled. Now it will report only the current mode. battery_life_extender mode enabled, displays max lifespan mode. battery_life_extender mode disable, display full capacity mode.
