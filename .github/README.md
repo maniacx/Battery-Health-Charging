@@ -271,6 +271,11 @@ smbios-battery-ctl --set-custom-charge-interval low high
 ```
 
 ## Changelog
+### Version 21
+May 22, 2023
+* German translation update (Thanks olebole)
+* Fix for some thinkpad mode conditions where start threshold should be less than end threshold. (Thanks olebole)
+
 ### Version 20
 May 18, 2023
 * Turkish translation update (Thanks sabriunal)
@@ -282,11 +287,6 @@ May 18, 2023
 ### Version 19
 May 12, 2023
 * Dutch translation update (Thanks Vistaus)
-
-### Version 18
-May 12, 2023
-* Strings correction and translation update (google translate)
-* Partial Polland and Ukrainian translation (Thanks viksok) 
 
 See [Full History](https://github.com/maniacx/Battery-Health-Charging/blob/main/.github/CHANGELOG.md)
 

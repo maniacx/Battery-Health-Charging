@@ -1,5 +1,10 @@
 Battery Health Charging Extension Changelogs
 ============================================
+### Version 21
+May 22, 2023
+* German translation update (Thanks olebole)
+* Fix for some thinkpad mode conditions where start threshold should be less than end threshold. (Thanks olebole)
+
 ### Version 20
 May 18, 2023
 * Turkish translation update (Thanks sabriunal)
