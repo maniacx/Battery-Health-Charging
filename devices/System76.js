@@ -51,16 +51,23 @@ var System76SingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
+        let status;
         const settings = ExtensionUtils.getSettings();
         const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
         const startValue = settings.get_int(`current-${chargingMode}-start-threshold`);
-        if ((readFileInt(BAT0_END_PATH) === endValue) && (readFileInt(BAT0_START_PATH) === startValue)) {
+        const oldEndValue = readFileInt(BAT0_END_PATH);
+        const oldStartValue = readFileInt(BAT0_START_PATH);
+        if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
             this.endLimitValue = endValue;
             this.startLimitValue = startValue;
             this.emit('read-completed');
             return 0;
         }
-        let status = await runCommandCtl('BAT0_END_START', `${endValue}`, `${startValue}`, false);
+        // Some device wont update end threshold if start threshold > end threshold
+        if (startValue >= oldEndValue)
+            status = await runCommandCtl('BAT0_END_START', `${endValue}`, `${startValue}`, false);
+        else
+            status = await runCommandCtl('BAT0_START_END', `${endValue}`, `${startValue}`, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(BAT0_END_PATH);
             this.startLimitValue = readFileInt(BAT0_START_PATH);

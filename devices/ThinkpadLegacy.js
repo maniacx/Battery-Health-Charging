@@ -33,13 +33,13 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
     endBalancedRangeMin = 65;
     endMaxLifeSpanRangeMax = 85;
     endMaxLifeSpanRangeMin = 50;
-    startFullCapacityRangeMax = 98;
+    startFullCapacityRangeMax = 95;
     startFullCapacityRangeMin = 75;
-    startBalancedRangeMax = 83;
+    startBalancedRangeMax = 80;
     startBalancedRangeMin = 60;
-    startMaxLifeSpanRangeMax = 83;
+    startMaxLifeSpanRangeMax = 80;
     startMaxLifeSpanRangeMin = 40;
-    minDiffLimit = 2;
+    minDiffLimit = 5;
 
     isAvailable() {
         if (!fileExists(TP_BAT1_START))
@@ -54,16 +54,23 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
+        let status;
         const settings = ExtensionUtils.getSettings();
         const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
         const startValue = settings.get_int(`current-${chargingMode}-start-threshold`);
-        if ((readFileInt(TP_BAT0_END) === endValue) && (readFileInt(TP_BAT0_START) === startValue)) {
+        const oldEndValue = readFileInt(TP_BAT0_END);
+        const oldStartValue = readFileInt(TP_BAT0_START);
+        if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
             this.endLimitValue = endValue;
             this.startLimitValue = startValue;
             this.emit('read-completed');
             return 0;
         }
-        let status = await runCommandCtl('TP_BAT0_END_START', `${endValue}`, `${startValue}`, false);
+        // Some device wont update end threshold if start threshold > end threshold
+        if (startValue >= oldEndValue)
+            status = await runCommandCtl('TP_BAT0_END_START', `${endValue}`, `${startValue}`, false);
+        else
+            status = await runCommandCtl('TP_BAT0_START_END', `${endValue}`, `${startValue}`, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(TP_BAT0_END);
             this.startLimitValue = readFileInt(TP_BAT0_START);
@@ -77,16 +84,23 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
     }
 
     async setThresholdLimit2(chargingMode2) {
+        let status;
         const settings = ExtensionUtils.getSettings();
         const endValue = settings.get_int(`current-${chargingMode2}-end-threshold2`);
         const startValue = settings.get_int(`current-${chargingMode2}-start-threshold2`);
-        if ((readFileInt(TP_BAT1_END) === endValue) && (readFileInt(TP_BAT1_START) === startValue)) {
+        const oldEndValue = readFileInt(TP_BAT1_END);
+        const oldStartValue = readFileInt(TP_BAT1_START);
+        if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
             this.endLimit2Value = endValue;
             this.startLimit2Value = startValue;
             this.emit('read-completed');
             return 0;
         }
-        let status = await runCommandCtl('TP_BAT1_END_START', `${endValue}`, `${startValue}`, false);
+        // Some device wont update end threshold if start threshold > end threshold
+        if (startValue >= oldEndValue)
+            status = await runCommandCtl('TP_BAT1_END_START', `${endValue}`, `${startValue}`, false);
+        else
+            status = await runCommandCtl('TP_BAT1_START_END', `${endValue}`, `${startValue}`, false);
         if (status === 0)  {
             this.endLimit2Value = readFileInt(TP_BAT1_END);
             this.startLimit2Value = readFileInt(TP_BAT1_START);
@@ -130,13 +144,13 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
     endBalancedRangeMin = 65;
     endMaxLifeSpanRangeMax = 85;
     endMaxLifeSpanRangeMin = 50;
-    startFullCapacityRangeMax = 98;
+    startFullCapacityRangeMax = 95;
     startFullCapacityRangeMin = 75;
-    startBalancedRangeMax = 83;
+    startBalancedRangeMax = 80;
     startBalancedRangeMin = 60;
-    startMaxLifeSpanRangeMax = 83;
+    startMaxLifeSpanRangeMax = 80;
     startMaxLifeSpanRangeMin = 40;
-    minDiffLimit = 2;
+    minDiffLimit = 5;
 
     isAvailable() {
         if (!fileExists(TP_BAT0_START))
@@ -147,16 +161,23 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
+        let status;
         const settings = ExtensionUtils.getSettings();
         const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
         const startValue = settings.get_int(`current-${chargingMode}-start-threshold`);
-        if ((readFileInt(TP_BAT0_END) === endValue) && (readFileInt(TP_BAT0_START) === startValue)) {
+        const oldEndValue = readFileInt(TP_BAT0_END);
+        const oldStartValue = readFileInt(TP_BAT0_START);
+        if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
             this.endLimitValue = endValue;
             this.startLimitValue = startValue;
             this.emit('read-completed');
             return 0;
         }
-        let status = await runCommandCtl('TP_BAT0_END_START', `${endValue}`, `${startValue}`, false);
+        // Some device wont update end threshold if start threshold > end threshold
+        if (startValue >= oldEndValue)
+            status = await runCommandCtl('TP_BAT0_END_START', `${endValue}`, `${startValue}`, false);
+        else
+            status = await runCommandCtl('TP_BAT0_START_END', `${endValue}`, `${startValue}`, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(TP_BAT0_END);
             this.startLimitValue = readFileInt(TP_BAT0_START);
@@ -192,13 +213,13 @@ var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
     endBalancedRangeMin = 65;
     endMaxLifeSpanRangeMax = 85;
     endMaxLifeSpanRangeMin = 50;
-    startFullCapacityRangeMax = 98;
+    startFullCapacityRangeMax = 95;
     startFullCapacityRangeMin = 75;
-    startBalancedRangeMax = 83;
+    startBalancedRangeMax = 80;
     startBalancedRangeMin = 60;
-    startMaxLifeSpanRangeMax = 83;
+    startMaxLifeSpanRangeMax = 80;
     startMaxLifeSpanRangeMin = 40;
-    minDiffLimit = 2;
+    minDiffLimit = 5;
 
     isAvailable() {
         if (!fileExists(TP_BAT1_START))
@@ -209,16 +230,23 @@ var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
+        let status;
         const settings = ExtensionUtils.getSettings();
         const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
         const startValue = settings.get_int(`current-${chargingMode}-start-threshold`);
-        if ((readFileInt(TP_BAT1_END) === endValue) && (readFileInt(TP_BAT1_START) === startValue)) {
+        const oldEndValue = readFileInt(TP_BAT1_END);
+        const oldStartValue = readFileInt(TP_BAT1_START);
+        if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
             this.endLimitValue = endValue;
             this.startLimitValue = startValue;
             this.emit('read-completed');
             return 0;
         }
-        let status = await runCommandCtl('TP_BAT1_END_START', `${endValue}`, `${startValue}`, false);
+        // Some device wont update end threshold if start threshold > end threshold
+        if (startValue >= oldEndValue)
+            status = await runCommandCtl('TP_BAT1_END_START', `${endValue}`, `${startValue}`, false);
+        else
+            status = await runCommandCtl('TP_BAT1_START_END', `${endValue}`, `${startValue}`, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(TP_BAT1_END);
             this.startLimitValue = readFileInt(TP_BAT1_START);

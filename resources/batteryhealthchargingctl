@@ -52,6 +52,11 @@ case "$TOOLCMD" in
         echo "$ARG2" > "$BAT0_START_PATH"
         exit ${EXIT_SUCCESS}
         ;;
+    BAT0_START_END)
+        echo "$ARG2" > "$BAT0_START_PATH"
+        echo "$ARG1" > "$BAT0_END_PATH"
+        exit ${EXIT_SUCCESS}
+        ;;
     BAT1_END)
         echo "$ARG1" > "$BAT1_END_PATH"
         exit ${EXIT_SUCCESS}
@@ -59,6 +64,11 @@ case "$TOOLCMD" in
     BAT1_END_START)
         echo "$ARG1" > "$BAT1_END_PATH"
         echo "$ARG2" > "$BAT1_START_PATH"
+        exit ${EXIT_SUCCESS}
+        ;;
+    BAT1_START_END)
+        echo "$ARG2" > "$BAT1_START_PATH"
+        echo "$ARG1" > "$BAT1_END_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     LG)
@@ -102,9 +112,19 @@ case "$TOOLCMD" in
         echo "$ARG2" > "$TP_BAT0_START"
         exit ${EXIT_SUCCESS}
         ;;
+    TP_BAT0_START_END)
+        echo "$ARG2" > "$TP_BAT0_START"
+        echo "$ARG1" > "$TP_BAT0_END"
+        exit ${EXIT_SUCCESS}
+        ;;
     TP_BAT1_END_START)
         echo "$ARG1" > "$TP_BAT1_END"
         echo "$ARG2" > "$TP_BAT1_START"
+        exit ${EXIT_SUCCESS}
+        ;;
+    TP_BAT1_START_END)
+        echo "$ARG2" > "$TP_BAT1_START"
+        echo "$ARG1" > "$TP_BAT1_END"
         exit ${EXIT_SUCCESS}
         ;;
     ASAHI_END_START)
