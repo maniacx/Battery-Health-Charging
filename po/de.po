@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-05-17 22:55-0500\n"
-"PO-Revision-Date: 2023-05-17 22:56-0500\n"
+"PO-Revision-Date: 2023-05-21 19:46-0500\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -129,7 +129,7 @@ msgstr "Lademodus ist auf Volle Kapazität gesetzt"
 
 #: lib/notifier.js:141
 msgid "Charging Mode is set to Balanced"
-msgstr "Lademodus ist auf Ausgeglichener gesetzt"
+msgstr "Lademodus ist auf Ausgeglichen gesetzt"
 
 #: lib/notifier.js:145
 msgid "Charging Mode is set to Maximum Lifespan"
@@ -141,7 +141,7 @@ msgstr "Lademodus ist auf Express gesetzt"
 
 #: lib/notifier.js:153
 msgid "Charging Mode is set to Adaptive"
-msgstr "Lademodus ist auf Express gesetzt"
+msgstr "Lademodus ist auf Anpassungsfähig gesetzt"
 
 #: lib/powerIcon42.js:134 lib/powerIcon.js:133 lib/powerIcon.js:139
 #, javascript-format
@@ -168,29 +168,29 @@ msgstr "Akku 1"
 #: lib/thresholdPanel42.js:223 lib/thresholdPanel.js:98
 #: preferences/thresholdPrimary.js:203 preferences/thresholdSecondary.js:198
 msgid "Full Capacity Mode"
-msgstr "Volle Kapazität Modus"
+msgstr "Volle Kapazität"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:227 lib/thresholdPanel.js:110
 #: preferences/thresholdPrimary.js:207 preferences/thresholdSecondary.js:202
 msgid "Balanced Mode"
-msgstr "Ausgeglichener Modus"
+msgstr "Ausgeglichen"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:231 lib/thresholdPanel.js:122
 #: preferences/thresholdPrimary.js:211 preferences/thresholdSecondary.js:206
 msgid "Maximum Lifespan Mode"
-msgstr "Maximale Lebensdauer Modus"
+msgstr "Maximale Lebensdauer"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:235 lib/thresholdPanel.js:133
 msgid "Adaptive Mode"
-msgstr "Anpassungsfähig Modus"
+msgstr "Anpassungsfähig"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:239 lib/thresholdPanel.js:144
 msgid "Express Mode"
-msgstr "Express Modus"
+msgstr "Express"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:392
@@ -212,7 +212,7 @@ msgstr "Batterielademodus: Volle Kapazität"
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:401 lib/thresholdPanel.js:365
 msgid "Charging Mode: Balanced"
-msgstr "Batterielademodus: Ausgeglichener"
+msgstr "Batterielademodus: Ausgeglichen"
 
 #: lib/thresholdPanel42.js:403
 msgid "Charging Mode: Max. Lifespan"
@@ -251,7 +251,7 @@ msgstr "Volle Kapazität"
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:429
 msgid "Balanced"
-msgstr "Ausgeglichener"
+msgstr "Ausgeglichen"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:432
@@ -276,7 +276,7 @@ msgid ""
 msgstr ""
 "Wählen Sie den Symboltyp für Anzeige und Menü aus.\n"
 "Wenn in den Schwellenwerteinstellungen der Modus <b>Anpassen</b> ausgewählt "
-"ist, wechselt der Symboltyp zu <b>Symbole nur</b> und diese Option wird "
+"ist, wechselt der Symboltyp zu <b>Nur Symbole</b> und diese Option wird "
 "deaktiviert."
 
 #: preferences/general.js:69
@@ -301,15 +301,15 @@ msgstr "Schwellenwert"
 
 #: preferences/thresholdPrimary.js:201 preferences/thresholdSecondary.js:196
 msgid "Full Capacity Mode (Currently Active)"
-msgstr "Volle Kapazität Modus (Aktiviert)"
+msgstr "Volle Kapazität (Aktiviert)"
 
 #: preferences/thresholdPrimary.js:205 preferences/thresholdSecondary.js:200
 msgid "Balanced Mode (Currently Active)"
-msgstr "Ausgeglichener Modus (Aktiviert)"
+msgstr "Ausgeglichen (Aktiviert)"
 
 #: preferences/thresholdPrimary.js:209 preferences/thresholdSecondary.js:204
 msgid "Maximum Lifespan Mode (Currently Active)"
-msgstr "Maximale Lebensdauer Modus (Aktiviert)"
+msgstr "Maximale Lebensdauer (Aktiviert)"
 
 #: preferences/thresholdPrimary.js:215 preferences/thresholdSecondary.js:210
 #, javascript-format
