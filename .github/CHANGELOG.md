@@ -4,6 +4,7 @@ Battery Health Charging Extension Changelogs
 May 22, 2023
 * German translation update (Thanks olebole)
 * Fix for some thinkpad mode conditions where start threshold should be less than end threshold. (Thanks olebole)
+* Adjusted allowed custom valueLegacy thinkpad (tpsmapi) as allowed values for end endthreshold > startthreshold + 5
 
 ### Version 20
 May 18, 2023

@@ -25,6 +25,7 @@ Since users usually keep their AC adapter connected while using their laptop, th
 >> [System76](https://github.com/maniacx/Battery-Health-Charging#system76)<br>
 >> [Lenovo (Ideapad, Legion)](https://github.com/maniacx/Battery-Health-Charging#lenovo-ideapad-legion)<br>
 >> [Thinkpad](https://github.com/maniacx/Battery-Health-Charging#thinkpad-single-dual-battery)<br>
+>> [Thinkpad (legacy tpsmapi)](https://github.com/maniacx/Battery-Health-Charging-Private#thinkpad-legacy-tpsmapi-single-dual-battery)<br>
 >> [Panasonic](https://github.com/maniacx/Battery-Health-Charging#panasonic)<br>
 >> [Acer](https://github.com/maniacx/Battery-Health-Charging#acer)<br>
 >> [MSI](https://github.com/maniacx/Battery-Health-Charging#msi)<br>
@@ -139,7 +140,15 @@ Since users usually keep their AC adapter connected while using their laptop, th
 
 '/sys/class/power_supply/BAT1/charge_control_end_threshold'
 '/sys/class/power_supply/BAT1/charge_control_start_threshold'
-
+```
+### Thinkpad (legacy tpsmapi) Single /Dual Battery 
+* 3 presets Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
+* Default end/start threshold values of these 3 preset modes are set at 100/95%, 80/75%, and 60/55%.
+* Each preset end threshold value can be customized between 100-80 %, 80-65 %, and 85-50 % respectively.
+* Each preset start threshold value can be customized between is 95-75 %, 85-60 %, and 85-40 % respectively.
+* The difference between end and start threshold cannot be less than 5%.
+* This Extension supports Thinkpad laptops that have pair of below paths.
+```
 '/sys/devices/platform/smapi/BAT0/stop_charge_thresh'
 '/sys/devices/platform/smapi/BAT0/start_charge_thresh'
 
@@ -275,6 +284,7 @@ smbios-battery-ctl --set-custom-charge-interval low high
 May 22, 2023
 * German translation update (Thanks olebole)
 * Fix for some thinkpad mode conditions where start threshold should be less than end threshold. (Thanks olebole)
+* Adjusted allowed custom valueLegacy thinkpad (tpsmapi) as allowed values for end endthreshold > startthreshold + 5
 
 ### Version 20
 May 18, 2023
@@ -351,6 +361,6 @@ Just Perfection Videos and examples
 https://gitlab.com/justperfection.channel/how-to-create-a-gnome-extension-documentation/-/tree/master/Examples
 
 
-Also Thanks for support: Just Perfection. Andy Holmes, mascherm, kir-93, monethass, anzigo, asant, yukina3230, Valeria, albanobattistella, teohhanhui, ai, ViBE-HU, tangalbert919, r_wraith, AbrarSL, viksok, Vistaus, sabriunal
+Also Thanks for support: Just Perfection. Andy Holmes, mascherm, kir-93, monethass, anzigo, asant, yukina3230, Valeria, albanobattistella, teohhanhui, ai, ViBE-HU, tangalbert919, r_wraith, AbrarSL, viksok, Vistaus, sabriunal, olebole
 
 
