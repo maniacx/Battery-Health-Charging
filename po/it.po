@@ -23,7 +23,7 @@ msgstr "Battery Health Charging"
 
 #: lib/notifier.js:42
 msgid "Battery Health Charging Error"
-msgstr "Battery Health Charging Errore"
+msgstr "Errore di Battery Health Charging"
 
 #: lib/notifier.js:55
 msgid "Log Out"
@@ -72,7 +72,7 @@ msgstr "Disinstallazione riuscita."
 
 #: lib/notifier.js:105
 msgid "Battery Health Charging encountered an unexpected error."
-msgstr "Errore inatteso durante la ricarica della batteria."
+msgstr "Battery Health Charging ha incontrato un errore inatteso."
 
 #: lib/notifier.js:109
 #, javascript-format
@@ -81,13 +81,13 @@ msgid ""
 "Charge thresholds are set to %d / %d %%"
 msgstr ""
 "Batteria 1\n"
-"Le soglie di carica sono impostate a %d / %d %%"
+"Le soglie di ricarica sono impostate a %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/notifier.js:114 lib/thresholdPanel.js:354
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
-msgstr "Le soglie di carica sono impostate a %d / %d %%"
+msgstr "Le soglie di ricarica sono impostate a %d / %d %%"
 
 #: lib/notifier.js:119
 #, javascript-format
@@ -111,7 +111,7 @@ msgid ""
 "Charge thresholds are set to %d / %d %%"
 msgstr ""
 "Batteria 2\n"
-"Le soglie di carica sono impostate a %d / %d %%"
+"Le soglie di ricarica sono impostate a %d / %d %%"
 
 #: lib/notifier.js:132
 #, javascript-format
@@ -128,11 +128,11 @@ msgstr "La modalità di ricarica è impostata su Capacità massima"
 
 #: lib/notifier.js:141
 msgid "Charging Mode is set to Balanced"
-msgstr "La modalità di ricarica è impostata su Bilanciato"
+msgstr "La modalità di ricarica è impostata su Bilanciata"
 
 #: lib/notifier.js:145
 msgid "Charging Mode is set to Maximum Lifespan"
-msgstr "La modalità di ricarica è impostata su Ciclo vita massimo"
+msgstr "La modalità di ricarica è impostata su Ciclo di vita massimo"
 
 #: lib/notifier.js:149
 msgid "Charging Mode is set to Express"
@@ -149,7 +149,7 @@ msgstr "%d%%"
 
 #: lib/powerIcon42.js:138
 msgid "Charging stopped (Threshold)"
-msgstr "Ricarica interrotta (Soglia)"
+msgstr "Ricarica interrotta (soglia)"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
 #: lib/thresholdPanel42.js:204 lib/thresholdPanel42.js:217
@@ -195,37 +195,37 @@ msgstr "Modalità express"
 #: lib/thresholdPanel42.js:392
 #, javascript-format
 msgid "Charge thresholds: %d / %d %%"
-msgstr "Soglia di carica: %d / %d %%"
+msgstr "Soglie di ricarica: %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:396
 #, javascript-format
 msgid "Charging Limit: %d%%"
-msgstr "Limite di carica: %d%%"
+msgstr "Limite di ricarica: %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:399 lib/thresholdPanel.js:362
 msgid "Charging Mode: Full Capacity"
-msgstr "Modalità Di Carica: Capacità massima"
+msgstr "Modalità di ricarica: Capacità massima"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:401 lib/thresholdPanel.js:365
 msgid "Charging Mode: Balanced"
-msgstr "Modalità Di Carica: Bilanciato"
+msgstr "Modalità di ricarica: Bilanciata"
 
 #: lib/thresholdPanel42.js:403
 msgid "Charging Mode: Max. Lifespan"
-msgstr "Modalità Di Carica: Ciclo vita massimo"
+msgstr "Modalità di ricarica: Ciclo vita max."
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:405 lib/thresholdPanel.js:371
 msgid "Charging Mode: Adaptive"
-msgstr "Modalità Di Carica: Adattiva"
+msgstr "Modalità di ricarica: Adattiva"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:407 lib/thresholdPanel.js:374
 msgid "Charging Mode: Express"
-msgstr "Modalità Di Carica: Express"
+msgstr "Modalità di ricarica: Express"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
 #: lib/thresholdPanel.js:54
@@ -240,7 +240,7 @@ msgstr "Modalità di ricarica"
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:368
 msgid "Charging Mode: Maximum Lifespan"
-msgstr "Modalità Di Carica: Ciclo vita massimo"
+msgstr "Modalità di ricarica: Ciclo vita max."
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:426
@@ -250,12 +250,12 @@ msgstr "Capacità massima"
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:429
 msgid "Balanced"
-msgstr "Bilanciato"
+msgstr "Bilanciata"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:432
 msgid "Max Lifespan"
-msgstr "Ciclo vita massimo"
+msgstr "Ciclo di vita massimo"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:435
@@ -300,15 +300,15 @@ msgstr "Soglia"
 
 #: preferences/thresholdPrimary.js:201 preferences/thresholdSecondary.js:196
 msgid "Full Capacity Mode (Currently Active)"
-msgstr "Modalità capacità massima (Attiva)"
+msgstr "Modalità capacità massima (attiva)"
 
 #: preferences/thresholdPrimary.js:205 preferences/thresholdSecondary.js:200
 msgid "Balanced Mode (Currently Active)"
-msgstr "Modalità bilanciata (Attiva)"
+msgstr "Modalità bilanciata (attiva)"
 
 #: preferences/thresholdPrimary.js:209 preferences/thresholdSecondary.js:204
 msgid "Maximum Lifespan Mode (Currently Active)"
-msgstr "Modalità ciclo di vita massimo (Attiva)"
+msgstr "Modalità ciclo di vita massimo (attiva)"
 
 #: preferences/thresholdPrimary.js:215 preferences/thresholdSecondary.js:210
 #, javascript-format
@@ -338,13 +338,13 @@ msgstr "Mostra il pulsante delle preferenze"
 #: ui/general.ui:37
 msgid "Adds a button to open extension preferences from quick settings panel."
 msgstr ""
-"Aggiunge un pulsante per aprire le preferenze di estensione dal pannello "
+"Aggiunge un pulsante per aprire le preferenze dell'estensione dal pannello "
 "impostazioni rapide."
 
 #: ui/general.ui:48
 msgid "Display subtitle with current mode on quick menu button"
 msgstr ""
-"Visualizza i sottotitoli con la modalità corrente sul pulsante del menu "
+"Visualizza un sottotitolo con la modalità corrente sul pulsante del menu "
 "rapido"
 
 #: ui/general.ui:49
@@ -352,7 +352,7 @@ msgid ""
 "Displays the current mode in the text form (subtitle) on the quick menu "
 "button."
 msgstr ""
-"Visualizza il testo della modalità corrente sul pulsante del menu rapido."
+"Visualizza il nome della modalità corrente sul pulsante del menu rapido."
 
 #: ui/general.ui:60
 msgid "Show system indicator"
@@ -364,7 +364,7 @@ msgstr "Mostra l'icona nella barra delle applicazioni."
 
 #: ui/general.ui:72
 msgid "Indicator index"
-msgstr "Indicatore indice"
+msgstr "Posizione dell'indicatore"
 
 #: ui/general.ui:73
 msgid "The position relative of indicator icon to other items."
@@ -374,7 +374,7 @@ msgstr ""
 
 #: ui/general.ui:89
 msgid "Change battery indicator icon behavior"
-msgstr "Cambia il comportamento dell'indicatore batteria"
+msgstr "Cambia il comportamento dell'indicatore di batteria"
 
 #: ui/general.ui:90
 msgid ""
@@ -384,8 +384,8 @@ msgid ""
 msgstr ""
 "Imposta l'icona dell'indicatore della batteria su <b>in carica</b> nella "
 "barra delle applicazioni e nel pannello delle impostazioni rapide quando il "
-"dispositivo è collegato alla fonte di alimentazione, anche quando la carica "
-"è disabilitata a causa della soglia di carica."
+"dispositivo è collegato alla fonte di alimentazione, anche quando la ricarica "
+"è disabilitata a causa della soglia di ricarica."
 
 #: ui/general.ui:103
 msgid "Installation"
@@ -412,7 +412,7 @@ msgid ""
 "<b>Remove</b> this polkit policy script before uninstalling this extension."
 msgstr ""
 "Questo dispositivo richiede i privilegi di root per modificare il limite di "
-"addebito. Imposta uno script privilegiato e concedi l'accesso utente tramite "
+"ricarica. Imposta uno script privilegiato e concedi l'accesso utente tramite "
 "polkit.\n"
 "\n"
 "<b>Sono richiesti i privilegi di root</b> per installare, aggiornare o "
@@ -429,7 +429,7 @@ msgstr "Solo simboli"
 
 #: ui/general.ui:135
 msgid "Symbol and Percentage"
-msgstr "Simbolo e Percentuale"
+msgstr "Simbolo e percentuale"
 
 #: ui/general.ui:136
 msgid "Percentage Highlighted"
@@ -463,7 +463,7 @@ msgstr "Applica"
 #: ui/thresholdPrimary.ui:206 ui/thresholdSecondary.ui:58
 #: ui/thresholdSecondary.ui:132 ui/thresholdSecondary.ui:206
 msgid "Stop charging threshold value"
-msgstr "Interrompi valore soglia di ricarica"
+msgstr "Soglia per l'interruzione della ricarica"
 
 #: ui/thresholdPrimary.ui:70 ui/thresholdPrimary.ui:105
 #: ui/thresholdPrimary.ui:144 ui/thresholdPrimary.ui:179
@@ -472,10 +472,10 @@ msgstr "Interrompi valore soglia di ricarica"
 #: ui/thresholdSecondary.ui:144 ui/thresholdSecondary.ui:179
 #: ui/thresholdSecondary.ui:218 ui/thresholdSecondary.ui:254
 msgid "Current Value"
-msgstr "Valore Attuale"
+msgstr "Valore attuale"
 
 #: ui/thresholdPrimary.ui:93 ui/thresholdPrimary.ui:167
 #: ui/thresholdPrimary.ui:242 ui/thresholdSecondary.ui:93
 #: ui/thresholdSecondary.ui:167 ui/thresholdSecondary.ui:242
 msgid "Start charging threshold value"
-msgstr "Inizia il valore soglia di ricarica"
+msgstr "Soglia per l'inizio della ricarica"
