@@ -9,9 +9,9 @@ const {fileExists, readFile, runCommandCtl} = Helper;
 const HUAWEI_PATH = '/sys/devices/platform/huawei-wmi/charge_control_thresholds';
 
 var HuaweiSingleBattery = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class HuaweiSingleBattery extends GObject.Object {
-    name = 'Huawei with Single Battery';
+    name = 'Huawei';
     type = 8;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -53,7 +53,7 @@ var HuaweiSingleBattery = GObject.registerClass({
         if ((endValue === parseInt(limitValue[1])) && (startValue === parseInt(limitValue[0]))) {
             this.endLimitValue = endValue;
             this.startLimitValue = startValue;
-            this.emit('read-completed');
+            this.emit('threshold-applied', true);
             return 0;
         }
         let status = await runCommandCtl('HUAWEI', `${endValue}`, `${startValue}`, false);
@@ -62,11 +62,15 @@ var HuaweiSingleBattery = GObject.registerClass({
             this.endLimitValue = parseInt(limitValue[1]);
             this.startLimitValue = parseInt(limitValue[0]);
             if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });

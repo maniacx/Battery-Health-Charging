@@ -9,9 +9,9 @@ const {fileExists, readFileInt, runCommandCtl} = Helper;
 const ACER_PATH = '/sys/bus/wmi/drivers/acer-wmi-battery/health_mode';
 
 var AcerSingleBattery = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AcerSingleBattery extends GObject.Object {
-    name = 'Acer with Single Battery';
+    name = 'Acer';
     type = 17;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -41,7 +41,7 @@ var AcerSingleBattery = GObject.registerClass({
                 this.endLimitValue = 80;
             else
                 this.endLimitValue = 100;
-            this.emit('read-completed');
+            this.emit('threshold-applied', true);
             return 0;
         }
         let status = await runCommandCtl('ACER', `${healthMode}`, null, false);
@@ -52,12 +52,16 @@ var AcerSingleBattery = GObject.registerClass({
                     this.endLimitValue = 80;
                 else
                     this.endLimitValue = 100;
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });
 

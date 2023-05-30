@@ -9,9 +9,9 @@ const {fileExists, readFileInt, runCommandCtl} = Helper;
 const SAMSUNG_PATH = '/sys/devices/platform/samsung/battery_life_extender';
 
 var SamsungSingleBattery = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class SamsungSingleBattery extends GObject.Object {
-    name = 'Samsung with Single Battery';
+    name = 'Samsung';
     type = 6;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -37,19 +37,23 @@ var SamsungSingleBattery = GObject.registerClass({
             batteryLifeExtender = 1;
         if (readFileInt(SAMSUNG_PATH) === batteryLifeExtender) {
             this.mode = chargingMode;
-            this.emit('read-completed');
+            this.emit('threshold-applied', true);
             return 0;
         }
         let status = await runCommandCtl('SAMSUNG', `${batteryLifeExtender}`, null, false);
         if (status === 0)  {
             if (readFileInt(SAMSUNG_PATH) === batteryLifeExtender) {
                 this.mode = chargingMode;
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });
 

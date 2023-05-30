@@ -9,9 +9,9 @@ const {fileExists, readFileInt, runCommandCtl} = Helper;
 const SONY_PATH = '/sys/devices/platform/sony-laptop/battery_care_limiter';
 
 var SonySingleBattery = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class SonySingleBattery extends GObject.Object {
-    name = 'Sony with Single Battery';
+    name = 'Sony';
     type = 7;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -34,29 +34,31 @@ var SonySingleBattery = GObject.registerClass({
     async setThresholdLimit(chargingMode) {
         let batteryCareLimiter;
         if (chargingMode === 'ful')
-            batteryCareLimiter = 100;
+            batteryCareLimiter = 0;
         else if (chargingMode === 'bal')
             batteryCareLimiter = 80;
         else if (chargingMode === 'max')
             batteryCareLimiter = 50;
         if (readFileInt(SONY_PATH) === batteryCareLimiter) {
-            this.endLimitValue = batteryCareLimiter;
-            this.emit('read-completed');
+            this.endLimitValue = batteryCareLimiter === 0 ? 100 : batteryCareLimiter;
+            this.emit('threshold-applied', true);
             return 0;
         }
         let status = await runCommandCtl('SONY', `${batteryCareLimiter}`, null, false);
         if (status === 0)  {
             let endLimitValue = readFileInt(SONY_PATH);
-            if (endLimitValue === 0)
-                endLimitValue = 100;
             if (batteryCareLimiter === endLimitValue) {
-                this.endLimitValue = endLimitValue;
-                this.emit('read-completed');
+                this.endLimitValue = endLimitValue === 0 ? 100 : endLimitValue;
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });
 

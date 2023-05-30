@@ -57,6 +57,14 @@
             <default>""</default>
             <summary>Path of ctl</summary>
         </key>
+        <key name="show-dell-option" type="b">
+            <default>false</default>
+            <summary>Show settings for Dell package selection</summary>
+        </key>
+        <key name="dell-package-type" type="i">
+            <default>0</default>
+            <summary>Dell package selection</summary>
+        </key>
         <key name="default-threshold" type="b">
             <default>true</default>
             <summary>Toggle between default and customized threshold</summary>

@@ -13,9 +13,9 @@ const BATC_END_PATH = '/sys/class/power_supply/BATC/charge_control_end_threshold
 const BATT_END_PATH = '/sys/class/power_supply/BATT/charge_control_end_threshold';
 
 var AsusSingleBatteryBAT0 = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsusSingleBatteryBAT0 extends GObject.Object {
-    name = 'Asus with Single Battery BAT0';
+    name = 'Asus BAT0';
     type = 1;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -50,19 +50,23 @@ var AsusSingleBatteryBAT0 = GObject.registerClass({
         if (status === 0)  {
             this.endLimitValue = readFileInt(BAT0_END_PATH);
             if (endValue === this.endLimitValue) {
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });
 
 var AsusSingleBatteryBAT1 = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsusSingleBatteryBAT1 extends GObject.Object {
-    name = 'Asus with Single Battery BAT1';
+    name = 'Asus BAT1';
     type = 2;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -91,30 +95,28 @@ var AsusSingleBatteryBAT1 = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        const settings = ExtensionUtils.getSettings();
-        const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
-        if (readFileInt(BAT1_END_PATH) === endValue) {
-            this.endLimitValue = endValue;
-            this.emit('read-completed');
-            return 0;
-        }
+        const endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
         let status = await runCommandCtl('BAT1_END', `${endValue}`, null, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(BAT1_END_PATH);
             if (endValue === this.endLimitValue) {
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });
 
 var AsusSingleBatteryBATC = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsusSingleBatteryBATC extends GObject.Object {
-    name = 'Asus with Single Battery BATC';
+    name = 'Asus BATC';
     type = 3;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -143,30 +145,28 @@ var AsusSingleBatteryBATC = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        const settings = ExtensionUtils.getSettings();
-        const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
-        if (readFileInt(BATC_END_PATH) === endValue) {
-            this.endLimitValue = endValue;
-            this.emit('read-completed');
-            return 0;
-        }
+        const endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
         let status = await runCommandCtl('BATC_END', `${endValue}`, null, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(BATC_END_PATH);
             if (endValue === this.endLimitValue) {
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });
 
 var AsusSingleBatteryBATT = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsusSingleBatteryBATT extends GObject.Object {
-    name = 'Asus with Single Battery BATT';
+    name = 'Asus BATT';
     type = 4;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -195,23 +195,21 @@ var AsusSingleBatteryBATT = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        const settings = ExtensionUtils.getSettings();
-        const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
-        if (readFileInt(BATT_END_PATH) === endValue) {
-            this.endLimitValue = endValue;
-            this.emit('read-completed');
-            return 0;
-        }
+        const endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
         let status = await runCommandCtl('BATT_END', `${endValue}`, null, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(BATT_END_PATH);
             if (endValue === this.endLimitValue) {
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });
 

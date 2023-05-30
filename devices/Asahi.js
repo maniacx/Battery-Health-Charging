@@ -10,9 +10,9 @@ const ASAHI_END_PATH = '/sys/class/power_supply/macsmc-battery/charge_control_en
 const ASAHI_START_PATH = '/sys/class/power_supply/macsmc-battery/charge_control_start_threshold';
 
 var AsahiSingleBattery = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsahiSingleBattery extends GObject.Object {
-    name = 'AppleAsahiLinux with Single Battery';
+    name = 'AppleAsahiLinux';
     type = 25;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -54,7 +54,7 @@ var AsahiSingleBattery = GObject.registerClass({
         if ((readFileInt(ASAHI_END_PATH) === endValue) && (readFileInt(ASAHI_START_PATH) === startValue)) {
             this.endLimitValue = endValue;
             this.startLimitValue = startValue;
-            this.emit('read-completed');
+            this.emit('threshold-applied', true);
             return 0;
         }
         let status = await runCommandCtl('ASAHI_END_START', `${endValue}`, `${startValue}`, false);
@@ -62,12 +62,16 @@ var AsahiSingleBattery = GObject.registerClass({
             this.endLimitValue = readFileInt(ASAHI_END_PATH);
             this.startLimitValue = readFileInt(ASAHI_START_PATH);
             if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });
 

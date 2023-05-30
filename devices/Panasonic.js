@@ -9,9 +9,9 @@ const {fileExists, readFileInt, runCommandCtl} = Helper;
 const PANASONIC_PATH = '/sys/devices/platform/panasonic/eco_mode';
 
 var PanasonicSingleBattery = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class PanasonicSingleBattery extends GObject.Object {
-    name = 'Panasonic with Single Battery';
+    name = 'Panasonic';
     type = 23;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -37,19 +37,23 @@ var PanasonicSingleBattery = GObject.registerClass({
             ecoMode = 1;
         if (readFileInt(PANASONIC_PATH) === ecoMode) {
             this.mode = chargingMode;
-            this.emit('read-completed');
+            this.emit('threshold-applied', true);
             return 0;
         }
         let status = await runCommandCtl('PANASONIC', `${ecoMode}`, null, false);
         if (status === 0)  {
             if (readFileInt(PANASONIC_PATH) === ecoMode) {
                 this.mode = chargingMode;
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });
 

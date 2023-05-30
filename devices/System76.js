@@ -11,9 +11,9 @@ const BAT0_END_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold
 const BAT0_START_PATH = '/sys/class/power_supply/BAT0/charge_control_start_threshold';
 
 var System76SingleBattery = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class System76SingleBattery extends GObject.Object {
-    name = 'System76 with Single Battery';
+    name = 'System76';
     type = 11;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -60,7 +60,7 @@ var System76SingleBattery = GObject.registerClass({
         if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
             this.endLimitValue = endValue;
             this.startLimitValue = startValue;
-            this.emit('read-completed');
+            this.emit('threshold-applied', true);
             return 0;
         }
         // Some device wont update end threshold if start threshold > end threshold
@@ -72,12 +72,16 @@ var System76SingleBattery = GObject.registerClass({
             this.endLimitValue = readFileInt(BAT0_END_PATH);
             this.startLimitValue = readFileInt(BAT0_START_PATH);
             if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });
 

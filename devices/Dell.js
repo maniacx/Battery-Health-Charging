@@ -7,12 +7,13 @@ const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
 const {fileExists, runCommandCtl} = Helper;
 
+const DELL_PATH = '/sys/devices/platform/dell-laptop';
 const CCTK_PATH = '/opt/dell/dcc/cctk';
 
 var DellSmBiosSingleBattery = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class DellSmBiosSingleBattery extends GObject.Object {
-    name = 'Dell with smbios with Single Battery';
+    name = 'Dell';
     type = 22;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -40,13 +41,33 @@ var DellSmBiosSingleBattery = GObject.registerClass({
     minDiffLimit = 5;
 
     isAvailable() {
+        if (!fileExists(DELL_PATH))
+            return false;
         const havePath = GLib.find_program_in_path('smbios-battery-ctl');
-        if (havePath !== null)
-            return true;
-        return false;
+        this._usesLibSmbios = havePath !== null;
+        this._usesCctk = fileExists(CCTK_PATH);
+        if (!this._usesCctk && !this._usesLibSmbios)
+            return false;
+        const bothPackageAvailable = this._usesCctk && this._usesLibSmbios;
+        ExtensionUtils.getSettings().set_boolean('show-dell-option', bothPackageAvailable);
+        return true;
     }
 
     async setThresholdLimit(chargingMode) {
+        if (this._usesCctk && this._usesLibSmbios) {
+            const dellPackage = ExtensionUtils.getSettings().get_int('dell-package-type');
+            if (dellPackage === 0)
+                return await this.setThresholdLimitLibSmbios(chargingMode);
+            else if (dellPackage === 1)
+                return await this.setThresholdLimitCctk(chargingMode);
+        } else if (this._usesLibSmbios) {
+            return await this.setThresholdLimitLibSmbios(chargingMode);
+        } else if (this._usesCctk) {
+            return await this.setThresholdLimitCctk(chargingMode);
+        }
+    }
+
+    async setThresholdLimitLibSmbios(chargingMode) {
         const settings = ExtensionUtils.getSettings();
         let output, filteredOutput, splitOutput, firstLine, secondLine, endValue, startValue;
         if (chargingMode !== 'adv' && chargingMode !== 'exp') {
@@ -65,7 +86,7 @@ var DellSmBiosSingleBattery = GObject.registerClass({
                 this.mode = chargingMode;
                 this.startLimitValue = 100;
                 this.endLimitValue = 95;
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             } else if ((modeRead === 'custom') && ((chargingMode === 'ful') || (chargingMode === 'bal') || (chargingMode === 'max'))) {
                 secondLine = splitOutput[1].split(' ');
@@ -74,7 +95,7 @@ var DellSmBiosSingleBattery = GObject.registerClass({
                         this.mode = chargingMode;
                         this.startLimitValue = startValue;
                         this.endLimitValue = endValue;
-                        this.emit('read-completed');
+                        this.emit('threshold-applied', true);
                         return 0;
                     }
                 }
@@ -99,13 +120,13 @@ var DellSmBiosSingleBattery = GObject.registerClass({
                 this.mode = 'exp';
                 this.startLimitValue = 100;
                 this.endLimitValue = 95;
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             } else if (firstLine[2] === 'adaptive') {
                 this.mode = 'adv';
                 this.startLimitValue = 100;
                 this.endLimitValue = 95;
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             } else if (firstLine[2] === 'custom') {
                 secondLine = splitOutput[1].split(' ');
@@ -113,53 +134,16 @@ var DellSmBiosSingleBattery = GObject.registerClass({
                     this.mode = chargingMode;
                     this.startLimitValue = parseInt(secondLine[2]);
                     this.endLimitValue = parseInt(secondLine[3]);
-                    this.emit('read-completed');
+                    this.emit('threshold-applied', true);
                     return 0;
                 }
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
     }
-});
 
-var DellCCTKSingleBattery = GObject.registerClass({
-    Signals: {'read-completed': {}},
-}, class DellCCTKSingleBattery extends GObject.Object {
-    name = 'Dell with cctk with Single Battery';
-    type = 26;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = false;
-    deviceHaveStartThreshold = true;
-    deviceHaveVariableThreshold = true;
-    deviceHaveBalancedMode = true;
-    deviceHaveAdaptiveMode = true;
-    deviceHaveExpressMode = true;
-    deviceUsesModeNotValue = false;
-    iconForFullCapMode = '100';
-    iconForBalanceMode = '080';
-    iconForMaxLifeMode = '060';
-    endFullCapacityRangeMax = 100;
-    endFullCapacityRangeMin = 80;
-    endBalancedRangeMax = 85;
-    endBalancedRangeMin = 65;
-    endMaxLifeSpanRangeMax = 85;
-    endMaxLifeSpanRangeMin = 55;
-    startFullCapacityRangeMax = 95;
-    startFullCapacityRangeMin = 75;
-    startBalancedRangeMax = 80;
-    startBalancedRangeMin = 60;
-    startMaxLifeSpanRangeMax = 80;
-    startMaxLifeSpanRangeMin = 50;
-    minDiffLimit = 5;
-
-    isAvailable() {
-        if (!fileExists(CCTK_PATH))
-            return false;
-        return true;
-    }
-
-    async setThresholdLimit(chargingMode) {
+    async setThresholdLimitCctk(chargingMode) {
         const settings = ExtensionUtils.getSettings();
         let output, filteredOutput, splitOutput, endValue, startValue;
         if (chargingMode !== 'adv' && chargingMode !== 'exp') {
@@ -177,14 +161,14 @@ var DellCCTKSingleBattery = GObject.registerClass({
                 this.mode = chargingMode;
                 this.startLimitValue = 100;
                 this.endLimitValue = 95;
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             } else if ((modeRead === 'Custom') && ((chargingMode === 'ful') || (chargingMode === 'bal') || (chargingMode === 'max'))) {
                 if ((parseInt(splitOutput[2]) === startValue) && (parseInt(splitOutput[3]) === endValue)) {
                     this.mode = chargingMode;
                     this.startLimitValue = startValue;
                     this.endLimitValue = endValue;
-                    this.emit('read-completed');
+                    this.emit('threshold-applied', true);
                     return 0;
                 }
             }
@@ -208,23 +192,28 @@ var DellCCTKSingleBattery = GObject.registerClass({
                 this.mode = 'exp';
                 this.startLimitValue = 100;
                 this.endLimitValue = 95;
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             } else if (outputMode === 'Adaptive') {
                 this.mode = 'adv';
                 this.startLimitValue = 100;
                 this.endLimitValue = 95;
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             } else if (outputMode === 'Custom') {
                 this.mode = chargingMode;
                 this.startLimitValue = parseInt(splitOutput[2]);
                 this.endLimitValue = parseInt(splitOutput[3]);
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
     }
+
+    destroy() {
+        // Nothing to destroy for this device
+    }
 });
+

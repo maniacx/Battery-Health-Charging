@@ -10,9 +10,9 @@ const GIGABYTE_MODE = '/sys/devices/platform/gigabyte_laptop/charge_mode';
 const GIGABYTE_LIMIT = '/sys/devices/platform/gigabyte_laptop/charge_limit';
 
 var GigabyteSingleBattery = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class GigabyteSingleBattery extends GObject.Object {
-    name = 'Gigabyte with Single Battery';
+    name = 'Gigabyte Laptop';
     type = 28;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -48,7 +48,7 @@ var GigabyteSingleBattery = GObject.registerClass({
             updateMode = 'false';
         if ((readFileInt(GIGABYTE_LIMIT) === endValue) &&  (updateMode === 'false')) {
             this.endLimitValue = endValue;
-            this.emit('read-completed');
+            this.emit('threshold-applied', true);
             return 0;
         }
         let status = await runCommandCtl('GIGABYTE_THRESHOLD', updateMode, `${endValue}`, false);
@@ -56,12 +56,16 @@ var GigabyteSingleBattery = GObject.registerClass({
             if (readFileInt(GIGABYTE_MODE) === 1) {
                 this.endLimitValue = readFileInt(GIGABYTE_LIMIT);
                 if (endValue === this.endLimitValue) {
-                    this.emit('read-completed');
+                    this.emit('threshold-applied', true);
                     return 0;
                 }
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });

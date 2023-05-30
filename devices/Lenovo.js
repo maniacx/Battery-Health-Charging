@@ -9,9 +9,9 @@ const {fileExists, readFileInt, runCommandCtl} = Helper;
 const LENOVO_PATH = '/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode';
 
 var LenovoSingleBattery = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class LenovoSingleBattery extends GObject.Object {
-    name = 'Lenovo with Single Battery';
+    name = 'Lenovo non-thinkpad';
     type = 12;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -37,19 +37,23 @@ var LenovoSingleBattery = GObject.registerClass({
             conservationMode = 1;
         if (readFileInt(LENOVO_PATH) === conservationMode) {
             this.mode = chargingMode;
-            this.emit('read-completed');
+            this.emit('threshold-applied', true);
             return 0;
         }
         let status = await runCommandCtl('LENOVO', `${conservationMode}`, null, false);
         if (status === 0)  {
             if (readFileInt(LENOVO_PATH) === conservationMode) {
                 this.mode = chargingMode;
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return status;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });
 

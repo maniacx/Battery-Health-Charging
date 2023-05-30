@@ -8,11 +8,12 @@ const {fileExists, readFileInt, runCommandCtl} = Helper;
 
 const VENDOR_MSI = '/sys/devices/platform/msi-ec/';
 const BAT0_END_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold';
+const BAT1_END_PATH = '/sys/class/power_supply/BAT1/charge_control_end_threshold';
 
-var MsiSingleBattery = GObject.registerClass({
-    Signals: {'read-completed': {}},
-}, class MsiSingleBattery extends GObject.Object {
-    name = 'Msi with Single Battery';
+var MsiSingleBatteryBAT0 = GObject.registerClass({
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+}, class MsiSingleBatteryBAT0 extends GObject.Object {
+    name = 'Msi BAT0';
     type = 18;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -45,18 +46,78 @@ var MsiSingleBattery = GObject.registerClass({
         const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
         if (readFileInt(BAT0_END_PATH) === endValue) {
             this.endLimitValue = endValue;
-            this.emit('read-completed');
+            this.emit('threshold-applied', true);
             return 0;
         }
         let status = await runCommandCtl('BAT0_END', `${endValue}`, null, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(BAT0_END_PATH);
             if (endValue === this.endLimitValue) {
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
+    }
+});
+
+var MsiSingleBatteryBAT1 = GObject.registerClass({
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+}, class MsiSingleBatteryBAT1 extends GObject.Object {
+    name = 'Msi BAT1';
+    type = 26;
+    deviceNeedRootPermission = true;
+    deviceHaveDualBattery = false;
+    deviceHaveStartThreshold = false;
+    deviceHaveVariableThreshold = true;
+    deviceHaveBalancedMode = true;
+    deviceHaveAdaptiveMode = false;
+    deviceHaveExpressMode = false;
+    deviceUsesModeNotValue = false;
+    iconForFullCapMode = '100';
+    iconForBalanceMode = '080';
+    iconForMaxLifeMode = '060';
+    endFullCapacityRangeMax = 100;
+    endFullCapacityRangeMin = 80;
+    endBalancedRangeMax = 85;
+    endBalancedRangeMin = 65;
+    endMaxLifeSpanRangeMax = 85;
+    endMaxLifeSpanRangeMin = 50;
+
+    isAvailable() {
+        if (!fileExists(VENDOR_MSI))
+            return false;
+        if (!fileExists(BAT1_END_PATH))
+            return false;
+        return true;
+    }
+
+    async setThresholdLimit(chargingMode) {
+        const settings = ExtensionUtils.getSettings();
+        const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
+        if (readFileInt(BAT1_END_PATH) === endValue) {
+            this.endLimitValue = endValue;
+            this.emit('threshold-applied', true);
+            return 0;
+        }
+        let status = await runCommandCtl('BAT1_END', `${endValue}`, null, false);
+        if (status === 0)  {
+            this.endLimitValue = readFileInt(BAT1_END_PATH);
+            if (endValue === this.endLimitValue) {
+                this.emit('threshold-applied', true);
+                return 0;
+            }
+        }
+        this.emit('threshold-applied', false);
+        return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });

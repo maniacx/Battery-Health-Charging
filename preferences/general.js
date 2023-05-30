@@ -38,6 +38,8 @@ var General = GObject.registerClass({
         'show_system_indicator',
         'indicator_position',
         'amend_power_indicator',
+        'dell_package_option_row',
+        'dell_package_option',
         'service_installer',
         'install_service',
         'install_service_button',
@@ -57,6 +59,9 @@ var General = GObject.registerClass({
             this._deviceHaveDualBattery = Driver.currentDevice.deviceHaveDualBattery;
             this._deviceUsesModeNotValue = Driver.currentDevice.deviceUsesModeNotValue;
         }
+
+        this._showDellOption = settings.get_boolean('show-dell-option');
+        this._dell_package_option_row.visible = this._showDellOption;
 
         this._iconModeSensitiveCheck(settings);
         if (this._deviceUsesModeNotValue) {
@@ -130,6 +135,15 @@ var General = GObject.registerClass({
             'active',
             Gio.SettingsBindFlags.DEFAULT
         );
+
+        if (this._showDellOption) {
+            settings.bind(
+                'dell-package-type',
+                this._dell_package_option,
+                'selected',
+                Gio.SettingsBindFlags.DEFAULT
+            );
+        }
 
         if (this._deviceNeedRootPermission) {
             this._install_service.connect('clicked', () => {

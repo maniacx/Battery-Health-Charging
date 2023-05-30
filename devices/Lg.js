@@ -9,9 +9,9 @@ const {fileExists, readFileInt, runCommandCtl} = Helper;
 const LG_PATH = '/sys/devices/platform/lg-laptop/battery_care_limit';
 
 var LgSingleBattery = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class LgSingleBattery extends GObject.Object {
-    name = 'LG with Single Battery';
+    name = 'LG';
     type = 5;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -38,19 +38,23 @@ var LgSingleBattery = GObject.registerClass({
             batteryCareLimit = 80;
         if (readFileInt(LG_PATH) === batteryCareLimit) {
             this.endLimitValue = batteryCareLimit;
-            this.emit('read-completed');
+            this.emit('threshold-applied', true);
             return 0;
         }
         let status = await runCommandCtl('LG', `${batteryCareLimit}`, null, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(LG_PATH);
             if (batteryCareLimit === this.endLimitValue) {
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });
 

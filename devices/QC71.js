@@ -11,9 +11,9 @@ const BAT0_END_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold
 
 
 var QC71SingleBatteryBAT0 = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class QC71SingleBatteryBAT0 extends GObject.Object {
-    name = 'QC71 with Single Battery BAT0';
+    name = 'QC71';
     type = 24;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -46,19 +46,23 @@ var QC71SingleBatteryBAT0 = GObject.registerClass({
         const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
         if (readFileInt(BAT0_END_PATH) === endValue) {
             this.endLimitValue = endValue;
-            this.emit('read-completed');
+            this.emit('threshold-applied', true);
             return 0;
         }
         let status = await runCommandCtl('BAT0_END', `${endValue}`, null, false);
         if (status === 0)  {
             this.endLimitValue = readFileInt(BAT0_END_PATH);
             if (endValue === this.endLimitValue) {
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });
 

@@ -10,9 +10,9 @@ const TUXEDO_AVAILABLE_PROFILE_PATH = '/sys/devices/platform/tuxedo_keyboard/cha
 const TUXEDO_PATH = '/sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile';
 
 var Tuxedo3ModesSingleBattery = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class Tuxedo3ModesSingleBattery extends GObject.Object {
-    name = 'Tuxedo with Single Battery with 3 modes';
+    name = 'Tuxedo';
     type = 27;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -51,7 +51,7 @@ var Tuxedo3ModesSingleBattery = GObject.registerClass({
         }
         if (readFile(TUXEDO_PATH).replace('\n', '') === profile) {
             this.endLimitValue = limit;
-            this.emit('read-completed');
+            this.emit('threshold-applied', true);
             return 0;
         }
         let status = await runCommandCtl('TUXEDO', profile, null, false);
@@ -59,12 +59,16 @@ var Tuxedo3ModesSingleBattery = GObject.registerClass({
             let currentProfile = readFile(TUXEDO_PATH).replace('\n', '');
             if (profile === currentProfile) {
                 this.endLimitValue = limit;
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });
 

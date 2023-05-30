@@ -1,6 +1,6 @@
 'use strict';
 /* Thinkpad Legacy Laptops using dkms https://github.com/linux-thinkpad/tp_smapi  */
-const {GObject} = imports.gi;
+const {Gio, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
@@ -12,9 +12,12 @@ const TP_BAT1_END = '/sys/devices/platform/smapi/BAT1/stop_charge_thresh';
 const TP_BAT1_START = '/sys/devices/platform/smapi/BAT1/start_charge_thresh';
 
 var ThinkpadLegacyDualBattery = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {
+        'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]},
+        'battery-status-changed': {},
+    },
 }, class ThinkpadLegacyDualBattery extends GObject.Object {
-    name = 'Thinkpad Legacy with Dual Battery';
+    name = 'Thinkpad tpsmapi BAT0/BAT1';
     type = 13;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = true;
@@ -42,18 +45,28 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
     minDiffLimit = 5;
 
     isAvailable() {
-        if (!fileExists(TP_BAT1_START))
-            return false;
-        if (!fileExists(TP_BAT1_END))
-            return false;
-        if (!fileExists(TP_BAT0_START))
-            return false;
-        if (!fileExists(TP_BAT0_END))
-            return false;
+        const deviceType = ExtensionUtils.getSettings().get_int('device-type');
+        if (deviceType === 0) {
+            if (!fileExists(TP_BAT1_START))
+                return false;
+            if (!fileExists(TP_BAT1_END))
+                return false;
+            if (!fileExists(TP_BAT0_START))
+                return false;
+            if (!fileExists(TP_BAT0_END))
+                return false;
+            this.battery0Removed = false;
+            this.battery1Removed = false;
+        } else if (deviceType === this.type) {
+            this.battery0Removed = !fileExists(TP_BAT0_END);
+            this.battery1Removed = !fileExists(TP_BAT1_END);
+        }
         return true;
     }
 
     async setThresholdLimit(chargingMode) {
+        if (this.battery0Removed)
+            return 0;
         let status;
         const settings = ExtensionUtils.getSettings();
         const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
@@ -63,7 +76,7 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
         if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
             this.endLimitValue = endValue;
             this.startLimitValue = startValue;
-            this.emit('read-completed');
+            this.emit('threshold-applied', true);
             return 0;
         }
         // Some device wont update end threshold if start threshold > end threshold
@@ -75,15 +88,17 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
             this.endLimitValue = readFileInt(TP_BAT0_END);
             this.startLimitValue = readFileInt(TP_BAT0_START);
             if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
     }
 
     async setThresholdLimit2(chargingMode2) {
+        if (this.battery1Removed)
+            return 0;
         let status;
         const settings = ExtensionUtils.getSettings();
         const endValue = settings.get_int(`current-${chargingMode2}-end-threshold2`);
@@ -93,7 +108,7 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
         if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
             this.endLimit2Value = endValue;
             this.startLimit2Value = startValue;
-            this.emit('read-completed');
+            this.emit('threshold-applied', true);
             return 0;
         }
         // Some device wont update end threshold if start threshold > end threshold
@@ -105,11 +120,10 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
             this.endLimit2Value = readFileInt(TP_BAT1_END);
             this.startLimit2Value = readFileInt(TP_BAT1_START);
             if ((endValue === this.endLimit2Value) && (startValue === this.startLimit2Value)) {
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold2 values not updated');
         return 1;
     }
 
@@ -120,12 +134,59 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
             status = await this.setThresholdLimit2(settings.get_string('charging-mode2'));
         return status;
     }
+
+    initializeBatteryMonitoring() {
+        this._battery0LevelPath = Gio.File.new_for_path(TP_BAT0_END);
+        this._monitorLevel = this._battery0LevelPath.monitor_file(Gio.FileMonitorFlags.NONE, null);
+        this._monitorLevelId = this._monitorLevel.connect('changed', (obj, theFile, otherFile, eventType) => {
+            if (eventType === Gio.FileMonitorEvent.DELETED) {
+                this.battery0Removed = true;
+                this.emit('battery-status-changed');
+            }
+            if (eventType === Gio.FileMonitorEvent.CREATED) {
+                this.battery0Removed = false;
+                this.setThresholdLimit(ExtensionUtils.getSettings().get_string('charging-mode'));
+                this.emit('battery-status-changed');
+            }
+        });
+
+
+        this._battery1LevelPath = Gio.File.new_for_path(TP_BAT1_END);
+        this._monitorLevel2 = this._battery1LevelPath.monitor_file(Gio.FileMonitorFlags.NONE, null);
+        this._monitorLevel2Id = this._monitorLevel2.connect('changed', (obj, theFile, otherFile, eventType) => {
+            if (eventType === Gio.FileMonitorEvent.DELETED) {
+                this.battery1Removed = true;
+                this.emit('battery-status-changed');
+            }
+            if (eventType === Gio.FileMonitorEvent.CREATED) {
+                this.battery1Removed = false;
+                this.setThresholdLimit2(ExtensionUtils.getSettings().get_string('charging-mode2'));
+                this.emit('battery-status-changed');
+            }
+        });
+    }
+
+    destroy() {
+        if (this._monitorLevelId)
+            this._monitorLevel.disconnect(this._monitorLevelId);
+        this._monitorLevelId = null;
+        this._monitorLevel.cancel();
+        this._monitorLevel = null;
+        this._battery0LevelPath = null;
+
+        if (this._monitorLevel2Id)
+            this._monitorLevel2.disconnect(this._monitorLevel2Id);
+        this._monitorLevel2Id = null;
+        this._monitorLevel2.cancel();
+        this._monitorLevel2 = null;
+        this._battery1LevelPath = null;
+    }
 });
 
 var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class ThinkpadLegacySingleBatteryBAT0 extends GObject.Object {
-    name = 'Thinkpad Legacy with Single Battery BAT0';
+    name = 'Thinkpad tpsmapi BAT0';
     type = 14;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -157,6 +218,8 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
             return false;
         if (!fileExists(TP_BAT0_END))
             return false;
+        if (fileExists(TP_BAT1_END))
+            return false;
         return true;
     }
 
@@ -170,7 +233,7 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
         if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
             this.endLimitValue = endValue;
             this.startLimitValue = startValue;
-            this.emit('read-completed');
+            this.emit('threshold-applied', true);
             return 0;
         }
         // Some device wont update end threshold if start threshold > end threshold
@@ -182,19 +245,23 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
             this.endLimitValue = readFileInt(TP_BAT0_END);
             this.startLimitValue = readFileInt(TP_BAT0_START);
             if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });
 
 var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
-    Signals: {'read-completed': {}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class ThinkpadLegacySingleBatteryBAT1 extends GObject.Object {
-    name = 'Thinkpad Legacy with Single Battery BAT1';
+    name = 'Thinkpad tpsmapi BAT1';
     type = 15;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -226,6 +293,8 @@ var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
             return false;
         if (!fileExists(TP_BAT1_END))
             return false;
+        if (fileExists(TP_BAT0_END))
+            return false;
         return true;
     }
 
@@ -239,7 +308,7 @@ var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
         if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
             this.endLimitValue = endValue;
             this.startLimitValue = startValue;
-            this.emit('read-completed');
+            this.emit('threshold-applied', true);
             return 0;
         }
         // Some device wont update end threshold if start threshold > end threshold
@@ -251,12 +320,16 @@ var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
             this.endLimitValue = readFileInt(TP_BAT1_END);
             this.startLimitValue = readFileInt(TP_BAT1_START);
             if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
-                this.emit('read-completed');
+                this.emit('threshold-applied', true);
                 return 0;
             }
         }
-        log('Battery Health Charging: Error threshold values not updated');
+        this.emit('threshold-applied', false);
         return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
     }
 });
 
