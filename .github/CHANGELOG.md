@@ -1,14 +1,26 @@
 Battery Health Charging Extension Changelogs
 ============================================
+### Version 22
+May 31, 2023
+* Italian translation contribution (Thanks dalz)
+* Added additional check for detection of laptop, as dells libsmbios can be installed as dependencies on non-dell laptops (Thanks hensnenenej for debugging and report it)
+* Added a settings option to choose betweem libsmbios and dell command center if both packages are installed on dell device.
+* Added battery removal detection for dual battery thinkpads (untested).
+* Fix threshold setting on full-capacity mode for sony laptops.
+* Added a notification message if threshold fails to update.
+* Added detected device name on error notifications (Helps debugging incase extension detect as wrong device)
+* Removed verify threshold by readback after setting threshold as reading charging threshold is buggy on toshiba
+* Remove option to change charging threshold to 80% if battery level is more than 80% on toshiba.
+
 ### Version 21
 May 22, 2023
-* German translation update (Thanks olebole)
+* German translation contribution (Thanks olebole)
 * Fix for some thinkpad mode conditions where start threshold should be less than end threshold. (Thanks olebole)
 * Adjusted allowed custom valueLegacy thinkpad (tpsmapi) as allowed values for end endthreshold > startthreshold + 5
 
 ### Version 20
 May 18, 2023
-* Turkish translation update (Thanks sabriunal)
+* Turkish translation contribution (Thanks sabriunal)
 * Used CHECK Icons (Same as wifi) for displaying selected mode, instead of ugly CHECK ornament unicode.
 * Removed threshold value displayed on panel/notification for lenovo ideapad/legion. When charging limit is enabled (conservation mode), Some models sets threshold to 60% and some models set threhsold to 80%, and the kernel doesnt report what is the current threshold value is, but only informs that charging limit is enabled or disabled. Now it will report only the current mode. conservation mode enabled displays max lifespan mode. conservation mode disable display full capacity mode.
 * Removed threshold value displayed on panel/notification for Samsung laptop. When charging limit is enabled (battery_life_extender), Some models sets threshold to 60% and some models set threhsold to 80%, and the kernel doesnt report what is the current threshold value is, but only informs that charging limit is enabled or disabled. Now it will report only the current mode. battery_life_extender mode enabled, displays max lifespan mode. battery_life_extender mode disable, display full capacity mode.
@@ -16,11 +28,11 @@ May 18, 2023
 
 ### Version 19
 May 12, 2023
-* Dutch translation update (Thanks Vistaus)
+* Dutch translation contribution (Thanks Vistaus)
 
 ### Version 18
 May 12, 2023
-* Strings correction and translation update (google translate)
+* Strings correction and translation contribution (google translate)
 * Partial Polland and Ukrainian translation (Thanks viksok) 
 
 ### Version 17
@@ -32,7 +44,7 @@ May 08, 2023
 
 ### Version 16
 May 01, 2023
-* Added Hungarian translation (Thanks ViBE-HU)
+* Hungarian translation contribution (Thanks ViBE-HU)
 * Extension only writes new threshold if new mode/threshold is different than the current mode/threshold. 
 * Added support for Dell laptop using cctk
 * Added support for Tuxedo laptops using tuxedo-keyboard (Thanks r_wraith)
@@ -103,7 +115,7 @@ Mar 3, 2023
 * Destroy notification of this extension on extension disable
 * Destroy notification on when new notification recieved.
 * Added icon on popup menu showing current threshold read
-* Updated Spanish translation credit: Valeria
+* Spanish translation contribution (Thanks: Valeria)
 
 
 ### Version 6
