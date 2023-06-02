@@ -7,8 +7,8 @@
   background-color: rgba(128, 128, 128, 0.3);
 }
 .bhc-popup-menu {
-  background-color: rgba(128, 128, 128, 0.00);
+  background-color: rgba(128, 128, 128, 0);
 }
 .bhc-popup-menu:hover {
-  background-color: rgba(128, 128, 128, 0.00);
+  background-color: rgba(128, 128, 128, 0);
 }
