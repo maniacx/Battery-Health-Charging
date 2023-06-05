@@ -46,8 +46,8 @@ var AsusSingleBatteryBAT0 = GObject.registerClass({
     async setThresholdLimit(chargingMode) {
         const settings = ExtensionUtils.getSettings();
         const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
-        let status = await runCommandCtl('BAT0_END', `${endValue}`, null, false);
-        if (status === 0)  {
+        const status = await runCommandCtl('BAT0_END', `${endValue}`, null, false);
+        if (status === 0) {
             this.endLimitValue = readFileInt(BAT0_END_PATH);
             if (endValue === this.endLimitValue) {
                 this.emit('threshold-applied', true);
@@ -96,8 +96,8 @@ var AsusSingleBatteryBAT1 = GObject.registerClass({
 
     async setThresholdLimit(chargingMode) {
         const endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
-        let status = await runCommandCtl('BAT1_END', `${endValue}`, null, false);
-        if (status === 0)  {
+        const status = await runCommandCtl('BAT1_END', `${endValue}`, null, false);
+        if (status === 0) {
             this.endLimitValue = readFileInt(BAT1_END_PATH);
             if (endValue === this.endLimitValue) {
                 this.emit('threshold-applied', true);
@@ -146,8 +146,8 @@ var AsusSingleBatteryBATC = GObject.registerClass({
 
     async setThresholdLimit(chargingMode) {
         const endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
-        let status = await runCommandCtl('BATC_END', `${endValue}`, null, false);
-        if (status === 0)  {
+        const status = await runCommandCtl('BATC_END', `${endValue}`, null, false);
+        if (status === 0) {
             this.endLimitValue = readFileInt(BATC_END_PATH);
             if (endValue === this.endLimitValue) {
                 this.emit('threshold-applied', true);
@@ -196,8 +196,8 @@ var AsusSingleBatteryBATT = GObject.registerClass({
 
     async setThresholdLimit(chargingMode) {
         const endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
-        let status = await runCommandCtl('BATT_END', `${endValue}`, null, false);
-        if (status === 0)  {
+        const status = await runCommandCtl('BATT_END', `${endValue}`, null, false);
+        if (status === 0) {
             this.endLimitValue = readFileInt(BATT_END_PATH);
             if (endValue === this.endLimitValue) {
                 this.emit('threshold-applied', true);

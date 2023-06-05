@@ -87,7 +87,7 @@ var ThinkpadDualBattery = GObject.registerClass({
             status = await runCommandCtl('BAT0_END_START', `${endValue}`, `${startValue}`, false);
         else
             status = await runCommandCtl('BAT0_START_END', `${endValue}`, `${startValue}`, false);
-        if (status === 0)  {
+        if (status === 0) {
             this.endLimitValue = readFileInt(BAT0_END_PATH);
             this.startLimitValue = readFileInt(BAT0_START_PATH);
             if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
@@ -119,7 +119,7 @@ var ThinkpadDualBattery = GObject.registerClass({
             status = await runCommandCtl('BAT1_END_START', `${endValue}`, `${startValue}`, false);
         else
             status = await runCommandCtl('BAT1_START_END', `${endValue}`, `${startValue}`, false);
-        if (status === 0)  {
+        if (status === 0) {
             this.endLimit2Value = readFileInt(BAT1_END_PATH);
             this.startLimit2Value = readFileInt(BAT1_START_PATH);
             if ((endValue === this.endLimit2Value) && (startValue === this.startLimit2Value)) {
@@ -247,7 +247,7 @@ var ThinkpadSingleBatteryBAT0 = GObject.registerClass({
             status = await runCommandCtl('BAT0_END_START', `${endValue}`, `${startValue}`, false);
         else
             status = await runCommandCtl('BAT0_START_END', `${endValue}`, `${startValue}`, false);
-        if (status === 0)  {
+        if (status === 0) {
             this.endLimitValue = readFileInt(BAT0_END_PATH);
             this.startLimitValue = readFileInt(BAT0_START_PATH);
             if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
@@ -324,7 +324,7 @@ var ThinkpadSingleBatteryBAT1 = GObject.registerClass({
             status = await runCommandCtl('BAT1_END_START', `${endValue}`, `${startValue}`, false);
         else
             status = await runCommandCtl('BAT1_START_END', `${endValue}`, `${startValue}`, false);
-        if (status === 0)  {
+        if (status === 0) {
             this.endLimitValue = readFileInt(BAT1_END_PATH);
             this.startLimitValue = readFileInt(BAT1_START_PATH);
             if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {

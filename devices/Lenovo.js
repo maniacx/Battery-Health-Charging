@@ -40,8 +40,8 @@ var LenovoSingleBattery = GObject.registerClass({
             this.emit('threshold-applied', true);
             return 0;
         }
-        let status = await runCommandCtl('LENOVO', `${conservationMode}`, null, false);
-        if (status === 0)  {
+        const status = await runCommandCtl('LENOVO', `${conservationMode}`, null, false);
+        if (status === 0) {
             if (readFileInt(LENOVO_PATH) === conservationMode) {
                 this.mode = chargingMode;
                 this.emit('threshold-applied', true);

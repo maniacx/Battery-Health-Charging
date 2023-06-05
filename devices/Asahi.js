@@ -57,8 +57,8 @@ var AsahiSingleBattery = GObject.registerClass({
             this.emit('threshold-applied', true);
             return 0;
         }
-        let status = await runCommandCtl('ASAHI_END_START', `${endValue}`, `${startValue}`, false);
-        if (status === 0)  {
+        const status = await runCommandCtl('ASAHI_END_START', `${endValue}`, `${startValue}`, false);
+        if (status === 0) {
             this.endLimitValue = readFileInt(ASAHI_END_PATH);
             this.startLimitValue = readFileInt(ASAHI_START_PATH);
             if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {

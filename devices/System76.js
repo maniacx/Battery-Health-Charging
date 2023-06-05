@@ -68,7 +68,7 @@ var System76SingleBattery = GObject.registerClass({
             status = await runCommandCtl('BAT0_END_START', `${endValue}`, `${startValue}`, false);
         else
             status = await runCommandCtl('BAT0_START_END', `${endValue}`, `${startValue}`, false);
-        if (status === 0)  {
+        if (status === 0) {
             this.endLimitValue = readFileInt(BAT0_END_PATH);
             this.startLimitValue = readFileInt(BAT0_START_PATH);
             if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {

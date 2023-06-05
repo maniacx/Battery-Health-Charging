@@ -54,9 +54,9 @@ var Tuxedo3ModesSingleBattery = GObject.registerClass({
             this.emit('threshold-applied', true);
             return 0;
         }
-        let status = await runCommandCtl('TUXEDO', profile, null, false);
-        if (status === 0)  {
-            let currentProfile = readFile(TUXEDO_PATH).replace('\n', '');
+        const status = await runCommandCtl('TUXEDO', profile, null, false);
+        if (status === 0) {
+            const currentProfile = readFile(TUXEDO_PATH).replace('\n', '');
             if (profile === currentProfile) {
                 this.endLimitValue = limit;
                 this.emit('threshold-applied', true);

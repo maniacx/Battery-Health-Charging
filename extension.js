@@ -44,7 +44,7 @@ function enable() {
                 thresholdPanel = new Panel.ThresholdPanel();
 
         // destroy thresholdPanel when entering [unlock-dialog] session mode.
-        }  else if (session.currentMode === 'unlock-dialog') {
+        } else if (session.currentMode === 'unlock-dialog') {
             thresholdPanel.destroy();
             thresholdPanel = null;
         }

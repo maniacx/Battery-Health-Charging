@@ -49,8 +49,8 @@ var MsiSingleBatteryBAT0 = GObject.registerClass({
             this.emit('threshold-applied', true);
             return 0;
         }
-        let status = await runCommandCtl('BAT0_END', `${endValue}`, null, false);
-        if (status === 0)  {
+        const status = await runCommandCtl('BAT0_END', `${endValue}`, null, false);
+        if (status === 0) {
             this.endLimitValue = readFileInt(BAT0_END_PATH);
             if (endValue === this.endLimitValue) {
                 this.emit('threshold-applied', true);
@@ -105,8 +105,8 @@ var MsiSingleBatteryBAT1 = GObject.registerClass({
             this.emit('threshold-applied', true);
             return 0;
         }
-        let status = await runCommandCtl('BAT1_END', `${endValue}`, null, false);
-        if (status === 0)  {
+        const status = await runCommandCtl('BAT1_END', `${endValue}`, null, false);
+        if (status === 0) {
             this.endLimitValue = readFileInt(BAT1_END_PATH);
             if (endValue === this.endLimitValue) {
                 this.emit('threshold-applied', true);

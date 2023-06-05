@@ -40,8 +40,8 @@ var SamsungSingleBattery = GObject.registerClass({
             this.emit('threshold-applied', true);
             return 0;
         }
-        let status = await runCommandCtl('SAMSUNG', `${batteryLifeExtender}`, null, false);
-        if (status === 0)  {
+        const status = await runCommandCtl('SAMSUNG', `${batteryLifeExtender}`, null, false);
+        if (status === 0) {
             if (readFileInt(SAMSUNG_PATH) === batteryLifeExtender) {
                 this.mode = chargingMode;
                 this.emit('threshold-applied', true);

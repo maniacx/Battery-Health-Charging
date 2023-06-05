@@ -41,8 +41,8 @@ var LgSingleBattery = GObject.registerClass({
             this.emit('threshold-applied', true);
             return 0;
         }
-        let status = await runCommandCtl('LG', `${batteryCareLimit}`, null, false);
-        if (status === 0)  {
+        const status = await runCommandCtl('LG', `${batteryCareLimit}`, null, false);
+        if (status === 0) {
             this.endLimitValue = readFileInt(LG_PATH);
             if (batteryCareLimit === this.endLimitValue) {
                 this.emit('threshold-applied', true);

@@ -44,8 +44,8 @@ var AcerSingleBattery = GObject.registerClass({
             this.emit('threshold-applied', true);
             return 0;
         }
-        let status = await runCommandCtl('ACER', `${healthMode}`, null, false);
-        if (status === 0)  {
+        const status = await runCommandCtl('ACER', `${healthMode}`, null, false);
+        if (status === 0) {
             const endLimitValue = readFileInt(ACER_PATH);
             if (healthMode === endLimitValue) {
                 if (endLimitValue === 1)

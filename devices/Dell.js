@@ -54,17 +54,19 @@ var DellSmBiosSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
+        let status = 0;
         if (this._usesCctk && this._usesLibSmbios) {
             const dellPackage = ExtensionUtils.getSettings().get_int('dell-package-type');
             if (dellPackage === 0)
-                return await this.setThresholdLimitLibSmbios(chargingMode);
+                status = await this.setThresholdLimitLibSmbios(chargingMode);
             else if (dellPackage === 1)
-                return await this.setThresholdLimitCctk(chargingMode);
+                status = await this.setThresholdLimitCctk(chargingMode);
         } else if (this._usesLibSmbios) {
-            return await this.setThresholdLimitLibSmbios(chargingMode);
+            status = await this.setThresholdLimitLibSmbios(chargingMode);
         } else if (this._usesCctk) {
-            return await this.setThresholdLimitCctk(chargingMode);
+            status = await this.setThresholdLimitCctk(chargingMode);
         }
+        return status;
     }
 
     async setThresholdLimitLibSmbios(chargingMode) {
@@ -81,7 +83,7 @@ var DellSmBiosSingleBattery = GObject.registerClass({
         splitOutput = filteredOutput.split('\n');
         firstLine = splitOutput[0].split(' ');
         if (firstLine[0] === 'Charging' && firstLine[1] === 'mode') {
-            let modeRead = firstLine[2];
+            const modeRead = firstLine[2];
             if (((modeRead === 'adaptive') && (chargingMode === 'adv')) || ((modeRead === 'express') && (chargingMode === 'exp'))) {
                 this.mode = chargingMode;
                 this.startLimitValue = 100;
@@ -156,7 +158,7 @@ var DellSmBiosSingleBattery = GObject.registerClass({
         filteredOutput = output.trim().replace('=', ' ').replace(':', ' ').replace('-', ' ');
         splitOutput = filteredOutput.split(' ');
         if (splitOutput[0] === 'PrimaryBattChargeCfg') {
-            let modeRead = splitOutput[1];
+            const modeRead = splitOutput[1];
             if (((modeRead === 'Adaptive') && (chargingMode === 'adv')) || ((modeRead === 'Express') && (chargingMode === 'exp'))) {
                 this.mode = chargingMode;
                 this.startLimitValue = 100;

@@ -46,13 +46,13 @@ var GigabyteSingleBattery = GObject.registerClass({
         const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
         if (readFileInt(GIGABYTE_MODE) === 1)
             updateMode = 'false';
-        if ((readFileInt(GIGABYTE_LIMIT) === endValue) &&  (updateMode === 'false')) {
+        if ((readFileInt(GIGABYTE_LIMIT) === endValue) && (updateMode === 'false')) {
             this.endLimitValue = endValue;
             this.emit('threshold-applied', true);
             return 0;
         }
-        let status = await runCommandCtl('GIGABYTE_THRESHOLD', updateMode, `${endValue}`, false);
-        if (status === 0)  {
+        const status = await runCommandCtl('GIGABYTE_THRESHOLD', updateMode, `${endValue}`, false);
+        if (status === 0) {
             if (readFileInt(GIGABYTE_MODE) === 1) {
                 this.endLimitValue = readFileInt(GIGABYTE_LIMIT);
                 if (endValue === this.endLimitValue) {

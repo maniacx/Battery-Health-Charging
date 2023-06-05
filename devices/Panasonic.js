@@ -40,8 +40,8 @@ var PanasonicSingleBattery = GObject.registerClass({
             this.emit('threshold-applied', true);
             return 0;
         }
-        let status = await runCommandCtl('PANASONIC', `${ecoMode}`, null, false);
-        if (status === 0)  {
+        const status = await runCommandCtl('PANASONIC', `${ecoMode}`, null, false);
+        if (status === 0) {
             if (readFileInt(PANASONIC_PATH) === ecoMode) {
                 this.mode = chargingMode;
                 this.emit('threshold-applied', true);

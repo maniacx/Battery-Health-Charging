@@ -56,8 +56,8 @@ var HuaweiSingleBattery = GObject.registerClass({
             this.emit('threshold-applied', true);
             return 0;
         }
-        let status = await runCommandCtl('HUAWEI', `${endValue}`, `${startValue}`, false);
-        if (status === 0)  {
+        const status = await runCommandCtl('HUAWEI', `${endValue}`, `${startValue}`, false);
+        if (status === 0) {
             limitValue = readFile(HUAWEI_PATH).split(' ');
             this.endLimitValue = parseInt(limitValue[1]);
             this.startLimitValue = parseInt(limitValue[0]);

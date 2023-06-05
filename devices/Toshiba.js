@@ -47,8 +47,8 @@ var ToshibaSingleBatteryBAT0 = GObject.registerClass({
             endValue = 100;
         else if (chargingMode === 'max')
             endValue = 80;
-        let status = await runCommandCtl('BAT0_END', `${endValue}`, null, false);
-        if (status === 0)  {
+        const status = await runCommandCtl('BAT0_END', `${endValue}`, null, false);
+        if (status === 0) {
             this.endLimitValue = endValue;
             this.emit('threshold-applied', true);
             return 0;
@@ -58,7 +58,7 @@ var ToshibaSingleBatteryBAT0 = GObject.registerClass({
     }
 
     initializeBatteryMonitoring() {
-        const xmlFile = `resource:///org/gnome/shell/dbus-interfaces/org.freedesktop.UPower.Device.xml`;
+        const xmlFile = 'resource:///org/gnome/shell/dbus-interfaces/org.freedesktop.UPower.Device.xml';
         const powerManagerProxy = Gio.DBusProxy.makeProxyWrapper(readFileUri(xmlFile));
         this._proxy = new powerManagerProxy(Gio.DBus.system, BUS_NAME, OBJECT_PATH,
             (proxy, error) => {
@@ -67,7 +67,7 @@ var ToshibaSingleBatteryBAT0 = GObject.registerClass({
                 } else {
                     this._proxyId = this._proxy.connect('g-properties-changed', () => {
                         const batteryLevel = this._proxy.Percentage;
-                        if (this.batteryLevel !==  batteryLevel) {
+                        if (this.batteryLevel !== batteryLevel) {
                             this.batteryLevel = batteryLevel;
                             this.emit('battery-level-changed');
                         }
@@ -121,8 +121,8 @@ var ToshibaSingleBatteryBAT1 = GObject.registerClass({
             endValue = 100;
         else if (chargingMode === 'max')
             endValue = 80;
-        let status = await runCommandCtl('BAT1_END', `${endValue}`, null, false);
-        if (status === 0)  {
+        const status = await runCommandCtl('BAT1_END', `${endValue}`, null, false);
+        if (status === 0) {
             this.endLimitValue = endValue;
             this.emit('threshold-applied', true);
             return 0;
@@ -132,7 +132,7 @@ var ToshibaSingleBatteryBAT1 = GObject.registerClass({
     }
 
     initializeBatteryMonitoring() {
-        const xmlFile = `resource:///org/gnome/shell/dbus-interfaces/org.freedesktop.UPower.Device.xml`;
+        const xmlFile = 'resource:///org/gnome/shell/dbus-interfaces/org.freedesktop.UPower.Device.xml';
         const powerManagerProxy = Gio.DBusProxy.makeProxyWrapper(readFileUri(xmlFile));
         this._proxy = new powerManagerProxy(Gio.DBus.system, BUS_NAME, OBJECT_PATH,
             (proxy, error) => {
@@ -141,7 +141,7 @@ var ToshibaSingleBatteryBAT1 = GObject.registerClass({
                 } else {
                     this._proxyId = this._proxy.connect('g-properties-changed', () => {
                         const batteryLevel = this._proxy.Percentage;
-                        if (this.batteryLevel !==  batteryLevel) {
+                        if (this.batteryLevel !== batteryLevel) {
                             this.batteryLevel = batteryLevel;
                             this.emit('battery-level-changed');
                         }

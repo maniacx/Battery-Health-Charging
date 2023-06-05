@@ -44,9 +44,9 @@ var SonySingleBattery = GObject.registerClass({
             this.emit('threshold-applied', true);
             return 0;
         }
-        let status = await runCommandCtl('SONY', `${batteryCareLimiter}`, null, false);
-        if (status === 0)  {
-            let endLimitValue = readFileInt(SONY_PATH);
+        const status = await runCommandCtl('SONY', `${batteryCareLimiter}`, null, false);
+        if (status === 0) {
+            const endLimitValue = readFileInt(SONY_PATH);
             if (batteryCareLimiter === endLimitValue) {
                 this.endLimitValue = endLimitValue === 0 ? 100 : endLimitValue;
                 this.emit('threshold-applied', true);
