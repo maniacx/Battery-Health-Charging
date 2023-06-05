@@ -4,13 +4,14 @@ const {Gio, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
-const {fileExists, readFileInt, runCommandCtl} = Helper;
+const {fileExists, readFileUri, runCommandCtl} = Helper;
 
 const VENDOR_TOSHIBA = '/sys/module/toshiba_acpi';
 const BAT0_END_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold';
 const BAT1_END_PATH = '/sys/class/power_supply/BAT1/charge_control_end_threshold';
-const BAT0_CAPACITY_PATH = '/sys/class/power_supply/BAT0/capacity';
-const BAT1_CAPACITY_PATH = '/sys/class/power_supply/BAT1/capacity';
+
+const BUS_NAME = 'org.freedesktop.UPower';
+const OBJECT_PATH = '/org/freedesktop/UPower/devices/DisplayDevice';
 
 var ToshibaSingleBatteryBAT0 = GObject.registerClass({
     Signals: {
@@ -57,35 +58,32 @@ var ToshibaSingleBatteryBAT0 = GObject.registerClass({
     }
 
     initializeBatteryMonitoring() {
-        this._batteryLevelPath = Gio.File.new_for_path(BAT0_CAPACITY_PATH);
-        this._monitorLevel = this._batteryLevelPath.monitor_file(Gio.FileMonitorFlags.NONE, null);
-        this._monitorLevelId = this._monitorLevel.connect('changed', (obj, theFile, otherFile, eventType) => {
-            if (eventType === Gio.FileMonitorEvent.CHANGED) {
-                if (fileExists(BAT0_CAPACITY_PATH)) {
-                    const newLevel =  readFileInt(BAT0_CAPACITY_PATH);
-                    if (newLevel !== this.batteryLevel) {
-                        this.batteryLevel = newLevel;
-                        this.emit('battery-level-changed');
-                    }
+        const xmlFile = `resource:///org/gnome/shell/dbus-interfaces/org.freedesktop.UPower.Device.xml`;
+        const powerManagerProxy = Gio.DBusProxy.makeProxyWrapper(readFileUri(xmlFile));
+        this._proxy = new powerManagerProxy(Gio.DBus.system, BUS_NAME, OBJECT_PATH,
+            (proxy, error) => {
+                if (error) {
+                    log(error.message);
                 } else {
-                    this.batteryLevel = 0;
+                    this._proxyId = this._proxy.connect('g-properties-changed', () => {
+                        const batteryLevel = this._proxy.Percentage;
+                        if (this.batteryLevel !==  batteryLevel) {
+                            this.batteryLevel = batteryLevel;
+                            this.emit('battery-level-changed');
+                        }
+                    });
                 }
-            }
-        });
+            });
 
-        if (fileExists(BAT0_CAPACITY_PATH))
-            this.batteryLevel =  readFileInt(BAT0_CAPACITY_PATH);
-        else
-            this.batteryLevel = 0;
+        this.batteryLevel = this._proxy.Percentage;
+        this.emit('battery-level-changed');
     }
 
     destroy() {
-        if (this._monitorLevelId)
-            this._monitorLevel.disconnect(this._monitorLevelId);
-        this._monitorLevelId = null;
-        this._monitorLevel.cancel();
-        this._monitorLevel = null;
-        this._batteryLevelPath = null;
+        if (this._proxy !== null)
+            this._proxy.disconnect(this._proxyId);
+        this._proxyId = null;
+        this._proxy = null;
     }
 });
 
@@ -134,35 +132,32 @@ var ToshibaSingleBatteryBAT1 = GObject.registerClass({
     }
 
     initializeBatteryMonitoring() {
-        this._batteryLevelPath = Gio.File.new_for_path(BAT1_CAPACITY_PATH);
-        this._monitorLevel = this._batteryLevelPath.monitor_file(Gio.FileMonitorFlags.NONE, null);
-        this._monitorLevelId = this._monitorLevel.connect('changed', (obj, theFile, otherFile, eventType) => {
-            if (eventType === Gio.FileMonitorEvent.CHANGED) {
-                if (fileExists(BAT0_CAPACITY_PATH)) {
-                    const newLevel =  readFileInt(BAT0_CAPACITY_PATH);
-                    if (newLevel !== this.batteryLevel) {
-                        this.batteryLevel = newLevel;
-                        this.emit('battery-level-changed');
-                    }
+        const xmlFile = `resource:///org/gnome/shell/dbus-interfaces/org.freedesktop.UPower.Device.xml`;
+        const powerManagerProxy = Gio.DBusProxy.makeProxyWrapper(readFileUri(xmlFile));
+        this._proxy = new powerManagerProxy(Gio.DBus.system, BUS_NAME, OBJECT_PATH,
+            (proxy, error) => {
+                if (error) {
+                    log(error.message);
                 } else {
-                    this.batteryLevel = 0;
+                    this._proxyId = this._proxy.connect('g-properties-changed', () => {
+                        const batteryLevel = this._proxy.Percentage;
+                        if (this.batteryLevel !==  batteryLevel) {
+                            this.batteryLevel = batteryLevel;
+                            this.emit('battery-level-changed');
+                        }
+                    });
                 }
-            }
-        });
+            });
 
-        if (fileExists(BAT0_CAPACITY_PATH))
-            this.batteryLevel =  readFileInt(BAT0_CAPACITY_PATH);
-        else
-            this.batteryLevel = 0;
+        this.batteryLevel = this._proxy.Percentage;
+        this.emit('battery-level-changed');
     }
 
     destroy() {
-        if (this._monitorLevelId)
-            this._monitorLevel.disconnect(this._monitorLevelId);
-        this._monitorLevelId = null;
-        this._monitorLevel.cancel();
-        this._monitorLevel = null;
-        this._batteryLevelPath = null;
+        if (this._proxy !== null)
+            this._proxy.disconnect(this._proxyId);
+        this._proxyId = null;
+        this._proxy = null;
     }
 });
 
