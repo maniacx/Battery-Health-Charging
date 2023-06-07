@@ -4,11 +4,13 @@ const {Gio, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
-const {fileExists, readFileUri, runCommandCtl} = Helper;
+const {fileExists, readFileInt, readFileUri, runCommandCtl} = Helper;
 
 const VENDOR_TOSHIBA = '/sys/module/toshiba_acpi';
 const BAT0_END_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold';
 const BAT1_END_PATH = '/sys/class/power_supply/BAT1/charge_control_end_threshold';
+const BAT0_CAPACITY_PATH = '/sys/class/power_supply/BAT0/capacity';
+const BAT1_CAPACITY_PATH = '/sys/class/power_supply/BAT1/capacity';
 
 const BUS_NAME = 'org.freedesktop.UPower';
 const OBJECT_PATH = '/org/freedesktop/UPower/devices/DisplayDevice';
@@ -75,7 +77,7 @@ var ToshibaSingleBatteryBAT0 = GObject.registerClass({
                 }
             });
 
-        this.batteryLevel = this._proxy.Percentage;
+        this.batteryLevel = readFileInt(BAT0_CAPACITY_PATH);
         this.emit('battery-level-changed');
     }
 
@@ -149,7 +151,7 @@ var ToshibaSingleBatteryBAT1 = GObject.registerClass({
                 }
             });
 
-        this.batteryLevel = this._proxy.Percentage;
+        this.batteryLevel = readFileInt(BAT1_CAPACITY_PATH);
         this.emit('battery-level-changed');
     }
 
