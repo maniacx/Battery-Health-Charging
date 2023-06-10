@@ -4,15 +4,16 @@ const {GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
-const {fileExists, readFileInt, runCommandCtl} = Helper;
+const {fileExists, readFile, readFileInt, runCommandCtl} = Helper;
 
 const ASAHI_END_PATH = '/sys/class/power_supply/macsmc-battery/charge_control_end_threshold';
 const ASAHI_START_PATH = '/sys/class/power_supply/macsmc-battery/charge_control_start_threshold';
+const KERNEL_VERSION_PATH = '/proc/sys/kernel/osrelease';
 
-var AsahiSingleBattery = GObject.registerClass({
+var AsahiSingleBattery62 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
-}, class AsahiSingleBattery extends GObject.Object {
-    name = 'AppleAsahiLinux';
+}, class AsahiSingleBattery62 extends GObject.Object {
+    name = 'AppleAsahiLinux-VariableThreshold';
     type = 25;
     deviceNeedRootPermission = true;
     deviceHaveDualBattery = false;
@@ -44,6 +45,9 @@ var AsahiSingleBattery = GObject.registerClass({
             return false;
         if (!fileExists(ASAHI_START_PATH))
             return false;
+        const kernelVersion = readFile(KERNEL_VERSION_PATH).trim().split('.', 2);
+        if ((parseInt(kernelVersion[0]) >= 6) && (parseInt(kernelVersion[1]) >= 3))
+            return false;
         return true;
     }
 
@@ -74,4 +78,63 @@ var AsahiSingleBattery = GObject.registerClass({
         // Nothing to destroy for this device
     }
 });
+
+var AsahiSingleBattery63 = GObject.registerClass({
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+}, class AsahiSingleBattery63 extends GObject.Object {
+    name = 'AppleAsahiLinux-FixedThreshold';
+    type = 29;
+    deviceNeedRootPermission = true;
+    deviceHaveDualBattery = false;
+    deviceHaveStartThreshold = false;
+    deviceHaveVariableThreshold = false;
+    deviceHaveBalancedMode = false;
+    deviceHaveAdaptiveMode = false;
+    deviceHaveExpressMode = false;
+    deviceUsesModeNotValue = false;
+    iconForFullCapMode = '100';
+    iconForMaxLifeMode = '080';
+
+    isAvailable() {
+        if (!fileExists(ASAHI_END_PATH))
+            return false;
+        if (!fileExists(ASAHI_START_PATH))
+            return false;
+        const kernelVersion = readFile(KERNEL_VERSION_PATH).trim().split('.', 2);
+        if ((parseInt(kernelVersion[0]) <= 6) && (parseInt(kernelVersion[1]) <= 2))
+            return false;
+        return true;
+    }
+
+    async setThresholdLimit(chargingMode) {
+        let endValue, startValue;
+        if (chargingMode === 'ful') {
+            endValue = 100;
+            startValue = 100;
+        } else if (chargingMode === 'max') {
+            endValue = 80;
+            startValue = 75;
+        }
+        if (readFileInt(ASAHI_END_PATH) === endValue) {
+            this.endLimitValue = endValue;
+            this.emit('threshold-applied', true);
+            return 0;
+        }
+        const status = await runCommandCtl('ASAHI_END_START', `${endValue}`, `${startValue}`, false);
+        if (status === 0) {
+            this.endLimitValue = readFileInt(ASAHI_END_PATH);
+            if (endValue === this.endLimitValue) {
+                this.emit('threshold-applied', true);
+                return 0;
+            }
+        }
+        this.emit('threshold-applied', false);
+        return 1;
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
+    }
+});
+
 
