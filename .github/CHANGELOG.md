@@ -1,5 +1,11 @@
 Battery Health Charging Extension Changelogs
 ============================================
+### Version 23
+Jun 10, 2023
+* translation updates
+* Toshiba: used upower to get battery level which is used to show/hide threshold options
+* Asahi-linux: Support new implementation of charging threshold on 6.3 kernels 
+
 ### Version 22
 May 31, 2023
 * Italian translation contribution (Thanks dalz)

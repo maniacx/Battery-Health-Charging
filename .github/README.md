@@ -2,6 +2,9 @@
 
 Battery Health Charging extension for GNOME shell
 =================================================
+
+https://extensions.gnome.org/extension/5724/battery-health-charging/
+
 Battery Health Charging extension sets the limit of battery charging to maximize battery health mainly for laptops that support these features.
 Since users usually keep their AC adapter connected while using their laptop, the battery is often in a state of high-power (98-100%) for an extended length of time which causes a reduction in battery life. Initially, I made this for my laptop (Asus) but as of **Version 4** , the extension evolve to support several brands. Some laptops have fixed threshold, while some laptop's threshold can be customized. (See details in laptop supported). This extension detects the hardware and displays the option accordingly.
 
@@ -104,6 +107,7 @@ Since users usually keep their AC adapter connected while using their laptop, th
 ### Toshiba
 * 2 preset Full capacity and Maximum Life Span mode set at 100% and 80%. Fixed threshold (not customizable).
 * Maximum Life Span mode is what Toshiba refers to as **eco charging mode**
+* Battery level should be below 80% to switch from full-capacity to max-lifespan mode.
 * This Extension supports Toshiba laptops having one of the below paths.
 ```bash
 '/sys/class/power_supply/BAT0/charge_control_end_threshold'
@@ -270,11 +274,15 @@ smbios-battery-ctl --set-custom-charge-interval low high
 '/sys/class/power_supply/BAT0/charge_control_end_threshold'
 ```
 ### Apple Macbook M-series chip (Asahi Linux Kernel)
+**Kernel 6.2.xxx**
 * 3 presets Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
 * Default end/start threshold values of these 3 preset modes are set at 100/95%, 80/75%, and 60/55%.
 * Each preset end threshold value can be customized between 100-80 %, 85-65 %, and 85-52 % respectively.
 * Each preset start threshold value can be customized between is 98-75 %, 83-60 %, and 83-50 % respectively.
 * The difference between end and start threshold cannot be less than 2%.
+
+**Kernel 6.3.xxx**
+* 2 preset Full capacity and Maximum Life Span mode set at 100% and 80%. Fixed threshold (not customizable).
 * This Extension supports Macbooks using Asahi Linux having the below path.
 ```bash
 '/sys/class/power_supply/macsmc-battery/charge_control_end_threshold'
@@ -282,6 +290,12 @@ smbios-battery-ctl --set-custom-charge-interval low high
 ```
 
 ## Changelog
+### Version 23
+Jun 10, 2023
+* translation updates
+* Toshiba: used upower to get battery level which is used to show/hide threshold options
+* Asahi-linux: Support new implementation of charging threshold on 6.3 kernels 
+
 ### Version 22
 May 31, 2023
 * Italian translation contribution (Thanks dalz)
@@ -307,10 +321,6 @@ May 18, 2023
 * Removed threshold value displayed on panel/notification for lenovo ideapad/legion. When charging limit is enabled (conservation mode), Some models sets threshold to 60% and some models set threhsold to 80%, and the kernel doesnt report what is the current threshold value is, but only informs that charging limit is enabled or disabled. Now it will report only the current mode. conservation mode enabled displays max lifespan mode. conservation mode disable display full capacity mode.
 * Removed threshold value displayed on panel/notification for Samsung laptop. When charging limit is enabled (battery_life_extender), Some models sets threshold to 60% and some models set threhsold to 80%, and the kernel doesnt report what is the current threshold value is, but only informs that charging limit is enabled or disabled. Now it will report only the current mode. battery_life_extender mode enabled, displays max lifespan mode. battery_life_extender mode disable, display full capacity mode.
 * Same goes for panasonic
-
-### Version 19
-May 12, 2023
-* Dutch translation contribution (Thanks Vistaus)
 
 See [Full History](https://github.com/maniacx/Battery-Health-Charging/blob/main/.github/CHANGELOG.md)
 
