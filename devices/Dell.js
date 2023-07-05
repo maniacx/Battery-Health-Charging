@@ -8,6 +8,7 @@ const Helper = Me.imports.lib.helper;
 const {fileExists, runCommandCtl} = Helper;
 
 const DELL_PATH = '/sys/devices/platform/dell-laptop';
+const SMBIOS_PATH = '/usr/sbin/smbios-battery-ctl';
 const CCTK_PATH = '/opt/dell/dcc/cctk';
 
 var DellSmBiosSingleBattery = GObject.registerClass({
@@ -43,8 +44,7 @@ var DellSmBiosSingleBattery = GObject.registerClass({
     isAvailable() {
         if (!fileExists(DELL_PATH))
             return false;
-        const havePath = GLib.find_program_in_path('smbios-battery-ctl');
-        this._usesLibSmbios = havePath !== null;
+        this._usesLibSmbios = fileExists(SMBIOS_PATH);
         this._usesCctk = fileExists(CCTK_PATH);
         if (!this._usesCctk && !this._usesLibSmbios)
             return false;
