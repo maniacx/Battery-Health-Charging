@@ -1,5 +1,9 @@
 Battery Health Charging Extension Changelogs
 ============================================
+### Version 24
+Jul 05, 2023
+* Dell: Fixed unsupported device for dell libsmbios on debian
+
 ### Version 23
 Jun 10, 2023
 * translation updates
