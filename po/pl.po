@@ -131,23 +131,23 @@ msgstr "Bateria 2\n"
 
 #: lib/notifier.js:147
 msgid "Charging Mode is set to Full Capacity"
-msgstr "Tryb ładowania jest ustawiony na pełna pojemność"
+msgstr "Tryb ładowania jest ustawiony na Do pełna"
 
 #: lib/notifier.js:151
 msgid "Charging Mode is set to Balanced"
-msgstr "Tryb ładowania jest ustawiony na zrównoważony"
+msgstr "Tryb ładowania jest ustawiony na Zrównoważony"
 
 #: lib/notifier.js:155
 msgid "Charging Mode is set to Maximum Lifespan"
-msgstr "Tryb ładowania jest ustawiony na Maksymalna żywotność"
+msgstr "Tryb ładowania jest ustawiony na Ekonomiczny"
 
 #: lib/notifier.js:159
 msgid "Charging Mode is set to Express"
-msgstr "Tryb ładowania jest ustawiony na ekspresowy"
+msgstr "Tryb ładowania jest ustawiony na Ekspresowy"
 
 #: lib/notifier.js:163
 msgid "Charging Mode is set to Adaptive"
-msgstr "Tryb ładowania jest ustawiony na adaptacyjny"
+msgstr "Tryb ładowania jest ustawiony na Adaptacyjny"
 
 #: lib/powerIcon42.js:134 lib/powerIcon.js:133 lib/powerIcon.js:139
 #, javascript-format
@@ -175,19 +175,20 @@ msgstr "Bateria 1"
 #: lib/thresholdPanel42.js:227 lib/thresholdPanel.js:88
 #: preferences/thresholdPrimary.js:203 preferences/thresholdSecondary.js:198
 msgid "Full Capacity Mode"
-msgstr "Tryb pełnej pojemności"
+msgstr "Tryb Do Pełna"
+msgstr "Tryb do pełna"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:231 lib/thresholdPanel.js:97
 #: preferences/thresholdPrimary.js:207 preferences/thresholdSecondary.js:202
 msgid "Balanced Mode"
-msgstr "Tryb zrównoważony"
+msgstr "Tryb Zrównoważony"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:235 lib/thresholdPanel.js:106
 #: preferences/thresholdPrimary.js:211 preferences/thresholdSecondary.js:206
 msgid "Maximum Lifespan Mode"
-msgstr "Tryb maksymalnej żywotności"
+msgstr "Tryb ekonomiczny"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:239 lib/thresholdPanel.js:114
@@ -225,7 +226,7 @@ msgstr "Limit ładowania: %d%%"
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:444 lib/thresholdPanel.js:384
 msgid "Charging Mode: Full Capacity"
-msgstr "Tryb ładowania: Pełna pojemność"
+msgstr "Tryb ładowania: Do pełna"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:446 lib/thresholdPanel.js:387
@@ -235,7 +236,7 @@ msgstr "Tryb ładowania: Zrównoważony"
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:449
 msgid "Charging Mode: Max. Lifespan"
-msgstr "Tryb ładowania: Maksymalna żywotność"
+msgstr "Tryb ładowania: Ekonomiczny"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:451 lib/thresholdPanel.js:393
@@ -265,7 +266,7 @@ msgstr "Odinstalowano baterię"
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:390
 msgid "Charging Mode: Maximum Lifespan"
-msgstr "Tryb ładowania: Maksymalna żywotność"
+msgstr "Tryb ładowania: Ekonomiczny"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:447
@@ -275,7 +276,7 @@ msgstr "Odinstalowano"
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:450
 msgid "Full Capacity"
-msgstr "Pełna pojemność"
+msgstr "Do Pełna"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:453
@@ -285,7 +286,8 @@ msgstr "Zrównoważony"
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:456
 msgid "Max Lifespan"
-msgstr "Maksymalna żywotność"
+msgstr "Ekonomiczny"
+msgstr "Ekonomiczny"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:459
@@ -333,7 +335,7 @@ msgstr "Tryb zrównoważony (Aktywny)"
 
 #: preferences/thresholdPrimary.js:209 preferences/thresholdSecondary.js:204
 msgid "Maximum Lifespan Mode (Currently Active)"
-msgstr "Tryb maksymalnej żywotności (Aktywny)"
+msgstr "Tryb Ekonomiczny (Aktywny)"
 
 #: preferences/thresholdPrimary.js:215 preferences/thresholdSecondary.js:210
 #, javascript-format
