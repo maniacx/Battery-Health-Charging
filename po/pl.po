@@ -175,7 +175,6 @@ msgstr "Bateria 1"
 #: lib/thresholdPanel42.js:227 lib/thresholdPanel.js:88
 #: preferences/thresholdPrimary.js:203 preferences/thresholdSecondary.js:198
 msgid "Full Capacity Mode"
-msgstr "Tryb Do Pełna"
 msgstr "Tryb do pełna"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
@@ -286,7 +285,6 @@ msgstr "Zrównoważony"
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:456
 msgid "Max Lifespan"
-msgstr "Ekonomiczny"
 msgstr "Ekonomiczny"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
