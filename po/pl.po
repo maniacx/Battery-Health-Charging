@@ -181,7 +181,7 @@ msgstr "Tryb do pełna"
 #: lib/thresholdPanel42.js:231 lib/thresholdPanel.js:97
 #: preferences/thresholdPrimary.js:207 preferences/thresholdSecondary.js:202
 msgid "Balanced Mode"
-msgstr "Tryb Zrównoważony"
+msgstr "Tryb zrównoważony"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:235 lib/thresholdPanel.js:106
