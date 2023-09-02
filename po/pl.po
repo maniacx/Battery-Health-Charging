@@ -333,7 +333,7 @@ msgstr "Tryb zrównoważony (Aktywny)"
 
 #: preferences/thresholdPrimary.js:209 preferences/thresholdSecondary.js:204
 msgid "Maximum Lifespan Mode (Currently Active)"
-msgstr "Tryb Ekonomiczny (Aktywny)"
+msgstr "Tryb ekonomiczny (Aktywny)"
 
 #: preferences/thresholdPrimary.js:215 preferences/thresholdSecondary.js:210
 #, javascript-format
