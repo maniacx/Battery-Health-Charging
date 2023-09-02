@@ -1,6 +1,6 @@
 'use strict';
 /* Gigabyte Laptop using dkms https://github.com/tangalbert919/gigabyte-laptop-wmi  */
-const {GObject} = imports.gi;
+const {GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
@@ -41,31 +41,49 @@ var GigabyteSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let updateMode = 'true';
-        const settings = ExtensionUtils.getSettings();
-        const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
+        this._updateMode = 'true';
+        this._status = 0;
+        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
+        if (this._verifyThreshold())
+            return this._status;
+        this._status = await runCommandCtl('GIGABYTE_THRESHOLD', this._updateMode, `${this._endValue}`, false);
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return this._status;
+        }
+
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
+
+        this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+            this._reVerifyThreshold();
+            delete this._delayReadTimeoutId;
+            return GLib.SOURCE_REMOVE;
+        });
+        return this._status;
+    }
+
+    _verifyThreshold() {
         if (readFileInt(GIGABYTE_MODE) === 1)
-            updateMode = 'false';
-        if ((readFileInt(GIGABYTE_LIMIT) === endValue) && (updateMode === 'false')) {
-            this.endLimitValue = endValue;
+            this._updateMode = 'false';
+        this.endLimitValue = readFileInt(GIGABYTE_LIMIT);
+        if (this._endValue === this.endLimitValue) {
             this.emit('threshold-applied', true);
-            return 0;
+            return true;
         }
-        const status = await runCommandCtl('GIGABYTE_THRESHOLD', updateMode, `${endValue}`, false);
-        if (status === 0) {
-            if (readFileInt(GIGABYTE_MODE) === 1) {
-                this.endLimitValue = readFileInt(GIGABYTE_LIMIT);
-                if (endValue === this.endLimitValue) {
-                    this.emit('threshold-applied', true);
-                    return 0;
-                }
-            }
-        }
+        return false;
+    }
+
+    _reVerifyThreshold() {
+        if (this._status === 0)
+            this._verifyThreshold();
         this.emit('threshold-applied', false);
-        return 1;
     }
 
     destroy() {
-        // Nothing to destroy for this device
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
     }
 });

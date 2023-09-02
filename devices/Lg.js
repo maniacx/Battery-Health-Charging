@@ -1,6 +1,6 @@
 'use strict';
 /* LG Laptops */
-const {GObject} = imports.gi;
+const {GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
@@ -31,30 +31,51 @@ var LgSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let batteryCareLimit;
+        this._status = 0;
         if (chargingMode === 'ful')
-            batteryCareLimit = 100;
+            this._batteryCareLimit = 100;
         else if (chargingMode === 'max')
-            batteryCareLimit = 80;
-        if (readFileInt(LG_PATH) === batteryCareLimit) {
-            this.endLimitValue = batteryCareLimit;
+            this._batteryCareLimit = 80;
+        if (this._verifyThreshold())
+            return this._status;
+        this._status = await runCommandCtl('LG', `${this._batteryCareLimit}`, null, false);
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return this._status;
+        }
+
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
+
+        this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+            this._reVerifyThreshold();
+            delete this._delayReadTimeoutId;
+            return GLib.SOURCE_REMOVE;
+        });
+        return this._status;
+    }
+
+    _verifyThreshold() {
+        this.endLimitValue = readFileInt(LG_PATH);
+        if (this._batteryCareLimit === this.endLimitValue) {
             this.emit('threshold-applied', true);
-            return 0;
+            return true;
         }
-        const status = await runCommandCtl('LG', `${batteryCareLimit}`, null, false);
-        if (status === 0) {
-            this.endLimitValue = readFileInt(LG_PATH);
-            if (batteryCareLimit === this.endLimitValue) {
-                this.emit('threshold-applied', true);
-                return 0;
-            }
-        }
+        return false;
+    }
+
+    _reVerifyThreshold() {
+        if (this._status === 0)
+            this._verifyThreshold();
         this.emit('threshold-applied', false);
-        return 1;
     }
 
     destroy() {
-        // Nothing to destroy for this device
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
     }
 });
+
 

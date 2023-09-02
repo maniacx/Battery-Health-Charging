@@ -1,6 +1,6 @@
 'use strict';
 /* Asus Laptops */
-const {GObject} = imports.gi;
+const {GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
@@ -44,22 +44,45 @@ var AsusSingleBatteryBAT0 = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        const settings = ExtensionUtils.getSettings();
-        const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
-        const status = await runCommandCtl('BAT0_END', `${endValue}`, null, false);
-        if (status === 0) {
-            this.endLimitValue = readFileInt(BAT0_END_PATH);
-            if (endValue === this.endLimitValue) {
-                this.emit('threshold-applied', true);
-                return 0;
-            }
+        this._status = 0;
+        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
+        this._status = await runCommandCtl('BAT0_END', `${this._endValue}`, null, false);
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return this._status;
         }
+
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
+
+        this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+            this._reVerifyThreshold();
+            delete this._delayReadTimeoutId;
+            return GLib.SOURCE_REMOVE;
+        });
+        return this._status;
+    }
+
+    _verifyThreshold() {
+        this.endLimitValue = readFileInt(BAT0_END_PATH);
+        if (this._endValue === this.endLimitValue) {
+            this.emit('threshold-applied', true);
+            return true;
+        }
+        return false;
+    }
+
+    _reVerifyThreshold() {
+        if (this._status === 0)
+            this._verifyThreshold();
         this.emit('threshold-applied', false);
-        return 1;
     }
 
     destroy() {
-        // Nothing to destroy for this device
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
     }
 });
 
@@ -95,21 +118,45 @@ var AsusSingleBatteryBAT1 = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        const endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
-        const status = await runCommandCtl('BAT1_END', `${endValue}`, null, false);
-        if (status === 0) {
-            this.endLimitValue = readFileInt(BAT1_END_PATH);
-            if (endValue === this.endLimitValue) {
-                this.emit('threshold-applied', true);
-                return 0;
-            }
+        this._status = 0;
+        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
+        this._status = await runCommandCtl('BAT1_END', `${this._endValue}`, null, false);
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return this._status;
         }
+
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
+
+        this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+            this._reVerifyThreshold();
+            delete this._delayReadTimeoutId;
+            return GLib.SOURCE_REMOVE;
+        });
+        return this._status;
+    }
+
+    _verifyThreshold() {
+        this.endLimitValue = readFileInt(BAT1_END_PATH);
+        if (this._endValue === this.endLimitValue) {
+            this.emit('threshold-applied', true);
+            return true;
+        }
+        return false;
+    }
+
+    _reVerifyThreshold() {
+        if (this._status === 0)
+            this._verifyThreshold();
         this.emit('threshold-applied', false);
-        return 1;
     }
 
     destroy() {
-        // Nothing to destroy for this device
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
     }
 });
 
@@ -145,21 +192,45 @@ var AsusSingleBatteryBATC = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        const endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
-        const status = await runCommandCtl('BATC_END', `${endValue}`, null, false);
-        if (status === 0) {
-            this.endLimitValue = readFileInt(BATC_END_PATH);
-            if (endValue === this.endLimitValue) {
-                this.emit('threshold-applied', true);
-                return 0;
-            }
+        this._status = 0;
+        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
+        this._status = await runCommandCtl('BATC_END', `${this._endValue}`, null, false);
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return this._status;
         }
+
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
+
+        this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+            this._reVerifyThreshold();
+            delete this._delayReadTimeoutId;
+            return GLib.SOURCE_REMOVE;
+        });
+        return this._status;
+    }
+
+    _verifyThreshold() {
+        this.endLimitValue = readFileInt(BATC_END_PATH);
+        if (this._endValue === this.endLimitValue) {
+            this.emit('threshold-applied', true);
+            return true;
+        }
+        return false;
+    }
+
+    _reVerifyThreshold() {
+        if (this._status === 0)
+            this._verifyThreshold();
         this.emit('threshold-applied', false);
-        return 1;
     }
 
     destroy() {
-        // Nothing to destroy for this device
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
     }
 });
 
@@ -195,21 +266,45 @@ var AsusSingleBatteryBATT = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        const endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
-        const status = await runCommandCtl('BATT_END', `${endValue}`, null, false);
-        if (status === 0) {
-            this.endLimitValue = readFileInt(BATT_END_PATH);
-            if (endValue === this.endLimitValue) {
-                this.emit('threshold-applied', true);
-                return 0;
-            }
+        this._status = 0;
+        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
+        this._status = await runCommandCtl('BATT_END', `${this._endValue}`, null, false);
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return this._status;
         }
+
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
+
+        this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+            this._reVerifyThreshold();
+            delete this._delayReadTimeoutId;
+            return GLib.SOURCE_REMOVE;
+        });
+        return this._status;
+    }
+
+    _verifyThreshold() {
+        this.endLimitValue = readFileInt(BATT_END_PATH);
+        if (this._endValue === this.endLimitValue) {
+            this.emit('threshold-applied', true);
+            return true;
+        }
+        return false;
+    }
+
+    _reVerifyThreshold() {
+        if (this._status === 0)
+            this._verifyThreshold();
         this.emit('threshold-applied', false);
-        return 1;
     }
 
     destroy() {
-        // Nothing to destroy for this device
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
     }
 });
 

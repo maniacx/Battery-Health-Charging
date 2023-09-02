@@ -1,6 +1,6 @@
 'use strict';
 /* Tuxedo Laptops using dkms https://github.com/tuxedocomputers/tuxedo-keyboard */
-const {GObject} = imports.gi;
+const {GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
@@ -38,37 +38,57 @@ var Tuxedo3ModesSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let profile, limit;
-        if (chargingMode === 'ful') {
-            profile = 'high_capacity';
-            limit = 100;
-        } else if (chargingMode === 'bal') {
-            profile = 'balanced';
-            limit = 90;
-        } else if (chargingMode === 'max') {
-            profile = 'stationary';
-            limit = 80;
+        this._status = 0;
+        this._chargingMode = chargingMode;
+        if (this._chargingMode === 'ful') {
+            this._profile = 'high_capacity';
+            this._limit = 100;
+        } else if (this._chargingMode === 'bal') {
+            this._profile = 'balanced';
+            this._limit = 90;
+        } else if (this._chargingMode === 'max') {
+            this._profile = 'stationary';
+            this._limit = 80;
         }
-        if (readFile(TUXEDO_PATH).replace('\n', '') === profile) {
-            this.endLimitValue = limit;
+        if (this._verifyThreshold())
+            return this._status;
+        this._status = await runCommandCtl('TUXEDO', this._profile, null, false);
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return this._status;
+        }
+
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+            this._reVerifyThreshold();
+            delete this._delayReadTimeoutId;
+            return GLib.SOURCE_REMOVE;
+        });
+        return this._status;
+    }
+
+    _verifyThreshold() {
+        const currentProfile = readFile(TUXEDO_PATH).replace('\n', '');
+        if (this._profile === currentProfile) {
+            this.endLimitValue = this._limit;
             this.emit('threshold-applied', true);
-            return 0;
+            return true;
         }
-        const status = await runCommandCtl('TUXEDO', profile, null, false);
-        if (status === 0) {
-            const currentProfile = readFile(TUXEDO_PATH).replace('\n', '');
-            if (profile === currentProfile) {
-                this.endLimitValue = limit;
-                this.emit('threshold-applied', true);
-                return 0;
-            }
-        }
+        return false;
+    }
+
+    _reVerifyThreshold() {
+        if (this._status === 0)
+            this._verifyThreshold();
         this.emit('threshold-applied', false);
-        return 1;
     }
 
     destroy() {
-        // Nothing to destroy for this device
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
     }
 });
 

@@ -1,6 +1,6 @@
 'use strict';
 /* Acer Laptops using dkms https://github.com/frederik-h/acer-wmi-battery/issues */
-const {GObject} = imports.gi;
+const {GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
@@ -31,37 +31,55 @@ var AcerSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let healthMode;
-        if (chargingMode === 'ful')
-            healthMode = 0;
-        else if (chargingMode === 'max')
-            healthMode = 1;
-        if (readFileInt(ACER_PATH) === healthMode) {
-            if (healthMode === 1)
+        this._status = 0;
+        this._chargingMode = chargingMode;
+        if (this._chargingMode === 'ful')
+            this._healthMode = 0;
+        else if (this._chargingMode === 'max')
+            this._healthMode = 1;
+        if (this._verifyThreshold())
+            return this._status;
+        this._status = await runCommandCtl('ACER', `${this._healthMode}`, null, false);
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return this._status;
+        }
+
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
+
+        this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+            this._reVerifyThreshold();
+            delete this._delayReadTimeoutId;
+            return GLib.SOURCE_REMOVE;
+        });
+        return this._status;
+    }
+
+    _verifyThreshold() {
+        const endLimitValue = readFileInt(ACER_PATH);
+        if (this._healthMode === endLimitValue) {
+            if (endLimitValue === 1)
                 this.endLimitValue = 80;
             else
                 this.endLimitValue = 100;
             this.emit('threshold-applied', true);
-            return 0;
+            return true;
         }
-        const status = await runCommandCtl('ACER', `${healthMode}`, null, false);
-        if (status === 0) {
-            const endLimitValue = readFileInt(ACER_PATH);
-            if (healthMode === endLimitValue) {
-                if (endLimitValue === 1)
-                    this.endLimitValue = 80;
-                else
-                    this.endLimitValue = 100;
-                this.emit('threshold-applied', true);
-                return 0;
-            }
-        }
+        return false;
+    }
+
+    _reVerifyThreshold() {
+        if (this._status === 0)
+            this._verifyThreshold();
         this.emit('threshold-applied', false);
-        return 1;
     }
 
     destroy() {
-        // Nothing to destroy for this device
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
     }
 });
 

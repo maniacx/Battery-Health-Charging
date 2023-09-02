@@ -1,6 +1,6 @@
 'use strict';
 /* Lenovo Ideapad Laptops */
-const {GObject} = imports.gi;
+const {GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
@@ -30,30 +30,50 @@ var LenovoSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let conservationMode;
-        if (chargingMode === 'ful')
-            conservationMode = 0;
-        else if (chargingMode === 'max')
-            conservationMode = 1;
-        if (readFileInt(LENOVO_PATH) === conservationMode) {
-            this.mode = chargingMode;
+        this._status = 0;
+        this._chargingMode = chargingMode;
+        if (this._chargingMode === 'ful')
+            this._conservationMode = 0;
+        else if (this._chargingMode === 'max')
+            this._conservationMode = 1;
+        if (this._verifyThreshold())
+            return this._status;
+        this._status = await runCommandCtl('LENOVO', `${this._conservationMode}`, null, false);
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return this._status;
+        }
+
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+            this._reVerifyThreshold();
+            delete this._delayReadTimeoutId;
+            return GLib.SOURCE_REMOVE;
+        });
+        return this._status;
+    }
+
+    _verifyThreshold() {
+        if (readFileInt(LENOVO_PATH) === this._conservationMode) {
+            this.mode = this._chargingMode;
             this.emit('threshold-applied', true);
-            return 0;
+            return true;
         }
-        const status = await runCommandCtl('LENOVO', `${conservationMode}`, null, false);
-        if (status === 0) {
-            if (readFileInt(LENOVO_PATH) === conservationMode) {
-                this.mode = chargingMode;
-                this.emit('threshold-applied', true);
-                return 0;
-            }
-        }
+        return false;
+    }
+
+    _reVerifyThreshold() {
+        if (this._status === 0)
+            this._verifyThreshold();
         this.emit('threshold-applied', false);
-        return status;
     }
 
     destroy() {
-        // Nothing to destroy for this device
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
     }
 });
 

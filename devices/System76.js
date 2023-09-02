@@ -1,6 +1,6 @@
 'use strict';
 /* System76 Laptops */
-const {GObject} = imports.gi;
+const {GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
@@ -51,37 +51,56 @@ var System76SingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let status;
-        const settings = ExtensionUtils.getSettings();
-        const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
-        const startValue = settings.get_int(`current-${chargingMode}-start-threshold`);
-        const oldEndValue = readFileInt(BAT0_END_PATH);
-        const oldStartValue = readFileInt(BAT0_START_PATH);
-        if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
-            this.endLimitValue = endValue;
-            this.startLimitValue = startValue;
-            this.emit('threshold-applied', true);
-            return 0;
-        }
+        this._status = 0;
+        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
+        this._startValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-start-threshold`);
+        if (this._verifyThreshold())
+            return this._status;
         // Some device wont update end threshold if start threshold > end threshold
-        if (startValue >= oldEndValue)
-            status = await runCommandCtl('BAT0_END_START', `${endValue}`, `${startValue}`, false);
+        if (this._startValue >= this._oldEndValue)
+            this._status = await runCommandCtl('BAT0_END_START', `${this._endValue}`, `${this._startValue}`, false);
         else
-            status = await runCommandCtl('BAT0_START_END', `${endValue}`, `${startValue}`, false);
-        if (status === 0) {
-            this.endLimitValue = readFileInt(BAT0_END_PATH);
-            this.startLimitValue = readFileInt(BAT0_START_PATH);
-            if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
-                this.emit('threshold-applied', true);
-                return 0;
-            }
+            this._status = await runCommandCtl('BAT0_START_END', `${this._endValue}`, `${this._startValue}`, false);
+
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return this._status;
         }
+
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
+
+        this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+            this._reVerifyThreshold();
+            delete this._delayReadTimeoutId;
+            return GLib.SOURCE_REMOVE;
+        });
+        return this._status;
+    }
+
+    _verifyThreshold() {
+        this._oldEndValue = readFileInt(BAT0_END_PATH);
+        this._oldStartValue = readFileInt(BAT0_START_PATH);
+        if ((this._oldEndValue === this._endValue) && (this._oldStartValue === this._startValue)) {
+            this.endLimitValue = this._endValue;
+            this.startLimitValue = this._startValue;
+            this.emit('threshold-applied', true);
+            return true;
+        }
+        return false;
+    }
+
+    _reVerifyThreshold() {
+        if (this._status === 0)
+            this._verifyThreshold();
         this.emit('threshold-applied', false);
-        return 1;
     }
 
     destroy() {
-        // Nothing to destroy for this device
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
     }
 });
 

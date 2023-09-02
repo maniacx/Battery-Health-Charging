@@ -1,6 +1,6 @@
 'use strict';
 /* Huawei Laptops */
-const {GObject} = imports.gi;
+const {GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
@@ -45,32 +45,51 @@ var HuaweiSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let limitValue = ['0', '0'];
-        const settings = ExtensionUtils.getSettings();
-        const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
-        const startValue = settings.get_int(`current-${chargingMode}-start-threshold`);
-        limitValue = readFile(HUAWEI_PATH).split(' ');
-        if ((endValue === parseInt(limitValue[1])) && (startValue === parseInt(limitValue[0]))) {
-            this.endLimitValue = endValue;
-            this.startLimitValue = startValue;
+        this._status = 0;
+        this._limitValue = ['0', '0'];
+        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
+        this._startValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-start-threshold`);
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return this._status;
+        }
+        this._status = await runCommandCtl('HUAWEI', `${this._endValue}`, `${this._startValue}`, false);
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return this._status;
+        }
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
+
+        this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+            this._reVerifyThreshold();
+            delete this._delayReadTimeoutId;
+            return GLib.SOURCE_REMOVE;
+        });
+        return this._status;
+    }
+
+    _verifyThreshold() {
+        this._limitValue = readFile(HUAWEI_PATH).split(' ');
+        if ((this._endValue === parseInt(this._limitValue[1])) && (this._startValue === parseInt(this._limitValue[0]))) {
+            this.endLimitValue = this._endValue;
+            this.startLimitValue = this._startValue;
             this.emit('threshold-applied', true);
-            return 0;
+            return true;
         }
-        const status = await runCommandCtl('HUAWEI', `${endValue}`, `${startValue}`, false);
-        if (status === 0) {
-            limitValue = readFile(HUAWEI_PATH).split(' ');
-            this.endLimitValue = parseInt(limitValue[1]);
-            this.startLimitValue = parseInt(limitValue[0]);
-            if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
-                this.emit('threshold-applied', true);
-                return 0;
-            }
-        }
+        return false;
+    }
+
+    _reVerifyThreshold() {
+        if (this._status === 0)
+            this._verifyThreshold();
         this.emit('threshold-applied', false);
-        return 1;
     }
 
     destroy() {
-        // Nothing to destroy for this device
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
     }
 });

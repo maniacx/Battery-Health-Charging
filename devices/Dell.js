@@ -1,7 +1,7 @@
 'use strict';
 /* Dell Laptops using package smbios-battery-ctl from libsmbios  https://github.com/dell/libsmbios */
 /* Dell Laptops using package dell command configure from libsmbios  https://www.dell.com/support/kbdoc/en-us/000178000/dell-command-configure */
-const {GLib, GObject} = imports.gi;
+const {GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;

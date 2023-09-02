@@ -1,6 +1,6 @@
 'use strict';
 /* Panasonic Laptops. */
-const {GObject} = imports.gi;
+const {GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
@@ -30,30 +30,50 @@ var PanasonicSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let ecoMode;
-        if (chargingMode === 'ful')
-            ecoMode = 0;
-        else if (chargingMode === 'max')
-            ecoMode = 1;
-        if (readFileInt(PANASONIC_PATH) === ecoMode) {
-            this.mode = chargingMode;
+        this._status = 0;
+        this._chargingMode = chargingMode;
+        if (this._chargingMode === 'ful')
+            this._ecoMode = 0;
+        else if (this._chargingMode === 'max')
+            this._ecoMode = 1;
+        if (this._verifyThreshold())
+            return this._status;
+        this._status = await runCommandCtl('PANASONIC', `${this._ecoMode}`, null, false);
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return this._status;
+        }
+
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+            this._reVerifyThreshold();
+            delete this._delayReadTimeoutId;
+            return GLib.SOURCE_REMOVE;
+        });
+        return this._status;
+    }
+
+    _verifyThreshold() {
+        if (readFileInt(PANASONIC_PATH) === this._ecoMode) {
+            this.mode = this._chargingMode;
             this.emit('threshold-applied', true);
-            return 0;
+            return true;
         }
-        const status = await runCommandCtl('PANASONIC', `${ecoMode}`, null, false);
-        if (status === 0) {
-            if (readFileInt(PANASONIC_PATH) === ecoMode) {
-                this.mode = chargingMode;
-                this.emit('threshold-applied', true);
-                return 0;
-            }
-        }
+        return false;
+    }
+
+    _reVerifyThreshold() {
+        if (this._status === 0)
+            this._verifyThreshold();
         this.emit('threshold-applied', false);
-        return 1;
     }
 
     destroy() {
-        // Nothing to destroy for this device
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
     }
 });
 

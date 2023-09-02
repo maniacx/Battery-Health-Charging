@@ -1,6 +1,6 @@
 'use strict';
 /* Sony Laptops */
-const {GObject} = imports.gi;
+const {GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
@@ -32,33 +32,54 @@ var SonySingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let batteryCareLimiter;
-        if (chargingMode === 'ful')
-            batteryCareLimiter = 0;
-        else if (chargingMode === 'bal')
-            batteryCareLimiter = 80;
-        else if (chargingMode === 'max')
-            batteryCareLimiter = 50;
-        if (readFileInt(SONY_PATH) === batteryCareLimiter) {
-            this.endLimitValue = batteryCareLimiter === 0 ? 100 : batteryCareLimiter;
+        this._status = 0;
+        this._chargingMode = chargingMode;
+        if (this._chargingMode === 'ful')
+            this._batteryCareLimiter = 0;
+        else if (this._chargingMode === 'bal')
+            this._batteryCareLimiter = 80;
+        else if (this._chargingMode === 'max')
+            this._batteryCareLimiter = 50;
+        if (this._verifyThreshold())
+            return this._status;
+        this._status = await runCommandCtl('SONY', `${this._batteryCareLimiter}`, null, false);
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return this._status;
+        }
+
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+            this._reVerifyThreshold();
+            delete this._delayReadTimeoutId;
+            return GLib.SOURCE_REMOVE;
+        });
+        return this._status;
+    }
+
+    _verifyThreshold() {
+        const endLimitValue = readFileInt(SONY_PATH);
+        if (this._batteryCareLimiter === endLimitValue) {
+            this.endLimitValue = endLimitValue === 0 ? 100 : endLimitValue;
             this.emit('threshold-applied', true);
-            return 0;
+            return true;
         }
-        const status = await runCommandCtl('SONY', `${batteryCareLimiter}`, null, false);
-        if (status === 0) {
-            const endLimitValue = readFileInt(SONY_PATH);
-            if (batteryCareLimiter === endLimitValue) {
-                this.endLimitValue = endLimitValue === 0 ? 100 : endLimitValue;
-                this.emit('threshold-applied', true);
-                return 0;
-            }
-        }
+        return false;
+    }
+
+    _reVerifyThreshold() {
+        if (this._status === 0)
+            this._verifyThreshold();
         this.emit('threshold-applied', false);
-        return 1;
     }
 
     destroy() {
-        // Nothing to destroy for this device
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
     }
 });
+
 

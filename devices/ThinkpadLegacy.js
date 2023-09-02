@@ -1,6 +1,6 @@
 'use strict';
 /* Thinkpad Legacy Laptops using dkms https://github.com/linux-thinkpad/tp_smapi  */
-const {Gio, GObject} = imports.gi;
+const {Gio, GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
@@ -224,39 +224,59 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let status;
-        const settings = ExtensionUtils.getSettings();
-        const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
-        const startValue = settings.get_int(`current-${chargingMode}-start-threshold`);
-        const oldEndValue = readFileInt(TP_BAT0_END);
-        const oldStartValue = readFileInt(TP_BAT0_START);
-        if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
-            this.endLimitValue = endValue;
-            this.startLimitValue = startValue;
-            this.emit('threshold-applied', true);
-            return 0;
-        }
+        this._status = 0;
+        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
+        this._startValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-start-threshold`);
+        if (this._verifyThreshold())
+            return this._status;
         // Some device wont update end threshold if start threshold > end threshold
-        if (startValue >= oldEndValue)
-            status = await runCommandCtl('TP_BAT0_END_START', `${endValue}`, `${startValue}`, false);
+        if (this._startValue >= this._oldEndValue)
+            this._status = await runCommandCtl('TP_BAT0_END_START', `${this._endValue}`, `${this._startValue}`, false);
         else
-            status = await runCommandCtl('TP_BAT0_START_END', `${endValue}`, `${startValue}`, false);
-        if (status === 0) {
-            this.endLimitValue = readFileInt(TP_BAT0_END);
-            this.startLimitValue = readFileInt(TP_BAT0_START);
-            if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
-                this.emit('threshold-applied', true);
-                return 0;
-            }
+            this._status = await runCommandCtl('TP_BAT0_START_END', `${this._endValue}`, `${this._startValue}`, false);
+
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return this._status;
         }
+
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
+
+        this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+            this._reVerifyThreshold();
+            delete this._delayReadTimeoutId;
+            return GLib.SOURCE_REMOVE;
+        });
+        return this._status;
+    }
+
+    _verifyThreshold() {
+        this._oldEndValue = readFileInt(TP_BAT0_END);
+        this._oldStartValue = readFileInt(TP_BAT0_START);
+        if ((this._oldEndValue === this._endValue) && (this._oldStartValue === this._startValue)) {
+            this.endLimitValue = this._endValue;
+            this.startLimitValue = this._startValue;
+            this.emit('threshold-applied', true);
+            return true;
+        }
+        return false;
+    }
+
+    _reVerifyThreshold() {
+        if (this._status === 0)
+            this._verifyThreshold();
         this.emit('threshold-applied', false);
-        return 1;
     }
 
     destroy() {
-        // Nothing to destroy for this device
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
     }
 });
+
 
 var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
@@ -299,37 +319,56 @@ var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let status;
-        const settings = ExtensionUtils.getSettings();
-        const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
-        const startValue = settings.get_int(`current-${chargingMode}-start-threshold`);
-        const oldEndValue = readFileInt(TP_BAT1_END);
-        const oldStartValue = readFileInt(TP_BAT1_START);
-        if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
-            this.endLimitValue = endValue;
-            this.startLimitValue = startValue;
-            this.emit('threshold-applied', true);
-            return 0;
-        }
+        this._status = 0;
+        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
+        this._startValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-start-threshold`);
+        if (this._verifyThreshold())
+            return this._status;
         // Some device wont update end threshold if start threshold > end threshold
-        if (startValue >= oldEndValue)
-            status = await runCommandCtl('TP_BAT1_END_START', `${endValue}`, `${startValue}`, false);
+        if (this._startValue >= this._oldEndValue)
+            this._status = await runCommandCtl('TP_BAT1_END_START', `${this._endValue}`, `${this._startValue}`, false);
         else
-            status = await runCommandCtl('TP_BAT1_START_END', `${endValue}`, `${startValue}`, false);
-        if (status === 0) {
-            this.endLimitValue = readFileInt(TP_BAT1_END);
-            this.startLimitValue = readFileInt(TP_BAT1_START);
-            if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
-                this.emit('threshold-applied', true);
-                return 0;
-            }
+            this._status = await runCommandCtl('TP_BAT1_START_END', `${this._endValue}`, `${this._startValue}`, false);
+
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return this._status;
         }
+
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
+
+        this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+            this._reVerifyThreshold();
+            delete this._delayReadTimeoutId;
+            return GLib.SOURCE_REMOVE;
+        });
+        return this._status;
+    }
+
+    _verifyThreshold() {
+        this._oldEndValue = readFileInt(TP_BAT1_END);
+        this._oldStartValue = readFileInt(TP_BAT1_START);
+        if ((this._oldEndValue === this._endValue) && (this._oldStartValue === this._startValue)) {
+            this.endLimitValue = this._endValue;
+            this.startLimitValue = this._startValue;
+            this.emit('threshold-applied', true);
+            return true;
+        }
+        return false;
+    }
+
+    _reVerifyThreshold() {
+        if (this._status === 0)
+            this._verifyThreshold();
         this.emit('threshold-applied', false);
-        return 1;
     }
 
     destroy() {
-        // Nothing to destroy for this device
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        delete this._delayReadTimeoutId;
     }
 });
 
