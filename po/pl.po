@@ -175,14 +175,13 @@ msgstr "Bateria 1"
 #: lib/thresholdPanel42.js:227 lib/thresholdPanel.js:88
 #: preferences/thresholdPrimary.js:203 preferences/thresholdSecondary.js:198
 msgid "Full Capacity Mode"
-msgstr "Tryb Do Pełna"
 msgstr "Tryb do pełna"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:231 lib/thresholdPanel.js:97
 #: preferences/thresholdPrimary.js:207 preferences/thresholdSecondary.js:202
 msgid "Balanced Mode"
-msgstr "Tryb Zrównoważony"
+msgstr "Tryb zrównoważony"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:235 lib/thresholdPanel.js:106
@@ -287,7 +286,6 @@ msgstr "Zrównoważony"
 #: lib/thresholdPanel.js:456
 msgid "Max Lifespan"
 msgstr "Ekonomiczny"
-msgstr "Ekonomiczny"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:459
@@ -335,7 +333,7 @@ msgstr "Tryb zrównoważony (Aktywny)"
 
 #: preferences/thresholdPrimary.js:209 preferences/thresholdSecondary.js:204
 msgid "Maximum Lifespan Mode (Currently Active)"
-msgstr "Tryb Ekonomiczny (Aktywny)"
+msgstr "Tryb ekonomiczny (Aktywny)"
 
 #: preferences/thresholdPrimary.js:215 preferences/thresholdSecondary.js:210
 #, javascript-format
