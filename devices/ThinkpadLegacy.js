@@ -265,8 +265,10 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
     }
 
     _reVerifyThreshold() {
-        if (this._status === 0)
-            this._verifyThreshold();
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return;
+        }
         this.emit('threshold-applied', false);
     }
 
@@ -360,8 +362,10 @@ var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
     }
 
     _reVerifyThreshold() {
-        if (this._status === 0)
-            this._verifyThreshold();
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return;
+        }
         this.emit('threshold-applied', false);
     }
 

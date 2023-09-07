@@ -74,8 +74,10 @@ var AsusSingleBatteryBAT0 = GObject.registerClass({
     }
 
     _reVerifyThreshold() {
-        if (this._status === 0)
-            this._verifyThreshold();
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return;
+        }
         this.emit('threshold-applied', false);
     }
 
@@ -148,8 +150,10 @@ var AsusSingleBatteryBAT1 = GObject.registerClass({
     }
 
     _reVerifyThreshold() {
-        if (this._status === 0)
-            this._verifyThreshold();
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return;
+        }
         this.emit('threshold-applied', false);
     }
 
@@ -222,8 +226,10 @@ var AsusSingleBatteryBATC = GObject.registerClass({
     }
 
     _reVerifyThreshold() {
-        if (this._status === 0)
-            this._verifyThreshold();
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return;
+        }
         this.emit('threshold-applied', false);
     }
 
@@ -296,8 +302,10 @@ var AsusSingleBatteryBATT = GObject.registerClass({
     }
 
     _reVerifyThreshold() {
-        if (this._status === 0)
-            this._verifyThreshold();
+        if (this._status === 0) {
+            if (this._verifyThreshold())
+                return;
+        }
         this.emit('threshold-applied', false);
     }
 
