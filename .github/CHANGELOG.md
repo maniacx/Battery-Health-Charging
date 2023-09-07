@@ -1,5 +1,10 @@
 Battery Health Charging Extension Changelogs
 ============================================
+### Version 25
+Sep 06, 2023
+* Fix for devices which doesn't immediately update threshold after writing. Added re-verification by reading threshold after 200ms if threshold fails verification the first time.
+* Fix error for thinkpad legacy when disabling extension
+
 ### Version 24
 Jul 05, 2023
 * Dell: Fixed unsupported device for dell libsmbios on debian

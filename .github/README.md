@@ -290,6 +290,11 @@ smbios-battery-ctl --set-custom-charge-interval low high
 ```
 
 ## Changelog
+### Version 25
+Sep 06, 2023
+* Fix for devices which doesn't immediately update threshold after writing. Added re-verification by reading threshold after 200ms if threshold fails verification the first time.
+* Fix error for thinkpad legacy when disabling extension
+
 ### Version 24
 Jul 05, 2023
 * Dell: Fixed unsupported device for dell libsmbios on debian
@@ -317,14 +322,6 @@ May 22, 2023
 * German translation contribution (Thanks olebole)
 * Fix for some thinkpad mode conditions where start threshold should be less than end threshold. (Thanks olebole)
 * Adjusted allowed custom valueLegacy thinkpad (tpsmapi) as allowed values for end endthreshold > startthreshold + 5
-
-### Version 20
-May 18, 2023
-* Turkish translation contribution (Thanks sabriunal)
-* Used CHECK Icons (Same as wifi) for displaying selected mode, instead of ugly CHECK ornament unicode.
-* Removed threshold value displayed on panel/notification for lenovo ideapad/legion. When charging limit is enabled (conservation mode), Some models sets threshold to 60% and some models set threhsold to 80%, and the kernel doesnt report what is the current threshold value is, but only informs that charging limit is enabled or disabled. Now it will report only the current mode. conservation mode enabled displays max lifespan mode. conservation mode disable display full capacity mode.
-* Removed threshold value displayed on panel/notification for Samsung laptop. When charging limit is enabled (battery_life_extender), Some models sets threshold to 60% and some models set threhsold to 80%, and the kernel doesnt report what is the current threshold value is, but only informs that charging limit is enabled or disabled. Now it will report only the current mode. battery_life_extender mode enabled, displays max lifespan mode. battery_life_extender mode disable, display full capacity mode.
-* Same goes for panasonic
 
 See [Full History](https://github.com/maniacx/Battery-Health-Charging/blob/main/.github/CHANGELOG.md)
 
