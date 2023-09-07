@@ -170,14 +170,16 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
         if (this._monitorLevelId)
             this._monitorLevel.disconnect(this._monitorLevelId);
         this._monitorLevelId = null;
-        this._monitorLevel.cancel();
+        if (this._monitorLevel)
+            this._monitorLevel.cancel();
         this._monitorLevel = null;
         this._battery0LevelPath = null;
 
         if (this._monitorLevel2Id)
             this._monitorLevel2.disconnect(this._monitorLevel2Id);
         this._monitorLevel2Id = null;
-        this._monitorLevel2.cancel();
+        if (this._monitorLevel2)
+            this._monitorLevel2.cancel();
         this._monitorLevel2 = null;
         this._battery1LevelPath = null;
     }
