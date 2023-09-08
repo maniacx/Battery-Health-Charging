@@ -4,26 +4,12 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Config = imports.misc.config;
 
-const Driver = Me.imports.lib.driver;
-
 const gettextDomain = Me.metadata['gettext-domain'];
 const Gettext = imports.gettext.domain(gettextDomain);
 const _ = Gettext.gettext;
 
 const [major] = Config.PACKAGE_VERSION.split('.');
 const shellVersion = Number.parseInt(major);
-
-function runInstaller() {
-    Driver.runInstaller();
-}
-
-function runUpdater() {
-    Driver.runUpdater();
-}
-
-function runUninstaller() {
-    Driver.runUninstaller();
-}
 
 var General = GObject.registerClass({
     GTypeName: 'BHC_General',
@@ -45,25 +31,27 @@ var General = GObject.registerClass({
         'install_service_button',
     ],
 }, class General extends Adw.PreferencesPage {
-    constructor(settings) {
+    constructor(settings, currentDevice) {
         super({});
+        this._settings = settings;
+        this._currentDevice = currentDevice;
 
         this._deviceHaveVariableThreshold = false;
         this._deviceNeedRootPermission = false;
         this._deviceHaveDualBattery = false;
         this._deviceUsesModeNotValue = false;
 
-        if (Driver.currentDevice !== null) {
-            this._deviceHaveVariableThreshold = Driver.currentDevice.deviceHaveVariableThreshold;
-            this._deviceNeedRootPermission = Driver.currentDevice.deviceNeedRootPermission;
-            this._deviceHaveDualBattery = Driver.currentDevice.deviceHaveDualBattery;
-            this._deviceUsesModeNotValue = Driver.currentDevice.deviceUsesModeNotValue;
+        if (currentDevice !== null) {
+            this._deviceHaveVariableThreshold = currentDevice.deviceHaveVariableThreshold;
+            this._deviceNeedRootPermission = currentDevice.deviceNeedRootPermission;
+            this._deviceHaveDualBattery = currentDevice.deviceHaveDualBattery;
+            this._deviceUsesModeNotValue = currentDevice.deviceUsesModeNotValue;
         }
 
-        this._showDellOption = settings.get_boolean('show-dell-option');
+        this._showDellOption = this._settings.get_boolean('show-dell-option');
         this._dell_package_option_row.visible = this._showDellOption;
 
-        this._iconModeSensitiveCheck(settings);
+        this._iconModeSensitiveCheck();
         if (this._deviceUsesModeNotValue) {
             this._icon_style_mode_row.visible = false;
         } else {
@@ -76,30 +64,30 @@ var General = GObject.registerClass({
 
         this._show_quickmenu_subtitle_row.visible = shellVersion >= 44;
 
-        this._setIndicatorPosistionRange(settings);
+        this._setIndicatorPosistionRange();
 
         if (this._deviceNeedRootPermission) {
             this._service_installer.visible = true;
-            this._updateInstallationLabelIcon(settings);
+            this._updateInstallationLabelIcon();
         } else {
             this._service_installer.visible = false;
         }
 
-        settings.bind(
+        this._settings.bind(
             'icon-style-type',
             this._icon_style_mode,
             'selected',
             Gio.SettingsBindFlags.DEFAULT
         );
 
-        settings.bind(
+        this._settings.bind(
             'show-notifications',
             this._show_notifications,
             'active',
             Gio.SettingsBindFlags.DEFAULT
         );
 
-        settings.bind(
+        this._settings.bind(
             'show-preferences',
             this._show_preferences,
             'active',
@@ -107,7 +95,7 @@ var General = GObject.registerClass({
         );
 
         if (shellVersion >= 44) {
-            settings.bind(
+            this._settings.bind(
                 'show-quickmenu-subtitle',
                 this._show_quickmenu_subtitle,
                 'active',
@@ -115,21 +103,21 @@ var General = GObject.registerClass({
             );
         }
 
-        settings.bind(
+        this._settings.bind(
             'show-system-indicator',
             this._show_system_indicator,
             'active',
             Gio.SettingsBindFlags.DEFAULT
         );
 
-        settings.bind(
+        this._settings.bind(
             'indicator-position',
             this._indicator_position,
             'value',
             Gio.SettingsBindFlags.DEFAULT
         );
 
-        settings.bind(
+        this._settings.bind(
             'amend-power-indicator',
             this._amend_power_indicator,
             'active',
@@ -137,7 +125,7 @@ var General = GObject.registerClass({
         );
 
         if (this._showDellOption) {
-            settings.bind(
+            this._settings.bind(
                 'dell-package-type',
                 this._dell_package_option,
                 'selected',
@@ -147,71 +135,56 @@ var General = GObject.registerClass({
 
         if (this._deviceNeedRootPermission) {
             this._install_service.connect('clicked', () => {
-                const installType = settings.get_int('install-service');
-                switch (installType) {
-                    case 0:
-                        runUninstaller();
-                        break;
-                    case 1:
-                        runInstaller();
-                        break;
-                    case 2:
-                        runUpdater();
-                        break;
-                }
+                this._settings.set_boolean('polkit-installation-changed', !this._settings.get_boolean('polkit-installation-changed'));
             });
 
-            settings.connect('changed::install-service', () => {
-                this._updateInstallationLabelIcon(settings);
+            this._settings.connect('changed::polkit-status', () => {
+                this._updateInstallationLabelIcon();
             });
         }
 
-        settings.connect('changed::default-threshold', () => {
-            this._iconModeSensitiveCheck(settings);
+        this._settings.connect('changed::default-threshold', () => {
+            this._iconModeSensitiveCheck();
         });
 
         if (this._deviceHaveDualBattery) {
-            settings.connect('changed::default-threshold2', () => {
-                this._iconModeSensitiveCheck(settings);
+            this._settings.connect('changed::default-threshold2', () => {
+                this._iconModeSensitiveCheck();
             });
         }
 
-        settings.connect('changed::indicator-position-max', () => {
-            this._setIndicatorPosistionRange(settings);
+        this._settings.connect('changed::indicator-position-max', () => {
+            this._setIndicatorPosistionRange();
         });
     }
 
-    _iconModeSensitiveCheck(settings) {
-        if (!settings.get_boolean('default-threshold')) {
+    _iconModeSensitiveCheck() {
+        if (!this._settings.get_boolean('default-threshold')) {
             this._icon_style_mode_row.sensitive = false;
-            settings.set_int('icon-style-type', 0);
-        } else if (!settings.get_boolean('default-threshold2') && this._deviceHaveDualBattery) {
+            this._settings.set_int('icon-style-type', 0);
+        } else if (!this._settings.get_boolean('default-threshold2') && this._deviceHaveDualBattery) {
             this._icon_style_mode_row.sensitive = false;
-            settings.set_int('icon-style-type', 0);
+            this._settings.set_int('icon-style-type', 0);
         } else {
             this._icon_style_mode_row.sensitive = true;
         }
     }
 
-    _setIndicatorPosistionRange(settings) {
-        this._indicator_position.set_range(0, settings.get_int('indicator-position-max'));
+    _setIndicatorPosistionRange() {
+        this._indicator_position.set_range(0, this._settings.get_int('indicator-position-max'));
     }
 
-    _updateInstallationLabelIcon(settings) {
-        const installType = settings.get_int('install-service');
-        switch (installType) {
-            case 0:
-                this._install_service_button.set_label(_('Remove'));
-                this._install_service_button.set_icon_name('user-trash-symbolic');
-                break;
-            case 1:
-                this._install_service_button.set_label(_('Install'));
-                this._install_service_button.set_icon_name('emblem-system-symbolic');
-                break;
-            case 2:
-                this._install_service_button.set_label(_('Update'));
-                this._install_service_button.set_icon_name('software-update-available-symbolic');
-                break;
+    _updateInstallationLabelIcon() {
+        const installType = this._settings.get_string('polkit-status');
+        if (installType === 'installed') {
+            this._install_service_button.set_label(_('Remove'));
+            this._install_service_button.set_icon_name('user-trash-symbolic');
+        } else if (installType === 'not-installed') {
+            this._install_service_button.set_label(_('Install'));
+            this._install_service_button.set_icon_name('emblem-system-symbolic');
+        } else if (installType === 'need-update') {
+            this._install_service_button.set_label(_('Update'));
+            this._install_service_button.set_icon_name('software-update-available-symbolic');
         }
     }
 });

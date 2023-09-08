@@ -17,35 +17,40 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
         'battery-status-changed': {},
     },
 }, class ThinkpadLegacyDualBattery extends GObject.Object {
-    name = 'Thinkpad tpsmapi BAT0/BAT1';
-    type = 13;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = true;
-    deviceHaveStartThreshold = true;
-    deviceHaveVariableThreshold = true;
-    deviceHaveBalancedMode = true;
-    deviceHaveAdaptiveMode = false;
-    deviceHaveExpressMode = false;
-    deviceUsesModeNotValue = false;
-    iconForFullCapMode = '100';
-    iconForBalanceMode = '080';
-    iconForMaxLifeMode = '060';
-    endFullCapacityRangeMax = 100;
-    endFullCapacityRangeMin = 80;
-    endBalancedRangeMax = 85;
-    endBalancedRangeMin = 65;
-    endMaxLifeSpanRangeMax = 85;
-    endMaxLifeSpanRangeMin = 50;
-    startFullCapacityRangeMax = 95;
-    startFullCapacityRangeMin = 75;
-    startBalancedRangeMax = 80;
-    startBalancedRangeMin = 60;
-    startMaxLifeSpanRangeMax = 80;
-    startMaxLifeSpanRangeMin = 40;
-    minDiffLimit = 5;
+    constructor(settings) {
+        super();
+        this.name = 'Thinkpad tpsmapi BAT0/BAT1';
+        this.type = 13;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = true;
+        this.deviceHaveStartThreshold = true;
+        this.deviceHaveVariableThreshold = true;
+        this.deviceHaveBalancedMode = true;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForBalanceMode = '080';
+        this.iconForMaxLifeMode = '060';
+        this.endFullCapacityRangeMax = 100;
+        this.endFullCapacityRangeMin = 80;
+        this.endBalancedRangeMax = 85;
+        this.endBalancedRangeMin = 65;
+        this.endMaxLifeSpanRangeMax = 85;
+        this.endMaxLifeSpanRangeMin = 50;
+        this.startFullCapacityRangeMax = 95;
+        this.startFullCapacityRangeMin = 75;
+        this.startBalancedRangeMax = 80;
+        this.startBalancedRangeMin = 60;
+        this.startMaxLifeSpanRangeMax = 80;
+        this.startMaxLifeSpanRangeMin = 40;
+        this.minDiffLimit = 5;
+
+        this._settings = settings;
+    }
 
     isAvailable() {
-        const deviceType = ExtensionUtils.getSettings().get_int('device-type');
+        const deviceType = this._settings.get_int('device-type');
         if (deviceType === 0) {
             if (!fileExists(TP_BAT1_START))
                 return false;
@@ -68,9 +73,9 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
         if (this.battery0Removed)
             return 0;
         let status;
-        const settings = ExtensionUtils.getSettings();
-        const endValue = settings.get_int(`current-${chargingMode}-end-threshold`);
-        const startValue = settings.get_int(`current-${chargingMode}-start-threshold`);
+        const ctlPath = this._settings.get_string('ctl-path');
+        const endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
+        const startValue = this._settings.get_int(`current-${chargingMode}-start-threshold`);
         const oldEndValue = readFileInt(TP_BAT0_END);
         const oldStartValue = readFileInt(TP_BAT0_START);
         if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
@@ -81,9 +86,9 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
         }
         // Some device wont update end threshold if start threshold > end threshold
         if (startValue >= oldEndValue)
-            status = await runCommandCtl('TP_BAT0_END_START', `${endValue}`, `${startValue}`, false);
+            status = await runCommandCtl('TP_BAT0_END_START', `${endValue}`, `${startValue}`, ctlPath, false);
         else
-            status = await runCommandCtl('TP_BAT0_START_END', `${endValue}`, `${startValue}`, false);
+            status = await runCommandCtl('TP_BAT0_START_END', `${endValue}`, `${startValue}`, ctlPath, false);
         if (status === 0) {
             this.endLimitValue = readFileInt(TP_BAT0_END);
             this.startLimitValue = readFileInt(TP_BAT0_START);
@@ -100,9 +105,9 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
         if (this.battery1Removed)
             return 0;
         let status;
-        const settings = ExtensionUtils.getSettings();
-        const endValue = settings.get_int(`current-${chargingMode2}-end-threshold2`);
-        const startValue = settings.get_int(`current-${chargingMode2}-start-threshold2`);
+        const ctlPath = this._settings.get_string('ctl-path');
+        const endValue = this._settings.get_int(`current-${chargingMode2}-end-threshold2`);
+        const startValue = this._settings.get_int(`current-${chargingMode2}-start-threshold2`);
         const oldEndValue = readFileInt(TP_BAT1_END);
         const oldStartValue = readFileInt(TP_BAT1_START);
         if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
@@ -113,9 +118,9 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
         }
         // Some device wont update end threshold if start threshold > end threshold
         if (startValue >= oldEndValue)
-            status = await runCommandCtl('TP_BAT1_END_START', `${endValue}`, `${startValue}`, false);
+            status = await runCommandCtl('TP_BAT1_END_START', `${endValue}`, `${startValue}`, ctlPath, false);
         else
-            status = await runCommandCtl('TP_BAT1_START_END', `${endValue}`, `${startValue}`, false);
+            status = await runCommandCtl('TP_BAT1_START_END', `${endValue}`, `${startValue}`, ctlPath, false);
         if (status === 0) {
             this.endLimit2Value = readFileInt(TP_BAT1_END);
             this.startLimit2Value = readFileInt(TP_BAT1_START);
@@ -128,10 +133,9 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
     }
 
     async setThresholdLimitDual() {
-        const settings = ExtensionUtils.getSettings();
-        let status = await this.setThresholdLimit(settings.get_string('charging-mode'));
+        let status = await this.setThresholdLimit(this._settings.get_string('charging-mode'));
         if (status === 0)
-            status = await this.setThresholdLimit2(settings.get_string('charging-mode2'));
+            status = await this.setThresholdLimit2(this._settings.get_string('charging-mode2'));
         return status;
     }
 
@@ -145,7 +149,7 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
             }
             if (eventType === Gio.FileMonitorEvent.CREATED) {
                 this.battery0Removed = false;
-                this.setThresholdLimit(ExtensionUtils.getSettings().get_string('charging-mode'));
+                this.setThresholdLimit(this._settings.get_string('charging-mode'));
                 this.emit('battery-status-changed');
             }
         });
@@ -160,7 +164,7 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
             }
             if (eventType === Gio.FileMonitorEvent.CREATED) {
                 this.battery1Removed = false;
-                this.setThresholdLimit2(ExtensionUtils.getSettings().get_string('charging-mode2'));
+                this.setThresholdLimit2(this._settings.get_string('charging-mode2'));
                 this.emit('battery-status-changed');
             }
         });
@@ -188,32 +192,37 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
 var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class ThinkpadLegacySingleBatteryBAT0 extends GObject.Object {
-    name = 'Thinkpad tpsmapi BAT0';
-    type = 14;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = false;
-    deviceHaveStartThreshold = true;
-    deviceHaveVariableThreshold = true;
-    deviceHaveBalancedMode = true;
-    deviceHaveAdaptiveMode = false;
-    deviceHaveExpressMode = false;
-    deviceUsesModeNotValue = false;
-    iconForFullCapMode = '100';
-    iconForBalanceMode = '080';
-    iconForMaxLifeMode = '060';
-    endFullCapacityRangeMax = 100;
-    endFullCapacityRangeMin = 80;
-    endBalancedRangeMax = 85;
-    endBalancedRangeMin = 65;
-    endMaxLifeSpanRangeMax = 85;
-    endMaxLifeSpanRangeMin = 50;
-    startFullCapacityRangeMax = 95;
-    startFullCapacityRangeMin = 75;
-    startBalancedRangeMax = 80;
-    startBalancedRangeMin = 60;
-    startMaxLifeSpanRangeMax = 80;
-    startMaxLifeSpanRangeMin = 40;
-    minDiffLimit = 5;
+    constructor(settings) {
+        super();
+        this.name = 'Thinkpad tpsmapi BAT0';
+        this.type = 14;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = true;
+        this.deviceHaveVariableThreshold = true;
+        this.deviceHaveBalancedMode = true;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForBalanceMode = '080';
+        this.iconForMaxLifeMode = '060';
+        this.endFullCapacityRangeMax = 100;
+        this.endFullCapacityRangeMin = 80;
+        this.endBalancedRangeMax = 85;
+        this.endBalancedRangeMin = 65;
+        this.endMaxLifeSpanRangeMax = 85;
+        this.endMaxLifeSpanRangeMin = 50;
+        this.startFullCapacityRangeMax = 95;
+        this.startFullCapacityRangeMin = 75;
+        this.startBalancedRangeMax = 80;
+        this.startBalancedRangeMin = 60;
+        this.startMaxLifeSpanRangeMax = 80;
+        this.startMaxLifeSpanRangeMin = 40;
+        this.minDiffLimit = 5;
+
+        this._settings = settings;
+    }
 
     isAvailable() {
         if (!fileExists(TP_BAT0_START))
@@ -227,15 +236,16 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
 
     async setThresholdLimit(chargingMode) {
         this._status = 0;
-        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
-        this._startValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-start-threshold`);
+        const ctlPath = this._settings.get_string('ctl-path');
+        this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
+        this._startValue = this._settings.get_int(`current-${chargingMode}-start-threshold`);
         if (this._verifyThreshold())
             return this._status;
         // Some device wont update end threshold if start threshold > end threshold
         if (this._startValue >= this._oldEndValue)
-            this._status = await runCommandCtl('TP_BAT0_END_START', `${this._endValue}`, `${this._startValue}`, false);
+            this._status = await runCommandCtl('TP_BAT0_END_START', `${this._endValue}`, `${this._startValue}`, ctlPath, false);
         else
-            this._status = await runCommandCtl('TP_BAT0_START_END', `${this._endValue}`, `${this._startValue}`, false);
+            this._status = await runCommandCtl('TP_BAT0_START_END', `${this._endValue}`, `${this._startValue}`, ctlPath, false);
 
         if (this._status === 0) {
             if (this._verifyThreshold())
@@ -244,11 +254,11 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
 
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
 
         this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
             this._reVerifyThreshold();
-            delete this._delayReadTimeoutId;
+            this._delayReadTimeoutId = null;
             return GLib.SOURCE_REMOVE;
         });
         return this._status;
@@ -277,40 +287,44 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
     destroy() {
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
     }
 });
-
 
 var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class ThinkpadLegacySingleBatteryBAT1 extends GObject.Object {
-    name = 'Thinkpad tpsmapi BAT1';
-    type = 15;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = false;
-    deviceHaveStartThreshold = true;
-    deviceHaveVariableThreshold = true;
-    deviceHaveBalancedMode = true;
-    deviceHaveAdaptiveMode = false;
-    deviceHaveExpressMode = false;
-    deviceUsesModeNotValue = false;
-    iconForFullCapMode = '100';
-    iconForBalanceMode = '080';
-    iconForMaxLifeMode = '060';
-    endFullCapacityRangeMax = 100;
-    endFullCapacityRangeMin = 80;
-    endBalancedRangeMax = 85;
-    endBalancedRangeMin = 65;
-    endMaxLifeSpanRangeMax = 85;
-    endMaxLifeSpanRangeMin = 50;
-    startFullCapacityRangeMax = 95;
-    startFullCapacityRangeMin = 75;
-    startBalancedRangeMax = 80;
-    startBalancedRangeMin = 60;
-    startMaxLifeSpanRangeMax = 80;
-    startMaxLifeSpanRangeMin = 40;
-    minDiffLimit = 5;
+    constructor(settings) {
+        super();
+        this.name = 'Thinkpad tpsmapi BAT1';
+        this.type = 15;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = true;
+        this.deviceHaveVariableThreshold = true;
+        this.deviceHaveBalancedMode = true;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForBalanceMode = '080';
+        this.iconForMaxLifeMode = '060';
+        this.endFullCapacityRangeMax = 100;
+        this.endFullCapacityRangeMin = 80;
+        this.endBalancedRangeMax = 85;
+        this.endBalancedRangeMin = 65;
+        this.endMaxLifeSpanRangeMax = 85;
+        this.endMaxLifeSpanRangeMin = 50;
+        this.startFullCapacityRangeMax = 95;
+        this.startFullCapacityRangeMin = 75;
+        this.startBalancedRangeMax = 80;
+        this.startBalancedRangeMin = 60;
+        this.startMaxLifeSpanRangeMax = 80;
+        this.startMaxLifeSpanRangeMin = 40;
+        this.minDiffLimit = 5;
+
+        this._settings = settings;
+    }
 
     isAvailable() {
         if (!fileExists(TP_BAT1_START))
@@ -324,15 +338,16 @@ var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
 
     async setThresholdLimit(chargingMode) {
         this._status = 0;
-        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
-        this._startValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-start-threshold`);
+        const ctlPath = this._settings.get_string('ctl-path');
+        this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
+        this._startValue = this._settings.get_int(`current-${chargingMode}-start-threshold`);
         if (this._verifyThreshold())
             return this._status;
         // Some device wont update end threshold if start threshold > end threshold
         if (this._startValue >= this._oldEndValue)
-            this._status = await runCommandCtl('TP_BAT1_END_START', `${this._endValue}`, `${this._startValue}`, false);
+            this._status = await runCommandCtl('TP_BAT1_END_START', `${this._endValue}`, `${this._startValue}`, ctlPath, false);
         else
-            this._status = await runCommandCtl('TP_BAT1_START_END', `${this._endValue}`, `${this._startValue}`, false);
+            this._status = await runCommandCtl('TP_BAT1_START_END', `${this._endValue}`, `${this._startValue}`, ctlPath, false);
 
         if (this._status === 0) {
             if (this._verifyThreshold())
@@ -341,11 +356,11 @@ var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
 
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
 
         this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
             this._reVerifyThreshold();
-            delete this._delayReadTimeoutId;
+            this._delayReadTimeoutId = null;
             return GLib.SOURCE_REMOVE;
         });
         return this._status;
@@ -374,7 +389,7 @@ var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
     destroy() {
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
     }
 });
 

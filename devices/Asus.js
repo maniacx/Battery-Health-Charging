@@ -15,25 +15,30 @@ const BATT_END_PATH = '/sys/class/power_supply/BATT/charge_control_end_threshold
 var AsusSingleBatteryBAT0 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsusSingleBatteryBAT0 extends GObject.Object {
-    name = 'Asus BAT0';
-    type = 1;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = false;
-    deviceHaveStartThreshold = false;
-    deviceHaveVariableThreshold = true;
-    deviceHaveBalancedMode = true;
-    deviceHaveAdaptiveMode = false;
-    deviceHaveExpressMode = false;
-    deviceUsesModeNotValue = false;
-    iconForFullCapMode = '100';
-    iconForBalanceMode = '080';
-    iconForMaxLifeMode = '060';
-    endFullCapacityRangeMax = 100;
-    endFullCapacityRangeMin = 80;
-    endBalancedRangeMax = 85;
-    endBalancedRangeMin = 65;
-    endMaxLifeSpanRangeMax = 85;
-    endMaxLifeSpanRangeMin = 50;
+    constructor(settings) {
+        super();
+        this.name = 'Asus BAT0';
+        this.type = 1;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = false;
+        this.deviceHaveVariableThreshold = true;
+        this.deviceHaveBalancedMode = true;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForBalanceMode = '080';
+        this.iconForMaxLifeMode = '060';
+        this.endFullCapacityRangeMax = 100;
+        this.endFullCapacityRangeMin = 80;
+        this.endBalancedRangeMax = 85;
+        this.endBalancedRangeMin = 65;
+        this.endMaxLifeSpanRangeMax = 85;
+        this.endMaxLifeSpanRangeMin = 50;
+
+        this._settings = settings;
+    }
 
     isAvailable() {
         if (!fileExists(VENDOR_ASUS))
@@ -45,8 +50,9 @@ var AsusSingleBatteryBAT0 = GObject.registerClass({
 
     async setThresholdLimit(chargingMode) {
         this._status = 0;
-        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
-        this._status = await runCommandCtl('BAT0_END', `${this._endValue}`, null, false);
+        const ctlPath = this._settings.get_string('ctl-path');
+        this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
+        this._status = await runCommandCtl('BAT0_END', `${this._endValue}`, null, ctlPath, false);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -54,11 +60,11 @@ var AsusSingleBatteryBAT0 = GObject.registerClass({
 
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
 
         this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
             this._reVerifyThreshold();
-            delete this._delayReadTimeoutId;
+            this._delayReadTimeoutId = null;
             return GLib.SOURCE_REMOVE;
         });
         return this._status;
@@ -84,32 +90,37 @@ var AsusSingleBatteryBAT0 = GObject.registerClass({
     destroy() {
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
     }
 });
 
 var AsusSingleBatteryBAT1 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsusSingleBatteryBAT1 extends GObject.Object {
-    name = 'Asus BAT1';
-    type = 2;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = false;
-    deviceHaveStartThreshold = false;
-    deviceHaveVariableThreshold = true;
-    deviceHaveBalancedMode = true;
-    deviceHaveAdaptiveMode = false;
-    deviceHaveExpressMode = false;
-    deviceUsesModeNotValue = false;
-    iconForFullCapMode = '100';
-    iconForBalanceMode = '080';
-    iconForMaxLifeMode = '060';
-    endFullCapacityRangeMax = 100;
-    endFullCapacityRangeMin = 80;
-    endBalancedRangeMax = 85;
-    endBalancedRangeMin = 65;
-    endMaxLifeSpanRangeMax = 85;
-    endMaxLifeSpanRangeMin = 50;
+    constructor(settings) {
+        super();
+        this.name = 'Asus BAT1';
+        this.type = 2;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = false;
+        this.deviceHaveVariableThreshold = true;
+        this.deviceHaveBalancedMode = true;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForBalanceMode = '080';
+        this.iconForMaxLifeMode = '060';
+        this.endFullCapacityRangeMax = 100;
+        this.endFullCapacityRangeMin = 80;
+        this.endBalancedRangeMax = 85;
+        this.endBalancedRangeMin = 65;
+        this.endMaxLifeSpanRangeMax = 85;
+        this.endMaxLifeSpanRangeMin = 50;
+
+        this._settings = settings;
+    }
 
     isAvailable() {
         if (!fileExists(VENDOR_ASUS))
@@ -121,8 +132,9 @@ var AsusSingleBatteryBAT1 = GObject.registerClass({
 
     async setThresholdLimit(chargingMode) {
         this._status = 0;
-        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
-        this._status = await runCommandCtl('BAT1_END', `${this._endValue}`, null, false);
+        const ctlPath = this._settings.get_string('ctl-path');
+        this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
+        this._status = await runCommandCtl('BAT1_END', `${this._endValue}`, null, ctlPath, false);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -130,11 +142,11 @@ var AsusSingleBatteryBAT1 = GObject.registerClass({
 
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
 
         this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
             this._reVerifyThreshold();
-            delete this._delayReadTimeoutId;
+            this._delayReadTimeoutId = null;
             return GLib.SOURCE_REMOVE;
         });
         return this._status;
@@ -160,32 +172,37 @@ var AsusSingleBatteryBAT1 = GObject.registerClass({
     destroy() {
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
     }
 });
 
 var AsusSingleBatteryBATC = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsusSingleBatteryBATC extends GObject.Object {
-    name = 'Asus BATC';
-    type = 3;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = false;
-    deviceHaveStartThreshold = false;
-    deviceHaveVariableThreshold = true;
-    deviceHaveBalancedMode = true;
-    deviceHaveAdaptiveMode = false;
-    deviceHaveExpressMode = false;
-    deviceUsesModeNotValue = false;
-    iconForFullCapMode = '100';
-    iconForBalanceMode = '080';
-    iconForMaxLifeMode = '060';
-    endFullCapacityRangeMax = 100;
-    endFullCapacityRangeMin = 80;
-    endBalancedRangeMax = 85;
-    endBalancedRangeMin = 65;
-    endMaxLifeSpanRangeMax = 85;
-    endMaxLifeSpanRangeMin = 50;
+    constructor(settings) {
+        super();
+        this.name = 'Asus BATC';
+        this.type = 3;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = false;
+        this.deviceHaveVariableThreshold = true;
+        this.deviceHaveBalancedMode = true;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForBalanceMode = '080';
+        this.iconForMaxLifeMode = '060';
+        this.endFullCapacityRangeMax = 100;
+        this.endFullCapacityRangeMin = 80;
+        this.endBalancedRangeMax = 85;
+        this.endBalancedRangeMin = 65;
+        this.endMaxLifeSpanRangeMax = 85;
+        this.endMaxLifeSpanRangeMin = 50;
+
+        this._settings = settings;
+    }
 
     isAvailable() {
         if (!fileExists(VENDOR_ASUS))
@@ -197,8 +214,9 @@ var AsusSingleBatteryBATC = GObject.registerClass({
 
     async setThresholdLimit(chargingMode) {
         this._status = 0;
-        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
-        this._status = await runCommandCtl('BATC_END', `${this._endValue}`, null, false);
+        const ctlPath = this._settings.get_string('ctl-path');
+        this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
+        this._status = await runCommandCtl('BATC_END', `${this._endValue}`, null, ctlPath, false);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -206,11 +224,11 @@ var AsusSingleBatteryBATC = GObject.registerClass({
 
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
 
         this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
             this._reVerifyThreshold();
-            delete this._delayReadTimeoutId;
+            this._delayReadTimeoutId = null;
             return GLib.SOURCE_REMOVE;
         });
         return this._status;
@@ -236,32 +254,37 @@ var AsusSingleBatteryBATC = GObject.registerClass({
     destroy() {
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
     }
 });
 
 var AsusSingleBatteryBATT = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsusSingleBatteryBATT extends GObject.Object {
-    name = 'Asus BATT';
-    type = 4;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = false;
-    deviceHaveStartThreshold = false;
-    deviceHaveVariableThreshold = true;
-    deviceHaveBalancedMode = true;
-    deviceHaveAdaptiveMode = false;
-    deviceHaveExpressMode = false;
-    deviceUsesModeNotValue = false;
-    iconForFullCapMode = '100';
-    iconForBalanceMode = '080';
-    iconForMaxLifeMode = '060';
-    endFullCapacityRangeMax = 100;
-    endFullCapacityRangeMin = 80;
-    endBalancedRangeMax = 85;
-    endBalancedRangeMin = 65;
-    endMaxLifeSpanRangeMax = 85;
-    endMaxLifeSpanRangeMin = 50;
+    constructor(settings) {
+        super();
+        this.name = 'Asus BATT';
+        this.type = 4;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = false;
+        this.deviceHaveVariableThreshold = true;
+        this.deviceHaveBalancedMode = true;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForBalanceMode = '080';
+        this.iconForMaxLifeMode = '060';
+        this.endFullCapacityRangeMax = 100;
+        this.endFullCapacityRangeMin = 80;
+        this.endBalancedRangeMax = 85;
+        this.endBalancedRangeMin = 65;
+        this.endMaxLifeSpanRangeMax = 85;
+        this.endMaxLifeSpanRangeMin = 50;
+
+        this._settings = settings;
+    }
 
     isAvailable() {
         if (!fileExists(VENDOR_ASUS))
@@ -273,8 +296,9 @@ var AsusSingleBatteryBATT = GObject.registerClass({
 
     async setThresholdLimit(chargingMode) {
         this._status = 0;
-        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
-        this._status = await runCommandCtl('BATT_END', `${this._endValue}`, null, false);
+        const ctlPath = this._settings.get_string('ctl-path');
+        this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
+        this._status = await runCommandCtl('BATT_END', `${this._endValue}`, null, ctlPath, false);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -282,11 +306,11 @@ var AsusSingleBatteryBATT = GObject.registerClass({
 
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
 
         this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
             this._reVerifyThreshold();
-            delete this._delayReadTimeoutId;
+            this._delayReadTimeoutId = null;
             return GLib.SOURCE_REMOVE;
         });
         return this._status;
@@ -312,7 +336,7 @@ var AsusSingleBatteryBATT = GObject.registerClass({
     destroy() {
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
     }
 });
 

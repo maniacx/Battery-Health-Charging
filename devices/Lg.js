@@ -11,18 +11,23 @@ const LG_PATH = '/sys/devices/platform/lg-laptop/battery_care_limit';
 var LgSingleBattery = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class LgSingleBattery extends GObject.Object {
-    name = 'LG';
-    type = 5;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = false;
-    deviceHaveStartThreshold = false;
-    deviceHaveVariableThreshold = false;
-    deviceHaveBalancedMode = false;
-    deviceHaveAdaptiveMode = false;
-    deviceHaveExpressMode = false;
-    deviceUsesModeNotValue = false;
-    iconForFullCapMode = '100';
-    iconForMaxLifeMode = '080';
+    constructor(settings) {
+        super();
+        this.name = 'LG';
+        this.type = 5;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = false;
+        this.deviceHaveVariableThreshold = false;
+        this.deviceHaveBalancedMode = false;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForMaxLifeMode = '080';
+
+        this._settings = settings;
+    }
 
     isAvailable() {
         if (!fileExists(LG_PATH))
@@ -32,13 +37,14 @@ var LgSingleBattery = GObject.registerClass({
 
     async setThresholdLimit(chargingMode) {
         this._status = 0;
+        const ctlPath = this._settings.get_string('ctl-path');
         if (chargingMode === 'ful')
             this._batteryCareLimit = 100;
         else if (chargingMode === 'max')
             this._batteryCareLimit = 80;
         if (this._verifyThreshold())
             return this._status;
-        this._status = await runCommandCtl('LG', `${this._batteryCareLimit}`, null, false);
+        this._status = await runCommandCtl('LG', `${this._batteryCareLimit}`, null, ctlPath, false);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -46,11 +52,11 @@ var LgSingleBattery = GObject.registerClass({
 
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
 
         this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
             this._reVerifyThreshold();
-            delete this._delayReadTimeoutId;
+            this._delayReadTimeoutId = null;
             return GLib.SOURCE_REMOVE;
         });
         return this._status;
@@ -76,7 +82,7 @@ var LgSingleBattery = GObject.registerClass({
     destroy() {
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
     }
 });
 

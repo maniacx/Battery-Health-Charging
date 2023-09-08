@@ -11,18 +11,23 @@ const ACER_PATH = '/sys/bus/wmi/drivers/acer-wmi-battery/health_mode';
 var AcerSingleBattery = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AcerSingleBattery extends GObject.Object {
-    name = 'Acer';
-    type = 17;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = false;
-    deviceHaveStartThreshold = false;
-    deviceHaveVariableThreshold = false;
-    deviceHaveBalancedMode = false;
-    deviceHaveAdaptiveMode = false;
-    deviceHaveExpressMode = false;
-    deviceUsesModeNotValue = false;
-    iconForFullCapMode = '100';
-    iconForMaxLifeMode = '080';
+    constructor(settings) {
+        super();
+        this.name = 'Acer';
+        this.type = 17;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = false;
+        this.deviceHaveVariableThreshold = false;
+        this.deviceHaveBalancedMode = false;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForMaxLifeMode = '080';
+
+        this._settings = settings;
+    }
 
     isAvailable() {
         if (!fileExists(ACER_PATH))
@@ -32,6 +37,7 @@ var AcerSingleBattery = GObject.registerClass({
 
     async setThresholdLimit(chargingMode) {
         this._status = 0;
+        const ctlPath = this._settings.get_string('ctl-path');
         this._chargingMode = chargingMode;
         if (this._chargingMode === 'ful')
             this._healthMode = 0;
@@ -39,7 +45,7 @@ var AcerSingleBattery = GObject.registerClass({
             this._healthMode = 1;
         if (this._verifyThreshold())
             return this._status;
-        this._status = await runCommandCtl('ACER', `${this._healthMode}`, null, false);
+        this._status = await runCommandCtl('ACER', `${this._healthMode}`, null, ctlPath, false);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -47,11 +53,11 @@ var AcerSingleBattery = GObject.registerClass({
 
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
 
         this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
             this._reVerifyThreshold();
-            delete this._delayReadTimeoutId;
+            this._delayReadTimeoutId = null;
             return GLib.SOURCE_REMOVE;
         });
         return this._status;
@@ -81,7 +87,7 @@ var AcerSingleBattery = GObject.registerClass({
     destroy() {
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
     }
 });
 

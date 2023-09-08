@@ -11,26 +11,32 @@ const SAMSUNG_PATH = '/sys/devices/platform/samsung/battery_life_extender';
 var SamsungSingleBattery = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class SamsungSingleBattery extends GObject.Object {
-    name = 'Samsung';
-    type = 6;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = false;
-    deviceHaveStartThreshold = false;
-    deviceHaveVariableThreshold = false;
-    deviceHaveBalancedMode = false;
-    deviceHaveAdaptiveMode = false;
-    deviceHaveExpressMode = false;
-    deviceUsesModeNotValue = true;
+    constructor(settings) {
+        super();
+        this.name = 'Samsung';
+        this.type = 6;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = false;
+        this.deviceHaveVariableThreshold = false;
+        this.deviceHaveBalancedMode = false;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = true;
+
+        this._settings = settings;
+    }
 
     isAvailable() {
         if (!fileExists(SAMSUNG_PATH))
             return false;
-        ExtensionUtils.getSettings().set_int('icon-style-type', 0);
+        this._settings.set_int('icon-style-type', 0);
         return true;
     }
 
     async setThresholdLimit(chargingMode) {
         this._status = 0;
+        const ctlPath = this._settings.get_string('ctl-path');
         this._chargingMode = chargingMode;
         if (this._chargingMode === 'ful')
             this._batteryLifeExtender = 0;
@@ -38,7 +44,7 @@ var SamsungSingleBattery = GObject.registerClass({
             this._batteryLifeExtender = 1;
         if (this._verifyThreshold())
             return this._status;
-        this._status = await runCommandCtl('SAMSUNG', `${this._batteryLifeExtender}`, null, false);
+        this._status = await runCommandCtl('SAMSUNG', `${this._batteryLifeExtender}`, null, ctlPath, false);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -46,10 +52,10 @@ var SamsungSingleBattery = GObject.registerClass({
 
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
         this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
             this._reVerifyThreshold();
-            delete this._delayReadTimeoutId;
+            this._delayReadTimeoutId = null;
             return GLib.SOURCE_REMOVE;
         });
         return this._status;
@@ -75,7 +81,7 @@ var SamsungSingleBattery = GObject.registerClass({
     destroy() {
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
     }
 });
 

@@ -3,8 +3,6 @@ const {Adw, Gio, GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 
-const Driver = Me.imports.lib.driver;
-
 const gettextDomain = Me.metadata['gettext-domain'];
 const Gettext = imports.gettext.domain(gettextDomain);
 const _ = Gettext.gettext;
@@ -39,132 +37,132 @@ var ThresholdSecondary = GObject.registerClass({
         'maxlife_start_threshold_actual_value_2',
     ],
 }, class ThresholdSecondary extends Adw.PreferencesPage {
-    constructor(settings) {
+    constructor(settings, currentDevice) {
         super({});
+        this._settings = settings;
+        this._currentDevice = currentDevice;
 
-        this._device = Driver.currentDevice;
-
-        this._setPrefGroupTitle(settings);
+        this._setPrefGroupTitle();
 
         // Set range for end threshold value
-        this._full_capacity_end_threshold_2.set_range(this._device.endFullCapacityRangeMin, this._device.endFullCapacityRangeMax);
-        this._balanced_end_threshold_2.set_range(this._device.endBalancedRangeMin, this._device.endBalancedRangeMax);
-        this._maxlife_end_threshold_2.set_range(this._device.endMaxLifeSpanRangeMin, this._device.endMaxLifeSpanRangeMax);
+        this._full_capacity_end_threshold_2.set_range(this._currentDevice.endFullCapacityRangeMin, this._currentDevice.endFullCapacityRangeMax);
+        this._balanced_end_threshold_2.set_range(this._currentDevice.endBalancedRangeMin, this._currentDevice.endBalancedRangeMax);
+        this._maxlife_end_threshold_2.set_range(this._currentDevice.endMaxLifeSpanRangeMin, this._currentDevice.endMaxLifeSpanRangeMax);
 
         // Set range for end threshold subtitle
         this._updateRangeSubtitle(this._full_capacity_end_threshold_row_2,
-            this._device.endFullCapacityRangeMin, this._device.endFullCapacityRangeMax);
+            this._currentDevice.endFullCapacityRangeMin, this._currentDevice.endFullCapacityRangeMax);
         this._updateRangeSubtitle(this._balanced_end_threshold_row_2,
-            this._device.endBalancedRangeMin, this._device.endBalancedRangeMax);
+            this._currentDevice.endBalancedRangeMin, this._currentDevice.endBalancedRangeMax);
         this._updateRangeSubtitle(this._maxlife_end_threshold_row_2,
-            this._device.endMaxLifeSpanRangeMin, this._device.endMaxLifeSpanRangeMax);
+            this._currentDevice.endMaxLifeSpanRangeMin, this._currentDevice.endMaxLifeSpanRangeMax);
 
-        if (this._device.deviceHaveStartThreshold) { // if StartThresholdSupported
-            this._full_capacity_start_threshold_2.set_range(this._device.startFullCapacityRangeMin, this._device.startFullCapacityRangeMax);
-            this._balanced_start_threshold_2.set_range(this._device.startBalancedRangeMin, this._device.startBalancedRangeMax);
-            this._maxlife_start_threshold_2.set_range(this._device.startMaxLifeSpanRangeMin, this._device.startMaxLifeSpanRangeMax);
+        if (this._currentDevice.deviceHaveStartThreshold) { // if StartThresholdSupported
+            this._full_capacity_start_threshold_2.set_range(this._currentDevice.startFullCapacityRangeMin, this._currentDevice.startFullCapacityRangeMax);
+            this._balanced_start_threshold_2.set_range(this._currentDevice.startBalancedRangeMin, this._currentDevice.startBalancedRangeMax);
+            this._maxlife_start_threshold_2.set_range(this._currentDevice.startMaxLifeSpanRangeMin, this._currentDevice.startMaxLifeSpanRangeMax);
 
-            this._updateRangeSubtitle(this._full_capacity_start_threshold_row_2, this._device.startFullCapacityRangeMin,
-                settings.get_int('ful-end-threshold') - this._device.minDiffLimit);
-            this._updateRangeSubtitle(this._balanced_start_threshold_row_2, this._device.startBalancedRangeMin,
-                settings.get_int('bal-end-threshold') - this._device.minDiffLimit);
-            this._updateRangeSubtitle(this._maxlife_start_threshold_row_2, this._device.startMaxLifeSpanRangeMin,
-                settings.get_int('max-end-threshold') - this._device.minDiffLimit);
+            this._updateRangeSubtitle(this._full_capacity_start_threshold_row_2, this._currentDevice.startFullCapacityRangeMin,
+                this._settings.get_int('ful-end-threshold2') - this._currentDevice.minDiffLimit);
+            this._updateRangeSubtitle(this._balanced_start_threshold_row_2, this._currentDevice.startBalancedRangeMin,
+                this._settings.get_int('bal-end-threshold2') - this._currentDevice.minDiffLimit);
+            this._updateRangeSubtitle(this._maxlife_start_threshold_row_2, this._currentDevice.startMaxLifeSpanRangeMin,
+                this._settings.get_int('max-end-threshold2') - this._currentDevice.minDiffLimit);
         }  //  endif StartThresholdSupported
 
-        this._updateCurrentValueLabel(settings);
+        this._updateCurrentValueLabel();
 
-        this._full_capacity_start_threshold_row_2.visible = this._device.deviceHaveStartThreshold;
-        this._balanced_start_threshold_row_2.visible = this._device.deviceHaveStartThreshold;
-        this._maxlife_start_threshold_row_2.visible = this._device.deviceHaveStartThreshold;
+        this._full_capacity_start_threshold_row_2.visible = this._currentDevice.deviceHaveStartThreshold;
+        this._balanced_start_threshold_row_2.visible = this._currentDevice.deviceHaveStartThreshold;
+        this._maxlife_start_threshold_row_2.visible = this._currentDevice.deviceHaveStartThreshold;
 
-        settings.bind(
+        this._settings.bind(
             'default-threshold2',
             this._customize_threshold_2,
             'active',
             Gio.SettingsBindFlags.INVERT_BOOLEAN
         );
 
-        settings.bind(
+        this._settings.bind(
             'default-threshold2',
             this._default_threshold_2,
             'active',
             Gio.SettingsBindFlags.DEFAULT
         );
 
-        settings.bind(
+        this._settings.bind(
             'ful-end-threshold2',
             this._full_capacity_end_threshold_2,
             'value',
             Gio.SettingsBindFlags.DEFAULT
         );
 
-        settings.bind(
+        this._settings.bind(
             'bal-end-threshold2',
             this._balanced_end_threshold_2,
             'value',
             Gio.SettingsBindFlags.DEFAULT
         );
 
-        settings.bind(
+        this._settings.bind(
             'max-end-threshold2',
             this._maxlife_end_threshold_2,
             'value',
             Gio.SettingsBindFlags.DEFAULT
         );
 
-        settings.connect('changed::charging-mode2', () => {
-            this._setPrefGroupTitle(settings);
+        this._settings.connect('changed::charging-mode2', () => {
+            this._setPrefGroupTitle();
         });
 
-        if (this._device.deviceHaveStartThreshold) { // if StartThresholdSupported
-            settings.bind(
+        if (this._currentDevice.deviceHaveStartThreshold) { // if StartThresholdSupported
+            this._settings.bind(
                 'ful-start-threshold2',
                 this._full_capacity_start_threshold_2,
                 'value',
                 Gio.SettingsBindFlags.DEFAULT
             );
 
-            settings.bind(
+            this._settings.bind(
                 'bal-start-threshold2',
                 this._balanced_start_threshold_2,
                 'value',
                 Gio.SettingsBindFlags.DEFAULT
             );
 
-            settings.bind(
+            this._settings.bind(
                 'max-start-threshold2',
                 this._maxlife_start_threshold_2,
                 'value',
                 Gio.SettingsBindFlags.DEFAULT
             );
 
-            settings.connect('changed::ful-end-threshold', () => {
-                const fullCapStartRangeLower = this._device.startFullCapacityRangeMin;
-                const fullCapStartRangeUpper = this._full_capacity_end_threshold.value - this._device.minDiffLimit;
+            this._settings.connect('changed::ful-end-threshold2', () => {
+                const fullCapStartRangeLower = this._currentDevice.startFullCapacityRangeMin;
+                const fullCapStartRangeUpper = this._full_capacity_end_threshold_2.value - this._currentDevice.minDiffLimit;
                 this._full_capacity_start_threshold_2.set_range(fullCapStartRangeLower, fullCapStartRangeUpper);
                 this._updateRangeSubtitle(this._full_capacity_start_threshold_row_2, fullCapStartRangeLower, fullCapStartRangeUpper);
             });
 
-            settings.connect('changed::bal-end-threshold', () => {
-                const balStartRangeLower = this._device.startBalancedRangeMin;
-                const balStartRangeUpper = this._balanced_end_threshold.value - this._device.minDiffLimit;
+            this._settings.connect('changed::bal-end-threshold2', () => {
+                const balStartRangeLower = this._currentDevice.startBalancedRangeMin;
+                const balStartRangeUpper = this._balanced_end_threshold_2.value - this._currentDevice.minDiffLimit;
                 this._balanced_start_threshold_2.set_range(balStartRangeLower, balStartRangeUpper);
                 this._updateRangeSubtitle(this._balanced_start_threshold_row_2, balStartRangeLower, balStartRangeUpper);
             });
 
-            settings.connect('changed::max-end-threshold', () => {
-                const maxLifeStartRangeLower = this._device.startMaxLifeSpanRangeMin;
-                const maxlifeStartRangeUpper = this._maxlife_end_threshold.value - this._device.minDiffLimit;
+            this._settings.connect('changed::max-end-threshold2', () => {
+                const maxLifeStartRangeLower = this._currentDevice.startMaxLifeSpanRangeMin;
+                const maxlifeStartRangeUpper = this._maxlife_end_threshold_2.value - this._currentDevice.minDiffLimit;
                 this._maxlife_start_threshold_2.set_range(maxLifeStartRangeLower, maxlifeStartRangeUpper);
                 this._updateRangeSubtitle(this._maxlife_start_threshold_row_2, maxLifeStartRangeLower, maxlifeStartRangeUpper);
             });
         }  //  endif StartThresholdSupported
 
         this._apply_settings_2.connect('clicked', () => {
-            this._updateCurrentValues(settings);
-            this._updateCurrentValueLabel(settings);
-            settings.set_boolean('dummy-apply-threshold2', !settings.get_boolean('dummy-apply-threshold2'));
+            this._updateCurrentValues();
+            this._updateCurrentValueLabel();
+            this._settings.set_boolean('dummy-apply-threshold2', !this._settings.get_boolean('dummy-apply-threshold2'));
         });
 
         this._default_threshold_2.connect('clicked', () => {
@@ -183,15 +181,15 @@ var ThresholdSecondary = GObject.registerClass({
                 'current-max-start-threshold2',
             ];
             keys.forEach(key => {
-                settings.reset(key);
+                this._settings.reset(key);
             });
-            this._updateCurrentValueLabel(settings);
-            settings.set_boolean('dummy-default-threshold2', !settings.get_boolean('dummy-default-threshold2'));
+            this._updateCurrentValueLabel();
+            this._settings.set_boolean('dummy-default-threshold2', !this._settings.get_boolean('dummy-default-threshold2'));
         });
     }
 
-    _setPrefGroupTitle(settings) {
-        const chargingMode = settings.get_string('charging-mode2');
+    _setPrefGroupTitle() {
+        const chargingMode = this._settings.get_string('charging-mode2');
         if (chargingMode === 'ful')
             this._full_capacity_mode_preference_group_2.set_title(_('Full Capacity Mode (Currently Active)'));
         else
@@ -210,39 +208,39 @@ var ThresholdSecondary = GObject.registerClass({
         row.set_subtitle(_('<i>Accepted Value : %d to %d</i>').format(lowerValue, upperValue));
     }
 
-    _updateCurrentValues(settings) {
-        settings.set_int('current-ful-end-threshold2',
-            settings.get_int('ful-end-threshold2'));
-        settings.set_int('current-bal-end-threshold2',
-            settings.get_int('bal-end-threshold2'));
-        settings.set_int('current-max-end-threshold2',
-            settings.get_int('max-end-threshold2'));
+    _updateCurrentValues() {
+        this._settings.set_int('current-ful-end-threshold2',
+            this._settings.get_int('ful-end-threshold2'));
+        this._settings.set_int('current-bal-end-threshold2',
+            this._settings.get_int('bal-end-threshold2'));
+        this._settings.set_int('current-max-end-threshold2',
+            this._settings.get_int('max-end-threshold2'));
 
-        if (this._device.deviceHaveStartThreshold) {
-            settings.set_int('current-ful-start-threshold2',
-                settings.get_int('ful-start-threshold2'));
-            settings.set_int('current-bal-start-threshold2',
-                settings.get_int('bal-start-threshold2'));
-            settings.set_int('current-max-start-threshold2',
-                settings.get_int('max-start-threshold2'));
+        if (this._currentDevice.deviceHaveStartThreshold) {
+            this._settings.set_int('current-ful-start-threshold2',
+                this._settings.get_int('ful-start-threshold2'));
+            this._settings.set_int('current-bal-start-threshold2',
+                this._settings.get_int('bal-start-threshold2'));
+            this._settings.set_int('current-max-start-threshold2',
+                this._settings.get_int('max-start-threshold2'));
         }
     }
 
-    _updateCurrentValueLabel(settings) {
+    _updateCurrentValueLabel() {
         this._full_capacity_end_threshold_actual_value_2.set_label(
-            settings.get_int('current-ful-end-threshold2').toString());
+            this._settings.get_int('current-ful-end-threshold2').toString());
         this._balanced_end_threshold_actual_value_2.set_label(
-            settings.get_int('current-bal-end-threshold2').toString());
+            this._settings.get_int('current-bal-end-threshold2').toString());
         this._maxlife_end_threshold_actual_value_2.set_label(
-            settings.get_int('current-max-end-threshold2').toString());
+            this._settings.get_int('current-max-end-threshold2').toString());
 
-        if (this._device.deviceHaveStartThreshold) {
+        if (this._currentDevice.deviceHaveStartThreshold) {
             this._full_capacity_start_threshold_actual_value_2.set_label(
-                settings.get_int('current-ful-start-threshold2').toString());
+                this._settings.get_int('current-ful-start-threshold2').toString());
             this._balanced_start_threshold_actual_value_2.set_label(
-                settings.get_int('current-bal-start-threshold2').toString());
+                this._settings.get_int('current-bal-start-threshold2').toString());
             this._maxlife_start_threshold_actual_value_2.set_label(
-                settings.get_int('current-max-start-threshold2').toString());
+                this._settings.get_int('current-max-start-threshold2').toString());
         }
     }
 });

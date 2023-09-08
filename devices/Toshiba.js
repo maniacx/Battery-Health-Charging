@@ -21,19 +21,24 @@ var ToshibaSingleBatteryBAT0 = GObject.registerClass({
         'battery-level-changed': {},
     },
 }, class ToshibaSingleBatteryBAT0 extends GObject.Object {
-    name = 'Toshiba BAT0';
-    type = 9;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = false;
-    deviceHaveStartThreshold = false;
-    deviceHaveVariableThreshold = false;
-    deviceHaveBalancedMode = false;
-    deviceHaveAdaptiveMode = false;
-    deviceHaveExpressMode = false;
-    deviceUsesModeNotValue = false;
-    iconForFullCapMode = '100';
-    iconForMaxLifeMode = '080';
-    dischargeBeforeSet = 80;
+    constructor(settings) {
+        super();
+        this.name = 'Toshiba BAT0';
+        this.type = 9;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = false;
+        this.deviceHaveVariableThreshold = false;
+        this.deviceHaveBalancedMode = false;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForMaxLifeMode = '080';
+        this.dischargeBeforeSet = 80;
+
+        this._settings = settings;
+    }
 
     isAvailable() {
         if (!fileExists(VENDOR_TOSHIBA))
@@ -44,12 +49,13 @@ var ToshibaSingleBatteryBAT0 = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
+        const ctlPath = this._settings.get_string('ctl-path');
         let endValue;
         if (chargingMode === 'ful')
             endValue = 100;
         else if (chargingMode === 'max')
             endValue = 80;
-        const status = await runCommandCtl('BAT0_END', `${endValue}`, null, false);
+        const status = await runCommandCtl('BAT0_END', `${endValue}`, null, ctlPath, false);
         if (status === 0) {
             this.endLimitValue = endValue;
             this.emit('threshold-applied', true);
@@ -95,19 +101,24 @@ var ToshibaSingleBatteryBAT1 = GObject.registerClass({
         'battery-level-changed': {},
     },
 }, class ToshibaSingleBatteryBAT1 extends GObject.Object {
-    name = 'Toshiba BAT1';
-    type = 10;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = false;
-    deviceHaveStartThreshold = false;
-    deviceHaveVariableThreshold = false;
-    deviceHaveBalancedMode = false;
-    deviceHaveAdaptiveMode = false;
-    deviceHaveExpressMode = false;
-    deviceUsesModeNotValue = false;
-    iconForFullCapMode = '100';
-    iconForMaxLifeMode = '080';
-    dischargeBeforeSet = 80;
+    constructor(settings) {
+        super();
+        this.name = 'Toshiba BAT1';
+        this.type = 10;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = false;
+        this.deviceHaveVariableThreshold = false;
+        this.deviceHaveBalancedMode = false;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForMaxLifeMode = '080';
+        this.dischargeBeforeSet = 80;
+
+        this._settings = settings;
+    }
 
     isAvailable() {
         if (!fileExists(VENDOR_TOSHIBA))
@@ -118,12 +129,13 @@ var ToshibaSingleBatteryBAT1 = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
+        const ctlPath = this._settings.get_string('ctl-path');
         let endValue;
         if (chargingMode === 'ful')
             endValue = 100;
         else if (chargingMode === 'max')
             endValue = 80;
-        const status = await runCommandCtl('BAT1_END', `${endValue}`, null, false);
+        const status = await runCommandCtl('BAT1_END', `${endValue}`, null, ctlPath, false);
         if (status === 0) {
             this.endLimitValue = endValue;
             this.emit('threshold-applied', true);

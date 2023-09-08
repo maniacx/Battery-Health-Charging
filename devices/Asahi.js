@@ -13,32 +13,37 @@ const KERNEL_VERSION_PATH = '/proc/sys/kernel/osrelease';
 var AsahiSingleBattery62 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsahiSingleBattery62 extends GObject.Object {
-    name = 'AppleAsahiLinux-VariableThreshold';
-    type = 25;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = false;
-    deviceHaveStartThreshold = true;
-    deviceHaveVariableThreshold = true;
-    deviceHaveBalancedMode = true;
-    deviceHaveAdaptiveMode = false;
-    deviceHaveExpressMode = false;
-    deviceUsesModeNotValue = false;
-    iconForFullCapMode = '100';
-    iconForBalanceMode = '080';
-    iconForMaxLifeMode = '060';
-    endFullCapacityRangeMax = 100;
-    endFullCapacityRangeMin = 80;
-    endBalancedRangeMax = 85;
-    endBalancedRangeMin = 65;
-    endMaxLifeSpanRangeMax = 85;
-    endMaxLifeSpanRangeMin = 52;
-    startFullCapacityRangeMax = 98;
-    startFullCapacityRangeMin = 75;
-    startBalancedRangeMax = 83;
-    startBalancedRangeMin = 60;
-    startMaxLifeSpanRangeMax = 83;
-    startMaxLifeSpanRangeMin = 50;
-    minDiffLimit = 2;
+    constructor(settings) {
+        super();
+        this.name = 'AppleAsahiLinux-VariableThreshold';
+        this.type = 25;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = true;
+        this.deviceHaveVariableThreshold = true;
+        this.deviceHaveBalancedMode = true;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForBalanceMode = '080';
+        this.iconForMaxLifeMode = '060';
+        this.endFullCapacityRangeMax = 100;
+        this.endFullCapacityRangeMin = 80;
+        this.endBalancedRangeMax = 85;
+        this.endBalancedRangeMin = 65;
+        this.endMaxLifeSpanRangeMax = 85;
+        this.endMaxLifeSpanRangeMin = 52;
+        this.startFullCapacityRangeMax = 98;
+        this.startFullCapacityRangeMin = 75;
+        this.startBalancedRangeMax = 83;
+        this.startBalancedRangeMin = 60;
+        this.startMaxLifeSpanRangeMax = 83;
+        this.startMaxLifeSpanRangeMin = 50;
+        this.minDiffLimit = 2;
+
+        this._settings = settings;
+    }
 
     isAvailable() {
         if (!fileExists(ASAHI_END_PATH))
@@ -53,11 +58,12 @@ var AsahiSingleBattery62 = GObject.registerClass({
 
     async setThresholdLimit(chargingMode) {
         this._status = 0;
-        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
-        this._startValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-start-threshold`);
+        const ctlPath = this._settings.get_string('ctl-path');
+        this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
+        this._startValue = this._settings.get_int(`current-${chargingMode}-start-threshold`);
         if (this._verifyThreshold())
             return this._status;
-        this._status = await runCommandCtl('ASAHI_END_START', `${this._endValue}`, `${this._startValue}`, false);
+        this._status = await runCommandCtl('ASAHI_END_START', `${this._endValue}`, `${this._startValue}`, ctlPath, false);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -65,11 +71,11 @@ var AsahiSingleBattery62 = GObject.registerClass({
 
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
 
         this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
             this._reVerifyThreshold();
-            delete this._delayReadTimeoutId;
+            this._delayReadTimeoutId = null;
             return GLib.SOURCE_REMOVE;
         });
         return this._status;
@@ -96,25 +102,30 @@ var AsahiSingleBattery62 = GObject.registerClass({
     destroy() {
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
     }
 });
 
 var AsahiSingleBattery63 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsahiSingleBattery63 extends GObject.Object {
-    name = 'AppleAsahiLinux-FixedThreshold';
-    type = 29;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = false;
-    deviceHaveStartThreshold = false;
-    deviceHaveVariableThreshold = false;
-    deviceHaveBalancedMode = false;
-    deviceHaveAdaptiveMode = false;
-    deviceHaveExpressMode = false;
-    deviceUsesModeNotValue = false;
-    iconForFullCapMode = '100';
-    iconForMaxLifeMode = '080';
+    constructor(settings) {
+        super();
+        this.name = 'AppleAsahiLinux-FixedThreshold';
+        this.type = 29;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = false;
+        this.deviceHaveVariableThreshold = false;
+        this.deviceHaveBalancedMode = false;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForMaxLifeMode = '080';
+
+        this._settings = settings;
+    }
 
     isAvailable() {
         if (!fileExists(ASAHI_END_PATH))
@@ -129,6 +140,7 @@ var AsahiSingleBattery63 = GObject.registerClass({
 
     async setThresholdLimit(chargingMode) {
         this._status = 0;
+        const ctlPath = this._settings.get_string('ctl-path');
         if (chargingMode === 'ful') {
             this._endValue = 100;
             this._startValue = 100;
@@ -138,7 +150,7 @@ var AsahiSingleBattery63 = GObject.registerClass({
         }
         if (this._verifyThreshold())
             return this._status;
-        this._status = await runCommandCtl('ASAHI_END_START', `${this._endValue}`, `${this._startValue}`, false);
+        this._status = await runCommandCtl('ASAHI_END_START', `${this._endValue}`, `${this._startValue}`, ctlPath, false);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -146,11 +158,11 @@ var AsahiSingleBattery63 = GObject.registerClass({
 
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
 
         this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
             this._reVerifyThreshold();
-            delete this._delayReadTimeoutId;
+            this._delayReadTimeoutId = null;
             return GLib.SOURCE_REMOVE;
         });
         return this._status;
@@ -176,7 +188,7 @@ var AsahiSingleBattery63 = GObject.registerClass({
     destroy() {
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
     }
 });
 

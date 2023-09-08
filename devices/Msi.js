@@ -13,25 +13,30 @@ const BAT1_END_PATH = '/sys/class/power_supply/BAT1/charge_control_end_threshold
 var MsiSingleBatteryBAT0 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class MsiSingleBatteryBAT0 extends GObject.Object {
-    name = 'Msi BAT0';
-    type = 18;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = false;
-    deviceHaveStartThreshold = false;
-    deviceHaveVariableThreshold = true;
-    deviceHaveBalancedMode = true;
-    deviceHaveAdaptiveMode = false;
-    deviceHaveExpressMode = false;
-    deviceUsesModeNotValue = false;
-    iconForFullCapMode = '100';
-    iconForBalanceMode = '080';
-    iconForMaxLifeMode = '060';
-    endFullCapacityRangeMax = 100;
-    endFullCapacityRangeMin = 80;
-    endBalancedRangeMax = 85;
-    endBalancedRangeMin = 65;
-    endMaxLifeSpanRangeMax = 85;
-    endMaxLifeSpanRangeMin = 50;
+    constructor(settings) {
+        super();
+        this.name = 'Msi BAT0';
+        this.type = 18;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = false;
+        this.deviceHaveVariableThreshold = true;
+        this.deviceHaveBalancedMode = true;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForBalanceMode = '080';
+        this.iconForMaxLifeMode = '060';
+        this.endFullCapacityRangeMax = 100;
+        this.endFullCapacityRangeMin = 80;
+        this.endBalancedRangeMax = 85;
+        this.endBalancedRangeMin = 65;
+        this.endMaxLifeSpanRangeMax = 85;
+        this.endMaxLifeSpanRangeMin = 50;
+
+        this._settings = settings;
+    }
 
     isAvailable() {
         if (!fileExists(VENDOR_MSI))
@@ -43,10 +48,11 @@ var MsiSingleBatteryBAT0 = GObject.registerClass({
 
     async setThresholdLimit(chargingMode) {
         this._status = 0;
-        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
+        const ctlPath = this._settings.get_string('ctl-path');
+        this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
         if (this._verifyThreshold())
             return this._status;
-        this._status = await runCommandCtl('BAT0_END', `${this._endValue}`, null, false);
+        this._status = await runCommandCtl('BAT0_END', `${this._endValue}`, null, ctlPath, false);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -54,11 +60,11 @@ var MsiSingleBatteryBAT0 = GObject.registerClass({
 
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
 
         this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
             this._reVerifyThreshold();
-            delete this._delayReadTimeoutId;
+            this._delayReadTimeoutId = null;
             return GLib.SOURCE_REMOVE;
         });
         return this._status;
@@ -84,32 +90,37 @@ var MsiSingleBatteryBAT0 = GObject.registerClass({
     destroy() {
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
     }
 });
 
 var MsiSingleBatteryBAT1 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class MsiSingleBatteryBAT1 extends GObject.Object {
-    name = 'Msi BAT1';
-    type = 26;
-    deviceNeedRootPermission = true;
-    deviceHaveDualBattery = false;
-    deviceHaveStartThreshold = false;
-    deviceHaveVariableThreshold = true;
-    deviceHaveBalancedMode = true;
-    deviceHaveAdaptiveMode = false;
-    deviceHaveExpressMode = false;
-    deviceUsesModeNotValue = false;
-    iconForFullCapMode = '100';
-    iconForBalanceMode = '080';
-    iconForMaxLifeMode = '060';
-    endFullCapacityRangeMax = 100;
-    endFullCapacityRangeMin = 80;
-    endBalancedRangeMax = 85;
-    endBalancedRangeMin = 65;
-    endMaxLifeSpanRangeMax = 85;
-    endMaxLifeSpanRangeMin = 50;
+    constructor(settings) {
+        super();
+        this.name = 'Msi BAT1';
+        this.type = 26;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = false;
+        this.deviceHaveVariableThreshold = true;
+        this.deviceHaveBalancedMode = true;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForBalanceMode = '080';
+        this.iconForMaxLifeMode = '060';
+        this.endFullCapacityRangeMax = 100;
+        this.endFullCapacityRangeMin = 80;
+        this.endBalancedRangeMax = 85;
+        this.endBalancedRangeMin = 65;
+        this.endMaxLifeSpanRangeMax = 85;
+        this.endMaxLifeSpanRangeMin = 50;
+
+        this._settings = settings;
+    }
 
     isAvailable() {
         if (!fileExists(VENDOR_MSI))
@@ -121,10 +132,11 @@ var MsiSingleBatteryBAT1 = GObject.registerClass({
 
     async setThresholdLimit(chargingMode) {
         this._status = 0;
-        this._endValue = ExtensionUtils.getSettings().get_int(`current-${chargingMode}-end-threshold`);
+        const ctlPath = this._settings.get_string('ctl-path');
+        this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
         if (this._verifyThreshold())
             return this._status;
-        this._status = await runCommandCtl('BAT1_END', `${this._endValue}`, null, false);
+        this._status = await runCommandCtl('BAT1_END', `${this._endValue}`, null, ctlPath, false);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -132,11 +144,11 @@ var MsiSingleBatteryBAT1 = GObject.registerClass({
 
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
 
         this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
             this._reVerifyThreshold();
-            delete this._delayReadTimeoutId;
+            this._delayReadTimeoutId = null;
             return GLib.SOURCE_REMOVE;
         });
         return this._status;
@@ -162,6 +174,6 @@ var MsiSingleBatteryBAT1 = GObject.registerClass({
     destroy() {
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
-        delete this._delayReadTimeoutId;
+        this._delayReadTimeoutId = null;
     }
 });

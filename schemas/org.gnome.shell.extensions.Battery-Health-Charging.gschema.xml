@@ -49,9 +49,13 @@
             <default>false</default>
             <summary>Toggle to correct power indicator icon</summary>
         </key>
-        <key name="install-service" type="i">
-            <default>1</default>
+        <key name="polkit-status" type="s">
+            <default>"not-installed"</default>
             <summary>Install service</summary>
+        </key>
+        <key name="polkit-installation-changed" type="b">
+            <default>false</default>
+            <summary>Dummy toggle to inform driver.js that polkit install/update/remove was clicked</summary>
         </key>
         <key name="ctl-path" type="s">
             <default>""</default>
