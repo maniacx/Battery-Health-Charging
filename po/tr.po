@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battery-Health-Charging@maniacx.github.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-05-29 21:08-0500\n"
-"PO-Revision-Date: 2023-05-30 23:40+0300\n"
+"POT-Creation-Date: 2023-09-08 14:50-0700\n"
+"PO-Revision-Date: 2023-09-08 15:18-0700\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -19,23 +19,23 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: lib/notifier.js:32
+#: lib/notifier.js:39
 msgid "Battery Health Charging"
 msgstr "Pil Sağlıklı Şarj"
 
-#: lib/notifier.js:42
+#: lib/notifier.js:49
 msgid "Battery Health Charging Error"
 msgstr "Pil Sağlıklı Şarj Hatası"
 
-#: lib/notifier.js:55
+#: lib/notifier.js:62
 msgid "Log Out"
 msgstr "Oturumu Kapat"
 
-#: lib/notifier.js:61 ui/general.ui:9
+#: lib/notifier.js:68 ui/general.ui:9
 msgid "Settings"
 msgstr "Ayarlar"
 
-#: lib/notifier.js:77
+#: lib/notifier.js:78
 msgid ""
 "Unsupported Gnome version.\n"
 "This extension is compatible only with Gnome version 42 and above."
@@ -43,7 +43,7 @@ msgstr ""
 "Desteklenmeyen GNOME sürümü.\n"
 "Bu uzantı yalnızca GNOME 42 sürümü ve üzeri ile uyumludur."
 
-#: lib/notifier.js:81
+#: lib/notifier.js:82
 msgid ""
 "Unsupported device.\n"
 "This extension is not compatible with your device."
@@ -51,23 +51,23 @@ msgstr ""
 "Desteklenmeyen aygıt.\n"
 "Bu uzantı, aygıtınızla uyumlu değil."
 
-#: lib/notifier.js:85
+#: lib/notifier.js:86
 msgid "Please install polkit from extension settings under Installation."
 msgstr "Lütfen Kurulum altındaki uzantı ayarlarından polkitʼi kurun."
 
-#: lib/notifier.js:89
+#: lib/notifier.js:90
 msgid "Please update polkit from extension settings under Installation."
 msgstr "Lütfen Kurulum altındaki uzantı ayarlarından polkitʼi güncelleyin."
 
-#: lib/notifier.js:93 lib/notifier.js:97
+#: lib/notifier.js:94 lib/notifier.js:98
 msgid "Installation Successful. Please save your work and logout."
 msgstr "Kurulum Başarılı. Lütfen çalışmanızı kaydedin ve oturumu kapatın."
 
-#: lib/notifier.js:101
+#: lib/notifier.js:102
 msgid "Uninstallation Successful."
 msgstr "Başarıyla Kaldırıldı."
 
-#: lib/notifier.js:106
+#: lib/notifier.js:107
 #, javascript-format
 msgid ""
 "Encountered an unexpected error. (%s)\n"
@@ -78,12 +78,12 @@ msgstr ""
 "Uzantı ayarlarında doğru Dell paketini seçin.\n"
 "Uzantıyı devre dışı bırakın ve etkinleştirin"
 
-#: lib/notifier.js:108
+#: lib/notifier.js:109
 #, javascript-format
 msgid "Encountered an unexpected error. (%s)"
 msgstr "Beklenmeyen bir hatayla karşılaştı. (%s)"
 
-#: lib/notifier.js:113
+#: lib/notifier.js:114
 #, javascript-format
 msgid ""
 "Charging threshold not updated. (%s)\n"
@@ -94,12 +94,12 @@ msgstr ""
 "Uzantı ayarlarında doğru Dell paketini seçin.\n"
 "Uzantıyı devre dışı bırakın ve etkinleştirin"
 
-#: lib/notifier.js:115
+#: lib/notifier.js:116
 #, javascript-format
 msgid "Charging threshold not updated. (%s)"
 msgstr "Şarj eşiği güncellenmedi. (%s)"
 
-#: lib/notifier.js:119
+#: lib/notifier.js:120
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -109,12 +109,12 @@ msgstr ""
 "Şarj eşikleri %%%d / %%%d olarak ayarlandı"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:124 lib/thresholdPanel.js:376
+#: lib/notifier.js:125 lib/thresholdPanel.js:374
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "Şarj eşikleri %%%d / %%%d olarak ayarlandı"
 
-#: lib/notifier.js:129
+#: lib/notifier.js:130
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -124,12 +124,12 @@ msgstr ""
 "Şarj Sınırı %%%d olarak ayarlandı"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:133 lib/thresholdPanel.js:380
+#: lib/notifier.js:134 lib/thresholdPanel.js:378
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "Şarj Sınırı %%%d olarak ayarlandı"
 
-#: lib/notifier.js:137
+#: lib/notifier.js:138
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -138,7 +138,7 @@ msgstr ""
 "Pil 2\n"
 "Şarj eşikleri %%%d / %%%d olarak ayarlandı"
 
-#: lib/notifier.js:142
+#: lib/notifier.js:143
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -147,23 +147,23 @@ msgstr ""
 "Pil 2\n"
 "Şarj Sınırı %%%d olarak ayarlandı"
 
-#: lib/notifier.js:147
+#: lib/notifier.js:148
 msgid "Charging Mode is set to Full Capacity"
 msgstr "Şarj Kipi Tam Kapasite olarak ayarlandı"
 
-#: lib/notifier.js:151
+#: lib/notifier.js:152
 msgid "Charging Mode is set to Balanced"
 msgstr "Şarj Kipi Dengeli olarak ayarlandı"
 
-#: lib/notifier.js:155
+#: lib/notifier.js:156
 msgid "Charging Mode is set to Maximum Lifespan"
 msgstr "Şarj Kipi Azami Ömür olarak ayarlandı"
 
-#: lib/notifier.js:159
+#: lib/notifier.js:160
 msgid "Charging Mode is set to Express"
 msgstr "Şarj Kipi Hızlı olarak ayarlandı"
 
-#: lib/notifier.js:163
+#: lib/notifier.js:164
 msgid "Charging Mode is set to Adaptive"
 msgstr "Şarj Kipi Uyarlanabilir olarak ayarlandı"
 
@@ -178,144 +178,144 @@ msgid "Charging stopped (Threshold)"
 msgstr "Şarj durdu (Eşik)"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel42.js:208 lib/thresholdPanel42.js:221
-#: lib/thresholdPanel.js:44 ui/thresholdSecondary.ui:5
+#: lib/thresholdPanel42.js:152 lib/thresholdPanel42.js:165
+#: lib/thresholdPanel.js:38 ui/thresholdSecondary.ui:5
 msgid "Battery 2"
 msgstr "Pil 2"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel42.js:208 lib/thresholdPanel42.js:221
-#: lib/thresholdPanel.js:42 preferences/thresholdPrimary.js:48
+#: lib/thresholdPanel42.js:152 lib/thresholdPanel42.js:165
+#: lib/thresholdPanel.js:36 preferences/thresholdPrimary.js:46
 msgid "Battery 1"
 msgstr "Pil 1"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:227 lib/thresholdPanel.js:88
-#: preferences/thresholdPrimary.js:203 preferences/thresholdSecondary.js:198
+#: lib/thresholdPanel42.js:171 lib/thresholdPanel.js:82
+#: preferences/thresholdPrimary.js:201 preferences/thresholdSecondary.js:196
 msgid "Full Capacity Mode"
 msgstr "Tam Kapasite Kipi"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:231 lib/thresholdPanel.js:97
-#: preferences/thresholdPrimary.js:207 preferences/thresholdSecondary.js:202
+#: lib/thresholdPanel42.js:175 lib/thresholdPanel.js:91
+#: preferences/thresholdPrimary.js:205 preferences/thresholdSecondary.js:200
 msgid "Balanced Mode"
 msgstr "Dengeli Kip"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:235 lib/thresholdPanel.js:106
-#: preferences/thresholdPrimary.js:211 preferences/thresholdSecondary.js:206
+#: lib/thresholdPanel42.js:179 lib/thresholdPanel.js:100
+#: preferences/thresholdPrimary.js:209 preferences/thresholdSecondary.js:204
 msgid "Maximum Lifespan Mode"
 msgstr "Azami Ömür Kipi"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:239 lib/thresholdPanel.js:114
+#: lib/thresholdPanel42.js:183 lib/thresholdPanel.js:108
 msgid "Adaptive Mode"
 msgstr "Uyarlanabilir Kip"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:243 lib/thresholdPanel.js:122
+#: lib/thresholdPanel42.js:187 lib/thresholdPanel.js:116
 msgid "Express Mode"
 msgstr "Hızlı Kip"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:428 lib/thresholdPanel.js:367
+#: lib/thresholdPanel42.js:372 lib/thresholdPanel.js:365
 msgid "No Battery detected!"
 msgstr "Pil algılanmadı!"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:431 lib/thresholdPanel.js:370
+#: lib/thresholdPanel42.js:375 lib/thresholdPanel.js:368
 #, javascript-format
 msgid "Discharge Battery below %d%%"
 msgstr "Pil Düzeyi %%%d altına düştü"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:437
+#: lib/thresholdPanel42.js:381
 #, javascript-format
 msgid "Charge thresholds: %d / %d %%"
 msgstr "Şarj eşikleri: %%%d / %%%d"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:441
+#: lib/thresholdPanel42.js:385
 #, javascript-format
 msgid "Charging Limit: %d%%"
 msgstr "Şarj Sınırı: %%%d"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:444 lib/thresholdPanel.js:384
+#: lib/thresholdPanel42.js:388 lib/thresholdPanel.js:382
 msgid "Charging Mode: Full Capacity"
 msgstr "Şarj Kipi: Tam Kapasite"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:446 lib/thresholdPanel.js:387
+#: lib/thresholdPanel42.js:390 lib/thresholdPanel.js:385
 msgid "Charging Mode: Balanced"
 msgstr "Şarj Kipi: Dengeli"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:449
+#: lib/thresholdPanel42.js:393
 msgid "Charging Mode: Max. Lifespan"
 msgstr "Şarj Kipi: Azami Ömür"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:451 lib/thresholdPanel.js:393
+#: lib/thresholdPanel42.js:395 lib/thresholdPanel.js:391
 msgid "Charging Mode: Adaptive"
 msgstr "Şarj Kipi: Uyarlanabilir"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:453 lib/thresholdPanel.js:396
+#: lib/thresholdPanel42.js:397 lib/thresholdPanel.js:394
 msgid "Charging Mode: Express"
 msgstr "Şarj Kipi: Hızlı"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel.js:40
+#: lib/thresholdPanel.js:34
 msgid "Battery"
 msgstr "Pil"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:52 lib/thresholdPanel.js:353
+#: lib/thresholdPanel.js:46 lib/thresholdPanel.js:351
 msgid "Battery Charging Mode"
 msgstr "Pil Şarj Kipi"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:357
+#: lib/thresholdPanel.js:355
 msgid "Battery Uninstalled"
 msgstr "Pil Kaldırıldı"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:390
+#: lib/thresholdPanel.js:388
 msgid "Charging Mode: Maximum Lifespan"
 msgstr "Şarj Kipi: Azami Ömür"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:447
+#: lib/thresholdPanel.js:445
 msgid "Uninstalled"
 msgstr "Kaldır"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:450
+#: lib/thresholdPanel.js:448
 msgid "Full Capacity"
 msgstr "Tam Kapasite"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:453
+#: lib/thresholdPanel.js:451
 msgid "Balanced"
 msgstr "Dengeli"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:456
+#: lib/thresholdPanel.js:454
 msgid "Max Lifespan"
 msgstr "Azami ömür"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:459
+#: lib/thresholdPanel.js:457
 msgid "Adaptive"
 msgstr "Uyarlanabilir"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:462
+#: lib/thresholdPanel.js:460
 msgid "Express"
 msgstr "Hızlı"
 
-#: preferences/general.js:72
+#: preferences/general.js:60
 msgid ""
 "Select the type of icon for indicator and menu.\n"
 "In threshold settings, if <b>Customise</b> mode is selected, icon type will "
@@ -325,39 +325,39 @@ msgstr ""
 "Eşik ayarlarından <b>Özelleştir</b> kipi seçilirse simge tipi <b>Yalnızca "
 "Simgeler</b> olarak değişir ve bu seçenek devre dışı bırakılır."
 
-#: preferences/general.js:74
+#: preferences/general.js:62
 msgid "Select the type of icon for indicator and menu."
 msgstr "Gösterge ve menü için simge tipini seçin."
 
-#: preferences/general.js:204
+#: preferences/general.js:180
 msgid "Remove"
 msgstr "Kaldır"
 
-#: preferences/general.js:208
+#: preferences/general.js:183
 msgid "Install"
 msgstr "Kur"
 
-#: preferences/general.js:212
+#: preferences/general.js:186
 msgid "Update"
 msgstr "Güncelle"
 
-#: preferences/thresholdPrimary.js:50
+#: preferences/thresholdPrimary.js:48
 msgid "Threshold"
 msgstr "Eşik"
 
-#: preferences/thresholdPrimary.js:201 preferences/thresholdSecondary.js:196
+#: preferences/thresholdPrimary.js:199 preferences/thresholdSecondary.js:194
 msgid "Full Capacity Mode (Currently Active)"
 msgstr "Tam Kapasite Kipi (Etkin)"
 
-#: preferences/thresholdPrimary.js:205 preferences/thresholdSecondary.js:200
+#: preferences/thresholdPrimary.js:203 preferences/thresholdSecondary.js:198
 msgid "Balanced Mode (Currently Active)"
 msgstr "Dengeli Kip (Etkin)"
 
-#: preferences/thresholdPrimary.js:209 preferences/thresholdSecondary.js:204
+#: preferences/thresholdPrimary.js:207 preferences/thresholdSecondary.js:202
 msgid "Maximum Lifespan Mode (Currently Active)"
 msgstr "Azami Ömür Kipi (Etkin)"
 
-#: preferences/thresholdPrimary.js:215 preferences/thresholdSecondary.js:210
+#: preferences/thresholdPrimary.js:213 preferences/thresholdSecondary.js:208
 #, javascript-format
 msgid "<i>Accepted Value : %d to %d</i>"
 msgstr "<i>Kabul Edilen Değerler : %d ile %d arası</i>"
@@ -428,27 +428,27 @@ msgstr ""
 "bırakılmış olsa bile, pil gösterge simgesini sistem tepsisinde ve hızlı "
 "ayarlar panelinde <b>şarj oluyor</b> olarak değiştirir."
 
-#: ui/general.ui:102
+#: ui/general.ui:101
 msgid "Dell package for charging mode"
 msgstr "Şarj kipi için Dell paketi"
 
-#: ui/general.ui:103
+#: ui/general.ui:102
 msgid "Select Dell package used for changing charging mode/threshold."
 msgstr "Şarj kipini/eşiği değiştirmek için kullanılan Dell paketini seçin."
 
-#: ui/general.ui:118
+#: ui/general.ui:116
 msgid "Installation"
 msgstr "Kurulum"
 
-#: ui/general.ui:121
+#: ui/general.ui:119
 msgid "Install privileges for this user"
 msgstr "Bu kullanıcı için ayrıcalıkları kur"
 
-#: ui/general.ui:122
+#: ui/general.ui:120
 msgid "Install / Update / Remove"
 msgstr "Kur / Güncelle / Kaldır"
 
-#: ui/general.ui:125
+#: ui/general.ui:123
 msgid ""
 "This device requires root privileges to change the charging limit. Setup a "
 "privileged script and give user access via polkit.\n"
@@ -470,23 +470,23 @@ msgstr ""
 "kullanmaya devam edin.\n"
 "Bu uzantıyı kaldırmadan önce bu polkit ilke betiğini <b>kaldırın</b>."
 
-#: ui/general.ui:149
+#: ui/general.ui:147
 msgid "Symbols Only"
 msgstr "Sadece Simge"
 
-#: ui/general.ui:150
+#: ui/general.ui:148
 msgid "Symbol and Percentage"
 msgstr "Simge ve Yüzde"
 
-#: ui/general.ui:151
+#: ui/general.ui:149
 msgid "Percentage Highlighted"
 msgstr "Yüzde Vurgulanmış"
 
-#: ui/general.ui:156
+#: ui/general.ui:154
 msgid "Libsmbios"
 msgstr "Libsmbios"
 
-#: ui/general.ui:157
+#: ui/general.ui:155
 msgid "Dell Command Center"
 msgstr "Dell Yönetim Merkezi"
 
