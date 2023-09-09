@@ -1,16 +1,16 @@
 'use strict';
 /* Intel QC71 Laptops using dkms  https://github.com/pobrn/qc71_laptop */
-const {GLib, GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Helper = Me.imports.lib.helper;
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import * as Helper from '../lib/helper.js';
+
 const {fileExists, readFileInt, runCommandCtl} = Helper;
 
 const VENDOR_QC71 = '/sys/devices/platform/qc71_laptop';
 const BAT0_END_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold';
 
 
-var QC71SingleBatteryBAT0 = GObject.registerClass({
+export const QC71SingleBatteryBAT0 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class QC71SingleBatteryBAT0 extends GObject.Object {
     constructor(settings) {

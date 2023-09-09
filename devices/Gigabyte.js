@@ -1,15 +1,15 @@
 'use strict';
 /* Gigabyte Laptop using dkms https://github.com/tangalbert919/gigabyte-laptop-wmi  */
-const {GLib, GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Helper = Me.imports.lib.helper;
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import * as Helper from '../lib/helper.js';
+
 const {fileExists, readFileInt, runCommandCtl} = Helper;
 
 const GIGABYTE_MODE = '/sys/devices/platform/gigabyte_laptop/charge_mode';
 const GIGABYTE_LIMIT = '/sys/devices/platform/gigabyte_laptop/charge_limit';
 
-var GigabyteSingleBattery = GObject.registerClass({
+export const GigabyteSingleBattery = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class GigabyteSingleBattery extends GObject.Object {
     constructor(settings) {

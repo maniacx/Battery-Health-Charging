@@ -1,14 +1,14 @@
 'use strict';
 /* Panasonic Laptops. */
-const {GLib, GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Helper = Me.imports.lib.helper;
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import * as Helper from '../lib/helper.js';
+
 const {fileExists, readFileInt, runCommandCtl} = Helper;
 
 const PANASONIC_PATH = '/sys/devices/platform/panasonic/eco_mode';
 
-var PanasonicSingleBattery = GObject.registerClass({
+export const PanasonicSingleBattery = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class PanasonicSingleBattery extends GObject.Object {
     constructor(settings) {

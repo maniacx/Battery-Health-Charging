@@ -1,15 +1,13 @@
 'use strict';
-const {Adw, Gio, GLib, GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
+import Adw from 'gi://Adw';
+import Gio from 'gi://Gio';
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import {ExtensionPreferences, gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
-const gettextDomain = Me.metadata['gettext-domain'];
-const Gettext = imports.gettext.domain(gettextDomain);
-const _ = Gettext.gettext;
-
-var ThresholdPrimary = GObject.registerClass({
+export const ThresholdPrimary = GObject.registerClass({
     GTypeName: 'BHC_Threshold_Primary',
-    Template: `file://${GLib.build_filenamev([Me.path, 'ui', 'thresholdPrimary.ui'])}`,
+    Template: GLib.Uri.resolve_relative(import.meta.url, '../ui/thresholdPrimary.ui', GLib.UriFlags.NONE),
     InternalChildren: [
         'customize_threshold',
         'default_threshold',

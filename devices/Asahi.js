@@ -1,16 +1,16 @@
 'use strict';
 /* Apple Mac book with M-series processor - Asahi linux Laptops https://asahilinux.org/ */
-const {GLib, GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Helper = Me.imports.lib.helper;
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import * as Helper from '../lib/helper.js';
+
 const {fileExists, readFile, readFileInt, runCommandCtl} = Helper;
 
 const ASAHI_END_PATH = '/sys/class/power_supply/macsmc-battery/charge_control_end_threshold';
 const ASAHI_START_PATH = '/sys/class/power_supply/macsmc-battery/charge_control_start_threshold';
 const KERNEL_VERSION_PATH = '/proc/sys/kernel/osrelease';
 
-var AsahiSingleBattery62 = GObject.registerClass({
+export const AsahiSingleBattery62 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsahiSingleBattery62 extends GObject.Object {
     constructor(settings) {
@@ -106,7 +106,7 @@ var AsahiSingleBattery62 = GObject.registerClass({
     }
 });
 
-var AsahiSingleBattery63 = GObject.registerClass({
+export const AsahiSingleBattery63 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsahiSingleBattery63 extends GObject.Object {
     constructor(settings) {

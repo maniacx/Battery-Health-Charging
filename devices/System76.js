@@ -1,16 +1,16 @@
 'use strict';
 /* System76 Laptops */
-const {GLib, GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Helper = Me.imports.lib.helper;
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import * as Helper from '../lib/helper.js';
+
 const {fileExists, readFileInt, runCommandCtl} = Helper;
 
 const VENDOR_SYSTEM76 = '/sys/module/system76_acpi';
 const BAT0_END_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold';
 const BAT0_START_PATH = '/sys/class/power_supply/BAT0/charge_control_start_threshold';
 
-var System76SingleBattery = GObject.registerClass({
+export const System76SingleBattery = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class System76SingleBattery extends GObject.Object {
     constructor(settings) {

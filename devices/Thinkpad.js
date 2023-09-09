@@ -1,9 +1,10 @@
 'use strict';
 /* Thinkpad Laptops */
-const {Gio, GLib, GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Helper = Me.imports.lib.helper;
+import Gio from 'gi://Gio';
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import * as Helper from '../lib/helper.js';
+
 const {fileExists, readFileInt, runCommandCtl} = Helper;
 
 const VENDOR_THINKPAD = '/sys/devices/platform/thinkpad_acpi';
@@ -12,7 +13,7 @@ const BAT0_START_PATH = '/sys/class/power_supply/BAT0/charge_control_start_thres
 const BAT1_END_PATH = '/sys/class/power_supply/BAT1/charge_control_end_threshold';
 const BAT1_START_PATH = '/sys/class/power_supply/BAT1/charge_control_start_threshold';
 
-var ThinkpadDualBattery = GObject.registerClass({
+export const ThinkpadDualBattery = GObject.registerClass({
     Signals: {
         'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]},
         'battery-status-changed': {},
@@ -191,7 +192,7 @@ var ThinkpadDualBattery = GObject.registerClass({
     }
 });
 
-var ThinkpadSingleBatteryBAT0 = GObject.registerClass({
+export const ThinkpadSingleBatteryBAT0 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class ThinkpadSingleBatteryBAT0 extends GObject.Object {
     constructor(settings) {
@@ -295,7 +296,7 @@ var ThinkpadSingleBatteryBAT0 = GObject.registerClass({
     }
 });
 
-var ThinkpadSingleBatteryBAT1 = GObject.registerClass({
+export const ThinkpadSingleBatteryBAT1 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class ThinkpadSingleBatteryBAT1 extends GObject.Object {
     constructor(settings) {

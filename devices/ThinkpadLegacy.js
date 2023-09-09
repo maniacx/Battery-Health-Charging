@@ -1,9 +1,10 @@
 'use strict';
 /* Thinkpad Legacy Laptops using dkms https://github.com/linux-thinkpad/tp_smapi  */
-const {Gio, GLib, GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Helper = Me.imports.lib.helper;
+import Gio from 'gi://Gio';
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import * as Helper from '../lib/helper.js';
+
 const {fileExists, readFileInt, runCommandCtl} = Helper;
 
 const TP_BAT0_END = '/sys/devices/platform/smapi/BAT0/stop_charge_thresh';
@@ -11,7 +12,7 @@ const TP_BAT0_START = '/sys/devices/platform/smapi/BAT0/start_charge_thresh';
 const TP_BAT1_END = '/sys/devices/platform/smapi/BAT1/stop_charge_thresh';
 const TP_BAT1_START = '/sys/devices/platform/smapi/BAT1/start_charge_thresh';
 
-var ThinkpadLegacyDualBattery = GObject.registerClass({
+export const ThinkpadLegacyDualBattery = GObject.registerClass({
     Signals: {
         'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]},
         'battery-status-changed': {},
@@ -189,7 +190,7 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
     }
 });
 
-var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
+export const ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class ThinkpadLegacySingleBatteryBAT0 extends GObject.Object {
     constructor(settings) {
@@ -291,7 +292,7 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
     }
 });
 
-var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
+export const ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class ThinkpadLegacySingleBatteryBAT1 extends GObject.Object {
     constructor(settings) {

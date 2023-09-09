@@ -1,19 +1,9 @@
 'use strict';
-const Main = imports.ui.main;
-const Config = imports.misc.config;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
+import * as Main from 'resource:///org/gnome/shell/ui/main.js';
+import {Extension} from 'resource:///org/gnome/shell/extensions/extension.js';
 
-const [major] = Config.PACKAGE_VERSION.split('.');
-const shellVersion = Number.parseInt(major);
-
-const Driver = Me.imports.lib.driver;
-const PowerIcon = shellVersion > 42 ? Me.imports.lib.powerIcon : Me.imports.lib.powerIcon42;
-
-function init() {
-    ExtensionUtils.initTranslations(Me.metadata.uuid);
-    return new BatteryHealthCharging();
-}
+import * as Driver from './lib/driver.js';
+import * as PowerIcon from './lib/powerIcon.js';
 
 // 1.  _initializeDriver which start thresholdpanel runs only in [user] session-mode. _initializeDriver is destroyed in [unlock-dialog] session-mode
 // _initializeDriver initializes and checks hardware compatibility and displays an indicator of current charging mode in system-tray and also provides a
@@ -28,23 +18,23 @@ function init() {
 
 let initializeDriver = null;
 
-class BatteryHealthCharging {
+export default class BatteryHealthCharging extends Extension {
     enable() {
-        this._settings = ExtensionUtils.getSettings();
+        this._settings = this.getSettings();
 
         // create when enabled() is called in [user] and [unlock-dialog] session mode
         this._powerIcon = new PowerIcon.BatteryStatusIndicator(this._settings);
 
         // Do not create threshold panel if enable is triggered in lockscreen state (due rebased while disabling other extensions)
         if (!Main.sessionMode.isLocked && initializeDriver === null)
-            initializeDriver = new Driver.IntializeDriver(this._settings, Me);
+            initializeDriver = new Driver.IntializeDriver(this._settings, this);
 
         // Destroy _initializeDriver on [unlock-dialog] / create _initializeDriver in [user]
         this._sessionId = Main.sessionMode.connect('updated', session => {
         // enable _initializeDriver when entering from [unlock-dialog] to [user] session-mode.
             if (session.currentMode === 'user' || session.parentMode === 'user') {
                 if (initializeDriver === null)
-                    initializeDriver = new Driver.IntializeDriver(this._settings, Me);
+                    initializeDriver = new Driver.IntializeDriver(this._settings, this);
 
                 // destroy _initializeDriver when entering [unlock-dialog] session mode.
             } else if (session.currentMode === 'unlock-dialog') {
