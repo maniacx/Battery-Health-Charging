@@ -290,6 +290,14 @@ smbios-battery-ctl --set-custom-charge-interval low high
 ```
 
 ## Changelog
+### Version 28
+Sep 09, 2023
+* Removed unused imports
+
+### Version 27
+Sep 09, 2023
+* Ported to Gnome 45
+
 ### Version 26
 Sep 08, 2023
 * Fixed battery2 customize threshold not rejecting values entered out of limit
@@ -321,6 +329,7 @@ May 31, 2023
 * Added detected device name on error notifications (Helps debugging incase extension detect as wrong device)
 * Removed verify threshold by readback after setting threshold as reading charging threshold is buggy on toshiba
 * Remove option to change charging threshold to 80% if battery level is more than 80% on toshiba.
+
 See [Full History](https://github.com/maniacx/Battery-Health-Charging/blob/main/.github/CHANGELOG.md)
 
 ## Polkit Installation

@@ -1,5 +1,13 @@
 Battery Health Charging Extension Changelogs
 ============================================
+### Version 28
+Sep 09, 2023
+* Removed unused imports
+
+### Version 27
+Sep 09, 2023
+* Ported to Gnome 45
+
 ### Version 26
 Sep 08, 2023
 * Fixed battery2 customize threshold not rejecting values entered out of limit
