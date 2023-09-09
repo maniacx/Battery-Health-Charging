@@ -1,9 +1,9 @@
 'use strict';
 /* Toshiba Laptops */
-const {Gio, GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Helper = Me.imports.lib.helper;
+import Gio from 'gi://Gio';
+import GObject from 'gi://GObject';
+import * as Helper from '../lib/helper.js';
+
 const {fileExists, readFileInt, readFileUri, runCommandCtl} = Helper;
 
 const VENDOR_TOSHIBA = '/sys/module/toshiba_acpi';
@@ -15,7 +15,7 @@ const BAT1_CAPACITY_PATH = '/sys/class/power_supply/BAT1/capacity';
 const BUS_NAME = 'org.freedesktop.UPower';
 const OBJECT_PATH = '/org/freedesktop/UPower/devices/DisplayDevice';
 
-var ToshibaSingleBatteryBAT0 = GObject.registerClass({
+export const ToshibaSingleBatteryBAT0 = GObject.registerClass({
     Signals: {
         'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]},
         'battery-level-changed': {},
@@ -95,7 +95,7 @@ var ToshibaSingleBatteryBAT0 = GObject.registerClass({
     }
 });
 
-var ToshibaSingleBatteryBAT1 = GObject.registerClass({
+export const ToshibaSingleBatteryBAT1 = GObject.registerClass({
     Signals: {
         'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]},
         'battery-level-changed': {},

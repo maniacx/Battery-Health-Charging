@@ -1,16 +1,16 @@
 'use strict';
 /* MSI Laptops using dkms https://github.com/BeardOverflow/msi-ec */
-const {GLib, GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Helper = Me.imports.lib.helper;
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import * as Helper from '../lib/helper.js';
+
 const {fileExists, readFileInt, runCommandCtl} = Helper;
 
 const VENDOR_MSI = '/sys/devices/platform/msi-ec/';
 const BAT0_END_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold';
 const BAT1_END_PATH = '/sys/class/power_supply/BAT1/charge_control_end_threshold';
 
-var MsiSingleBatteryBAT0 = GObject.registerClass({
+export const MsiSingleBatteryBAT0 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class MsiSingleBatteryBAT0 extends GObject.Object {
     constructor(settings) {
@@ -94,7 +94,7 @@ var MsiSingleBatteryBAT0 = GObject.registerClass({
     }
 });
 
-var MsiSingleBatteryBAT1 = GObject.registerClass({
+export const MsiSingleBatteryBAT1 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class MsiSingleBatteryBAT1 extends GObject.Object {
     constructor(settings) {

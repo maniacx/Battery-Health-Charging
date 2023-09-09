@@ -1,41 +1,33 @@
 'use strict';
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const DeviceList = Me.imports.lib.deviceList;
+import {ExtensionPreferences} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
-const {General} = Me.imports.preferences.general;
-const {ThresholdPrimary} = Me.imports.preferences.thresholdPrimary;
-const {ThresholdSecondary} = Me.imports.preferences.thresholdSecondary;
-const {addMenu} = Me.imports.preferences.menu;
+import * as DeviceList from './lib/deviceList.js';
+import {General} from './preferences/general.js';
+import {ThresholdPrimary} from './preferences/thresholdPrimary.js';
+import {ThresholdSecondary} from './preferences/thresholdSecondary.js';
+import {addMenu} from './preferences/menu.js';
 
-function fillPreferencesWindow(window) {
-    let currentDevice = null;
-    const settings = ExtensionUtils.getSettings();
-    const type = settings.get_int('device-type');
+export default class BatteryHealthCharging extends ExtensionPreferences {
+    fillPreferencesWindow(window) {
+        let currentDevice = null;
+        const settings = this.getSettings();
+        const type = settings.get_int('device-type');
+        if (type !== 0) {
+            const device = new DeviceList.deviceArray[type - 1](settings);
+            if (device.type === type) {
+                if (device.isAvailable())
+                    currentDevice = device;
+            }
+        }
 
-    if (type !== 0) {
-        const device = new DeviceList.deviceArray[type - 1](settings);
-        if (device.type === type) {
-            if (device.isAvailable())
-                currentDevice = device;
+        window.set_default_size(650, 700);
+        addMenu(window, this.path);
+        window.add(new General(settings, currentDevice));
+        if (currentDevice !== null) {
+            if (currentDevice.deviceHaveVariableThreshold) // Laptop has customizable threshold
+                window.add(new ThresholdPrimary(settings, currentDevice));
+            if (currentDevice.deviceHaveDualBattery) // Laptop has dual battery
+                window.add(new ThresholdSecondary(settings, currentDevice));
         }
     }
-
-    window.set_default_size(650, 700);
-
-    addMenu(window);
-
-    window.add(new General(settings, currentDevice));
-
-    if (currentDevice !== null) {
-        if (currentDevice.deviceHaveVariableThreshold) // Laptop has customizable threshold
-            window.add(new ThresholdPrimary(settings, currentDevice));
-
-        if (currentDevice.deviceHaveDualBattery) // Laptop has dual battery
-            window.add(new ThresholdSecondary(settings, currentDevice));
-    }
-}
-
-function init() {
-    ExtensionUtils.initTranslations(Me.metadata.uuid);
 }

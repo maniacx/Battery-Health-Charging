@@ -1,14 +1,14 @@
 'use strict';
 /* Acer Laptops using dkms https://github.com/frederik-h/acer-wmi-battery/issues */
-const {GLib, GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Helper = Me.imports.lib.helper;
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import * as Helper from '../lib/helper.js';
+
 const {fileExists, readFileInt, runCommandCtl} = Helper;
 
 const ACER_PATH = '/sys/bus/wmi/drivers/acer-wmi-battery/health_mode';
 
-var AcerSingleBattery = GObject.registerClass({
+export const AcerSingleBattery = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AcerSingleBattery extends GObject.Object {
     constructor(settings) {

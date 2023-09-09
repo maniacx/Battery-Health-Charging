@@ -1,14 +1,14 @@
 'use strict';
 /* Lenovo Ideapad Laptops */
-const {GLib, GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Helper = Me.imports.lib.helper;
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import * as Helper from '../lib/helper.js';
+
 const {fileExists, readFileInt, runCommandCtl} = Helper;
 
 const LENOVO_PATH = '/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode';
 
-var LenovoSingleBattery = GObject.registerClass({
+export const LenovoSingleBattery = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class LenovoSingleBattery extends GObject.Object {
     constructor(settings) {

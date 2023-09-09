@@ -1,15 +1,15 @@
 'use strict';
 /* Tuxedo Laptops using dkms https://github.com/tuxedocomputers/tuxedo-keyboard */
-const {GLib, GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Helper = Me.imports.lib.helper;
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import * as Helper from '../lib/helper.js';
+
 const {fileExists, readFile, runCommandCtl} = Helper;
 
 const TUXEDO_AVAILABLE_PROFILE_PATH = '/sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profiles_available';
 const TUXEDO_PATH = '/sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile';
 
-var Tuxedo3ModesSingleBattery = GObject.registerClass({
+export const Tuxedo3ModesSingleBattery = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class Tuxedo3ModesSingleBattery extends GObject.Object {
     constructor(settings) {

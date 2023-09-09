@@ -1,15 +1,15 @@
 'use strict';
 /* Apple Mac book with Intel processors using dkms https://github.com/c---/applesmc-next  */
-const {GLib, GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Helper = Me.imports.lib.helper;
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import * as Helper from '../lib/helper.js';
+
 const {fileExists, readFileInt, runCommandCtl} = Helper;
 
 const VENDOR_APPLE = '/sys/module/applesmc';
 const BAT0_END_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold';
 
-var AppleSingleBattery = GObject.registerClass({
+export const AppleSingleBattery = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AppleSingleBattery extends GObject.Object {
     constructor(settings) {

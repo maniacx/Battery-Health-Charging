@@ -1,19 +1,13 @@
 'use strict';
-const {Adw, Gio, GLib, GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Config = imports.misc.config;
+import Adw from 'gi://Adw';
+import Gio from 'gi://Gio';
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import {ExtensionPreferences, gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
-const gettextDomain = Me.metadata['gettext-domain'];
-const Gettext = imports.gettext.domain(gettextDomain);
-const _ = Gettext.gettext;
-
-const [major] = Config.PACKAGE_VERSION.split('.');
-const shellVersion = Number.parseInt(major);
-
-var General = GObject.registerClass({
+export const General = GObject.registerClass({
     GTypeName: 'BHC_General',
-    Template: `file://${GLib.build_filenamev([Me.path, 'ui', 'general.ui'])}`,
+    Template: GLib.Uri.resolve_relative(import.meta.url, '../ui/general.ui', GLib.UriFlags.NONE),
     InternalChildren: [
         'icon_style_mode_row',
         'icon_style_mode',
@@ -62,8 +56,6 @@ var General = GObject.registerClass({
                 this._icon_style_mode_row.set_subtitle(_('Select the type of icon for indicator and menu.'));
         }
 
-        this._show_quickmenu_subtitle_row.visible = shellVersion >= 44;
-
         this._setIndicatorPosistionRange();
 
         if (this._deviceNeedRootPermission) {
@@ -94,14 +86,12 @@ var General = GObject.registerClass({
             Gio.SettingsBindFlags.DEFAULT
         );
 
-        if (shellVersion >= 44) {
-            this._settings.bind(
-                'show-quickmenu-subtitle',
-                this._show_quickmenu_subtitle,
-                'active',
-                Gio.SettingsBindFlags.DEFAULT
-            );
-        }
+        this._settings.bind(
+            'show-quickmenu-subtitle',
+            this._show_quickmenu_subtitle,
+            'active',
+            Gio.SettingsBindFlags.DEFAULT
+        );
 
         this._settings.bind(
             'show-system-indicator',

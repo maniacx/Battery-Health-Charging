@@ -1,9 +1,9 @@
 'use strict';
 /* Asus Laptops */
-const {GLib, GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Helper = Me.imports.lib.helper;
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import * as Helper from '../lib/helper.js';
+
 const {fileExists, readFileInt, runCommandCtl} = Helper;
 
 const VENDOR_ASUS = '/sys/module/asus_wmi';
@@ -12,7 +12,7 @@ const BAT1_END_PATH = '/sys/class/power_supply/BAT1/charge_control_end_threshold
 const BATC_END_PATH = '/sys/class/power_supply/BATC/charge_control_end_threshold';
 const BATT_END_PATH = '/sys/class/power_supply/BATT/charge_control_end_threshold';
 
-var AsusSingleBatteryBAT0 = GObject.registerClass({
+export const AsusSingleBatteryBAT0 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsusSingleBatteryBAT0 extends GObject.Object {
     constructor(settings) {
@@ -94,7 +94,7 @@ var AsusSingleBatteryBAT0 = GObject.registerClass({
     }
 });
 
-var AsusSingleBatteryBAT1 = GObject.registerClass({
+export const AsusSingleBatteryBAT1 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsusSingleBatteryBAT1 extends GObject.Object {
     constructor(settings) {
@@ -176,7 +176,7 @@ var AsusSingleBatteryBAT1 = GObject.registerClass({
     }
 });
 
-var AsusSingleBatteryBATC = GObject.registerClass({
+export const AsusSingleBatteryBATC = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsusSingleBatteryBATC extends GObject.Object {
     constructor(settings) {
@@ -258,7 +258,7 @@ var AsusSingleBatteryBATC = GObject.registerClass({
     }
 });
 
-var AsusSingleBatteryBATT = GObject.registerClass({
+export const AsusSingleBatteryBATT = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class AsusSingleBatteryBATT extends GObject.Object {
     constructor(settings) {

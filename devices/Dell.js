@@ -1,17 +1,16 @@
 'use strict';
 /* Dell Laptops using package smbios-battery-ctl from libsmbios  https://github.com/dell/libsmbios */
 /* Dell Laptops using package dell command configure from libsmbios  https://www.dell.com/support/kbdoc/en-us/000178000/dell-command-configure */
-const {GObject} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
-const Helper = Me.imports.lib.helper;
+import GObject from 'gi://GObject';
+import * as Helper from '../lib/helper.js';
+
 const {fileExists, runCommandCtl} = Helper;
 
 const DELL_PATH = '/sys/devices/platform/dell-laptop';
 const SMBIOS_PATH = '/usr/sbin/smbios-battery-ctl';
 const CCTK_PATH = '/opt/dell/dcc/cctk';
 
-var DellSmBiosSingleBattery = GObject.registerClass({
+export const DellSmBiosSingleBattery = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
 }, class DellSmBiosSingleBattery extends GObject.Object {
     constructor(settings) {

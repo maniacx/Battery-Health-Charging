@@ -1,27 +1,33 @@
 'use strict';
-const {Gtk, Gio} = imports.gi;
-const ExtensionUtils = imports.misc.extensionUtils;
-const Me = ExtensionUtils.getCurrentExtension();
+import Adw from 'gi://Adw';
+import Gio from 'gi://Gio';
+import Gtk from 'gi://Gtk';
 
-function addMenu(window) {
+export function addMenu(window, path) {
     const builder = new Gtk.Builder();
 
     // add a dummy page and remove it immediately, to access headerbar
-    builder.add_from_file(`${Me.path}/ui/menu.ui`);
+    builder.add_from_file(`${path}/ui/menu.ui`);
     const menu_util = builder.get_object('menu_util');
     window.add(menu_util);
     addMenuToHeader(window, builder);
     window.remove(menu_util);
 }
 
+function findWidgetByType(parent, type) {
+    for (const child of [...parent]) {
+      if (child instanceof type) return child;
+
+      const match = findWidgetByType(child, type);
+      if (match) return match;
+    }
+
+    return null;
+}
+
 function addMenuToHeader(window, builder) {
-    // a little hack to get to the headerbar
-    const page = builder.get_object('menu_util');
-    const pages_stack = page.get_parent(); // AdwViewStack
-    const content_stack = pages_stack.get_parent().get_parent(); // GtkStack
-    const preferences = content_stack.get_parent(); // GtkBox
-    const headerbar = preferences.get_first_child(); // AdwHeaderBar
-    headerbar.pack_start(builder.get_object('info_menu'));
+    const header = findWidgetByType(window.get_content(), Adw.HeaderBar);
+    header.pack_start(builder.get_object('info_menu'));
 
     // setup menu actions
     const actionGroup = new Gio.SimpleActionGroup();
