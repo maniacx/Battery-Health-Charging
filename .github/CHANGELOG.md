@@ -1,5 +1,10 @@
 Battery Health Charging Extension Changelogs
 ============================================
+### Version 26
+Sep 08, 2023
+* Fixed battery2 customize threshold not rejecting values entered out of limit
+* Rewrote extension for better portability of upcoming gnome release
+
 ### Version 25
 Sep 06, 2023
 * Fix for devices which doesn't immediately update threshold after writing. Added re-verification by reading threshold after 200ms if threshold fails verification the first time.
