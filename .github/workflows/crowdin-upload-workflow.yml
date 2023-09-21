@@ -1,0 +1,23 @@
+name: Crowdin Upload Workflow
+
+on:
+  push:
+    path: [ 'po/*' ]
+    branches: [ GN44-main ]
+
+jobs:
+  crowdin:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Crowdin push
+        uses: crowdin/github-action@v1
+        with:
+          upload_sources: true
+          upload_translations: true
+          download_translations: false
+        env:
+          CROWDIN_PROJECT_ID: 579277
+          CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
