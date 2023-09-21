@@ -41,6 +41,8 @@ var System76SingleBattery = GObject.registerClass({
         this.startMaxLifeSpanRangeMax = 83;
         this.startMaxLifeSpanRangeMin = 40;
         this.minDiffLimit = 2;
+        this.incrementsStep = 1;
+        this.incrementsPage = 5;
 
         this._settings = settings;
     }

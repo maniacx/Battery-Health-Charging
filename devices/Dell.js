@@ -42,6 +42,8 @@ var DellSmBiosSingleBattery = GObject.registerClass({
         this.startMaxLifeSpanRangeMax = 80;
         this.startMaxLifeSpanRangeMin = 50;
         this.minDiffLimit = 5;
+        this.incrementsStep = 1;
+        this.incrementsPage = 5;
 
         this._settings = settings;
     }

@@ -36,6 +36,8 @@ var AsusSingleBatteryBAT0 = GObject.registerClass({
         this.endBalancedRangeMin = 65;
         this.endMaxLifeSpanRangeMax = 85;
         this.endMaxLifeSpanRangeMin = 50;
+        this.incrementsStep = 1;
+        this.incrementsPage = 5;
 
         this._settings = settings;
     }
@@ -118,6 +120,8 @@ var AsusSingleBatteryBAT1 = GObject.registerClass({
         this.endBalancedRangeMin = 65;
         this.endMaxLifeSpanRangeMax = 85;
         this.endMaxLifeSpanRangeMin = 50;
+        this.incrementsStep = 1;
+        this.incrementsPage = 5;
 
         this._settings = settings;
     }
@@ -200,6 +204,8 @@ var AsusSingleBatteryBATC = GObject.registerClass({
         this.endBalancedRangeMin = 65;
         this.endMaxLifeSpanRangeMax = 85;
         this.endMaxLifeSpanRangeMin = 50;
+        this.incrementsStep = 1;
+        this.incrementsPage = 5;
 
         this._settings = settings;
     }
@@ -282,6 +288,8 @@ var AsusSingleBatteryBATT = GObject.registerClass({
         this.endBalancedRangeMin = 65;
         this.endMaxLifeSpanRangeMax = 85;
         this.endMaxLifeSpanRangeMin = 50;
+        this.incrementsStep = 1;
+        this.incrementsPage = 5;
 
         this._settings = settings;
     }

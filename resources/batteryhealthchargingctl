@@ -172,6 +172,18 @@ case "$TOOLCMD" in
         fi
         exit ${EXIT_SUCCESS}
         ;;
+    RAZER_CLI_READ)
+        /usr/bin/razer-cli read bho
+        exit ${EXIT_SUCCESS}
+        ;;
+    RAZER_CLI_WRITE)
+        if [ "$ARG1" = "off" ];then
+            /usr/bin/razer-cli write bho off
+        elif [ "$ARG1" = "on" ];then
+            /usr/bin/razer-cli write bho on $ARG2
+        fi
+        exit ${EXIT_SUCCESS}
+        ;;
     CHECKINSTALLATION)
     printf -v versions '%s\n%s' "$(pkaction --version | cut -d' ' -f3)" "0.106"
     if [[ $versions != "$(sort -V <<< "$versions")" ]];then

@@ -45,6 +45,8 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
         this.startMaxLifeSpanRangeMax = 80;
         this.startMaxLifeSpanRangeMin = 40;
         this.minDiffLimit = 5;
+        this.incrementsStep = 1;
+        this.incrementsPage = 5;
 
         this._settings = settings;
     }
@@ -220,6 +222,8 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
         this.startMaxLifeSpanRangeMax = 80;
         this.startMaxLifeSpanRangeMin = 40;
         this.minDiffLimit = 5;
+        this.incrementsStep = 1;
+        this.incrementsPage = 5;
 
         this._settings = settings;
     }
@@ -322,6 +326,8 @@ var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
         this.startMaxLifeSpanRangeMax = 80;
         this.startMaxLifeSpanRangeMin = 40;
         this.minDiffLimit = 5;
+        this.incrementsStep = 1;
+        this.incrementsPage = 5;
 
         this._settings = settings;
     }
