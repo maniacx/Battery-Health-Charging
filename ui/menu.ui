@@ -14,6 +14,10 @@
         <attribute name="label" translatable="yes">Rate this extension</attribute>
         <attribute name="action">prefs.open-rating</attribute>
       </item>
+      <item>
+        <attribute name="label" translatable="yes">Translations</attribute>
+        <attribute name="action">prefs.translation</attribute>
+      </item>
     </section>
   </menu>
 
