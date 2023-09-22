@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="thinkpad-battery-threshold@marcosdalvarez.org">
+  <template class="BHC_About" parent="AdwPreferencesPage">
+    <property name="name">about</property>
+    <property name="title" translatable="yes">About</property>
+    <property name="icon-name">help-about-symbolic</property>
+    <child>
+      <object class="AdwPreferencesGroup">
+        <child>
+          <object class="GtkBox">
+            <property name="orientation">vertical</property>
+            <property name="spacing">6px</property>
+            <child>
+              <object class="GtkImage" id="app_icon_image">
+                <property name="icon-name">help-about-symbolic</property>
+                <property name="pixel-size">192</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="app_name_label">
+                <property name="label">App Name</property>
+                <property name="ellipsize">PANGO_ELLIPSIZE_END</property>
+                <style>
+                  <class name="title-1" />
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkLabel" id="developer_name_label">
+                <property name="margin_top">6</property>
+                <property name="ellipsize">PANGO_ELLIPSIZE_END</property>
+                <property name="label">maniacx@github.com</property>
+                <style>
+                  <class name="title-4" />
+                </style>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton">
+                <property name="margin_top">8</property>
+                <property name="margin_bottom">24</property>
+                <property name="halign">center</property>
+                <style>
+                  <class name="success" />
+                </style>
+                <child>
+                  <object class="GtkLabel" id="version_label">
+                    <property name="width-chars">4</property>
+                  </object>
+                </child>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwPreferencesGroup" id="about_group">
+        <child>
+          <object class="AdwActionRow" id="open_readme">
+            <property name="title" translatable="yes">Read me</property>
+            <property name="tooltip-text">https://maniacx.github.io/Battery-Health-Charging/</property>
+            <property name="action-name">prefs.open-readme</property>
+            <property name="activatable">true</property>
+            <child>
+              <object class="GtkImage" id="readme_icon">
+                <property name="valign">center</property>
+                <property name="icon-name">adw-external-link-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow" id="open_bug_report">
+            <property name="title" translatable="yes">Report a Bug</property>
+            <property name="tooltip-text">https://github.com/maniacx/Battery-Health-Charging/issues</property>
+            <property name="action-name">prefs.open-bug-report</property>
+            <property name="activatable">true</property>
+            <child>
+              <object class="GtkImage" id="bug_icon">
+                <property name="valign">center</property>
+                <property name="icon-name">adw-external-link-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow" id="open-translation">
+            <property name="title" translatable="yes">Translations</property>
+            <property name="tooltip-text">https://maniacx.github.io/Battery-Health-Charging/TRANSLATION.html</property>
+            <property name="action-name">prefs.open-translation</property>
+            <property name="activatable">true</property>
+            <child>
+              <object class="GtkImage" id="translation_icon">
+                <property name="valign">center</property>
+                <property name="icon-name">adw-external-link-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow" id="open-rating">
+            <property name="title" translatable="yes">Rate this extension</property>
+            <property name="tooltip-text">https://extensions.gnome.org/extension/5724/battery-health-charging</property>
+            <property name="action-name">prefs.open-rating</property>
+            <property name="activatable">true</property>
+            <child>
+              <object class="GtkImage" id="rating_icon">
+                <property name="valign">center</property>
+                <property name="icon-name">adw-external-link-symbolic</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>

@@ -6,7 +6,7 @@ const DeviceList = Me.imports.lib.deviceList;
 const {General} = Me.imports.preferences.general;
 const {ThresholdPrimary} = Me.imports.preferences.thresholdPrimary;
 const {ThresholdSecondary} = Me.imports.preferences.thresholdSecondary;
-const {addMenu} = Me.imports.preferences.menu;
+const {About} = Me.imports.preferences.about;
 
 function fillPreferencesWindow(window) {
     let currentDevice = null;
@@ -23,8 +23,6 @@ function fillPreferencesWindow(window) {
 
     window.set_default_size(650, 700);
 
-    addMenu(window);
-
     window.add(new General(settings, currentDevice));
 
     if (currentDevice !== null) {
@@ -34,6 +32,7 @@ function fillPreferencesWindow(window) {
         if (currentDevice.deviceHaveDualBattery) // Laptop has dual battery
             window.add(new ThresholdSecondary(settings, currentDevice));
     }
+    window.add(new About(window));
 }
 
 function init() {
