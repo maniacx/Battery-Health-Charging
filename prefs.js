@@ -5,9 +5,9 @@ import * as DeviceList from './lib/deviceList.js';
 import {General} from './preferences/general.js';
 import {ThresholdPrimary} from './preferences/thresholdPrimary.js';
 import {ThresholdSecondary} from './preferences/thresholdSecondary.js';
-import {addMenu} from './preferences/menu.js';
+import {About} from './preferences/about.js';
 
-export default class BatteryHealthCharging extends ExtensionPreferences {
+export default class BatteryHealthChargingPrefs extends ExtensionPreferences {
     fillPreferencesWindow(window) {
         let currentDevice = null;
         const settings = this.getSettings();
@@ -21,7 +21,6 @@ export default class BatteryHealthCharging extends ExtensionPreferences {
         }
 
         window.set_default_size(650, 700);
-        addMenu(window, this.path);
         window.add(new General(settings, currentDevice));
         if (currentDevice !== null) {
             if (currentDevice.deviceHaveVariableThreshold) // Laptop has customizable threshold
@@ -29,5 +28,6 @@ export default class BatteryHealthCharging extends ExtensionPreferences {
             if (currentDevice.deviceHaveDualBattery) // Laptop has dual battery
                 window.add(new ThresholdSecondary(settings, currentDevice));
         }
+        window.add(new About(window, this));
     }
 }
