@@ -1,4 +1,4 @@
-name: Crowdin Upload Workflow
+name: Crowdin Upload Workflow Gnone44
 
 on:
   push:
