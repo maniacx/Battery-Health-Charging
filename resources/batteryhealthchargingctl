@@ -11,6 +11,7 @@ BAT1_START_PATH='/sys/class/power_supply/BAT1/charge_control_start_threshold'
 LG_PATH='/sys/devices/platform/lg-laptop/battery_care_limit'
 LENOVO_PATH='/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode'
 SONY_PATH='/sys/devices/platform/sony-laptop/battery_care_limiter'
+SONY_HIGHSPEED_CHARGING_PATH='/sys/devices/platform/sony-laptop/battery_highspeed_charging'
 HUAWEI_PATH='/sys/devices/platform/huawei-wmi/charge_control_thresholds'
 SAMSUNG_PATH='/sys/devices/platform/samsung/battery_life_extender'
 ACER_PATH='/sys/bus/wmi/drivers/acer-wmi-battery/health_mode'
@@ -80,6 +81,11 @@ case "$TOOLCMD" in
         exit ${EXIT_SUCCESS}
         ;;
     SONY)
+        if [ "$ARG2" == "on" ];then
+            echo "1" > "$SONY_HIGHSPEED_CHARGING_PATH"
+        elif [ "$ARG2" == "off" ];then
+            echo "0" > "$SONY_HIGHSPEED_CHARGING_PATH"
+        fi
         echo "$ARG1" > "$SONY_PATH"
         exit ${EXIT_SUCCESS}
         ;;
@@ -137,7 +143,7 @@ case "$TOOLCMD" in
         exit ${EXIT_SUCCESS}
         ;;
     GIGABYTE_THRESHOLD)
-        if [ "$ARG1" = "true" ]; then
+        if [ "$ARG1" = "true" ];then
             echo "1" > "$GIGABYTE_MODE"
         fi
         echo "$ARG2" > "$GIGABYTE_LIMIT"
@@ -169,6 +175,18 @@ case "$TOOLCMD" in
             /opt/dell/dcc/cctk --PrimaryBattChargeCfg=Express
         else
             /opt/dell/dcc/cctk --PrimaryBattChargeCfg=Custom:"$ARG2"-"$ARG1"
+        fi
+        exit ${EXIT_SUCCESS}
+        ;;
+    RAZER_CLI_READ)
+        /usr/bin/razer-cli read bho
+        exit ${EXIT_SUCCESS}
+        ;;
+    RAZER_CLI_WRITE)
+        if [ "$ARG1" = "off" ];then
+            /usr/bin/razer-cli write bho off
+        elif [ "$ARG1" = "on" ];then
+            /usr/bin/razer-cli write bho on $ARG2
         fi
         exit ${EXIT_SUCCESS}
         ;;

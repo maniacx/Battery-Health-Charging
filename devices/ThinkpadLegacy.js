@@ -46,6 +46,8 @@ export const ThinkpadLegacyDualBattery = GObject.registerClass({
         this.startMaxLifeSpanRangeMax = 80;
         this.startMaxLifeSpanRangeMin = 40;
         this.minDiffLimit = 5;
+        this.incrementsStep = 1;
+        this.incrementsPage = 5;
 
         this._settings = settings;
     }
@@ -221,6 +223,8 @@ export const ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
         this.startMaxLifeSpanRangeMax = 80;
         this.startMaxLifeSpanRangeMin = 40;
         this.minDiffLimit = 5;
+        this.incrementsStep = 1;
+        this.incrementsPage = 5;
 
         this._settings = settings;
     }
@@ -323,6 +327,8 @@ export const ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
         this.startMaxLifeSpanRangeMax = 80;
         this.startMaxLifeSpanRangeMin = 40;
         this.minDiffLimit = 5;
+        this.incrementsStep = 1;
+        this.incrementsPage = 5;
 
         this._settings = settings;
     }

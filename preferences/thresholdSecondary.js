@@ -74,6 +74,8 @@ export const ThresholdSecondary = GObject.registerClass({
         this._balanced_start_threshold_row_2.visible = this._currentDevice.deviceHaveStartThreshold;
         this._maxlife_start_threshold_row_2.visible = this._currentDevice.deviceHaveStartThreshold;
 
+        this._setIncrements();
+
         this._settings.bind(
             'default-threshold2',
             this._customize_threshold_2,
@@ -240,5 +242,14 @@ export const ThresholdSecondary = GObject.registerClass({
             this._maxlife_start_threshold_actual_value_2.set_label(
                 this._settings.get_int('current-max-start-threshold2').toString());
         }
+    }
+
+    _setIncrements() {
+        this._full_capacity_end_threshold_2.set_increments(this._currentDevice.incrementsStep, this._currentDevice.incrementsPage);
+        this._balanced_end_threshold_2.set_increments(this._currentDevice.incrementsStep, this._currentDevice.incrementsPage);
+        this._maxlife_end_threshold_2.set_increments(this._currentDevice.incrementsStep, this._currentDevice.incrementsPage);
+        this._full_capacity_start_threshold_2.set_increments(this._currentDevice.incrementsStep, this._currentDevice.incrementsPage);
+        this._balanced_start_threshold_2.set_increments(this._currentDevice.incrementsStep, this._currentDevice.incrementsPage);
+        this._maxlife_start_threshold_2.set_increments(this._currentDevice.incrementsStep, this._currentDevice.incrementsPage);
     }
 });
