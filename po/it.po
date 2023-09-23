@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-09 07:53-0700\n"
-"PO-Revision-Date: 2023-09-09 08:04-0700\n"
+"POT-Creation-Date: 2023-09-23 12:42-0700\n"
+"PO-Revision-Date: 2023-09-23 12:50-0700\n"
 "Last-Translator: dalz <translations@alsd.eu>\n"
 "Language-Team: Italian <translations@alsd.eu>\n"
 "Language: it\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: lib/notifier.js:36
 msgid "Battery Health Charging"
@@ -200,20 +200,20 @@ msgid "Battery Charging Mode"
 msgstr "Modalità di ricarica"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:70 preferences/thresholdPrimary.js:199
-#: preferences/thresholdSecondary.js:194
+#: lib/thresholdPanel.js:70 preferences/thresholdPrimary.js:201
+#: preferences/thresholdSecondary.js:196
 msgid "Full Capacity Mode"
 msgstr "Modalità capacità massima"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:76 preferences/thresholdPrimary.js:203
-#: preferences/thresholdSecondary.js:198
+#: lib/thresholdPanel.js:76 preferences/thresholdPrimary.js:205
+#: preferences/thresholdSecondary.js:200
 msgid "Balanced Mode"
 msgstr "Modalità bilanciata"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:82 preferences/thresholdPrimary.js:207
-#: preferences/thresholdSecondary.js:202
+#: lib/thresholdPanel.js:82 preferences/thresholdPrimary.js:209
+#: preferences/thresholdSecondary.js:204
 msgid "Maximum Lifespan Mode"
 msgstr "Modalità ciclo di vita massimo"
 
@@ -329,22 +329,42 @@ msgstr "Aggiorna"
 msgid "Threshold"
 msgstr "Soglia"
 
-#: preferences/thresholdPrimary.js:197 preferences/thresholdSecondary.js:192
+#: preferences/thresholdPrimary.js:199 preferences/thresholdSecondary.js:194
 msgid "Full Capacity Mode (Currently Active)"
 msgstr "Modalità capacità massima (attiva)"
 
-#: preferences/thresholdPrimary.js:201 preferences/thresholdSecondary.js:196
+#: preferences/thresholdPrimary.js:203 preferences/thresholdSecondary.js:198
 msgid "Balanced Mode (Currently Active)"
 msgstr "Modalità bilanciata (attiva)"
 
-#: preferences/thresholdPrimary.js:205 preferences/thresholdSecondary.js:200
+#: preferences/thresholdPrimary.js:207 preferences/thresholdSecondary.js:202
 msgid "Maximum Lifespan Mode (Currently Active)"
 msgstr "Modalità ciclo di vita massimo (attiva)"
 
-#: preferences/thresholdPrimary.js:211 preferences/thresholdSecondary.js:206
+#: preferences/thresholdPrimary.js:213 preferences/thresholdSecondary.js:208
 #, javascript-format
 msgid "<i>Accepted Value : %d to %d</i>"
 msgstr "<i>Valore accettato: da %d a %d</i>"
+
+#: ui/about.ui:5
+msgid "About"
+msgstr "Informazioni"
+
+#: ui/about.ui:61
+msgid "Read me"
+msgstr "Leggimi"
+
+#: ui/about.ui:75
+msgid "Report a Bug"
+msgstr "Riporta un bug"
+
+#: ui/about.ui:89
+msgid "Translations"
+msgstr "Traduzioni"
+
+#: ui/about.ui:103
+msgid "Rate this extension"
+msgstr "Valuta l'estensione"
 
 #: ui/general.ui:5
 msgid "General"
@@ -484,18 +504,6 @@ msgstr "Libsmbios"
 msgid "Dell Command Center"
 msgstr "Dell Command Center"
 
-#: ui/menu.ui:6
-msgid "Project page"
-msgstr "Pagina del progetto"
-
-#: ui/menu.ui:10
-msgid "Report a Bug"
-msgstr "Riporta un bug"
-
-#: ui/menu.ui:14
-msgid "Rate this extension"
-msgstr "Valuta l'estensione"
-
 #: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
 msgid "Customize"
 msgstr "Personalizza"
@@ -528,6 +536,9 @@ msgstr "Valore attuale"
 #: ui/thresholdSecondary.ui:167 ui/thresholdSecondary.ui:242
 msgid "Start charging threshold value"
 msgstr "Soglia per l'inizio della ricarica"
+
+#~ msgid "Project page"
+#~ msgstr "Pagina del progetto"
 
 #~ msgid "Charging stopped (Threshold)"
 #~ msgstr "Ricarica interrotta (soglia)"

@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-09 07:53-0700\n"
-"PO-Revision-Date: 2023-09-09 08:05-0700\n"
+"POT-Creation-Date: 2023-09-23 12:42-0700\n"
+"PO-Revision-Date: 2023-09-23 12:54-0700\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Crowdin-Language: uk\n"
 "X-Crowdin-File: Battery-Health-Charging.pot\n"
 "X-Crowdin-File-ID: 41\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: lib/notifier.js:36
 msgid "Battery Health Charging"
@@ -197,20 +197,20 @@ msgid "Battery Charging Mode"
 msgstr "Режим зарядки"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:70 preferences/thresholdPrimary.js:199
-#: preferences/thresholdSecondary.js:194
+#: lib/thresholdPanel.js:70 preferences/thresholdPrimary.js:201
+#: preferences/thresholdSecondary.js:196
 msgid "Full Capacity Mode"
 msgstr "Режим повного заряду"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:76 preferences/thresholdPrimary.js:203
-#: preferences/thresholdSecondary.js:198
+#: lib/thresholdPanel.js:76 preferences/thresholdPrimary.js:205
+#: preferences/thresholdSecondary.js:200
 msgid "Balanced Mode"
 msgstr "Pежим Збалансований"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:82 preferences/thresholdPrimary.js:207
-#: preferences/thresholdSecondary.js:202
+#: lib/thresholdPanel.js:82 preferences/thresholdPrimary.js:209
+#: preferences/thresholdSecondary.js:204
 msgid "Maximum Lifespan Mode"
 msgstr "Режим максимального збереження"
 
@@ -326,22 +326,42 @@ msgstr "Оновити"
 msgid "Threshold"
 msgstr "Поріг"
 
-#: preferences/thresholdPrimary.js:197 preferences/thresholdSecondary.js:192
+#: preferences/thresholdPrimary.js:199 preferences/thresholdSecondary.js:194
 msgid "Full Capacity Mode (Currently Active)"
 msgstr "Режим повного заряду (Aктивовано)"
 
-#: preferences/thresholdPrimary.js:201 preferences/thresholdSecondary.js:196
+#: preferences/thresholdPrimary.js:203 preferences/thresholdSecondary.js:198
 msgid "Balanced Mode (Currently Active)"
 msgstr "Pежим Збалансований (Aктивовано)"
 
-#: preferences/thresholdPrimary.js:205 preferences/thresholdSecondary.js:200
+#: preferences/thresholdPrimary.js:207 preferences/thresholdSecondary.js:202
 msgid "Maximum Lifespan Mode (Currently Active)"
 msgstr "Режим максимального збереження (Aктивовано)"
 
-#: preferences/thresholdPrimary.js:211 preferences/thresholdSecondary.js:206
+#: preferences/thresholdPrimary.js:213 preferences/thresholdSecondary.js:208
 #, javascript-format
 msgid "<i>Accepted Value : %d to %d</i>"
 msgstr "<i>Прийшло значення: від %d до %d</i>"
+
+#: ui/about.ui:5
+msgid "About"
+msgstr "Про програму"
+
+#: ui/about.ui:61
+msgid "Read me"
+msgstr "Прочитай мене"
+
+#: ui/about.ui:75
+msgid "Report a Bug"
+msgstr "Повідомити про помилку"
+
+#: ui/about.ui:89
+msgid "Translations"
+msgstr "Переклади"
+
+#: ui/about.ui:103
+msgid "Rate this extension"
+msgstr "Оцінити це розширення"
 
 #: ui/general.ui:5
 msgid "General"
@@ -475,18 +495,6 @@ msgstr "Libsmbios"
 msgid "Dell Command Center"
 msgstr "Командний центр Dell"
 
-#: ui/menu.ui:6
-msgid "Project page"
-msgstr "Сторінка проєкту"
-
-#: ui/menu.ui:10
-msgid "Report a Bug"
-msgstr "Повідомити про помилку"
-
-#: ui/menu.ui:14
-msgid "Rate this extension"
-msgstr "Оцінити це розширення"
-
 #: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
 msgid "Customize"
 msgstr "Налаштувати"
@@ -519,6 +527,9 @@ msgstr "Поточне значення"
 #: ui/thresholdSecondary.ui:167 ui/thresholdSecondary.ui:242
 msgid "Start charging threshold value"
 msgstr "Початкове значення порогового значення зарядки"
+
+#~ msgid "Project page"
+#~ msgstr "Сторінка проєкту"
 
 #~ msgid "Charging stopped (Threshold)"
 #~ msgstr "Зарядка зупинена (Порог)"
