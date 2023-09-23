@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-08 14:50-0700\n"
-"PO-Revision-Date: 2023-09-08 15:17-0700\n"
+"POT-Creation-Date: 2023-09-23 08:31-0700\n"
+"PO-Revision-Date: 2023-09-23 09:03-0700\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
 "Language: pl_PL\n"
@@ -192,19 +192,19 @@ msgstr "Bateria 1"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:171 lib/thresholdPanel.js:82
-#: preferences/thresholdPrimary.js:201 preferences/thresholdSecondary.js:196
+#: preferences/thresholdPrimary.js:203 preferences/thresholdSecondary.js:198
 msgid "Full Capacity Mode"
 msgstr "Tryb do pełna"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:175 lib/thresholdPanel.js:91
-#: preferences/thresholdPrimary.js:205 preferences/thresholdSecondary.js:200
+#: preferences/thresholdPrimary.js:207 preferences/thresholdSecondary.js:202
 msgid "Balanced Mode"
 msgstr "Tryb zrównoważony"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel42.js:179 lib/thresholdPanel.js:100
-#: preferences/thresholdPrimary.js:209 preferences/thresholdSecondary.js:204
+#: preferences/thresholdPrimary.js:211 preferences/thresholdSecondary.js:206
 msgid "Maximum Lifespan Mode"
 msgstr "Tryb ekonomiczny"
 
@@ -346,22 +346,42 @@ msgstr "Zaktualizuj"
 msgid "Threshold"
 msgstr "Próg"
 
-#: preferences/thresholdPrimary.js:199 preferences/thresholdSecondary.js:194
+#: preferences/thresholdPrimary.js:201 preferences/thresholdSecondary.js:196
 msgid "Full Capacity Mode (Currently Active)"
 msgstr "Tryb pełnej pojemności (Aktywny)"
 
-#: preferences/thresholdPrimary.js:203 preferences/thresholdSecondary.js:198
+#: preferences/thresholdPrimary.js:205 preferences/thresholdSecondary.js:200
 msgid "Balanced Mode (Currently Active)"
 msgstr "Tryb zrównoważony (Aktywny)"
 
-#: preferences/thresholdPrimary.js:207 preferences/thresholdSecondary.js:202
+#: preferences/thresholdPrimary.js:209 preferences/thresholdSecondary.js:204
 msgid "Maximum Lifespan Mode (Currently Active)"
 msgstr "Tryb ekonomiczny (Aktywny)"
 
-#: preferences/thresholdPrimary.js:213 preferences/thresholdSecondary.js:208
+#: preferences/thresholdPrimary.js:215 preferences/thresholdSecondary.js:210
 #, javascript-format
 msgid "<i>Accepted Value : %d to %d</i>"
 msgstr "<i>Wartość dopuszczalna : %d do %d</i>"
+
+#: ui/about.ui:5
+msgid "About"
+msgstr "O programie"
+
+#: ui/about.ui:61
+msgid "Read me"
+msgstr "Czytaj to"
+
+#: ui/about.ui:75
+msgid "Report a Bug"
+msgstr "Zgłoś błąd"
+
+#: ui/about.ui:89
+msgid "Translations"
+msgstr "Tłumaczenia"
+
+#: ui/about.ui:103
+msgid "Rate this extension"
+msgstr "Oceń to rozszerzenie"
 
 #: ui/general.ui:5
 msgid "General"
@@ -492,18 +512,6 @@ msgstr "Libsmbios"
 msgid "Dell Command Center"
 msgstr "Centrum poleceń Dell"
 
-#: ui/menu.ui:6
-msgid "Project page"
-msgstr "Strona projektu"
-
-#: ui/menu.ui:10
-msgid "Report a Bug"
-msgstr "Zgłoś błąd"
-
-#: ui/menu.ui:14
-msgid "Rate this extension"
-msgstr "Oceń to rozszerzenie"
-
 #: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
 msgid "Customize"
 msgstr "Dostosuj"
@@ -516,23 +524,26 @@ msgstr "Domyślny"
 msgid "Apply"
 msgstr "Zastosuj"
 
-#: ui/thresholdPrimary.ui:58 ui/thresholdPrimary.ui:132
-#: ui/thresholdPrimary.ui:206 ui/thresholdSecondary.ui:58
-#: ui/thresholdSecondary.ui:132 ui/thresholdSecondary.ui:206
+#: ui/thresholdPrimary.ui:58 ui/thresholdPrimary.ui:130
+#: ui/thresholdPrimary.ui:202 ui/thresholdSecondary.ui:58
+#: ui/thresholdSecondary.ui:130 ui/thresholdSecondary.ui:202
 msgid "Stop charging threshold value"
 msgstr "Zatrzymaj ładowanie wartości progowej"
 
-#: ui/thresholdPrimary.ui:70 ui/thresholdPrimary.ui:105
-#: ui/thresholdPrimary.ui:144 ui/thresholdPrimary.ui:179
-#: ui/thresholdPrimary.ui:218 ui/thresholdPrimary.ui:254
-#: ui/thresholdSecondary.ui:70 ui/thresholdSecondary.ui:105
-#: ui/thresholdSecondary.ui:144 ui/thresholdSecondary.ui:179
-#: ui/thresholdSecondary.ui:218 ui/thresholdSecondary.ui:254
+#: ui/thresholdPrimary.ui:70 ui/thresholdPrimary.ui:104
+#: ui/thresholdPrimary.ui:142 ui/thresholdPrimary.ui:176
+#: ui/thresholdPrimary.ui:214 ui/thresholdPrimary.ui:249
+#: ui/thresholdSecondary.ui:70 ui/thresholdSecondary.ui:104
+#: ui/thresholdSecondary.ui:142 ui/thresholdSecondary.ui:176
+#: ui/thresholdSecondary.ui:214 ui/thresholdSecondary.ui:249
 msgid "Current Value"
 msgstr "Obecna wartość"
 
-#: ui/thresholdPrimary.ui:93 ui/thresholdPrimary.ui:167
-#: ui/thresholdPrimary.ui:242 ui/thresholdSecondary.ui:93
-#: ui/thresholdSecondary.ui:167 ui/thresholdSecondary.ui:242
+#: ui/thresholdPrimary.ui:92 ui/thresholdPrimary.ui:164
+#: ui/thresholdPrimary.ui:237 ui/thresholdSecondary.ui:92
+#: ui/thresholdSecondary.ui:164 ui/thresholdSecondary.ui:237
 msgid "Start charging threshold value"
 msgstr "Rozpocznij ładowanie wartości progowej"
+
+#~ msgid "Project page"
+#~ msgstr "Strona projektu"
