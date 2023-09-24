@@ -4,7 +4,7 @@ const {GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
-const {fileExists, runCommandCtl} = Helper;
+const {fileExists, execCheck} = Helper;
 
 const RAZERCLI_PATH = '/usr/bin/razer-cli';
 
@@ -15,7 +15,7 @@ var RazerSingleBattery = GObject.registerClass({
         super();
         this.name = 'Razer';
         this.type = 30;
-        this.deviceNeedRootPermission = true;
+        this.deviceNeedRootPermission = false;
         this.deviceHaveDualBattery = false;
         this.deviceHaveStartThreshold = false;
         this.deviceHaveVariableThreshold = true;
@@ -28,9 +28,9 @@ var RazerSingleBattery = GObject.registerClass({
         this.iconForMaxLifeMode = '060';
         this.endFullCapacityRangeMax = 100;
         this.endFullCapacityRangeMin = 100;
-        this.endBalancedRangeMax = 85;
+        this.endBalancedRangeMax = 80;
         this.endBalancedRangeMin = 65;
-        this.endMaxLifeSpanRangeMax = 85;
+        this.endMaxLifeSpanRangeMax = 80;
         this.endMaxLifeSpanRangeMin = 50;
         this.minDiffLimit = 5;
         this.incrementsStep = 5;
@@ -46,14 +46,11 @@ var RazerSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        const ctlPath = this._settings.get_string('ctl-path');
-        let output, filteredOutput, splitOutput, firstLine, secondLine, endValue, bho;
+        let output, filteredOutput, splitOutput, firstLine, secondLine, endValue, razerReadCommand, razerWriteCommand;
         endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
-        if (endValue === 100)
-            bho = 'off';
-        else
-            bho = 'on';
-        output = await runCommandCtl('RAZER_CLI_READ', null, null, ctlPath, true);
+
+        razerReadCommand = ['razer-cli', 'read', 'bho']
+        output = await execCheck(razerReadCommand, false, true);
         filteredOutput = output.trim().replace('{ ', '').replace(' }', '').replace(',', '').replace(/:/g, '');
         splitOutput = filteredOutput.split('\n');
         firstLine = splitOutput[0].split(' ');
@@ -65,8 +62,12 @@ var RazerSingleBattery = GObject.registerClass({
                 return 0;
             }
         }
+        if (endValue === 100)
+            razerWriteCommand = ['razer-cli', 'write', 'bho', 'off']
+        else
+            razerWriteCommand = ['razer-cli', 'write', 'bho', 'on', `${endValue}`]
 
-        output = await runCommandCtl('RAZER_CLI_WRITE', bho, `${endValue}`, ctlPath, true);
+        output = await execCheck(razerWriteCommand, false, true);
         filteredOutput = output.trim().replace('{ ', '').replace(' }', '').replace(/:/g, '');
         splitOutput = filteredOutput.split('\n');
         firstLine = splitOutput[0].split(' ');
