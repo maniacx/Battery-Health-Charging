@@ -1,13 +1,13 @@
 {
   "uuid": "Battery-Health-Charging@maniacx.github.com",
   "name": "Battery Health Charging",
-  "description": "Set battery charging threshold / charging limit / charging mode\nBattery Health Charging: An extension to maximize the battery life of laptops by setting their charging threshold or modes.\n\nCompatible with\n- Asus \n- LG \n- Samsung \n- Sony \n- Huawei \n- Toshiba \n- System76 \n- Lenovo (Ideapad, Legion) \n- Thinkpad \n- Panasonic \n- Acer (dependecies: custom dkms) \n- MSI (dependecies: custom dkms) \n- Tuxedo (dependecies: custom dkms) \n- Tuxedo IntelQC71 (dependecies: custom dkms) \n- XMG IntelQC71 (dependecies: custom dkms) \n- Eluktronics IntelQC71 (dependecies: custom dkms) \n- Gigabyte Aero/Aorus (dependecies: custom dkms) \n- Dell (dependecies: custom package libsmbios) \n- Dell (dependecies: custom package Dell Command Center) \n- Apple Macbook Intel-series chip (dependecies: custom dkms) \n- Apple Macbook M-series chip (dependecies: custom kernel) \n\nNot all models are comaptible. Please read about the compatibility and dependencies of your device on github link below.\n\nhttps://github.com/maniacx/Battery-Health-Charging",
+  "description": "Set battery charging threshold / charging limit / charging mode\nBattery Health Charging: An extension to maximize the battery life of laptops by setting their charging threshold or modes.\n\nCompatible with\n- Asus \n- LG \n- Samsung \n- Sony \n- Huawei \n- Toshiba \n- System76 \n- Lenovo (Ideapad, Legion) \n- Thinkpad \n- Panasonic \n- Acer (dependecies: custom dkms) \n- MSI (dependecies: custom dkms) \n- Tuxedo (dependecies: custom dkms) \n- Tuxedo IntelQC71 (dependecies: custom dkms) \n- XMG IntelQC71 (dependecies: custom dkms) \n- Eluktronics IntelQC71 (dependecies: custom dkms) \n- Gigabyte Aero/Aorus (dependecies: custom dkms) \n- Dell (dependecies: custom package libsmbios) \n- Dell (dependecies: custom package Dell Command Center) \n- Apple Macbook Intel-series chip (dependecies: custom dkms) \n- Apple Macbook M-series chip (dependecies: custom kernel) \n- Razer (dependecies: custom package razer-cli) \n\nNot all models are comaptible. Please read about the compatibility and dependencies of your device on github link below.\n\nhttps://github.com/maniacx/Battery-Health-Charging",
   "url": "https://github.com/maniacx/Battery-Health-Charging",
   "shell-version": [
     "42", "43", "44"
   ],
   "session-modes": ["user", "unlock-dialog"],
-  "version": 29,
+  "version": 31,
   "settings-schema": "org.gnome.shell.extensions.Battery-Health-Charging",
   "gettext-domain": "Battery-Health-Charging@maniacx.github.com"
 }
