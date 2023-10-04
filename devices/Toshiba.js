@@ -17,7 +17,7 @@ const OBJECT_PATH = '/org/freedesktop/UPower/devices/DisplayDevice';
 
 export const ToshibaSingleBatteryBAT0 = GObject.registerClass({
     Signals: {
-        'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]},
+        'threshold-applied': {param_types: [GObject.TYPE_STRING]},
         'battery-level-changed': {},
     },
 }, class ToshibaSingleBatteryBAT0 extends GObject.Object {
@@ -55,13 +55,13 @@ export const ToshibaSingleBatteryBAT0 = GObject.registerClass({
             endValue = 100;
         else if (chargingMode === 'max')
             endValue = 80;
-        const status = await runCommandCtl('BAT0_END', `${endValue}`, null, ctlPath, false);
+        const [status] = await runCommandCtl(ctlPath, 'BAT0_END', `${endValue}`, null, null);
         if (status === 0) {
             this.endLimitValue = endValue;
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return 0;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
         return 1;
     }
 
@@ -97,7 +97,7 @@ export const ToshibaSingleBatteryBAT0 = GObject.registerClass({
 
 export const ToshibaSingleBatteryBAT1 = GObject.registerClass({
     Signals: {
-        'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]},
+        'threshold-applied': {param_types: [GObject.TYPE_STRING]},
         'battery-level-changed': {},
     },
 }, class ToshibaSingleBatteryBAT1 extends GObject.Object {
@@ -135,13 +135,13 @@ export const ToshibaSingleBatteryBAT1 = GObject.registerClass({
             endValue = 100;
         else if (chargingMode === 'max')
             endValue = 80;
-        const status = await runCommandCtl('BAT1_END', `${endValue}`, null, ctlPath, false);
+        const [status] = await runCommandCtl(ctlPath, 'BAT1_END', `${endValue}`, null, null);
         if (status === 0) {
             this.endLimitValue = endValue;
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return 0;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
         return 1;
     }
 

@@ -42,6 +42,7 @@ EXIT_NEEDS_UPDATE=1
 TOOLCMD=$1
 ARG1=${2:-0}
 ARG2=${3:-0}
+ARG3=${4:-0}
 
 case "$TOOLCMD" in
     BAT0_END)

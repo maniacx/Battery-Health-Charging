@@ -10,7 +10,7 @@ const TUXEDO_AVAILABLE_PROFILE_PATH = '/sys/devices/platform/tuxedo_keyboard/cha
 const TUXEDO_PATH = '/sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile';
 
 export const Tuxedo3ModesSingleBattery = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class Tuxedo3ModesSingleBattery extends GObject.Object {
     constructor(settings) {
         super();
@@ -58,7 +58,7 @@ export const Tuxedo3ModesSingleBattery = GObject.registerClass({
         }
         if (this._verifyThreshold())
             return this._status;
-        this._status = await runCommandCtl('TUXEDO', this._profile, null, ctlPath, false);
+        [this._status] = await runCommandCtl(ctlPath, 'TUXEDO', this._profile, null, null);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -79,7 +79,7 @@ export const Tuxedo3ModesSingleBattery = GObject.registerClass({
         const currentProfile = readFile(TUXEDO_PATH).replace('\n', '');
         if (this._profile === currentProfile) {
             this.endLimitValue = this._limit;
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -90,7 +90,7 @@ export const Tuxedo3ModesSingleBattery = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {

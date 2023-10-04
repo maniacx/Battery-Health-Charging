@@ -10,7 +10,7 @@ const SONY_PATH = '/sys/devices/platform/sony-laptop/battery_care_limiter';
 const SONY_HIGHSPEED_CHARGING_PATH = '/sys/devices/platform/sony-laptop/battery_highspeed_charging';
 
 export const SonySingleBattery = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class SonySingleBattery extends GObject.Object {
     constructor(settings) {
         super();
@@ -66,7 +66,7 @@ export const SonySingleBattery = GObject.registerClass({
             else if (this._highSpeedCharging === 0)
                 highSpeedCharging = 'off';
         }
-        this._status = await runCommandCtl('SONY', `${this._batteryCareLimiter}`, highSpeedCharging, ctlPath, false);
+        [this._status] = await runCommandCtl(ctlPath, 'SONY', `${this._batteryCareLimiter}`, highSpeedCharging, null);
         if (this._status === 0) {
             if (this._verifyThreshold()) {
                 this._updateHighSpeedCharging = false;
@@ -96,7 +96,7 @@ export const SonySingleBattery = GObject.registerClass({
         this._updateHighSpeedCharging = false;
         this.mode = this._chargingMode;
         this.endLimitValue = endLimitValue === 0 ? 100 : endLimitValue;
-        this.emit('threshold-applied', true);
+        this.emit('threshold-applied', 'success');
         return true;
     }
 
@@ -107,7 +107,7 @@ export const SonySingleBattery = GObject.registerClass({
                 return;
             }
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {

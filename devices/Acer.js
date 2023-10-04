@@ -9,7 +9,7 @@ const {fileExists, readFileInt, runCommandCtl} = Helper;
 const ACER_PATH = '/sys/bus/wmi/drivers/acer-wmi-battery/health_mode';
 
 export const AcerSingleBattery = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class AcerSingleBattery extends GObject.Object {
     constructor(settings) {
         super();
@@ -45,7 +45,7 @@ export const AcerSingleBattery = GObject.registerClass({
             this._healthMode = 1;
         if (this._verifyThreshold())
             return this._status;
-        this._status = await runCommandCtl('ACER', `${this._healthMode}`, null, ctlPath, false);
+        [this._status] = await runCommandCtl(ctlPath, 'ACER', `${this._healthMode}`, null, null);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -70,7 +70,7 @@ export const AcerSingleBattery = GObject.registerClass({
                 this.endLimitValue = 80;
             else
                 this.endLimitValue = 100;
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -81,7 +81,7 @@ export const AcerSingleBattery = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {

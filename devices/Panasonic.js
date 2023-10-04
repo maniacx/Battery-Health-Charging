@@ -9,7 +9,7 @@ const {fileExists, readFileInt, runCommandCtl} = Helper;
 const PANASONIC_PATH = '/sys/devices/platform/panasonic/eco_mode';
 
 export const PanasonicSingleBattery = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class PanasonicSingleBattery extends GObject.Object {
     constructor(settings) {
         super();
@@ -44,7 +44,7 @@ export const PanasonicSingleBattery = GObject.registerClass({
             this._ecoMode = 1;
         if (this._verifyThreshold())
             return this._status;
-        this._status = await runCommandCtl('PANASONIC', `${this._ecoMode}`, null, ctlPath, false);
+        [this._status] = await runCommandCtl(ctlPath, 'PANASONIC', `${this._ecoMode}`, null, null);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -64,7 +64,7 @@ export const PanasonicSingleBattery = GObject.registerClass({
     _verifyThreshold() {
         if (readFileInt(PANASONIC_PATH) === this._ecoMode) {
             this.mode = this._chargingMode;
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -75,7 +75,7 @@ export const PanasonicSingleBattery = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {
