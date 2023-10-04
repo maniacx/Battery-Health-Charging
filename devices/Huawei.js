@@ -9,7 +9,7 @@ const {fileExists, readFile, runCommandCtl} = Helper;
 const HUAWEI_PATH = '/sys/devices/platform/huawei-wmi/charge_control_thresholds';
 
 var HuaweiSingleBattery = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class HuaweiSingleBattery extends GObject.Object {
     constructor(settings) {
         super();
@@ -61,7 +61,7 @@ var HuaweiSingleBattery = GObject.registerClass({
             if (this._verifyThreshold())
                 return this._status;
         }
-        this._status = await runCommandCtl('HUAWEI', `${this._endValue}`, `${this._startValue}`, ctlPath, false);
+        [this._status] = await runCommandCtl(ctlPath, 'HUAWEI', `${this._endValue}`, `${this._startValue}`, null);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -83,7 +83,7 @@ var HuaweiSingleBattery = GObject.registerClass({
         if ((this._endValue === parseInt(this._limitValue[1])) && (this._startValue === parseInt(this._limitValue[0]))) {
             this.endLimitValue = this._endValue;
             this.startLimitValue = this._startValue;
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -94,7 +94,7 @@ var HuaweiSingleBattery = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {

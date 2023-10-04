@@ -13,7 +13,7 @@ const BATC_END_PATH = '/sys/class/power_supply/BATC/charge_control_end_threshold
 const BATT_END_PATH = '/sys/class/power_supply/BATT/charge_control_end_threshold';
 
 var AsusSingleBatteryBAT0 = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class AsusSingleBatteryBAT0 extends GObject.Object {
     constructor(settings) {
         super();
@@ -54,7 +54,7 @@ var AsusSingleBatteryBAT0 = GObject.registerClass({
         this._status = 0;
         const ctlPath = this._settings.get_string('ctl-path');
         this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
-        this._status = await runCommandCtl('BAT0_END', `${this._endValue}`, null, ctlPath, false);
+        [this._status] = await runCommandCtl(ctlPath, 'BAT0_END', `${this._endValue}`, null, null);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -75,7 +75,7 @@ var AsusSingleBatteryBAT0 = GObject.registerClass({
     _verifyThreshold() {
         this.endLimitValue = readFileInt(BAT0_END_PATH);
         if (this._endValue === this.endLimitValue) {
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -86,7 +86,7 @@ var AsusSingleBatteryBAT0 = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {
@@ -97,7 +97,7 @@ var AsusSingleBatteryBAT0 = GObject.registerClass({
 });
 
 var AsusSingleBatteryBAT1 = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class AsusSingleBatteryBAT1 extends GObject.Object {
     constructor(settings) {
         super();
@@ -138,7 +138,7 @@ var AsusSingleBatteryBAT1 = GObject.registerClass({
         this._status = 0;
         const ctlPath = this._settings.get_string('ctl-path');
         this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
-        this._status = await runCommandCtl('BAT1_END', `${this._endValue}`, null, ctlPath, false);
+        [this._status] = await runCommandCtl(ctlPath, 'BAT1_END', `${this._endValue}`, null, null);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -159,7 +159,7 @@ var AsusSingleBatteryBAT1 = GObject.registerClass({
     _verifyThreshold() {
         this.endLimitValue = readFileInt(BAT1_END_PATH);
         if (this._endValue === this.endLimitValue) {
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -170,7 +170,7 @@ var AsusSingleBatteryBAT1 = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {
@@ -181,7 +181,7 @@ var AsusSingleBatteryBAT1 = GObject.registerClass({
 });
 
 var AsusSingleBatteryBATC = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class AsusSingleBatteryBATC extends GObject.Object {
     constructor(settings) {
         super();
@@ -222,7 +222,7 @@ var AsusSingleBatteryBATC = GObject.registerClass({
         this._status = 0;
         const ctlPath = this._settings.get_string('ctl-path');
         this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
-        this._status = await runCommandCtl('BATC_END', `${this._endValue}`, null, ctlPath, false);
+        [this._status] = await runCommandCtl(ctlPath, 'BATC_END', `${this._endValue}`, null, null);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -243,7 +243,7 @@ var AsusSingleBatteryBATC = GObject.registerClass({
     _verifyThreshold() {
         this.endLimitValue = readFileInt(BATC_END_PATH);
         if (this._endValue === this.endLimitValue) {
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -254,7 +254,7 @@ var AsusSingleBatteryBATC = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {
@@ -265,7 +265,7 @@ var AsusSingleBatteryBATC = GObject.registerClass({
 });
 
 var AsusSingleBatteryBATT = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class AsusSingleBatteryBATT extends GObject.Object {
     constructor(settings) {
         super();
@@ -306,7 +306,7 @@ var AsusSingleBatteryBATT = GObject.registerClass({
         this._status = 0;
         const ctlPath = this._settings.get_string('ctl-path');
         this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
-        this._status = await runCommandCtl('BATT_END', `${this._endValue}`, null, ctlPath, false);
+        [this._status] = await runCommandCtl(ctlPath, 'BATT_END', `${this._endValue}`, null, null);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -327,7 +327,7 @@ var AsusSingleBatteryBATT = GObject.registerClass({
     _verifyThreshold() {
         this.endLimitValue = readFileInt(BATT_END_PATH);
         if (this._endValue === this.endLimitValue) {
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -338,7 +338,7 @@ var AsusSingleBatteryBATT = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {

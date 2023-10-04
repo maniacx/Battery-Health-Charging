@@ -11,7 +11,7 @@ const BAT0_END_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold
 const BAT0_START_PATH = '/sys/class/power_supply/BAT0/charge_control_start_threshold';
 
 var System76SingleBattery = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class System76SingleBattery extends GObject.Object {
     constructor(settings) {
         super();
@@ -66,9 +66,9 @@ var System76SingleBattery = GObject.registerClass({
             return this._status;
         // Some device wont update end threshold if start threshold > end threshold
         if (this._startValue >= this._oldEndValue)
-            this._status = await runCommandCtl('BAT0_END_START', `${this._endValue}`, `${this._startValue}`, ctlPath, false);
+            [this._status] = await runCommandCtl(ctlPath, 'BAT0_END_START', `${this._endValue}`, `${this._startValue}`, null);
         else
-            this._status = await runCommandCtl('BAT0_START_END', `${this._endValue}`, `${this._startValue}`, ctlPath, false);
+            [this._status] = await runCommandCtl(ctlPath, 'BAT0_START_END', `${this._endValue}`, `${this._startValue}`, null);
 
         if (this._status === 0) {
             if (this._verifyThreshold())
@@ -93,7 +93,7 @@ var System76SingleBattery = GObject.registerClass({
         if ((this._oldEndValue === this._endValue) && (this._oldStartValue === this._startValue)) {
             this.endLimitValue = this._endValue;
             this.startLimitValue = this._startValue;
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -104,7 +104,7 @@ var System76SingleBattery = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {

@@ -9,7 +9,7 @@ const {fileExists, readFileInt, runCommandCtl} = Helper;
 const LENOVO_PATH = '/sys/bus/platform/drivers/ideapad_acpi/VPC2004:00/conservation_mode';
 
 var LenovoSingleBattery = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class LenovoSingleBattery extends GObject.Object {
     constructor(settings) {
         super();
@@ -44,7 +44,7 @@ var LenovoSingleBattery = GObject.registerClass({
             this._conservationMode = 1;
         if (this._verifyThreshold())
             return this._status;
-        this._status = await runCommandCtl('LENOVO', `${this._conservationMode}`, null, ctlPath, false);
+        [this._status] = await runCommandCtl(ctlPath, 'LENOVO', `${this._conservationMode}`, null, null);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -64,7 +64,7 @@ var LenovoSingleBattery = GObject.registerClass({
     _verifyThreshold() {
         if (readFileInt(LENOVO_PATH) === this._conservationMode) {
             this.mode = this._chargingMode;
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -75,7 +75,7 @@ var LenovoSingleBattery = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {

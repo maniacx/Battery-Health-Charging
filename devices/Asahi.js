@@ -11,7 +11,7 @@ const ASAHI_START_PATH = '/sys/class/power_supply/macsmc-battery/charge_control_
 const KERNEL_VERSION_PATH = '/proc/sys/kernel/osrelease';
 
 var AsahiSingleBattery62 = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class AsahiSingleBattery62 extends GObject.Object {
     constructor(settings) {
         super();
@@ -65,7 +65,7 @@ var AsahiSingleBattery62 = GObject.registerClass({
         this._startValue = this._settings.get_int(`current-${chargingMode}-start-threshold`);
         if (this._verifyThreshold())
             return this._status;
-        this._status = await runCommandCtl('ASAHI_END_START', `${this._endValue}`, `${this._startValue}`, ctlPath, false);
+        [this._status] = await runCommandCtl(ctlPath, 'ASAHI_END_START', `${this._endValue}`, `${this._startValue}`, null);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -87,7 +87,7 @@ var AsahiSingleBattery62 = GObject.registerClass({
         this.endLimitValue = readFileInt(ASAHI_END_PATH);
         this.startLimitValue = readFileInt(ASAHI_START_PATH);
         if ((this._endValue === this.endLimitValue) && (this._startValue === this.startLimitValue)) {
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -98,7 +98,7 @@ var AsahiSingleBattery62 = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {
@@ -109,7 +109,7 @@ var AsahiSingleBattery62 = GObject.registerClass({
 });
 
 var AsahiSingleBattery63 = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class AsahiSingleBattery63 extends GObject.Object {
     constructor(settings) {
         super();
@@ -152,7 +152,7 @@ var AsahiSingleBattery63 = GObject.registerClass({
         }
         if (this._verifyThreshold())
             return this._status;
-        this._status = await runCommandCtl('ASAHI_END_START', `${this._endValue}`, `${this._startValue}`, ctlPath, false);
+        [this._status] = await runCommandCtl(ctlPath, 'ASAHI_END_START', `${this._endValue}`, `${this._startValue}`, null);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -173,7 +173,7 @@ var AsahiSingleBattery63 = GObject.registerClass({
     _verifyThreshold() {
         this.endLimitValue = readFileInt(ASAHI_END_PATH);
         if (this._endValue === this.endLimitValue) {
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -184,7 +184,7 @@ var AsahiSingleBattery63 = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {

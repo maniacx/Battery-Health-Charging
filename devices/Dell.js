@@ -12,7 +12,7 @@ const SMBIOS_PATH = '/usr/sbin/smbios-battery-ctl';
 const CCTK_PATH = '/opt/dell/dcc/cctk';
 
 var DellSmBiosSingleBattery = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class DellSmBiosSingleBattery extends GObject.Object {
     constructor(settings) {
         super();
@@ -85,7 +85,7 @@ var DellSmBiosSingleBattery = GObject.registerClass({
             if ((endValue - startValue) < 5)
                 startValue = endValue - 5;
         }
-        output = await runCommandCtl('DELL_SMBIOS_BAT_READ', null, null, ctlPath, true);
+        [, output] = await runCommandCtl(ctlPath, 'DELL_SMBIOS_BAT_READ', null, null, null);
         filteredOutput = output.trim().replace('(', '').replace(')', '').replace(',', '').replace(/:/g, '');
         splitOutput = filteredOutput.split('\n');
         firstLine = splitOutput[0].split(' ');
@@ -95,7 +95,7 @@ var DellSmBiosSingleBattery = GObject.registerClass({
                 this.mode = chargingMode;
                 this.startLimitValue = 100;
                 this.endLimitValue = 95;
-                this.emit('threshold-applied', true);
+                this.emit('threshold-applied', 'success');
                 return 0;
             } else if ((modeRead === 'custom') && ((chargingMode === 'ful') || (chargingMode === 'bal') || (chargingMode === 'max'))) {
                 secondLine = splitOutput[1].split(' ');
@@ -104,7 +104,7 @@ var DellSmBiosSingleBattery = GObject.registerClass({
                         this.mode = chargingMode;
                         this.startLimitValue = startValue;
                         this.endLimitValue = endValue;
-                        this.emit('threshold-applied', true);
+                        this.emit('threshold-applied', 'success');
                         return 0;
                     }
                 }
@@ -119,8 +119,8 @@ var DellSmBiosSingleBattery = GObject.registerClass({
             arg2 = `${endValue}`;
             arg3 = `${startValue}`;
         }
-        await runCommandCtl('DELL_SMBIOS_BAT_WRITE', arg2, arg3, ctlPath, false);
-        output = await runCommandCtl('DELL_SMBIOS_BAT_READ', null, null, ctlPath, true);
+        await runCommandCtl(ctlPath, 'DELL_SMBIOS_BAT_WRITE', arg2, arg3, null);
+        [, output]  = await runCommandCtl(ctlPath, 'DELL_SMBIOS_BAT_READ', null, null, null);
         filteredOutput = output.trim().replace('(', '').replace(')', '').replace(',', '').replace(/:/g, '');
         splitOutput = filteredOutput.split('\n');
         firstLine = splitOutput[0].split(' ');
@@ -129,13 +129,13 @@ var DellSmBiosSingleBattery = GObject.registerClass({
                 this.mode = 'exp';
                 this.startLimitValue = 100;
                 this.endLimitValue = 95;
-                this.emit('threshold-applied', true);
+                this.emit('threshold-applied', 'success');
                 return 0;
             } else if (firstLine[2] === 'adaptive') {
                 this.mode = 'adv';
                 this.startLimitValue = 100;
                 this.endLimitValue = 95;
-                this.emit('threshold-applied', true);
+                this.emit('threshold-applied', 'success');
                 return 0;
             } else if (firstLine[2] === 'custom') {
                 secondLine = splitOutput[1].split(' ');
@@ -143,12 +143,12 @@ var DellSmBiosSingleBattery = GObject.registerClass({
                     this.mode = chargingMode;
                     this.startLimitValue = parseInt(secondLine[2]);
                     this.endLimitValue = parseInt(secondLine[3]);
-                    this.emit('threshold-applied', true);
+                    this.emit('threshold-applied', 'success');
                     return 0;
                 }
             }
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
         return 1;
     }
 
@@ -161,7 +161,7 @@ var DellSmBiosSingleBattery = GObject.registerClass({
             if ((endValue - startValue) < 5)
                 startValue = endValue - 5;
         }
-        output = await runCommandCtl('DELL_CCTK_BAT_READ', null, null, ctlPath, true);
+        [, output]  = await runCommandCtl(ctlPath, 'DELL_CCTK_BAT_READ', null, null, null);
         filteredOutput = output.trim().replace('=', ' ').replace(':', ' ').replace('-', ' ');
         splitOutput = filteredOutput.split(' ');
         if (splitOutput[0] === 'PrimaryBattChargeCfg') {
@@ -170,14 +170,14 @@ var DellSmBiosSingleBattery = GObject.registerClass({
                 this.mode = chargingMode;
                 this.startLimitValue = 100;
                 this.endLimitValue = 95;
-                this.emit('threshold-applied', true);
+                this.emit('threshold-applied', 'success');
                 return 0;
             } else if ((modeRead === 'Custom') && ((chargingMode === 'ful') || (chargingMode === 'bal') || (chargingMode === 'max'))) {
                 if ((parseInt(splitOutput[2]) === startValue) && (parseInt(splitOutput[3]) === endValue)) {
                     this.mode = chargingMode;
                     this.startLimitValue = startValue;
                     this.endLimitValue = endValue;
-                    this.emit('threshold-applied', true);
+                    this.emit('threshold-applied', 'success');
                     return 0;
                 }
             }
@@ -191,8 +191,8 @@ var DellSmBiosSingleBattery = GObject.registerClass({
             arg2 = `${endValue}`;
             arg3 = `${startValue}`;
         }
-        await runCommandCtl('DELL_CCTK_BAT_WRITE', arg2, arg3, ctlPath, false);
-        output = await runCommandCtl('DELL_CCTK_BAT_READ', null, null, ctlPath, true);
+        await runCommandCtl(ctlPath, 'DELL_CCTK_BAT_WRITE', arg2, arg3, null);
+        [, output]  = await runCommandCtl(ctlPath, 'DELL_CCTK_BAT_READ', null, null, null);
         filteredOutput = output.trim().replace('=', ' ').replace(':', ' ').replace('-', ' ');
         splitOutput = filteredOutput.split(' ');
         if (splitOutput[0] === 'PrimaryBattChargeCfg') {
@@ -201,23 +201,23 @@ var DellSmBiosSingleBattery = GObject.registerClass({
                 this.mode = 'exp';
                 this.startLimitValue = 100;
                 this.endLimitValue = 95;
-                this.emit('threshold-applied', true);
+                this.emit('threshold-applied', 'success');
                 return 0;
             } else if (outputMode === 'Adaptive') {
                 this.mode = 'adv';
                 this.startLimitValue = 100;
                 this.endLimitValue = 95;
-                this.emit('threshold-applied', true);
+                this.emit('threshold-applied', 'success');
                 return 0;
             } else if (outputMode === 'Custom') {
                 this.mode = chargingMode;
                 this.startLimitValue = parseInt(splitOutput[2]);
                 this.endLimitValue = parseInt(splitOutput[3]);
-                this.emit('threshold-applied', true);
+                this.emit('threshold-applied', 'success');
                 return 0;
             }
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
         return 1;
     }
 

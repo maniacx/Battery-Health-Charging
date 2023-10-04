@@ -10,7 +10,7 @@ const GIGABYTE_MODE = '/sys/devices/platform/gigabyte_laptop/charge_mode';
 const GIGABYTE_LIMIT = '/sys/devices/platform/gigabyte_laptop/charge_limit';
 
 var GigabyteSingleBattery = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class GigabyteSingleBattery extends GObject.Object {
     constructor(settings) {
         super();
@@ -54,7 +54,7 @@ var GigabyteSingleBattery = GObject.registerClass({
         this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
         if (this._verifyThreshold())
             return this._status;
-        this._status = await runCommandCtl('GIGABYTE_THRESHOLD', this._updateMode, `${this._endValue}`, ctlPath, false);
+        [this._status] = await runCommandCtl(ctlPath, 'GIGABYTE_THRESHOLD', this._updateMode, `${this._endValue}`, null);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -77,7 +77,7 @@ var GigabyteSingleBattery = GObject.registerClass({
             this._updateMode = 'false';
         this.endLimitValue = readFileInt(GIGABYTE_LIMIT);
         if (this._endValue === this.endLimitValue) {
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -88,7 +88,7 @@ var GigabyteSingleBattery = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {

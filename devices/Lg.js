@@ -9,7 +9,7 @@ const {fileExists, readFileInt, runCommandCtl} = Helper;
 const LG_PATH = '/sys/devices/platform/lg-laptop/battery_care_limit';
 
 var LgSingleBattery = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class LgSingleBattery extends GObject.Object {
     constructor(settings) {
         super();
@@ -44,7 +44,7 @@ var LgSingleBattery = GObject.registerClass({
             this._batteryCareLimit = 80;
         if (this._verifyThreshold())
             return this._status;
-        this._status = await runCommandCtl('LG', `${this._batteryCareLimit}`, null, ctlPath, false);
+        [this._status] = await runCommandCtl(ctlPath, 'LG', `${this._batteryCareLimit}`, null, null);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -65,7 +65,7 @@ var LgSingleBattery = GObject.registerClass({
     _verifyThreshold() {
         this.endLimitValue = readFileInt(LG_PATH);
         if (this._batteryCareLimit === this.endLimitValue) {
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -76,7 +76,7 @@ var LgSingleBattery = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {

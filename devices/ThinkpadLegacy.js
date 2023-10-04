@@ -13,7 +13,7 @@ const TP_BAT1_START = '/sys/devices/platform/smapi/BAT1/start_charge_thresh';
 
 var ThinkpadLegacyDualBattery = GObject.registerClass({
     Signals: {
-        'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]},
+        'threshold-applied': {param_types: [GObject.TYPE_STRING]},
         'battery-status-changed': {},
     },
 }, class ThinkpadLegacyDualBattery extends GObject.Object {
@@ -83,23 +83,23 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
         if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
             this.endLimitValue = endValue;
             this.startLimitValue = startValue;
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return 0;
         }
         // Some device wont update end threshold if start threshold > end threshold
         if (startValue >= oldEndValue)
-            status = await runCommandCtl('TP_BAT0_END_START', `${endValue}`, `${startValue}`, ctlPath, false);
+            [status] = await runCommandCtl(ctlPath, 'TP_BAT0_END_START', `${endValue}`, `${startValue}`, null);
         else
-            status = await runCommandCtl('TP_BAT0_START_END', `${endValue}`, `${startValue}`, ctlPath, false);
+            [status] = await runCommandCtl(ctlPath, 'TP_BAT0_START_END', `${endValue}`, `${startValue}`, null);
         if (status === 0) {
             this.endLimitValue = readFileInt(TP_BAT0_END);
             this.startLimitValue = readFileInt(TP_BAT0_START);
             if ((endValue === this.endLimitValue) && (startValue === this.startLimitValue)) {
-                this.emit('threshold-applied', true);
+                this.emit('threshold-applied', 'success');
                 return 0;
             }
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
         return 1;
     }
 
@@ -115,19 +115,19 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
         if ((oldEndValue === endValue) && (oldStartValue === startValue)) {
             this.endLimit2Value = endValue;
             this.startLimit2Value = startValue;
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return 0;
         }
         // Some device wont update end threshold if start threshold > end threshold
         if (startValue >= oldEndValue)
-            status = await runCommandCtl('TP_BAT1_END_START', `${endValue}`, `${startValue}`, ctlPath, false);
+            [status] = await runCommandCtl(ctlPath, 'TP_BAT1_END_START', `${endValue}`, `${startValue}`, null);
         else
-            status = await runCommandCtl('TP_BAT1_START_END', `${endValue}`, `${startValue}`, ctlPath, false);
+            [status] = await runCommandCtl(ctlPath, 'TP_BAT1_START_END', `${endValue}`, `${startValue}`, null);
         if (status === 0) {
             this.endLimit2Value = readFileInt(TP_BAT1_END);
             this.startLimit2Value = readFileInt(TP_BAT1_START);
             if ((endValue === this.endLimit2Value) && (startValue === this.startLimit2Value)) {
-                this.emit('threshold-applied', true);
+                this.emit('threshold-applied', 'success');
                 return 0;
             }
         }
@@ -192,7 +192,7 @@ var ThinkpadLegacyDualBattery = GObject.registerClass({
 });
 
 var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class ThinkpadLegacySingleBatteryBAT0 extends GObject.Object {
     constructor(settings) {
         super();
@@ -247,9 +247,9 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
             return this._status;
         // Some device wont update end threshold if start threshold > end threshold
         if (this._startValue >= this._oldEndValue)
-            this._status = await runCommandCtl('TP_BAT0_END_START', `${this._endValue}`, `${this._startValue}`, ctlPath, false);
+            [this._status] = await runCommandCtl(ctlPath, 'TP_BAT0_END_START', `${this._endValue}`, `${this._startValue}`, null);
         else
-            this._status = await runCommandCtl('TP_BAT0_START_END', `${this._endValue}`, `${this._startValue}`, ctlPath, false);
+            [this._status] = await runCommandCtl(ctlPath, 'TP_BAT0_START_END', `${this._endValue}`, `${this._startValue}`, null);
 
         if (this._status === 0) {
             if (this._verifyThreshold())
@@ -274,7 +274,7 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
         if ((this._oldEndValue === this._endValue) && (this._oldStartValue === this._startValue)) {
             this.endLimitValue = this._endValue;
             this.startLimitValue = this._startValue;
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -285,7 +285,7 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {
@@ -296,7 +296,7 @@ var ThinkpadLegacySingleBatteryBAT0 = GObject.registerClass({
 });
 
 var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class ThinkpadLegacySingleBatteryBAT1 extends GObject.Object {
     constructor(settings) {
         super();
@@ -351,9 +351,9 @@ var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
             return this._status;
         // Some device wont update end threshold if start threshold > end threshold
         if (this._startValue >= this._oldEndValue)
-            this._status = await runCommandCtl('TP_BAT1_END_START', `${this._endValue}`, `${this._startValue}`, ctlPath, false);
+            [this._status] = await runCommandCtl(ctlPath, 'TP_BAT1_END_START', `${this._endValue}`, `${this._startValue}`, null);
         else
-            this._status = await runCommandCtl('TP_BAT1_START_END', `${this._endValue}`, `${this._startValue}`, ctlPath, false);
+            [this._status] = await runCommandCtl(ctlPath, 'TP_BAT1_START_END', `${this._endValue}`, `${this._startValue}`, null);
 
         if (this._status === 0) {
             if (this._verifyThreshold())
@@ -378,7 +378,7 @@ var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
         if ((this._oldEndValue === this._endValue) && (this._oldStartValue === this._startValue)) {
             this.endLimitValue = this._endValue;
             this.startLimitValue = this._startValue;
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -389,7 +389,7 @@ var ThinkpadLegacySingleBatteryBAT1 = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {

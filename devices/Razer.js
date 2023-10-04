@@ -9,7 +9,7 @@ const {fileExists, execCheck} = Helper;
 const RAZERCLI_PATH = '/usr/bin/razer-cli';
 
 var RazerSingleBattery = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class RazerSingleBattery extends GObject.Object {
     constructor(settings) {
         super();
@@ -46,11 +46,11 @@ var RazerSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimit(chargingMode) {
-        let output, filteredOutput, splitOutput, firstLine, secondLine, endValue, razerReadCommand, razerWriteCommand;
-        endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
+        let output, filteredOutput, splitOutput, firstLine, razerWriteCommand;
+        const endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
 
-        razerReadCommand = ['razer-cli', 'read', 'bho'];
-        output = await execCheck(razerReadCommand, false, true);
+        const razerReadCommand = ['razer-cli', 'read', 'bho'];
+        [, output] = await execCheck(razerReadCommand);
         filteredOutput = output.trim().replace('{ ', '').replace(' }', '').replace(',', '').replace(/:/g, '');
         splitOutput = filteredOutput.split('\n');
         firstLine = splitOutput[0].split(' ');
@@ -58,7 +58,7 @@ var RazerSingleBattery = GObject.registerClass({
             if (((endValue === 100) && (firstLine[3] === 'false')) ||
                 ((endValue !== 100) && (firstLine[3] === 'true') && (parseInt(firstLine[5]) === endValue))) {
                 this.endLimitValue = endValue;
-                this.emit('threshold-applied', true);
+                this.emit('threshold-applied', 'success');
                 return 0;
             }
         }
@@ -67,11 +67,11 @@ var RazerSingleBattery = GObject.registerClass({
         else
             razerWriteCommand = ['razer-cli', 'write', 'bho', 'on', `${endValue}`];
 
-        output = await execCheck(razerWriteCommand, false, true);
+        [, output] = await execCheck(razerWriteCommand);
         filteredOutput = output.trim().replace('{ ', '').replace(' }', '').replace(/:/g, '');
         splitOutput = filteredOutput.split('\n');
         firstLine = splitOutput[0].split(' ');
-        secondLine = splitOutput[1].split(' ');
+        const secondLine = splitOutput[1].split(' ');
         if (firstLine[0] === 'RES' && firstLine[1] === 'SetBatteryHealthOptimizer' &&
             firstLine[2] === 'result' && firstLine[3] === 'true') {
             if ((endValue === 100 &&
@@ -87,11 +87,11 @@ var RazerSingleBattery = GObject.registerClass({
                 parseInt(secondLine[9]) === endValue)) {
                 this.mode = chargingMode;
                 this.endLimitValue = endValue;
-                this.emit('threshold-applied', true);
+                this.emit('threshold-applied', 'success');
                 return 0;
             }
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
         return 1;
     }
 

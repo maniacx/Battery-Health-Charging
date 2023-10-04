@@ -9,7 +9,7 @@ const {fileExists, readFileInt, runCommandCtl} = Helper;
 const SAMSUNG_PATH = '/sys/devices/platform/samsung/battery_life_extender';
 
 var SamsungSingleBattery = GObject.registerClass({
-    Signals: {'threshold-applied': {param_types: [GObject.TYPE_BOOLEAN]}},
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
 }, class SamsungSingleBattery extends GObject.Object {
     constructor(settings) {
         super();
@@ -44,7 +44,7 @@ var SamsungSingleBattery = GObject.registerClass({
             this._batteryLifeExtender = 1;
         if (this._verifyThreshold())
             return this._status;
-        this._status = await runCommandCtl('SAMSUNG', `${this._batteryLifeExtender}`, null, ctlPath, false);
+        [this._status] = await runCommandCtl(ctlPath, 'SAMSUNG', `${this._batteryLifeExtender}`, null, null);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -64,7 +64,7 @@ var SamsungSingleBattery = GObject.registerClass({
     _verifyThreshold() {
         if (readFileInt(SAMSUNG_PATH) === this._batteryLifeExtender) {
             this.mode = this._chargingMode;
-            this.emit('threshold-applied', true);
+            this.emit('threshold-applied', 'success');
             return true;
         }
         return false;
@@ -75,7 +75,7 @@ var SamsungSingleBattery = GObject.registerClass({
             if (this._verifyThreshold())
                 return;
         }
-        this.emit('threshold-applied', false);
+        this.emit('threshold-applied', 'failed');
     }
 
     destroy() {
