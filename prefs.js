@@ -4,6 +4,7 @@ const Me = ExtensionUtils.getCurrentExtension();
 const DeviceList = Me.imports.lib.deviceList;
 
 const {General} = Me.imports.preferences.general;
+const {Dell} = Me.imports.preferences.dell;
 const {ThresholdPrimary} = Me.imports.preferences.thresholdPrimary;
 const {ThresholdSecondary} = Me.imports.preferences.thresholdSecondary;
 const {About} = Me.imports.preferences.about;
@@ -12,7 +13,6 @@ function fillPreferencesWindow(window) {
     let currentDevice = null;
     const settings = ExtensionUtils.getSettings();
     const type = settings.get_int('device-type');
-
     if (type !== 0) {
         const device = new DeviceList.deviceArray[type - 1](settings);
         if (device.type === type) {
@@ -22,10 +22,10 @@ function fillPreferencesWindow(window) {
     }
 
     window.set_default_size(650, 700);
-
     window.add(new General(settings, currentDevice));
-
     if (currentDevice !== null) {
+        if (settings.get_boolean('detected-cctk'))
+            window.add(new Dell(settings));
         if (currentDevice.deviceHaveVariableThreshold) // Laptop has customizable threshold
             window.add(new ThresholdPrimary(settings, currentDevice));
 

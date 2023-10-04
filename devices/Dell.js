@@ -5,6 +5,7 @@ const {GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
+const SecretHelper = Me.imports.lib.libsecretHelper;
 const {fileExists, runCommandCtl} = Helper;
 
 const DELL_PATH = '/sys/devices/platform/dell-laptop';
@@ -53,10 +54,10 @@ var DellSmBiosSingleBattery = GObject.registerClass({
             return false;
         this._usesLibSmbios = fileExists(SMBIOS_PATH);
         this._usesCctk = fileExists(CCTK_PATH);
+        this._settings.set_boolean('detected-libsmbios', this._usesLibSmbios);
+        this._settings.set_boolean('detected-cctk', this._usesCctk);
         if (!this._usesCctk && !this._usesLibSmbios)
             return false;
-        const bothPackageAvailable = this._usesCctk && this._usesLibSmbios;
-        this._settings.set_boolean('show-dell-option', bothPackageAvailable);
         return true;
     }
 
@@ -146,7 +147,7 @@ var DellSmBiosSingleBattery = GObject.registerClass({
                 this._startValue = this._endValue - 5;
         }
 
-        let verified = await this._verifyCctkThreshold();
+        const verified = await this._verifyCctkThreshold();
         if (verified)
             return 0;
 
@@ -158,8 +159,37 @@ var DellSmBiosSingleBattery = GObject.registerClass({
             this._arg2 = `${this._startValue}`;
         }
 
-        await runCommandCtl(this._ctlPath, 'DELL_CCTK_BAT_WRITE', this._arg1, this._arg2, null);
-        verified = await this._verifyCctkThreshold();
+        if (this._settings.get_boolean('need-bios-password')) {
+            SecretHelper.getPassword(password => {
+                this._arg3 = password;
+                this._writeCctkThresholdWithPassword();
+            });
+        } else {
+            await this._writeCctkThreshold();
+        }
+        return 0;
+    }
+
+    async _writeCctkThreshold() {
+        const [status] = await runCommandCtl(this._ctlPath, 'DELL_CCTK_BAT_WRITE', this._arg1, this._arg2, null);
+        if (status === 65) {
+            this.emit('threshold-applied', 'password-required');
+            return 0;
+        }
+        const verified = await this._verifyCctkThreshold();
+        if (verified)
+            return 0;
+        this.emit('threshold-applied', 'failed');
+        return 1;
+    }
+
+    async _writeCctkThresholdWithPassword() {
+        const [status] = await runCommandCtl(this._ctlPath, 'DELL_CCTK_PASSWORD_BAT_WRITE', this._arg1, this._arg2, this._arg3);
+        if (status === 58) {
+            this.emit('threshold-applied', 'password-required');
+            return 0;
+        }
+        const verified = await this._verifyCctkThreshold();
         if (verified)
             return 0;
         this.emit('threshold-applied', 'failed');

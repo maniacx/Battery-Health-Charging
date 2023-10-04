@@ -61,13 +61,21 @@
             <default>""</default>
             <summary>Path of ctl</summary>
         </key>
-        <key name="show-dell-option" type="b">
+        <key name="detected-libsmbios" type="b">
             <default>false</default>
-            <summary>Show settings for Dell package selection</summary>
+            <summary>Detected dells libsmbios package</summary>
+        </key>
+        <key name="detected-cctk" type="b">
+            <default>false</default>
+            <summary>Detected dells cctk package</summary>
         </key>
         <key name="dell-package-type" type="i">
             <default>0</default>
-            <summary>Dell package selection</summary>
+            <summary>Dell package selection 0:libsmbios 1:cctk</summary>
+        </key>
+        <key name="need-bios-password" type="b">
+            <default>false</default>
+            <summary>Need Bios password</summary>
         </key>
         <key name="default-threshold" type="b">
             <default>true</default>
