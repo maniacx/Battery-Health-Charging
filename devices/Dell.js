@@ -76,148 +76,118 @@ export const DellSmBiosSingleBattery = GObject.registerClass({
     }
 
     async setThresholdLimitLibSmbios(chargingMode) {
-        const ctlPath = this._settings.get_string('ctl-path');
-        let output, filteredOutput, splitOutput, firstLine, secondLine, endValue, startValue;
-        if (chargingMode !== 'adv' && chargingMode !== 'exp') {
-            endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
-            startValue = this._settings.get_int(`current-${chargingMode}-start-threshold`);
-            if ((endValue - startValue) < 5)
-                startValue = endValue - 5;
-        }
-        [, output] = await runCommandCtl(ctlPath, 'DELL_SMBIOS_BAT_READ', null, null, null);
-        filteredOutput = output.trim().replace('(', '').replace(')', '').replace(',', '').replace(/:/g, '');
-        splitOutput = filteredOutput.split('\n');
-        firstLine = splitOutput[0].split(' ');
-        if (firstLine[0] === 'Charging' && firstLine[1] === 'mode') {
-            const modeRead = firstLine[2];
-            if (((modeRead === 'adaptive') && (chargingMode === 'adv')) || ((modeRead === 'express') && (chargingMode === 'exp'))) {
-                this.mode = chargingMode;
-                this.startLimitValue = 100;
-                this.endLimitValue = 95;
-                this.emit('threshold-applied', 'success');
-                return 0;
-            } else if ((modeRead === 'custom') && ((chargingMode === 'ful') || (chargingMode === 'bal') || (chargingMode === 'max'))) {
-                secondLine = splitOutput[1].split(' ');
-                if (secondLine[0] === 'Charging' && secondLine[1] === 'interval') {
-                    if ((parseInt(secondLine[2]) === startValue) && (parseInt(secondLine[3]) === endValue)) {
-                        this.mode = chargingMode;
-                        this.startLimitValue = startValue;
-                        this.endLimitValue = endValue;
-                        this.emit('threshold-applied', 'success');
-                        return 0;
-                    }
-                }
-            }
-        }
+        this._chargingMode = chargingMode;
+        this._ctlPath = this._settings.get_string('ctl-path');
 
-        let arg2, arg3;
-        if (chargingMode === 'adv' || chargingMode === 'exp') {
-            arg2 = chargingMode;
-            arg3 = null;
+        if (this._chargingMode !== 'adv' && this._chargingMode !== 'exp') {
+            this._endValue = this._settings.get_int(`current-${this._chargingMode}-end-threshold`);
+            this._startValue = this._settings.get_int(`current-${this._chargingMode}-start-threshold`);
+            if ((this._endValue - this._startValue) < 5)
+                this._startValue = this._endValue - 5;
+        }
+        let verified = await this._verifySmbiosThreshold();
+        if (verified)
+            return 0;
+
+        let arg1, arg2;
+        if (this._chargingMode === 'adv' || this._chargingMode === 'exp') {
+            arg1 = this._chargingMode;
+            arg2 = null;
         } else {
-            arg2 = `${endValue}`;
-            arg3 = `${startValue}`;
+            arg1 = `${this._endValue}`;
+            arg2 = `${this._startValue}`;
         }
-        await runCommandCtl(ctlPath, 'DELL_SMBIOS_BAT_WRITE', arg2, arg3, null);
-        [, output]  = await runCommandCtl(ctlPath, 'DELL_SMBIOS_BAT_READ', null, null, null);
-        filteredOutput = output.trim().replace('(', '').replace(')', '').replace(',', '').replace(/:/g, '');
-        splitOutput = filteredOutput.split('\n');
-        firstLine = splitOutput[0].split(' ');
-        if (firstLine[0] === 'Charging' && firstLine[1] === 'mode') {
-            if (firstLine[2] === 'express') {
-                this.mode = 'exp';
-                this.startLimitValue = 100;
-                this.endLimitValue = 95;
-                this.emit('threshold-applied', 'success');
-                return 0;
-            } else if (firstLine[2] === 'adaptive') {
-                this.mode = 'adv';
-                this.startLimitValue = 100;
-                this.endLimitValue = 95;
-                this.emit('threshold-applied', 'success');
-                return 0;
-            } else if (firstLine[2] === 'custom') {
-                secondLine = splitOutput[1].split(' ');
-                if (secondLine[0] === 'Charging' && secondLine[1] === 'interval') {
-                    this.mode = chargingMode;
-                    this.startLimitValue = parseInt(secondLine[2]);
-                    this.endLimitValue = parseInt(secondLine[3]);
-                    this.emit('threshold-applied', 'success');
-                    return 0;
-                }
-            }
-        }
+        await runCommandCtl(this._ctlPath, 'DELL_SMBIOS_BAT_WRITE', arg1, arg2, null);
+        verified = await this._verifySmbiosThreshold();
+        if (verified)
+            return 0;
         this.emit('threshold-applied', 'failed');
         return 1;
     }
 
-    async setThresholdLimitCctk(chargingMode) {
-        const ctlPath = this._settings.get_string('ctl-path');
-        let output, filteredOutput, splitOutput, endValue, startValue;
-        if (chargingMode !== 'adv' && chargingMode !== 'exp') {
-            endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
-            startValue = this._settings.get_int(`current-${chargingMode}-start-threshold`);
-            if ((endValue - startValue) < 5)
-                startValue = endValue - 5;
-        }
-        [, output]  = await runCommandCtl(ctlPath, 'DELL_CCTK_BAT_READ', null, null, null);
-        filteredOutput = output.trim().replace('=', ' ').replace(':', ' ').replace('-', ' ');
-        splitOutput = filteredOutput.split(' ');
-        if (splitOutput[0] === 'PrimaryBattChargeCfg') {
-            const modeRead = splitOutput[1];
-            if (((modeRead === 'Adaptive') && (chargingMode === 'adv')) || ((modeRead === 'Express') && (chargingMode === 'exp'))) {
-                this.mode = chargingMode;
+    async _verifySmbiosThreshold() {
+        const [, output] = await runCommandCtl(this._ctlPath, 'DELL_SMBIOS_BAT_READ', null, null, null);
+        const filteredOutput = output.trim().replace('(', '').replace(')', '').replace(',', '').replace(/:/g, '');
+        const splitOutput = filteredOutput.split('\n');
+        const firstLine = splitOutput[0].split(' ');
+        if (firstLine[0] === 'Charging' && firstLine[1] === 'mode') {
+            const modeRead = firstLine[2];
+            if (((modeRead === 'adaptive') && (this._chargingMode === 'adv')) || ((modeRead === 'express') && (this._chargingMode === 'exp'))) {
+                this.mode = this._chargingMode;
                 this.startLimitValue = 100;
                 this.endLimitValue = 95;
                 this.emit('threshold-applied', 'success');
-                return 0;
-            } else if ((modeRead === 'Custom') && ((chargingMode === 'ful') || (chargingMode === 'bal') || (chargingMode === 'max'))) {
-                if ((parseInt(splitOutput[2]) === startValue) && (parseInt(splitOutput[3]) === endValue)) {
-                    this.mode = chargingMode;
-                    this.startLimitValue = startValue;
-                    this.endLimitValue = endValue;
-                    this.emit('threshold-applied', 'success');
-                    return 0;
+                return true;
+            } else if ((modeRead === 'custom') && ((this._chargingMode === 'ful') || (this._chargingMode === 'bal') || (this._chargingMode === 'max'))) {
+                const secondLine = splitOutput[1].split(' ');
+                if (secondLine[0] === 'Charging' && secondLine[1] === 'interval') {
+                    if ((parseInt(secondLine[2]) === this._startValue) && (parseInt(secondLine[3]) === this._endValue)) {
+                        this.mode = this._chargingMode;
+                        this.startLimitValue = this._startValue;
+                        this.endLimitValue = this._endValue;
+                        this.emit('threshold-applied', 'success');
+                        return true;
+                    }
                 }
             }
         }
+        return false;
+    }
 
-        let arg2, arg3;
-        if (chargingMode === 'adv' || chargingMode === 'exp') {
-            arg2 = chargingMode;
-            arg3 = null;
+    async setThresholdLimitCctk(chargingMode) {
+        this._chargingMode = chargingMode;
+        this._ctlPath = this._settings.get_string('ctl-path');
+
+        if (this._chargingMode !== 'adv' && this._chargingMode !== 'exp') {
+            this._endValue = this._settings.get_int(`current-${this._chargingMode}-end-threshold`);
+            this._startValue = this._settings.get_int(`current-${this._chargingMode}-start-threshold`);
+            if ((this._endValue - this._startValue) < 5)
+                this._startValue = this._endValue - 5;
+        }
+
+        let verified = await this._verifyCctkThreshold();
+        if (verified)
+            return 0;
+
+        if (this._chargingMode === 'adv' || this._chargingMode === 'exp') {
+            this._arg1 = this._chargingMode;
+            this._arg2 = 'null';
         } else {
-            arg2 = `${endValue}`;
-            arg3 = `${startValue}`;
+            this._arg1 = `${this._endValue}`;
+            this._arg2 = `${this._startValue}`;
         }
-        await runCommandCtl(ctlPath, 'DELL_CCTK_BAT_WRITE', arg2, arg3, null);
-        [, output]  = await runCommandCtl(ctlPath, 'DELL_CCTK_BAT_READ', null, null, null);
-        filteredOutput = output.trim().replace('=', ' ').replace(':', ' ').replace('-', ' ');
-        splitOutput = filteredOutput.split(' ');
-        if (splitOutput[0] === 'PrimaryBattChargeCfg') {
-            const outputMode = splitOutput[1];
-            if (outputMode === 'Express') {
-                this.mode = 'exp';
-                this.startLimitValue = 100;
-                this.endLimitValue = 95;
-                this.emit('threshold-applied', 'success');
-                return 0;
-            } else if (outputMode === 'Adaptive') {
-                this.mode = 'adv';
-                this.startLimitValue = 100;
-                this.endLimitValue = 95;
-                this.emit('threshold-applied', 'success');
-                return 0;
-            } else if (outputMode === 'Custom') {
-                this.mode = chargingMode;
-                this.startLimitValue = parseInt(splitOutput[2]);
-                this.endLimitValue = parseInt(splitOutput[3]);
-                this.emit('threshold-applied', 'success');
-                return 0;
-            }
-        }
+
+        await runCommandCtl(this._ctlPath, 'DELL_CCTK_BAT_WRITE', this._arg1, this._arg2, null);
+        verified = await this._verifyCctkThreshold();
+        if (verified)
+            return 0;
         this.emit('threshold-applied', 'failed');
         return 1;
+    }
+
+    async _verifyCctkThreshold() {
+        const [, output] = await runCommandCtl(this._ctlPath, 'DELL_CCTK_BAT_READ', null, null, null);
+        const filteredOutput = output.trim().replace('=', ' ').replace(':', ' ').replace('-', ' ');
+        const splitOutput = filteredOutput.split(' ');
+        if (splitOutput[0] === 'PrimaryBattChargeCfg') {
+            const modeRead = splitOutput[1];
+            if (((modeRead === 'Adaptive') && (this._chargingMode === 'adv')) || ((modeRead === 'Express') && (this._chargingMode === 'exp'))) {
+                this.mode = this._chargingMode;
+                this.startLimitValue = 100;
+                this.endLimitValue = 95;
+                this.emit('threshold-applied', 'success');
+                return true;
+            } else if ((modeRead === 'Custom') && ((this._chargingMode === 'ful') || (this._chargingMode === 'bal') || (this._chargingMode === 'max'))) {
+                if ((parseInt(splitOutput[2]) === this._startValue) && (parseInt(splitOutput[3]) === this._endValue)) {
+                    this.mode = this._chargingMode;
+                    this.startLimitValue = this._startValue;
+                    this.endLimitValue = this._endValue;
+                    this.emit('threshold-applied', 'success');
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     destroy() {
