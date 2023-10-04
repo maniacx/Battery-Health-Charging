@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="Battery-Health-Charging@maniacx.github.com">
+  <template class="BHC_Dell" parent="AdwPreferencesPage">
+    <property name="name">Dell</property>
+    <property name="title" translatable="yes">Dell</property>
+    <property name="icon-name">computer-symbolic</property>
+    <child>
+      <object class="AdwPreferencesGroup" id="device_settings_group">
+        <property name="title" translatable="yes">Device settings</property>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">Dell package for charging mode</property>
+            <property name="subtitle" translatable="yes">Select Dell package used for changing charging mode/threshold.</property>
+            <property name="activatable-widget">choose_package</property>
+            <child>
+              <object class="GtkDropDown" id="choose_package">
+                <property name="valign">center</property>
+                <property name="model">choose_package_model</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+    <child>
+      <object class="AdwPreferencesGroup" id="bios_settings_group">
+        <property name="title" translatable="yes">Bios Authentication</property>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">Need Bios password validation to change mode/threshold</property>
+            <property name="subtitle" translatable="yes">Enable if Dell command configure uses Bios (system) password to change mode/threshold</property>
+            <property name="activatable-widget">need_bios_password</property>
+            <child>
+              <object class="GtkSwitch" id="need_bios_password">
+                <property name="valign">center</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="visible" bind-source="need_bios_password" bind-property="state" bind-flags="sync-create" />
+            <property name="title" translatable="yes">Enter Bios Password</property>
+            <property name="subtitle" translatable="yes">Note: Bios password will be stored in Gnome Keyring</property>
+            <child>
+              <object class="GtkPasswordEntry" id="password_entry_box">
+                <property name="valign">center</property>
+                <property name="show-peek-icon">True</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+  <object class="GtkStringList" id="choose_package_model">
+    <items>
+      <item translatable="yes">Libsmbios</item>
+      <item translatable="yes">Dell Command Center</item>
+    </items>
+  </object>
+</interface>

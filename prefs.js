@@ -3,6 +3,7 @@ import {ExtensionPreferences} from 'resource:///org/gnome/Shell/Extensions/js/ex
 
 import * as DeviceList from './lib/deviceList.js';
 import {General} from './preferences/general.js';
+import {Dell} from './preferences/dell.js';
 import {ThresholdPrimary} from './preferences/thresholdPrimary.js';
 import {ThresholdSecondary} from './preferences/thresholdSecondary.js';
 import {About} from './preferences/about.js';
@@ -23,6 +24,8 @@ export default class BatteryHealthChargingPrefs extends ExtensionPreferences {
         window.set_default_size(650, 700);
         window.add(new General(settings, currentDevice));
         if (currentDevice !== null) {
+            if (settings.get_boolean('detected-cctk'))
+                window.add(new Dell(settings));
             if (currentDevice.deviceHaveVariableThreshold) // Laptop has customizable threshold
                 window.add(new ThresholdPrimary(settings, currentDevice));
             if (currentDevice.deviceHaveDualBattery) // Laptop has dual battery

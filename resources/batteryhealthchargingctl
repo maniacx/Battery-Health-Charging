@@ -177,7 +177,15 @@ case "$TOOLCMD" in
         else
             /opt/dell/dcc/cctk --PrimaryBattChargeCfg=Custom:"$ARG2"-"$ARG1"
         fi
-        exit ${EXIT_SUCCESS}
+        ;;
+    DELL_CCTK_PASSWORD_BAT_WRITE)
+        if [ "$ARG1" = "adv" ];then
+            /opt/dell/dcc/cctk --ValSetupPwd=$ARG3 --PrimaryBattChargeCfg=Adaptive
+        elif [ "$ARG1" = "exp" ];then
+            /opt/dell/dcc/cctk --ValSetupPwd=$ARG3 --PrimaryBattChargeCfg=Express
+        else
+            /opt/dell/dcc/cctk --ValSetupPwd=$ARG3 --PrimaryBattChargeCfg=Custom:"$ARG2"-"$ARG1"
+        fi
         ;;
     RAZER_CLI_READ)
         /usr/bin/razer-cli read bho
