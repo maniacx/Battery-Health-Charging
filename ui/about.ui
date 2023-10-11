@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<interface domain="thinkpad-battery-threshold@marcosdalvarez.org">
+<interface domain="Battery-Health-Charging@maniacx.github.com">
   <template class="BHC_About" parent="AdwPreferencesPage">
     <property name="name">about</property>
     <property name="title" translatable="yes">About</property>

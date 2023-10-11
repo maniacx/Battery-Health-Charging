@@ -25,11 +25,11 @@ var About = GObject.registerClass({
         const actions = [
             {
                 name: 'open-readme',
-                link: 'https://maniacx.github.io/Battery-Health-Charging/'
+                link: 'https://maniacx.github.io/Battery-Health-Charging/',
             },
             {
                 name: 'open-bug-report',
-                link: 'https://github.com/maniacx/Battery-Health-Charging/issues'
+                link: 'https://github.com/maniacx/Battery-Health-Charging/issues',
             },
             {
                 name: 'open-translation',

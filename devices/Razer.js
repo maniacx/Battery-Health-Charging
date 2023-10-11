@@ -49,7 +49,7 @@ var RazerSingleBattery = GObject.registerClass({
         let output, filteredOutput, splitOutput, firstLine, secondLine, endValue, razerReadCommand, razerWriteCommand;
         endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
 
-        razerReadCommand = ['razer-cli', 'read', 'bho']
+        razerReadCommand = ['razer-cli', 'read', 'bho'];
         output = await execCheck(razerReadCommand, false, true);
         filteredOutput = output.trim().replace('{ ', '').replace(' }', '').replace(',', '').replace(/:/g, '');
         splitOutput = filteredOutput.split('\n');
@@ -63,9 +63,9 @@ var RazerSingleBattery = GObject.registerClass({
             }
         }
         if (endValue === 100)
-            razerWriteCommand = ['razer-cli', 'write', 'bho', 'off']
+            razerWriteCommand = ['razer-cli', 'write', 'bho', 'off'];
         else
-            razerWriteCommand = ['razer-cli', 'write', 'bho', 'on', `${endValue}`]
+            razerWriteCommand = ['razer-cli', 'write', 'bho', 'on', `${endValue}`];
 
         output = await execCheck(razerWriteCommand, false, true);
         filteredOutput = output.trim().replace('{ ', '').replace(' }', '').replace(/:/g, '');
