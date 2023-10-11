@@ -33,7 +33,11 @@ var About = GObject.registerClass({
             },
             {
                 name: 'open-translation',
-                link: 'https://maniacx.github.io/Battery-Health-Charging/TRANSLATION.html',
+                link: 'https://maniacx.github.io/Battery-Health-Charging/docs/Translation',
+            },
+            {
+                name: 'open-sources',
+                link: 'https://github.com/maniacx/Battery-Health-Charging/',
             },
             {
                 name: 'open-rating',
