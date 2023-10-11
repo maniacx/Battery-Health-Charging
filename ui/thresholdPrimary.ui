@@ -80,7 +80,6 @@
             <child>
               <object class="GtkSpinButton" id="full_capacity_end_threshold">
                 <property name="valign">center</property>
-                <property name="adjustment">full_capacity_end_threshold_adjustment</property>
                 <property name="numeric">True</property>
                 <property name="snap-to-ticks">True</property>
                 <property name="update-policy">if-valid</property>
@@ -115,7 +114,6 @@
             <child>
               <object class="GtkSpinButton" id="full_capacity_start_threshold">
                 <property name="valign">center</property>
-                <property name="adjustment">full_capacity_start_threshold_adjustment</property>
                 <property name="numeric">True</property>
                 <property name="snap-to-ticks">True</property>
                 <property name="update-policy">if-valid</property>
@@ -154,7 +152,6 @@
             <child>
               <object class="GtkSpinButton" id="balanced_end_threshold">
                 <property name="valign">center</property>
-                <property name="adjustment">balanced_end_threshold_adjustment</property>
                 <property name="numeric">True</property>
                 <property name="snap-to-ticks">True</property>
                 <property name="update-policy">if-valid</property>
@@ -189,7 +186,6 @@
             <child>
               <object class="GtkSpinButton" id="balanced_start_threshold">
                 <property name="valign">center</property>
-                <property name="adjustment">balanced_start_threshold_adjustment</property>
                 <property name="numeric">True</property>
                 <property name="snap-to-ticks">True</property>
                 <property name="update-policy">if-valid</property>
@@ -229,7 +225,6 @@
             <child>
               <object class="GtkSpinButton" id="maxlife_end_threshold">
                 <property name="valign">center</property>
-                <property name="adjustment">maxlife_end_threshold_adjustment</property>
                 <property name="numeric">True</property>
                 <property name="snap-to-ticks">True</property>
                 <property name="update-policy">if-valid</property>
@@ -264,7 +259,6 @@
             <child>
               <object class="GtkSpinButton" id="maxlife_start_threshold">
                 <property name="valign">center</property>
-                <property name="adjustment">maxlife_start_threshold_adjustment</property>
                 <property name="numeric">True</property>
                 <property name="snap-to-ticks">True</property>
                 <property name="update-policy">if-valid</property>
@@ -275,22 +269,4 @@
       </object>
     </child>
   </template>
-  <object class="GtkAdjustment" id="full_capacity_end_threshold_adjustment">
-    <property name="step-increment">1.0</property>
-  </object>
-  <object class="GtkAdjustment" id="full_capacity_start_threshold_adjustment">
-    <property name="step-increment">1.0</property>
-  </object>
-  <object class="GtkAdjustment" id="balanced_end_threshold_adjustment">
-    <property name="step-increment">1.0</property>
-  </object>
-  <object class="GtkAdjustment" id="balanced_start_threshold_adjustment">
-    <property name="step-increment">1.0</property>
-  </object>
-  <object class="GtkAdjustment" id="maxlife_end_threshold_adjustment">
-    <property name="step-increment">1.0</property>
-  </object>
-  <object class="GtkAdjustment" id="maxlife_start_threshold_adjustment">
-    <property name="step-increment">1.0</property>
-  </object>
 </interface>
