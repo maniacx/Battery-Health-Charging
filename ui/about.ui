@@ -74,7 +74,6 @@
                         <child>
                           <object class="GtkImage" id="readme_icon">
                             <property name="valign">center</property>
-                            <property name="icon-name">adw-external-link-symbolic</property>
                           </object>
                         </child>
                       </object>
@@ -93,7 +92,6 @@
                         <child>
                           <object class="GtkImage" id="bug_icon">
                             <property name="valign">center</property>
-                            <property name="icon-name">adw-external-link-symbolic</property>
                           </object>
                         </child>
                       </object>
@@ -107,7 +105,6 @@
                         <child>
                           <object class="GtkImage" id="translation_icon">
                             <property name="valign">center</property>
-                            <property name="icon-name">adw-external-link-symbolic</property>
                           </object>
                         </child>
                       </object>
@@ -126,7 +123,6 @@
                         <child>
                           <object class="GtkImage" id="sources_icon">
                             <property name="valign">center</property>
-                            <property name="icon-name">adw-external-link-symbolic</property>
                           </object>
                         </child>
                       </object>
@@ -140,7 +136,6 @@
                         <child>
                           <object class="GtkImage" id="rating_icon">
                             <property name="valign">center</property>
-                            <property name="icon-name">adw-external-link-symbolic</property>
                           </object>
                         </child>
                       </object>
