@@ -24,9 +24,9 @@ export const Dell = GObject.registerClass({
 
         this._showPackageOption = this._settings.get_boolean('detected-libsmbios');
         this._device_settings_group.visible = this._showPackageOption;
-        
-        this._bios_settings_group.visible = (!this._showPackageOption || (this._settings.get_int('dell-package-type') === 1));
-       
+
+        this._bios_settings_group.visible = !this._showPackageOption || (this._settings.get_int('dell-package-type') === 1);
+
         if (this._showPackageOption) {
             this._settings.bind(
                 'dell-package-type',
@@ -35,7 +35,7 @@ export const Dell = GObject.registerClass({
                 Gio.SettingsBindFlags.DEFAULT
             );
         }
-        
+
         this._settings.bind(
             'need-bios-password',
             this._need_bios_password,
@@ -45,7 +45,7 @@ export const Dell = GObject.registerClass({
 
         this._settings.connect('changed::dell-package-type', () => {
             this._bios_settings_group.visible = this._settings.get_int('dell-package-type') === 1;
-        });        
+        });
 
         this._password_entry_box.connect('activate', () => {
             SecretHelper.setPassword(this._password_entry_box.text, () => {
