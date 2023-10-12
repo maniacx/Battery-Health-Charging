@@ -24,7 +24,7 @@ function fillPreferencesWindow(window) {
     window.set_default_size(650, 700);
     window.add(new General(settings, currentDevice));
     if (currentDevice !== null) {
-        if (settings.get_boolean('detected-cctk'))
+        if ((currentDevice.type === 22) && settings.get_boolean('detected-cctk'))
             window.add(new Dell(settings));
         if (currentDevice.deviceHaveVariableThreshold) // Laptop has customizable threshold
             window.add(new ThresholdPrimary(settings, currentDevice));
