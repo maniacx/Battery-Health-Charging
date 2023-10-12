@@ -27,7 +27,7 @@
         <property name="title" translatable="yes">Bios Authentication</property>
         <child>
           <object class="AdwActionRow">
-            <property name="title" translatable="yes">Need Bios password validation to change mode/threshold</property>
+            <property name="title" translatable="yes">Requires Bios password validation to change mode/threshold</property>
             <property name="subtitle" translatable="yes">Enable if Dell command configure uses Bios (system) password to change mode/threshold</property>
             <property name="activatable-widget">need_bios_password</property>
             <child>
