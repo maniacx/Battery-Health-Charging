@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-23 12:42-0700\n"
-"PO-Revision-Date: 2023-09-23 12:55-0700\n"
+"POT-Creation-Date: 2023-10-11 19:08-0700\n"
+"PO-Revision-Date: 2023-10-11 19:59-0700\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -98,6 +98,10 @@ msgid "Charging threshold not updated. (%s)"
 msgstr "停止充电阈值。 (%s)"
 
 #: lib/notifier.js:117
+msgid "Apply correct Bios Password to set threshold."
+msgstr ""
+
+#: lib/notifier.js:121
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -107,12 +111,12 @@ msgstr ""
 "充电阈值设置为 %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:122 lib/thresholdPanel.js:347
+#: lib/notifier.js:126 lib/thresholdPanel.js:348
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "充电阈值设置为 %d / %d %%"
 
-#: lib/notifier.js:127
+#: lib/notifier.js:131
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -122,12 +126,12 @@ msgstr ""
 "充电限制设置为 %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:131 lib/thresholdPanel.js:351
+#: lib/notifier.js:135 lib/thresholdPanel.js:352
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "充电限制设置为 %d%%"
 
-#: lib/notifier.js:135
+#: lib/notifier.js:139
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -136,7 +140,7 @@ msgstr ""
 "电池2\n"
 "充电阈值设置为 %d / %d %%"
 
-#: lib/notifier.js:140
+#: lib/notifier.js:144
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -145,23 +149,23 @@ msgstr ""
 "电池2\n"
 "充电限制设置为 %d%%"
 
-#: lib/notifier.js:145
+#: lib/notifier.js:149
 msgid "Charging Mode is set to Full Capacity"
 msgstr "充电方式：长效使用模式"
 
-#: lib/notifier.js:149
+#: lib/notifier.js:153
 msgid "Charging Mode is set to Balanced"
 msgstr "充电方式：平衡模式"
 
-#: lib/notifier.js:153
+#: lib/notifier.js:157
 msgid "Charging Mode is set to Maximum Lifespan"
 msgstr "充电方式：最佳保养模式"
 
-#: lib/notifier.js:157
+#: lib/notifier.js:161
 msgid "Charging Mode is set to Express"
 msgstr "充电方式：Express"
 
-#: lib/notifier.js:161
+#: lib/notifier.js:165
 msgid "Charging Mode is set to Adaptive"
 msgstr "充电方式：自适应"
 
@@ -171,125 +175,125 @@ msgid "%d %%"
 msgstr "%d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel.js:29
+#: lib/thresholdPanel.js:28
 msgid "Battery"
 msgstr "电量"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel.js:31 preferences/thresholdPrimary.js:44
+#: lib/thresholdPanel.js:30 preferences/thresholdPrimary.js:44
 msgid "Battery 1"
 msgstr "电池1"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel.js:33 ui/thresholdSecondary.ui:5
+#: lib/thresholdPanel.js:32 ui/thresholdSecondary.ui:5
 msgid "Battery 2"
 msgstr "电池2"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:37 lib/thresholdPanel.js:324
+#: lib/thresholdPanel.js:36 lib/thresholdPanel.js:325
 msgid "Battery Charging Mode"
 msgstr "充电中"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:70 preferences/thresholdPrimary.js:201
+#: lib/thresholdPanel.js:69 preferences/thresholdPrimary.js:201
 #: preferences/thresholdSecondary.js:196
 msgid "Full Capacity Mode"
 msgstr "长效使用模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:76 preferences/thresholdPrimary.js:205
+#: lib/thresholdPanel.js:75 preferences/thresholdPrimary.js:205
 #: preferences/thresholdSecondary.js:200
 msgid "Balanced Mode"
 msgstr "平衡模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:82 preferences/thresholdPrimary.js:209
+#: lib/thresholdPanel.js:81 preferences/thresholdPrimary.js:209
 #: preferences/thresholdSecondary.js:204
 msgid "Maximum Lifespan Mode"
 msgstr "最佳保养模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:87
+#: lib/thresholdPanel.js:86
 msgid "Adaptive Mode"
 msgstr "自适应模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:92
+#: lib/thresholdPanel.js:91
 msgid "Express Mode"
 msgstr "Express 模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:328
+#: lib/thresholdPanel.js:329
 msgid "Battery Uninstalled"
 msgstr "电池已卸载"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:338
+#: lib/thresholdPanel.js:339
 msgid "No Battery detected!"
 msgstr "未检测到电池"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:341
+#: lib/thresholdPanel.js:342
 #, javascript-format
 msgid "Discharge Battery below %d%%"
 msgstr "放电量低于 %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:355
+#: lib/thresholdPanel.js:356
 msgid "Charging Mode: Full Capacity"
 msgstr "充电方式：长效使用模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:358
+#: lib/thresholdPanel.js:359
 msgid "Charging Mode: Balanced"
 msgstr "充电方式：平衡模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:361
+#: lib/thresholdPanel.js:362
 msgid "Charging Mode: Maximum Lifespan"
 msgstr "充电方式：最佳保养模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:364
+#: lib/thresholdPanel.js:365
 msgid "Charging Mode: Adaptive"
 msgstr "充电方式：自适应"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:367
+#: lib/thresholdPanel.js:368
 msgid "Charging Mode: Express"
 msgstr "充电方式：Express"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:409
+#: lib/thresholdPanel.js:410
 msgid "Uninstalled"
 msgstr "卸载"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:412
+#: lib/thresholdPanel.js:413
 msgid "Full Capacity"
 msgstr "长效使用模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:415
+#: lib/thresholdPanel.js:416
 msgid "Balanced"
 msgstr "平衡模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:418
+#: lib/thresholdPanel.js:419
 msgid "Max Lifespan"
 msgstr "最佳保养模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:421
+#: lib/thresholdPanel.js:422
 msgid "Adaptive"
 msgstr "自适应"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:424
+#: lib/thresholdPanel.js:425
 msgid "Express"
 msgstr "Express"
 
-#: preferences/general.js:54
+#: preferences/general.js:49
 msgid ""
 "Select the type of icon for indicator and menu.\n"
 "In threshold settings, if <b>Customise</b> mode is selected, icon type will "
@@ -299,19 +303,19 @@ msgstr ""
 "在阈值设置中，如果选择了<b>自定义</b>模式，图标类型将切换为<b>仅符号</b>并且"
 "该选项将被禁用。"
 
-#: preferences/general.js:56
+#: preferences/general.js:51
 msgid "Select the type of icon for indicator and menu."
 msgstr "选择指示器和菜单的图标类型。"
 
-#: preferences/general.js:170
+#: preferences/general.js:156
 msgid "Remove"
 msgstr "删除"
 
-#: preferences/general.js:173
+#: preferences/general.js:159
 msgid "Install"
 msgstr "安装"
 
-#: preferences/general.js:176
+#: preferences/general.js:162
 msgid "Update"
 msgstr "更新"
 
@@ -340,21 +344,71 @@ msgstr "<i>接受值： %d 至 %d</i>"
 msgid "About"
 msgstr "关于"
 
-#: ui/about.ui:61
+#: ui/about.ui:70
 msgid "Read me"
 msgstr "说明文档"
 
-#: ui/about.ui:75
-msgid "Report a Bug"
-msgstr "报告 Bug"
-
 #: ui/about.ui:89
+msgid "Report an Issue"
+msgstr "报告问题"
+
+#: ui/about.ui:103
 msgid "Translations"
 msgstr "翻译"
 
-#: ui/about.ui:103
+#: ui/about.ui:122
+msgid "View sources on Github"
+msgstr "查看源代码"
+
+#: ui/about.ui:136
 msgid "Rate this extension"
 msgstr "评价本扩展"
+
+#: ui/dell.ui:5
+msgid "Dell"
+msgstr "Dell"
+
+#: ui/dell.ui:9
+msgid "Device settings"
+msgstr "设备设置"
+
+#: ui/dell.ui:12
+msgid "Dell package for charging mode"
+msgstr "充电模式戴尔套餐"
+
+#: ui/dell.ui:13
+msgid "Select Dell package used for changing charging mode/threshold."
+msgstr "选择用于更改充电模式/阈值的戴尔包。"
+
+#: ui/dell.ui:27
+msgid "Bios Authentication"
+msgstr ""
+
+#: ui/dell.ui:30
+msgid "Need Bios password validation to change mode/threshold"
+msgstr ""
+
+#: ui/dell.ui:31
+msgid ""
+"Enable if Dell command configure uses Bios (system) password to change mode/"
+"threshold"
+msgstr ""
+
+#: ui/dell.ui:43
+msgid "Enter Bios Password"
+msgstr ""
+
+#: ui/dell.ui:44
+msgid "Note: Bios password will be stored in Gnome Keyring"
+msgstr ""
+
+#: ui/dell.ui:58
+msgid "Libsmbios"
+msgstr "Libsmbios"
+
+#: ui/dell.ui:59
+msgid "Dell Command Center"
+msgstr "Dell Command Center"
 
 #: ui/general.ui:5
 msgid "General"
@@ -419,27 +473,19 @@ msgstr ""
 "在设备插入时将系统托盘和快速设置面板中的电池指示器图标切换为<b>正在充电</"
 "b>，即使由于充电阈值而禁用充电也是如此。"
 
-#: ui/general.ui:101
-msgid "Dell package for charging mode"
-msgstr "充电模式戴尔套餐"
-
-#: ui/general.ui:102
-msgid "Select Dell package used for changing charging mode/threshold."
-msgstr "选择用于更改充电模式/阈值的戴尔包。"
-
-#: ui/general.ui:116
+#: ui/general.ui:103
 msgid "Installation"
 msgstr "安装"
 
-#: ui/general.ui:119
+#: ui/general.ui:106
 msgid "Install privileges for this user"
 msgstr "安装此用户的权限"
 
-#: ui/general.ui:120
+#: ui/general.ui:107
 msgid "Install / Update / Remove"
 msgstr "安装 / 更新 / 删除"
 
-#: ui/general.ui:123
+#: ui/general.ui:110
 msgid ""
 "This device requires root privileges to change the charging limit. Setup a "
 "privileged script and give user access via polkit.\n"
@@ -459,25 +505,17 @@ msgstr ""
 "<b>安装/更新 </b> 此polkit 策略脚本并继续使用此扩展。\n"
 "<b>在卸载此扩展前移除</b> 此polkit 策略脚本。"
 
-#: ui/general.ui:147
+#: ui/general.ui:134
 msgid "Symbols Only"
 msgstr "仅符号"
 
-#: ui/general.ui:148
+#: ui/general.ui:135
 msgid "Symbol and Percentage"
 msgstr "符号和百分比"
 
-#: ui/general.ui:149
+#: ui/general.ui:136
 msgid "Percentage Highlighted"
 msgstr "高亮百分比"
-
-#: ui/general.ui:154
-msgid "Libsmbios"
-msgstr "Libsmbios"
-
-#: ui/general.ui:155
-msgid "Dell Command Center"
-msgstr "Dell Command Center"
 
 #: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
 msgid "Customize"
@@ -491,24 +529,24 @@ msgstr "默认"
 msgid "Apply"
 msgstr "应用"
 
-#: ui/thresholdPrimary.ui:58 ui/thresholdPrimary.ui:132
-#: ui/thresholdPrimary.ui:206 ui/thresholdSecondary.ui:58
-#: ui/thresholdSecondary.ui:132 ui/thresholdSecondary.ui:206
+#: ui/thresholdPrimary.ui:58 ui/thresholdPrimary.ui:130
+#: ui/thresholdPrimary.ui:202 ui/thresholdSecondary.ui:58
+#: ui/thresholdSecondary.ui:130 ui/thresholdSecondary.ui:202
 msgid "Stop charging threshold value"
 msgstr "停止充电阈值"
 
-#: ui/thresholdPrimary.ui:70 ui/thresholdPrimary.ui:105
-#: ui/thresholdPrimary.ui:144 ui/thresholdPrimary.ui:179
-#: ui/thresholdPrimary.ui:218 ui/thresholdPrimary.ui:254
-#: ui/thresholdSecondary.ui:70 ui/thresholdSecondary.ui:105
-#: ui/thresholdSecondary.ui:144 ui/thresholdSecondary.ui:179
-#: ui/thresholdSecondary.ui:218 ui/thresholdSecondary.ui:254
+#: ui/thresholdPrimary.ui:70 ui/thresholdPrimary.ui:104
+#: ui/thresholdPrimary.ui:142 ui/thresholdPrimary.ui:176
+#: ui/thresholdPrimary.ui:214 ui/thresholdPrimary.ui:249
+#: ui/thresholdSecondary.ui:70 ui/thresholdSecondary.ui:104
+#: ui/thresholdSecondary.ui:142 ui/thresholdSecondary.ui:176
+#: ui/thresholdSecondary.ui:214 ui/thresholdSecondary.ui:249
 msgid "Current Value"
 msgstr "当前值"
 
-#: ui/thresholdPrimary.ui:93 ui/thresholdPrimary.ui:167
-#: ui/thresholdPrimary.ui:242 ui/thresholdSecondary.ui:93
-#: ui/thresholdSecondary.ui:167 ui/thresholdSecondary.ui:242
+#: ui/thresholdPrimary.ui:92 ui/thresholdPrimary.ui:164
+#: ui/thresholdPrimary.ui:237 ui/thresholdSecondary.ui:92
+#: ui/thresholdSecondary.ui:164 ui/thresholdSecondary.ui:237
 msgid "Start charging threshold value"
 msgstr "开始充电阈值"
 

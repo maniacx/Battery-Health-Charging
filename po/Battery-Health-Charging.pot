@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-23 12:42-0700\n"
+"POT-Creation-Date: 2023-10-11 19:08-0700\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -88,6 +88,10 @@ msgid "Charging threshold not updated. (%s)"
 msgstr ""
 
 #: lib/notifier.js:117
+msgid "Apply correct Bios Password to set threshold."
+msgstr ""
+
+#: lib/notifier.js:121
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -95,12 +99,12 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:122 lib/thresholdPanel.js:347
+#: lib/notifier.js:126 lib/thresholdPanel.js:348
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr ""
 
-#: lib/notifier.js:127
+#: lib/notifier.js:131
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -108,42 +112,42 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:131 lib/thresholdPanel.js:351
+#: lib/notifier.js:135 lib/thresholdPanel.js:352
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr ""
 
-#: lib/notifier.js:135
+#: lib/notifier.js:139
 #, javascript-format
 msgid ""
 "Battery 2\n"
 "Charge thresholds are set to %d / %d %%"
 msgstr ""
 
-#: lib/notifier.js:140
+#: lib/notifier.js:144
 #, javascript-format
 msgid ""
 "Battery 2\n"
 "Charging Limit is set to %d%%"
 msgstr ""
 
-#: lib/notifier.js:145
+#: lib/notifier.js:149
 msgid "Charging Mode is set to Full Capacity"
 msgstr ""
 
-#: lib/notifier.js:149
+#: lib/notifier.js:153
 msgid "Charging Mode is set to Balanced"
 msgstr ""
 
-#: lib/notifier.js:153
+#: lib/notifier.js:157
 msgid "Charging Mode is set to Maximum Lifespan"
 msgstr ""
 
-#: lib/notifier.js:157
+#: lib/notifier.js:161
 msgid "Charging Mode is set to Express"
 msgstr ""
 
-#: lib/notifier.js:161
+#: lib/notifier.js:165
 msgid "Charging Mode is set to Adaptive"
 msgstr ""
 
@@ -153,144 +157,144 @@ msgid "%d %%"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel.js:29
+#: lib/thresholdPanel.js:28
 msgid "Battery"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel.js:31 preferences/thresholdPrimary.js:44
+#: lib/thresholdPanel.js:30 preferences/thresholdPrimary.js:44
 msgid "Battery 1"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel.js:33 ui/thresholdSecondary.ui:5
+#: lib/thresholdPanel.js:32 ui/thresholdSecondary.ui:5
 msgid "Battery 2"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:37 lib/thresholdPanel.js:324
+#: lib/thresholdPanel.js:36 lib/thresholdPanel.js:325
 msgid "Battery Charging Mode"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:70 preferences/thresholdPrimary.js:201
+#: lib/thresholdPanel.js:69 preferences/thresholdPrimary.js:201
 #: preferences/thresholdSecondary.js:196
 msgid "Full Capacity Mode"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:76 preferences/thresholdPrimary.js:205
+#: lib/thresholdPanel.js:75 preferences/thresholdPrimary.js:205
 #: preferences/thresholdSecondary.js:200
 msgid "Balanced Mode"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:82 preferences/thresholdPrimary.js:209
+#: lib/thresholdPanel.js:81 preferences/thresholdPrimary.js:209
 #: preferences/thresholdSecondary.js:204
 msgid "Maximum Lifespan Mode"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:87
+#: lib/thresholdPanel.js:86
 msgid "Adaptive Mode"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:92
+#: lib/thresholdPanel.js:91
 msgid "Express Mode"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:328
+#: lib/thresholdPanel.js:329
 msgid "Battery Uninstalled"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:338
+#: lib/thresholdPanel.js:339
 msgid "No Battery detected!"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:341
+#: lib/thresholdPanel.js:342
 #, javascript-format
 msgid "Discharge Battery below %d%%"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:355
+#: lib/thresholdPanel.js:356
 msgid "Charging Mode: Full Capacity"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:358
+#: lib/thresholdPanel.js:359
 msgid "Charging Mode: Balanced"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:361
+#: lib/thresholdPanel.js:362
 msgid "Charging Mode: Maximum Lifespan"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:364
+#: lib/thresholdPanel.js:365
 msgid "Charging Mode: Adaptive"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:367
+#: lib/thresholdPanel.js:368
 msgid "Charging Mode: Express"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:409
+#: lib/thresholdPanel.js:410
 msgid "Uninstalled"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:412
+#: lib/thresholdPanel.js:413
 msgid "Full Capacity"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:415
+#: lib/thresholdPanel.js:416
 msgid "Balanced"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:418
+#: lib/thresholdPanel.js:419
 msgid "Max Lifespan"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:421
+#: lib/thresholdPanel.js:422
 msgid "Adaptive"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:424
+#: lib/thresholdPanel.js:425
 msgid "Express"
 msgstr ""
 
-#: preferences/general.js:54
+#: preferences/general.js:49
 msgid ""
 "Select the type of icon for indicator and menu.\n"
 "In threshold settings, if <b>Customise</b> mode is selected, icon type will "
 "switch to <b>Symbols Only</b> and this option will be disabled."
 msgstr ""
 
-#: preferences/general.js:56
+#: preferences/general.js:51
 msgid "Select the type of icon for indicator and menu."
 msgstr ""
 
-#: preferences/general.js:170
+#: preferences/general.js:156
 msgid "Remove"
 msgstr ""
 
-#: preferences/general.js:173
+#: preferences/general.js:159
 msgid "Install"
 msgstr ""
 
-#: preferences/general.js:176
+#: preferences/general.js:162
 msgid "Update"
 msgstr ""
 
@@ -319,20 +323,70 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ui/about.ui:61
+#: ui/about.ui:70
 msgid "Read me"
 msgstr ""
 
-#: ui/about.ui:75
-msgid "Report a Bug"
-msgstr ""
-
 #: ui/about.ui:89
-msgid "Translations"
+msgid "Report an Issue"
 msgstr ""
 
 #: ui/about.ui:103
+msgid "Translations"
+msgstr ""
+
+#: ui/about.ui:122
+msgid "View sources on Github"
+msgstr ""
+
+#: ui/about.ui:136
 msgid "Rate this extension"
+msgstr ""
+
+#: ui/dell.ui:5
+msgid "Dell"
+msgstr ""
+
+#: ui/dell.ui:9
+msgid "Device settings"
+msgstr ""
+
+#: ui/dell.ui:12
+msgid "Dell package for charging mode"
+msgstr ""
+
+#: ui/dell.ui:13
+msgid "Select Dell package used for changing charging mode/threshold."
+msgstr ""
+
+#: ui/dell.ui:27
+msgid "Bios Authentication"
+msgstr ""
+
+#: ui/dell.ui:30
+msgid "Need Bios password validation to change mode/threshold"
+msgstr ""
+
+#: ui/dell.ui:31
+msgid ""
+"Enable if Dell command configure uses Bios (system) password to change mode/"
+"threshold"
+msgstr ""
+
+#: ui/dell.ui:43
+msgid "Enter Bios Password"
+msgstr ""
+
+#: ui/dell.ui:44
+msgid "Note: Bios password will be stored in Gnome Keyring"
+msgstr ""
+
+#: ui/dell.ui:58
+msgid "Libsmbios"
+msgstr ""
+
+#: ui/dell.ui:59
+msgid "Dell Command Center"
 msgstr ""
 
 #: ui/general.ui:5
@@ -396,27 +450,19 @@ msgid ""
 "charging is disabled due to charge threshold."
 msgstr ""
 
-#: ui/general.ui:101
-msgid "Dell package for charging mode"
-msgstr ""
-
-#: ui/general.ui:102
-msgid "Select Dell package used for changing charging mode/threshold."
-msgstr ""
-
-#: ui/general.ui:116
+#: ui/general.ui:103
 msgid "Installation"
 msgstr ""
 
-#: ui/general.ui:119
+#: ui/general.ui:106
 msgid "Install privileges for this user"
 msgstr ""
 
-#: ui/general.ui:120
+#: ui/general.ui:107
 msgid "Install / Update / Remove"
 msgstr ""
 
-#: ui/general.ui:123
+#: ui/general.ui:110
 msgid ""
 "This device requires root privileges to change the charging limit. Setup a "
 "privileged script and give user access via polkit.\n"
@@ -429,24 +475,16 @@ msgid ""
 "<b>Remove</b> this polkit policy script before uninstalling this extension."
 msgstr ""
 
-#: ui/general.ui:147
+#: ui/general.ui:134
 msgid "Symbols Only"
 msgstr ""
 
-#: ui/general.ui:148
+#: ui/general.ui:135
 msgid "Symbol and Percentage"
 msgstr ""
 
-#: ui/general.ui:149
+#: ui/general.ui:136
 msgid "Percentage Highlighted"
-msgstr ""
-
-#: ui/general.ui:154
-msgid "Libsmbios"
-msgstr ""
-
-#: ui/general.ui:155
-msgid "Dell Command Center"
 msgstr ""
 
 #: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
@@ -461,23 +499,23 @@ msgstr ""
 msgid "Apply"
 msgstr ""
 
-#: ui/thresholdPrimary.ui:58 ui/thresholdPrimary.ui:132
-#: ui/thresholdPrimary.ui:206 ui/thresholdSecondary.ui:58
-#: ui/thresholdSecondary.ui:132 ui/thresholdSecondary.ui:206
+#: ui/thresholdPrimary.ui:58 ui/thresholdPrimary.ui:130
+#: ui/thresholdPrimary.ui:202 ui/thresholdSecondary.ui:58
+#: ui/thresholdSecondary.ui:130 ui/thresholdSecondary.ui:202
 msgid "Stop charging threshold value"
 msgstr ""
 
-#: ui/thresholdPrimary.ui:70 ui/thresholdPrimary.ui:105
-#: ui/thresholdPrimary.ui:144 ui/thresholdPrimary.ui:179
-#: ui/thresholdPrimary.ui:218 ui/thresholdPrimary.ui:254
-#: ui/thresholdSecondary.ui:70 ui/thresholdSecondary.ui:105
-#: ui/thresholdSecondary.ui:144 ui/thresholdSecondary.ui:179
-#: ui/thresholdSecondary.ui:218 ui/thresholdSecondary.ui:254
+#: ui/thresholdPrimary.ui:70 ui/thresholdPrimary.ui:104
+#: ui/thresholdPrimary.ui:142 ui/thresholdPrimary.ui:176
+#: ui/thresholdPrimary.ui:214 ui/thresholdPrimary.ui:249
+#: ui/thresholdSecondary.ui:70 ui/thresholdSecondary.ui:104
+#: ui/thresholdSecondary.ui:142 ui/thresholdSecondary.ui:176
+#: ui/thresholdSecondary.ui:214 ui/thresholdSecondary.ui:249
 msgid "Current Value"
 msgstr ""
 
-#: ui/thresholdPrimary.ui:93 ui/thresholdPrimary.ui:167
-#: ui/thresholdPrimary.ui:242 ui/thresholdSecondary.ui:93
-#: ui/thresholdSecondary.ui:167 ui/thresholdSecondary.ui:242
+#: ui/thresholdPrimary.ui:92 ui/thresholdPrimary.ui:164
+#: ui/thresholdPrimary.ui:237 ui/thresholdSecondary.ui:92
+#: ui/thresholdSecondary.ui:164 ui/thresholdSecondary.ui:237
 msgid "Start charging threshold value"
 msgstr ""
