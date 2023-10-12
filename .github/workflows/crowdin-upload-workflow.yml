@@ -1,9 +1,9 @@
-name: Crowdin Upload Workflow Gnone45
+name: Crowdin Upload Workflow GNOME45+
 
 on:
   push:
     path: [ 'po/*' ]
-    branches: [ GN45-main ]
+    branches: [ GNOME45+ ]
 
 jobs:
   crowdin:
