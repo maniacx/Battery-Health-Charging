@@ -180,11 +180,11 @@ case "$TOOLCMD" in
         ;;
     DELL_CCTK_PASSWORD_BAT_WRITE)
         if [ "$ARG1" = "adv" ];then
-            /opt/dell/dcc/cctk --ValSetupPwd=$ARG3 --PrimaryBattChargeCfg=Adaptive
+            /opt/dell/dcc/cctk --ValSetupPwd="$ARG3" --PrimaryBattChargeCfg=Adaptive
         elif [ "$ARG1" = "exp" ];then
-            /opt/dell/dcc/cctk --ValSetupPwd=$ARG3 --PrimaryBattChargeCfg=Express
+            /opt/dell/dcc/cctk --ValSetupPwd="$ARG3" --PrimaryBattChargeCfg=Express
         else
-            /opt/dell/dcc/cctk --ValSetupPwd=$ARG3 --PrimaryBattChargeCfg=Custom:"$ARG2"-"$ARG1"
+            /opt/dell/dcc/cctk --ValSetupPwd="$ARG3" --PrimaryBattChargeCfg=Custom:"$ARG2"-"$ARG1"
         fi
         ;;
     CHECKINSTALLATION)
