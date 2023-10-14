@@ -73,6 +73,10 @@
             <default>0</default>
             <summary>Dell package selection 0:libsmbios 1:cctk</summary>
         </key>
+        <key name="apple-charging-led" type="b">
+            <default>false</default>
+            <summary>Apple charging LED</summary>
+        </key>
         <key name="need-bios-password" type="b">
             <default>false</default>
             <summary>Need Bios password</summary>

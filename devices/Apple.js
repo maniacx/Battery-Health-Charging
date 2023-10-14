@@ -44,16 +44,39 @@ export const AppleSingleBattery = GObject.registerClass({
             return false;
         if (!fileExists(BAT0_END_PATH))
             return false;
+        this._chargingDisable = false;
+        this._settings.connectObject(
+            'changed::apple-charging-led', () => {
+                this._chargingLedStatusChanged = true;
+                this.setThresholdLimit(this._settings.get_string('charging-mode'));
+            },
+            this
+        );
         return true;
     }
 
     async setThresholdLimit(chargingMode) {
+        let chargingLedValue;
         this._status = 0;
         const ctlPath = this._settings.get_string('ctl-path');
         this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
-        if (this._verifyThreshold())
+        if (!this._chargingLedStatusChanged && this._verifyThreshold())
             return this._status;
-        [this._status] = await runCommandCtl(ctlPath, 'BAT0_END', `${this._endValue}`, null, null);
+        const chargingLed = this._settings.get_boolean('apple-charging-led');
+
+        if (this._chargingLedStatusChanged) {
+            if (chargingLed)
+                chargingLedValue = this._endValue >= 97 ? 95 : this._endValue - 2;
+            else
+                chargingLedValue = 95;
+            this._chargingLedStatusChanged = false;
+        } else if (chargingLed) {
+            chargingLedValue = this._endValue >= 97 ? 95 : this._endValue - 2;
+        } else {
+            chargingLedValue = 0;
+        }
+
+        [this._status] = await runCommandCtl(ctlPath, 'APPLE', `${this._endValue}`, `${chargingLedValue}`, null);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
@@ -92,5 +115,7 @@ export const AppleSingleBattery = GObject.registerClass({
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
         this._delayReadTimeoutId = null;
+        this._settings.disconnectObject(this);
+        this._settings = null;
     }
 });
