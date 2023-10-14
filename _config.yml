@@ -1,0 +1,65 @@
+logo: "/assets/images/battery-health-charging.png"
+favicon_ico: "/assets/images/favicon.ico"
+
+theme: just-the-docs
+
+url: https://macs18max.github.io/
+
+permalink: pretty
+
+search_enabled: false
+
+enable_copy_code_button: true
+
+heading_anchors: true
+  
+aux_links:
+  "View sources on GitHub":
+    - "https://github.com/maniacx/Battery-Health-Charging"
+  
+aux_links_new_tab: false
+
+nav_sort: case_sensitive
+
+# Back to top link
+back_to_top: true
+back_to_top_text: "Back to top"
+
+footer_content: "Copyright &copy; 2017-2020 Patrick Marsceill. Distributed by an <a href=\"https://github.com/just-the-docs/just-the-docs/tree/main/LICENSE.txt\">MIT license.</a> <a href=\"https://www.netlify.com/\">This site is powered by Netlify.</a><br>Build by maniacx for Battery Health Charging Gnome Extension"
+
+gh_edit_link: false
+
+# Color scheme currently only supports "dark", "light"/nil (default), or a custom scheme that you define
+color_scheme: nil
+
+callouts_level: quiet # or loud
+callouts:
+  highlight:
+    color: yellow
+  important:
+    title: Important
+    color: purple
+  new:
+    title: New
+    color: green
+  note:
+    title: Note
+    color: blue
+  warning:
+    title: Warning
+    color: red
+    
+kramdown:
+  syntax_highlighter_opts:
+    block:
+      line_numbers: false
+
+compress_html:
+  clippings: all
+  comments: all
+  endings: all
+  startings: []
+  blanklines: false
+  profile: false
+  # ignore:
+  #   envs: all
