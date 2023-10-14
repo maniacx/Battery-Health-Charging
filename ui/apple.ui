@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="Battery-Health-Charging@maniacx.github.com">
+  <template class="BHC_Apple" parent="AdwPreferencesPage">
+    <property name="name">Apple</property>
+    <property name="title" translatable="yes">Apple</property>
+    <property name="icon-name">computer-symbolic</property>
+    <child>
+      <object class="AdwPreferencesGroup" id="device_settings_group">
+        <property name="title" translatable="yes">Device settings</property>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">Change the behavior of charging indicator light</property>
+            <property name="activatable-widget">charging_led</property>
+            <child>
+              <object class="GtkSwitch" id="charging_led">
+                <property name="valign">center</property>
+              </object>
+            </child>
+          </object>
+        </child>
+        <child>
+          <object class="AdwActionRow">
+            <property name="subtitle" translatable="yes">&lt;b&gt;Enabled:&lt;/b&gt;&#xA;&#x2022; Indicator light glows &lt;b&gt;green&lt;/b&gt; when charger on hold. (battery level reaches charging threshold).&#xA;&#x2022; Indicator light glows &lt;b&gt;amber&lt;/b&gt; while charging.&#xA;&#xA;&lt;b&gt;Disabled (system default behavior):&lt;/b&gt;&#xA;&#x2022; Indicator light glows &lt;b&gt;green&lt;/b&gt; only when battery is fully charged (battery level 100%)&#xA;&#x2022; Indicator light glows &lt;b&gt;amber&lt;/b&gt; when charger on hold. (battery level reaches charging threshold).&#xA;&#x2022; Indicator light glows &lt;b&gt;amber&lt;/b&gt; while charging.&#xA;</property>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
