@@ -53,7 +53,7 @@ var AppleSingleBattery = GObject.registerClass({
         this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
         if (this._verifyThreshold())
             return this._status;
-        [this._status] = await runCommandCtl(ctlPath, 'APPLE_INTEL', `${this._endValue}`, null, null);
+        [this._status] = await runCommandCtl(ctlPath, 'BAT0_END', `${this._endValue}`, null, null);
         if (this._status === 0) {
             if (this._verifyThreshold())
                 return this._status;
