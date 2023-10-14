@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-23 08:31-0700\n"
-"PO-Revision-Date: 2023-09-23 09:09-0700\n"
+"POT-Creation-Date: 2023-10-14 11:53-0700\n"
+"PO-Revision-Date: 2023-10-14 11:59-0700\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
 "Language: uk_UA\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Crowdin-Language: uk\n"
 "X-Crowdin-File: Battery-Health-Charging.pot\n"
 "X-Crowdin-File-ID: 41\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.3.2\n"
 
 #: lib/notifier.js:39
 msgid "Battery Health Charging"
@@ -104,6 +104,10 @@ msgid "Charging threshold not updated. (%s)"
 msgstr "Припинити порогове значення зарядки. (%s)"
 
 #: lib/notifier.js:120
+msgid "Apply correct Bios Password to set threshold."
+msgstr ""
+
+#: lib/notifier.js:124
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -113,12 +117,12 @@ msgstr ""
 "поріг заряду змінено на %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:125 lib/thresholdPanel.js:374
+#: lib/notifier.js:129 lib/thresholdPanel.js:376
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "Поріг заряду батареї: %d / %d %%"
 
-#: lib/notifier.js:130
+#: lib/notifier.js:134
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -128,12 +132,12 @@ msgstr ""
 "Ліміт зарядки встановлено на %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:134 lib/thresholdPanel.js:378
+#: lib/notifier.js:138 lib/thresholdPanel.js:380
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "Ліміт зарядження: %d%%"
 
-#: lib/notifier.js:138
+#: lib/notifier.js:142
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -142,7 +146,7 @@ msgstr ""
 "Акумулятор 2\n"
 "поріг заряду змінено на %d / %d %%"
 
-#: lib/notifier.js:143
+#: lib/notifier.js:147
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -151,23 +155,23 @@ msgstr ""
 "Акумулятор 2\n"
 "Ліміт зарядки встановлено на %d%%"
 
-#: lib/notifier.js:148
+#: lib/notifier.js:152
 msgid "Charging Mode is set to Full Capacity"
 msgstr "Режим заряджання: Повна поємність"
 
-#: lib/notifier.js:152
+#: lib/notifier.js:156
 msgid "Charging Mode is set to Balanced"
 msgstr "Режим заряджання: Збалансований"
 
-#: lib/notifier.js:156
+#: lib/notifier.js:160
 msgid "Charging Mode is set to Maximum Lifespan"
 msgstr "Режим заряджання: Збереження"
 
-#: lib/notifier.js:160
+#: lib/notifier.js:164
 msgid "Charging Mode is set to Express"
 msgstr "Режим заряджання: Express"
 
-#: lib/notifier.js:164
+#: lib/notifier.js:168
 msgid "Charging Mode is set to Adaptive"
 msgstr "Режим заряджання: Адаптивний"
 
@@ -222,50 +226,50 @@ msgid "Express Mode"
 msgstr "Pежим Express"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:372 lib/thresholdPanel.js:365
+#: lib/thresholdPanel42.js:374 lib/thresholdPanel.js:367
 msgid "No Battery detected!"
 msgstr "Акумулятор не виявлено!"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:375 lib/thresholdPanel.js:368
+#: lib/thresholdPanel42.js:377 lib/thresholdPanel.js:370
 #, javascript-format
 msgid "Discharge Battery below %d%%"
 msgstr "Розряд батареї нижче %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:381
+#: lib/thresholdPanel42.js:383
 #, javascript-format
 msgid "Charge thresholds: %d / %d %%"
 msgstr "Поріг заряду батареї: %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:385
+#: lib/thresholdPanel42.js:387
 #, javascript-format
 msgid "Charging Limit: %d%%"
 msgstr "Ліміт зарядження: %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:388 lib/thresholdPanel.js:382
+#: lib/thresholdPanel42.js:390 lib/thresholdPanel.js:384
 msgid "Charging Mode: Full Capacity"
 msgstr "Режим заряджання: Повна поємність"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:390 lib/thresholdPanel.js:385
+#: lib/thresholdPanel42.js:392 lib/thresholdPanel.js:387
 msgid "Charging Mode: Balanced"
 msgstr "Режим заряджання: Збалансований"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:393
+#: lib/thresholdPanel42.js:395
 msgid "Charging Mode: Max. Lifespan"
 msgstr "Режим заряджання: Збереження"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:395 lib/thresholdPanel.js:391
+#: lib/thresholdPanel42.js:397 lib/thresholdPanel.js:393
 msgid "Charging Mode: Adaptive"
 msgstr "Режим заряджання: Адаптивний"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:397 lib/thresholdPanel.js:394
+#: lib/thresholdPanel42.js:399 lib/thresholdPanel.js:396
 msgid "Charging Mode: Express"
 msgstr "Режим заряджання: Express"
 
@@ -275,51 +279,51 @@ msgid "Battery"
 msgstr "Батарея"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:46 lib/thresholdPanel.js:351
+#: lib/thresholdPanel.js:46 lib/thresholdPanel.js:353
 msgid "Battery Charging Mode"
 msgstr "Режим зарядки"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:355
+#: lib/thresholdPanel.js:357
 msgid "Battery Uninstalled"
 msgstr "Акумулятор видалено"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:388
+#: lib/thresholdPanel.js:390
 msgid "Charging Mode: Maximum Lifespan"
 msgstr "Режим заряджання: Збереження"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:445
+#: lib/thresholdPanel.js:447
 msgid "Uninstalled"
 msgstr "Видалено"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:448
+#: lib/thresholdPanel.js:450
 msgid "Full Capacity"
 msgstr "Повна поємність"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:451
+#: lib/thresholdPanel.js:453
 msgid "Balanced"
 msgstr "Збалансований"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:454
+#: lib/thresholdPanel.js:456
 msgid "Max Lifespan"
 msgstr "Збереження"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:457
+#: lib/thresholdPanel.js:459
 msgid "Adaptive"
 msgstr "Адаптивний"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:460
+#: lib/thresholdPanel.js:462
 msgid "Express"
 msgstr "Express"
 
-#: preferences/general.js:60
+#: preferences/general.js:55
 msgid ""
 "Select the type of icon for indicator and menu.\n"
 "In threshold settings, if <b>Customise</b> mode is selected, icon type will "
@@ -330,19 +334,19 @@ msgstr ""
 "тип піктограми зміниться на <b>Тільки символи</b>, і цей параметр буде "
 "вимкнено."
 
-#: preferences/general.js:62
+#: preferences/general.js:57
 msgid "Select the type of icon for indicator and menu."
 msgstr "Вибір типу іконки для індикатора і меню."
 
-#: preferences/general.js:180
+#: preferences/general.js:166
 msgid "Remove"
 msgstr "Видалити"
 
-#: preferences/general.js:183
+#: preferences/general.js:169
 msgid "Install"
 msgstr "Встановити"
 
-#: preferences/general.js:186
+#: preferences/general.js:172
 msgid "Update"
 msgstr "Оновити"
 
@@ -371,21 +375,96 @@ msgstr "<i>Прийшло значення: від %d до %d</i>"
 msgid "About"
 msgstr "Про програму"
 
-#: ui/about.ui:61
+#: ui/about.ui:70
 msgid "Read me"
 msgstr "Прочитай мене"
 
-#: ui/about.ui:75
-msgid "Report a Bug"
-msgstr "Повідомити про помилку"
+#: ui/about.ui:88
+msgid "Report an Issue"
+msgstr "Повідомити про ваду"
 
-#: ui/about.ui:89
+#: ui/about.ui:101
 msgid "Translations"
 msgstr "Переклади"
 
-#: ui/about.ui:103
+#: ui/about.ui:119
+msgid "View sources on Github"
+msgstr "Переглянути вихідний код"
+
+#: ui/about.ui:132
 msgid "Rate this extension"
 msgstr "Оцінити це розширення"
+
+#: ui/apple.ui:5
+msgid "Apple"
+msgstr "Apple"
+
+#: ui/apple.ui:9 ui/dell.ui:9
+msgid "Device settings"
+msgstr "Налаштування пристрою"
+
+#: ui/apple.ui:12
+msgid "Change the behavior of charging indicator light"
+msgstr ""
+
+#: ui/apple.ui:23
+msgid ""
+"<b>Enabled:</b>\n"
+"• Indicator light glows <b>green</b> when charger on hold. (battery level "
+"reaches charging threshold).\n"
+"• Indicator light glows <b>amber</b> while charging.\n"
+"\n"
+"<b>Disabled (system default behavior):</b>\n"
+"• Indicator light glows <b>green</b> only when battery is fully charged "
+"(battery level 100%)\n"
+"• Indicator light glows <b>amber</b> when charger on hold. (battery level "
+"reaches charging threshold).\n"
+"• Indicator light glows <b>amber</b> while charging.\n"
+msgstr ""
+
+#: ui/dell.ui:5
+msgid "Dell"
+msgstr "Dell"
+
+#: ui/dell.ui:12
+msgid "Dell package for charging mode"
+msgstr "Пакет Dell для режиму зарядки"
+
+#: ui/dell.ui:13
+msgid "Select Dell package used for changing charging mode/threshold."
+msgstr ""
+"Виберіть пакет Dell, який використовується для зміни режиму/порогу "
+"заряджання."
+
+#: ui/dell.ui:27
+msgid "Bios Authentication"
+msgstr ""
+
+#: ui/dell.ui:30
+msgid "Requires Bios password validation to change mode/threshold"
+msgstr ""
+
+#: ui/dell.ui:31
+msgid ""
+"Enable if Dell command configure uses Bios (system) password to change mode/"
+"threshold"
+msgstr ""
+
+#: ui/dell.ui:43
+msgid "Enter Bios Password"
+msgstr ""
+
+#: ui/dell.ui:44
+msgid "Note: Bios password will be stored in Gnome Keyring"
+msgstr ""
+
+#: ui/dell.ui:58
+msgid "Libsmbios"
+msgstr "Libsmbios"
+
+#: ui/dell.ui:59
+msgid "Dell Command Center"
+msgstr "Командний центр Dell"
 
 #: ui/general.ui:5
 msgid "General"
@@ -454,29 +533,19 @@ msgstr ""
 "системному треї та на панелі швидких налаштувань, коли пристрій підключено "
 "до джерела живлення, навіть якщо заряджання вимкнено через поріг заряду."
 
-#: ui/general.ui:101
-msgid "Dell package for charging mode"
-msgstr "Пакет Dell для режиму зарядки"
-
-#: ui/general.ui:102
-msgid "Select Dell package used for changing charging mode/threshold."
-msgstr ""
-"Виберіть пакет Dell, який використовується для зміни режиму/порогу "
-"заряджання."
-
-#: ui/general.ui:116
+#: ui/general.ui:103
 msgid "Installation"
 msgstr "Встановлення"
 
-#: ui/general.ui:119
+#: ui/general.ui:106
 msgid "Install privileges for this user"
 msgstr "Встановити права для цього користувача"
 
-#: ui/general.ui:120
+#: ui/general.ui:107
 msgid "Install / Update / Remove"
 msgstr "Встановити / Оновити / Видаляти"
 
-#: ui/general.ui:123
+#: ui/general.ui:110
 msgid ""
 "This device requires root privileges to change the charging limit. Setup a "
 "privileged script and give user access via polkit.\n"
@@ -499,25 +568,17 @@ msgstr ""
 "використання цього розширення.\n"
 "<b>Видаляти</b> цей скрипт політики polkit перед видаленням цього розширення."
 
-#: ui/general.ui:147
+#: ui/general.ui:134
 msgid "Symbols Only"
 msgstr "Тільки символи"
 
-#: ui/general.ui:148
+#: ui/general.ui:135
 msgid "Symbol and Percentage"
 msgstr "Символ та процент"
 
-#: ui/general.ui:149
+#: ui/general.ui:136
 msgid "Percentage Highlighted"
 msgstr "Процент виділено"
-
-#: ui/general.ui:154
-msgid "Libsmbios"
-msgstr "Libsmbios"
-
-#: ui/general.ui:155
-msgid "Dell Command Center"
-msgstr "Командний центр Dell"
 
 #: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
 msgid "Customize"
