@@ -99,7 +99,7 @@
                     <child>
                       <object class="AdwActionRow" id="open-translation">
                         <property name="title" translatable="yes">Translations</property>
-                        <property name="tooltip-text">https://maniacx.github.io/Battery-Health-Charging/docs/Translation</property>
+                        <property name="tooltip-text">https://maniacx.github.io/Battery-Health-Charging/translation</property>
                         <property name="action-name">prefs.open-translation</property>
                         <property name="activatable">true</property>
                         <child>
