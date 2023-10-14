@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-11 19:08-0700\n"
-"PO-Revision-Date: 2023-10-11 19:20-0700\n"
+"POT-Creation-Date: 2023-10-14 15:32-0700\n"
+"PO-Revision-Date: 2023-10-14 15:33-0700\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -355,29 +355,52 @@ msgstr "À propos"
 msgid "Read me"
 msgstr "Lisez moi"
 
-#: ui/about.ui:89
+#: ui/about.ui:88
 msgid "Report an Issue"
 msgstr "Signaler un problème"
 
-#: ui/about.ui:103
+#: ui/about.ui:101
 msgid "Translations"
 msgstr "Traductions"
 
-#: ui/about.ui:122
+#: ui/about.ui:119
 msgid "View sources on Github"
 msgstr "Accéder au code source"
 
-#: ui/about.ui:136
+#: ui/about.ui:132
 msgid "Rate this extension"
 msgstr "Notez cette extension"
+
+#: ui/apple.ui:5
+msgid "Apple"
+msgstr "Apple"
+
+#: ui/apple.ui:9 ui/dell.ui:9
+msgid "Device settings"
+msgstr "Paramètres de l’appareil"
+
+#: ui/apple.ui:12
+msgid "Change the behavior of charging indicator light"
+msgstr ""
+
+#: ui/apple.ui:23
+msgid ""
+"<b>Enabled:</b>\n"
+"• Indicator light glows <b>green</b> when charger on hold. (battery level "
+"reaches charging threshold).\n"
+"• Indicator light glows <b>amber</b> while charging.\n"
+"\n"
+"<b>Disabled (system default behavior):</b>\n"
+"• Indicator light glows <b>green</b> only when battery is fully charged "
+"(battery level 100%)\n"
+"• Indicator light glows <b>amber</b> when charger on hold. (battery level "
+"reaches charging threshold).\n"
+"• Indicator light glows <b>amber</b> while charging.\n"
+msgstr ""
 
 #: ui/dell.ui:5
 msgid "Dell"
 msgstr "Dell"
-
-#: ui/dell.ui:9
-msgid "Device settings"
-msgstr "Paramètres de l’appareil"
 
 #: ui/dell.ui:12
 msgid "Dell package for charging mode"
@@ -393,7 +416,7 @@ msgid "Bios Authentication"
 msgstr ""
 
 #: ui/dell.ui:30
-msgid "Need Bios password validation to change mode/threshold"
+msgid "Requires Bios password validation to change mode/threshold"
 msgstr ""
 
 #: ui/dell.ui:31

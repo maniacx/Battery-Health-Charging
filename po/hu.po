@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-11 19:08-0700\n"
-"PO-Revision-Date: 2023-10-11 19:24-0700\n"
+"POT-Creation-Date: 2023-10-14 15:32-0700\n"
+"PO-Revision-Date: 2023-10-14 15:33-0700\n"
 "Last-Translator: ViBE <vibe@protonmail.com>\n"
 "Language-Team: Hungarian <vibe@protonmail.com>\n"
 "Language: hu\n"
@@ -342,29 +342,52 @@ msgstr "Névjegy"
 msgid "Read me"
 msgstr "Olvass el"
 
-#: ui/about.ui:89
+#: ui/about.ui:88
 msgid "Report an Issue"
 msgstr "Hiba jelentése"
 
-#: ui/about.ui:103
+#: ui/about.ui:101
 msgid "Translations"
 msgstr "Fordítások"
 
-#: ui/about.ui:122
+#: ui/about.ui:119
 msgid "View sources on Github"
 msgstr "Forrás megtekintése"
 
-#: ui/about.ui:136
+#: ui/about.ui:132
 msgid "Rate this extension"
 msgstr "Kiterjesztés értékelése"
+
+#: ui/apple.ui:5
+msgid "Apple"
+msgstr "Apple"
+
+#: ui/apple.ui:9 ui/dell.ui:9
+msgid "Device settings"
+msgstr "Eszköz beállítások"
+
+#: ui/apple.ui:12
+msgid "Change the behavior of charging indicator light"
+msgstr ""
+
+#: ui/apple.ui:23
+msgid ""
+"<b>Enabled:</b>\n"
+"• Indicator light glows <b>green</b> when charger on hold. (battery level "
+"reaches charging threshold).\n"
+"• Indicator light glows <b>amber</b> while charging.\n"
+"\n"
+"<b>Disabled (system default behavior):</b>\n"
+"• Indicator light glows <b>green</b> only when battery is fully charged "
+"(battery level 100%)\n"
+"• Indicator light glows <b>amber</b> when charger on hold. (battery level "
+"reaches charging threshold).\n"
+"• Indicator light glows <b>amber</b> while charging.\n"
+msgstr ""
 
 #: ui/dell.ui:5
 msgid "Dell"
 msgstr "Dell"
-
-#: ui/dell.ui:9
-msgid "Device settings"
-msgstr "Eszköz beállítások"
 
 #: ui/dell.ui:12
 msgid "Dell package for charging mode"
@@ -379,7 +402,7 @@ msgid "Bios Authentication"
 msgstr ""
 
 #: ui/dell.ui:30
-msgid "Need Bios password validation to change mode/threshold"
+msgid "Requires Bios password validation to change mode/threshold"
 msgstr ""
 
 #: ui/dell.ui:31
