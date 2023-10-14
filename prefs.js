@@ -16,10 +16,8 @@ export default class BatteryHealthChargingPrefs extends ExtensionPreferences {
         const type = settings.get_int('device-type');
         if (type !== 0) {
             const device = new DeviceList.deviceArray[type - 1](settings);
-            if (device.type === type) {
-                if (device.isAvailable())
-                    currentDevice = device;
-            }
+            if (device.type === type)
+                currentDevice = device;
         }
 
         window.set_default_size(650, 700);
