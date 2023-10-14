@@ -7,7 +7,7 @@ permalink: /poedit-guide
 ---
 <style>
     .button1-fixed-width {
-        width:100px;
+        width:120px;
     }
     .button2-fixed-width {
         width:180px;

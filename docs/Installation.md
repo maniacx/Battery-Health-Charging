@@ -38,7 +38,7 @@ Polkit Rules: Uninstalling this extension will not remove polkit rules, so has t
 {: .warning }
 Dell Command Configure Bios Password: If decision has been made to uninstall and not use this extension, User that have used Bios password to validate changing mode / threshold are recommended to turn off `Need bios password to change mode/threshold`. This will remove/delete the saved bios password in Gnome Keyring.
 
-To uninstall use `Extensions`  or `Extension Manager` app.
+To uninstall this extension, use `Extensions`  or `Extension Manager` app.
 <br>
 <br>
 <br>
@@ -46,4 +46,5 @@ Although not neccesary, but to take a step further and remove all gsettings save
 ```bash
 gsettings --schemadir /home/$USER/.local/share/gnome-shell/extensions/Battery-Health-Charging@maniacx.github.com/schemas reset-recursively org.gnome.shell.extensions.Battery-Health-Charging
 ```
+
 
