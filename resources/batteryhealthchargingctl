@@ -27,7 +27,6 @@ ASAHI_START_PATH='/sys/class/power_supply/macsmc-battery/charge_control_start_th
 TUXEDO_PATH='/sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile'
 GIGABYTE_MODE='/sys/devices/platform/gigabyte_laptop/charge_mode'
 GIGABYTE_LIMIT='/sys/devices/platform/gigabyte_laptop/charge_limit'
-APPLE_CHARGING_LED_PATH='/sys/class/power_supply/BAT0/charge_control_full_threshold'
 
 EXTENSION_NAME="Battery Health Charging"
 ACTION_BASE="dem.batteryhealthcharging"
@@ -187,11 +186,6 @@ case "$TOOLCMD" in
         else
             /opt/dell/dcc/cctk --ValSetupPwd="$ARG3" --PrimaryBattChargeCfg=Custom:"$ARG2"-"$ARG1"
         fi
-        ;;
-    APPLE_INTEL)
-        echo "$ARG1" > "$BAT0_END_PATH"
-        echo "$((ARG1 - 2))" > "$APPLE_CHARGING_LED_PATH"
-        exit ${EXIT_SUCCESS}
         ;;
     CHECKINSTALLATION)
     printf -v versions '%s\n%s' "$(pkaction --version | cut -d' ' -f3)" "0.106"
