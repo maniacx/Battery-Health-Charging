@@ -3,17 +3,17 @@
 <br>
 <br>
 <picture>
-<img src="https://github.com/maniacx/Battery-Health-Charging-Private/blob/docss/battery-health-charging-resources/images/readme.gif" width="100%">
+<img src="https://github.com/maniacx/Battery-Health-Charging/blob/Documentation/battery-health-charging-resources/images/readme.gif" width="100%">
 </picture>
 <br>
 <br>
 <br>
 
-[<img src="https://github.com/maniacx/Battery-Health-Charging-Private/blob/docss/battery-health-charging-resources/images/get-it-on-gnome-extension.png" width="35%">](https://extensions.gnome.org/extension/5724/battery-health-charging/)
+[<img src="https://github.com/maniacx/Battery-Health-Charging/blob/Documentation/battery-health-charging-resources/images/get-it-on-gnome-extension.png" width="35%">](https://extensions.gnome.org/extension/5724/battery-health-charging/)
 
 <br>
 
-[<img src="https://github.com/maniacx/Battery-Health-Charging-Private/blob/docss/battery-health-charging-resources/images/readme.png" width="35%">](https://maniacx.github.io/Battery-Health-Charging/)
+[<img src="https://github.com/maniacx/Battery-Health-Charging/blob/Documentation/battery-health-charging-resources/images/readme.png" width="35%">](https://maniacx.github.io/Battery-Health-Charging/)
 
 <br>
 
