@@ -7,7 +7,13 @@ url: https://macs18max.github.io/
 
 permalink: pretty
 
-search_enabled: false
+search_enabled: true
+search:
+  heading_level: 2
+  previews: 2
+  preview_words_before: 3
+  preview_words_after: 3
+  tokenizer_separator: /[\s/]+/
 
 enable_copy_code_button: true
 
