@@ -7,12 +7,21 @@ permalink: /changelogs
 
 # Changelogs
 
+
+
 {: .important-title }
-> GN-45_Version 34 &emsp;&emsp; Oct 14, 2023 
+> GN-45_Version 35 &emsp;&emsp; Oct 16, 2023 
+> * Correctly implemented libsecret. Credits: Just Perfection
+> * Added a feedback icon to Dell Gtk.PasswordEntry Box
 > * Added support for Dell to validate system(bios) password using Gnome keyring, for changing charging mode/threshold
 > * Remove polkit command for Razer as it doesn't need roo
 > * Redesigned `About` UI in extension preferences
 > * Added charging LED control for Apple Intel.
+
+{: .note-title }
+> GN-44_Version 34 &emsp;&emsp; Oct 15, 2023 
+> * Correctly implemented libsecret. Credits: Just Perfection
+> * Added a feedback icon to Dell Gtk.PasswordEntry Box
 
 {: .note-title }
 > GN-44_Version 33 &emsp;&emsp; Oct 14, 2023
