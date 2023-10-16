@@ -2,8 +2,8 @@
 /* Dell Laptops using package smbios-battery-ctl from libsmbios  https://github.com/dell/libsmbios */
 /* Dell Laptops using package dell command configure from libsmbios  https://www.dell.com/support/kbdoc/en-us/000178000/dell-command-configure */
 import GObject from 'gi://GObject';
+import Secret from 'gi://Secret';
 import * as Helper from '../lib/helper.js';
-import * as SecretHelper from '../lib/libsecretHelper.js';
 
 const {fileExists, runCommandCtl} = Helper;
 
@@ -158,33 +158,34 @@ export const DellSmBiosSingleBattery = GObject.registerClass({
             this._arg2 = `${this._startValue}`;
         }
 
-        if (this._settings.get_boolean('need-bios-password')) {
-            SecretHelper.getPassword(password => {
-                this._arg3 = password;
-                this._writeCctkThresholdWithPassword();
-            });
-        } else {
-            await this._writeCctkThreshold();
-        }
+        if (this._settings.get_boolean('need-bios-password'))
+            this._writeCctkThresholdWithPassword();
+        else
+            await this._writeCctkThreshold(null);
+
         return 0;
     }
 
-    async _writeCctkThreshold() {
-        const [status] = await runCommandCtl(this._ctlPath, 'DELL_CCTK_BAT_WRITE', this._arg1, this._arg2, null);
-        if (status === 65) {
-            this.emit('threshold-applied', 'password-required');
-            return 0;
+    _writeCctkThresholdWithPassword() {
+        if (!this._secretSchema) {
+            this._secretSchema = new Secret.Schema('org.gnome.shell.extensions.Battery-Health-Charging',
+                Secret.SchemaFlags.NONE, {'string': Secret.SchemaAttributeType.STRING});
         }
-        const verified = await this._verifyCctkThreshold();
-        if (verified)
-            return 0;
-        this.emit('threshold-applied', 'failed');
-        return 1;
+
+        Secret.password_lookup(this._secretSchema, {'string': 'Battery-Health-Charging-Gnome-Extension'}, null, (o, result) => {
+            try {
+                const pass = Secret.password_lookup_finish(result);
+                this._writeCctkThreshold(pass);
+            } catch (e) {
+                log('Battery Health Charging: Failed to lookup password from Gnome Keyring');
+            }
+        });
     }
 
-    async _writeCctkThresholdWithPassword() {
-        const [status] = await runCommandCtl(this._ctlPath, 'DELL_CCTK_PASSWORD_BAT_WRITE', this._arg1, this._arg2, this._arg3);
-        if (status === 58) {
+    async _writeCctkThreshold(arg3) {
+        const cmd = arg3 ? 'DELL_CCTK_PASSWORD_BAT_WRITE' : 'DELL_CCTK_BAT_WRITE';
+        const [status] = await runCommandCtl(this._ctlPath, cmd, this._arg1, this._arg2, arg3);
+        if (status === 65 || status === 58) {
             this.emit('threshold-applied', 'password-required');
             return 0;
         }
@@ -221,7 +222,7 @@ export const DellSmBiosSingleBattery = GObject.registerClass({
     }
 
     destroy() {
-        // Nothing to destroy for this device
+        this._secretSchema = null;
     }
 });
 
