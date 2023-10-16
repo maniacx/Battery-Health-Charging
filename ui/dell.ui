@@ -42,8 +42,33 @@
             <property name="visible" bind-source="need_bios_password" bind-property="state" bind-flags="sync-create" />
             <property name="title" translatable="yes">Enter Bios Password</property>
             <property name="subtitle" translatable="yes">Note: Bios password will be stored in Gnome Keyring</property>
+            <property name="activatable-widget">password_entry_box</property>
+            <child>
+              <object class="GtkBox">
+                <property name="width-request">16</property>
+                <child>
+                  <object class="GtkImage" id="success_keyring_icon">
+                    <property name="icon-name">emblem-ok-symbolic</property>
+                    <property name="valign">center</property>
+                    <style>
+                      <class name="success" />
+                    </style>
+                  </object>
+                </child>
+                <child>
+                  <object class="GtkImage" id="failed_keyring_icon">
+                    <property name="icon-name">dialog-warning-symbolic</property>
+                    <property name="valign">center</property>
+                    <style>
+                      <class name="error" />
+                    </style>
+                  </object>
+                </child>
+              </object>
+            </child>
             <child>
               <object class="GtkPasswordEntry" id="password_entry_box">
+                <property name="width-request">30</property>
                 <property name="valign">center</property>
                 <property name="show-peek-icon">True</property>
               </object>
