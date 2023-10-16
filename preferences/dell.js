@@ -62,11 +62,7 @@ export const Dell = GObject.registerClass({
         Secret.password_store(this._secretSchema, {'string': 'Battery-Health-Charging-Gnome-Extension'}, Secret.COLLECTION_DEFAULT,
             'Battery Health Charging Bios Password', pass, null, (o, result) => {
                 try {
-                    const status = Secret.password_store_finish(result);
-                    if (status)
-                        this._applyThreshold();
-                    else
-                        log('Battery Health Charging: Failed to store password on Gnome Keyring');
+                    Secret.password_store_finish(result);
                 } catch (e) {
                     log('Battery Health Charging: Failed to store password on Gnome Keyring');
                 }
@@ -81,9 +77,5 @@ export const Dell = GObject.registerClass({
                 log('Battery Health Charging: Failed to clear password from Gnome Keyring');
             }
         });
-    }
-
-    _applyThreshold() {
-        this._settings.set_boolean('dummy-apply-threshold', !this._settings.get_boolean('dummy-apply-threshold'));
     }
 });
