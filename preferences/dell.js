@@ -1,9 +1,7 @@
 'use strict';
-const {Adw, Gio, GLib, GObject} = imports.gi;
+const {Adw, Gio, GLib, GObject, Secret} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
-
-const SecretHelper = Me.imports.lib.libsecretHelper;
 
 var Dell = GObject.registerClass({
     GTypeName: 'BHC_Dell',
@@ -24,6 +22,9 @@ var Dell = GObject.registerClass({
         this._device_settings_group.visible = this._showPackageOption;
 
         this._bios_settings_group.visible = !this._showPackageOption || (this._settings.get_int('dell-package-type') === 1);
+
+        this._secretSchema = new Secret.Schema('org.gnome.shell.extensions.Battery-Health-Charging',
+            Secret.SchemaFlags.NONE, {'string': Secret.SchemaAttributeType.STRING});
 
         if (this._showPackageOption) {
             this._settings.bind(
@@ -46,14 +47,37 @@ var Dell = GObject.registerClass({
         });
 
         this._password_entry_box.connect('activate', () => {
-            SecretHelper.setPassword(this._password_entry_box.text, () => {
-                this._applyThreshold();
-            });
+            this._setPassword(this._password_entry_box.text);
         });
 
         this._settings.connect('changed::need-bios-password', () => {
             if (!this._settings.get_boolean('need-bios-password'))
-                SecretHelper.clearPassword();
+                this._clearPassword();
+        });
+    }
+
+    _setPassword(pass) {
+        Secret.password_store(this._secretSchema, {'string': 'Battery-Health-Charging-Gnome-Extension'}, Secret.COLLECTION_DEFAULT,
+            'Battery Health Charging Bios Password', pass, null, (o, result) => {
+                try {
+                    const status = Secret.password_store_finish(result);
+                    if (status)
+                        this._applyThreshold();
+                    else
+                        log('Battery Health Charging: Failed to store password on Gnome Keyring');
+                } catch (e) {
+                    log('Battery Health Charging: Failed to store password on Gnome Keyring');
+                }
+            });
+    }
+
+    _clearPassword() {
+        Secret.password_clear(this._secretSchema, {'string': 'Battery-Health-Charging-Gnome-Extension'}, null, (o, result) => {
+            try {
+                Secret.password_clear_finish(result);
+            } catch (e) {
+                log('Battery Health Charging: Failed to clear password from Gnome Keyring');
+            }
         });
     }
 
