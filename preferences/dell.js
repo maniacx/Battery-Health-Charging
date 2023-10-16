@@ -14,6 +14,8 @@ export const Dell = GObject.registerClass({
         'bios_settings_group',
         'need_bios_password',
         'password_entry_box',
+        'success_keyring_icon',
+        'failed_keyring_icon',
     ],
 }, class Dell extends Adw.PreferencesPage {
     constructor(settings) {
@@ -24,6 +26,8 @@ export const Dell = GObject.registerClass({
         this._device_settings_group.visible = this._showPackageOption;
 
         this._bios_settings_group.visible = !this._showPackageOption || (this._settings.get_int('dell-package-type') === 1);
+        this._success_keyring_icon.visible = false;
+        this._failed_keyring_icon.visible = false;
 
         this._secretSchema = new Secret.Schema('org.gnome.shell.extensions.Battery-Health-Charging',
             Secret.SchemaFlags.NONE, {'string': Secret.SchemaAttributeType.STRING});
@@ -62,10 +66,20 @@ export const Dell = GObject.registerClass({
         Secret.password_store(this._secretSchema, {'string': 'Battery-Health-Charging-Gnome-Extension'}, Secret.COLLECTION_DEFAULT,
             'Battery Health Charging Bios Password', pass, null, (o, result) => {
                 try {
-                    Secret.password_store_finish(result);
+                    this._status = Secret.password_store_finish(result);
                 } catch (e) {
                     log('Battery Health Charging: Failed to store password on Gnome Keyring');
+                    this._status = false;
                 }
+                const iconKeyring = this._status ? this._success_keyring_icon : this._failed_keyring_icon;
+                iconKeyring.visible = true;
+                if (this._enterTimeout)
+                    GLib.Source_remove(this._enterTimeout);
+                this._enterTimeout = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, 1, () => {
+                    iconKeyring.visible = false;
+                    this._enterTimeout = null;
+                    return GLib.SOURCE_REMOVE;
+                });
             });
     }
 
