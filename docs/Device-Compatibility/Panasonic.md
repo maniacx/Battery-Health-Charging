@@ -49,8 +49,12 @@ This extension supports Panasonic laptops by checking the existence of following
 
 ## Information
 The extension changes mode using `echo` command.<br>
-Without the extension,  mode can be changed by using `echo` command in `terminal`.
-<br>
+Charging mode can be also set by using  `echo` command in `terminal`.
+Command below are helpful :
+* Prior to installing extension, to check compatibility.
+* During debugging, to check if threshold can be applied and read using command-line correctly.
+* Incase user decides to not use extension and prefer changing via command-line.
+
 <br>
 
 To enable **Echo Mode**
@@ -75,6 +79,10 @@ The current threshold value can also be read using `cat` command in `terminal`.
 ```bash
 cat /sys/devices/platform/panasonic/eco_mode
 ```
+<br>
 
-
+{: .important-title }
+> Condition for applying threshold
+>
+> * Accepted values for `eco_mode` : 0 or 1
 

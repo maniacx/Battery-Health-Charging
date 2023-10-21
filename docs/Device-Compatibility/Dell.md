@@ -89,7 +89,12 @@ Use of `Express` mode may cause battery health to diminish more quickly.
 >
 > Require root privileges
 > {: .label .label-yellow .float-right}
-> To set mode or threshold, it set using one or two command. It is possible to change mode or threshold using command-line in `terminal`  without the extension.
+> It is possible to set charging mode or threshold using one or two command in `terminal`.
+> Command below are helpful :
+> * Prior to installing extension, to check compatibility.
+> * During debugging, to check if threshold can be applied and read using command-line correctly.
+> * Incase user decides to not use extension and prefer changing via command-line.
+>
 >
 > To set mode to Express mode<br>
 > `smbios-battery-ctl --set-charging-mode=express`<br><br>
@@ -107,7 +112,12 @@ Use of `Express` mode may cause battery health to diminish more quickly.
 >
 > Require root privileges
 > {: .label .label-yellow .float-right}
-> It is possible to change mode or threshold using command-line in `terminal` without the extension.
+> It is possible to set charging mode or threshold using one or two command in `terminal`.
+> Command below are helpful :
+> * Prior to installing extension, to check compatibility.
+> * During debugging, to check if threshold can be applied and read using command-line correctly.
+> * Incase user decides to not use extension and prefer changing via command-line.
+>
 >
 > To set mode to Express mode<br>
 > `/opt/dell/dcc/cctk --PrimaryBattChargeCfg=Express`<br><br>
@@ -115,10 +125,19 @@ Use of `Express` mode may cause battery health to diminish more quickly.
 > `/opt/dell/dcc/cctk --PrimaryBattChargeCfg=Adaptive`<br><br>
 > To set threshold to specific value. For example if need to apply, start threshold to 55% and end threshold to 60%, the command would be<br>
 > `/opt/dell/dcc/cctk --PrimaryBattChargeCfg=Custom:55-60`<br><br>
-> An example of changing mode or threshold with Bios Password Validation<br>
+> An example of changing mode or threshold with Bios Password Validation by adding `--ValSetupPwd=` followed by the bios password and the command to set mode or threshold<br>
 > `/opt/dell/dcc/cctk --ValSetupPwd=PASSWORD --PrimaryBattChargeCfg=Express`<br><br>
 > Command to read current mode or threshold<br>
 > `/opt/dell/dcc/cctk --PrimaryBattChargeCfg`<br><br>
+
+<br>
+
+{: .important-title }
+> Condition for applying threshold
+>
+> * Accepted end threshold values : 55 or 100
+> * Accepted start threshold values : 50 or 95
+> * end threshold values > start threshold values + 5
 
 ## Validate using Bios Password (Dell Command Configure Only)
 

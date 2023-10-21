@@ -245,4 +245,3 @@ permalink: /changelogs
 > * Uses systemd service to change permision of sysfs charge_control_end_threshold.
 > * Feature enable/disable system indicator, change icons, install systemd service, customizable threshold, notifications for installation, removal and error
 
-

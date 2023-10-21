@@ -28,11 +28,18 @@ permalink: /device-compatibility/msi
 
 
 ## Dependencies
+
+{: .note }
+Not required on newer kernel, as the msi-ec is already included in native linux kernels.
+[https://github.com/torvalds/linux/commit/392cacf2aa10de005e58b68a58012c0c81a100c0](https://github.com/torvalds/linux/commit/392cacf2aa10de005e58b68a58012c0c81a100c0)<br>For system running older kernel, may require this dependencies.
+
 Depends on separate kernel module `msi-ec`, that need to be installed.<br>
 <https://github.com/BeardOverflow/msi-ec>
 
 {: .note }
 `msi-ec` module is supported by a third party and this extension/author is not in any way responsible for the kernel module installation, bugs or damages.
+
+
 
 ## Detection
 This extension supports MSI laptops by checking the existence of either one following sysfs paths for charging threshold below.
@@ -58,8 +65,12 @@ Additionally it will also check the existence of sysfs path for wmi.
 
 ## Information
 The extension applies threshold using `echo` command.<br>
-Without the extension, threshold value can be applied by using `echo` command in `terminal`.
-<br>
+Charging threshold value can be applied by using `echo` command in `terminal`.
+Command below are helpful :
+* Prior to installing extension, to check compatibility.
+* During debugging, to check if threshold can be applied and read using command-line correctly.
+* Incase user decides to not use extension and prefer changing via command-line.
+
 <br>
 **For example:**<br>If power supply sysfs name is  `BAT0`, to apply threshold value of `60`, the command would be.
 
@@ -68,11 +79,21 @@ Require root privileges
 ```bash
 echo '60' > /sys/class/power_supply/BAT0/charge_control_end_threshold
 ```
+
+{: .note }
+Although MSI have sysfs path for `charge_control_start_threshold` , setting `charge_control_start_threshold` is not required.<br><br>The value of `charge_control_start_threshold` is automatically set by the kernel, 10% below `charge_control_end_threshold`.<br><br>`charge_control_start_threshold = charge_control_end_threshold - 10`
+
+
 <br>
 The current threshold value can also be read using `cat` command in `terminal`. For example, the laptops battery name in power supply sysfs is `BAT0`, command would be.
 ```bash
 cat /sys/class/power_supply/BAT0/charge_control_end_threshold
 ```
+<br>
 
-
-
+{: .important-title }
+> Condition for applying threshold
+>
+> * Accepted values for `charge_control_end_threshold` : 10 - 100
+> * Accepted values for `charge_control_start_threshold` : 0 - 90
+> * `charge_control_end_threshold - charge_control_start_threshold = 10`

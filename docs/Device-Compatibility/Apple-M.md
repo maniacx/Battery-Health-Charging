@@ -71,9 +71,14 @@ This extension supports Apple-M laptops by checking the existence of following s
 
 ## Information
 The extension applies threshold using `echo` command.<br>
-Without the extension, threshold value can be applied by using `echo` command in `terminal`.
+Charging threshold value can be applied by using `echo` command in `terminal`.
+Command below are helpful :
+* Prior to installing extension, to check compatibility.
+* During debugging, to check if threshold can be applied and read using command-line correctly.
+* Incase user decides to not use extension and prefer changing via command-line.
+
 <br>
-<br>
+### Post Kernel 6.3.xxx
 **For example:**<br>To apply threshold value of `80`, the command would be.
 
 Require root privileges
@@ -81,11 +86,32 @@ Require root privileges
 ```bash
 echo '80' > /sys/class/power_supply/macsmc-battery/charge_control_end_threshold
 ```
+
+{: .note }
+In kernel 6.3.xxx,  setting threshold value of `charge_control_start_threshold` is not required.<br>The value of `charge_control_start_threshold` is automatically set by the kernel, depending on the value of `charge_control_end_threshold`.
+
+<br>
+### Post Kernel 6.2.xxx
+**For example:**<br>To apply start threshold value of `55`, end threshold value of `60`, command would be.
+
+Require root privileges
+{: .label .label-yellow .mt-0}
+```bash
+echo '55' > /sys/class/power_supply/macsmc-battery/charge_control_start_threshold
+echo '60' > /sys/class/power_supply/macsmc-battery/charge_control_end_threshold
+```
+
+<br>
 <br>
 The current threshold value can also be read using `cat` command in `terminal`.
 ```bash
 cat /sys/class/power_supply/macsmc-battery/charge_control_end_threshold
 ```
+<br>
 
-
-
+{: .important-title }
+> Condition for applying threshold
+>
+> * For Post Kernel 6.3.xxx , accepted values for `charge_control_end_threshold` : 80 or 100
+> * For Pre Kernel 6.2.xxx , accepted values for `charge_control_end_threshold` : 1 or 100
+> * For Pre Kernel 6.2.xxx , accepted values for `charge_control_start_threshold` : 0 or 99

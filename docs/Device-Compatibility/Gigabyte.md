@@ -53,8 +53,12 @@ This extension supports Gigabyte laptops by checking the existence of following 
 
 ## Information
 The extension applies threshold using `echo` command.<br>
-Without the extension, threshold value can be applied by using `echo` command in `terminal`.
-<br>
+Charging threshold value can be applied by using `echo` command in `terminal`.
+Command below are helpful :
+* Prior to installing extension, to check compatibility.
+* During debugging, to check if threshold can be applied and read using command-line correctly.
+* Incase user decides to not use extension and prefer changing via command-line.
+
 <br>
 **For example:**<br>To apply threshold value of `60`, the command would be.
 
@@ -69,6 +73,11 @@ The current threshold value can also be read using `cat` command in `terminal`. 
 ```bash
 cat /sys/devices/platform/gigabyte_laptop/charge_limit
 ```
+<br>
 
-
+{: .important-title }
+> Condition for applying threshold
+>
+> * Accepted values for `charge_mode` : 0 or 1
+> * Accepted values for `charge_limit` : 60 - 100
 

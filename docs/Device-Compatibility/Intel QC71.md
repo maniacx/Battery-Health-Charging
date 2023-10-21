@@ -53,8 +53,12 @@ Additionally it will also check the existence of sysfs path for wmi.
 
 ## Information
 The extension applies threshold using `echo` command.<br>
-Without the extension, threshold value can be applied by using `echo` command in `terminal`.
-<br>
+Charging threshold value can be applied by using `echo` command in `terminal`.
+Command below are helpful :
+* Prior to installing extension, to check compatibility.
+* During debugging, to check if threshold can be applied and read using command-line correctly.
+* Incase user decides to not use extension and prefer changing via command-line.
+
 <br>
 **For example:**<br>To apply threshold value of `60`, the command would be.
 
@@ -68,6 +72,10 @@ The current threshold value can also be read using `cat` command in `terminal`. 
 ```bash
 cat /sys/class/power_supply/BAT0/charge_control_end_threshold
 ```
+<br>
 
-
+{: .important-title }
+> Condition for applying threshold
+>
+> * Accepted values for `charge_control_end_threshold` : 1 - 100
 

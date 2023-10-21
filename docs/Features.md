@@ -32,3 +32,4 @@ If option to change behavior of systems battery indicator feature, is not workin
 
 {: .warning }
 Conflicts with other battery charging threshold controls apps / extensions / local workarounds scripts, so better to disable or remove before using this extension.
+

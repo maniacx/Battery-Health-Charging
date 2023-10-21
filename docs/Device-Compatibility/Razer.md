@@ -50,19 +50,23 @@ This extension supports Razer laptops by checking for the razer-cli installation
 <img src="../assets/images/device-compatibility/razer/settings.png" width="100%">
 
 ## Information
-Without the extension, threshold value can be applied by using `razer-cli` command in `terminal`.
-<br>
+It is possible to set charging mode or threshold using `razer-cli` command in `terminal`.
+Command below are helpful :
+* Prior to installing extension, to check compatibility.
+* During debugging, to check if threshold can be applied and read using command-line correctly.
+* Incase user decides to not use extension and prefer changing via command-line.
+
 <br>
 
 **For example**
 
-To turn off charging threshold (equivalent to setting threshold at 100%), the command would be
+To turn off **battery health optimization** mode (equivalent to setting threshold at 100%), the command would be
 ```
 razer-cli write bho off
 ```
 <br>
 
-To apply threshold value of `60`, the command would be.
+To turn on **battery health optimization** and apply threshold value of `60`, the command would be.
 ```
 razer-cli write bho on 60
 ```
@@ -72,6 +76,10 @@ To read current threshold value.
 ```
 razer-cli read bho
 ```
+<br>
 
-
+{: .important-title }
+> Condition for applying threshold
+>
+> * Accepted values for `bho` : 50 - 80
 

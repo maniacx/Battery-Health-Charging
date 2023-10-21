@@ -26,12 +26,12 @@ permalink: /device-compatibility/thinkpad-legacy-dual
 * The difference between end and start threshold cannot be less than 5%.
 
 ## Dependencies
-* Thinkpad legacy depend on a kernel modules `tpsmapi`.
-* `tpsmapi` may be available as a package by your distro's package-manager
-* Addition information about `tpsmapi` is available here: <https://github.com/linux-thinkpad/tp_smapi>
+* Thinkpad legacy depend on a kernel modules `tp_smapi`.
+* `tp_smapi` may be available as a package by your distro's package-manager
+* Addition information about `tp_smapi` is available here: <https://github.com/linux-thinkpad/tp_smapi>
 
 {: .note }
-`tpsmapi` module is supported by a third party and this extension/author is not in any way responsible for the kernel module installation, bugs or damages.
+`tp_smapi` module is supported by a third party and this extension/author is not in any way responsible for the kernel module installation, bugs or damages.
 
 ## Detection
 This extension supports Thinkpad laptops by checking the existence of following sysfs paths for charging threshold below.
@@ -57,9 +57,14 @@ This extension supports Thinkpad laptops by checking the existence of following 
 
 ## Information
 The extension changes mode using `echo` command.<br>
-Without the extension,  threshold value can be applied using `echo` command in `terminal`.
+Charging threshold value can be applied by using `echo` command in `terminal`.
+Command below are helpful :
+* Prior to installing extension, to check compatibility.
+* During debugging, to check if threshold can be applied and read using command-line correctly.
+* Incase user decides to not use extension and prefer changing via command-line.
+
 <br>
-<br>
+
 **For example:**<br>To apply threshold on secondary battery (BAT1) with start threshold value of `55`, end threshold value of `60`, command would be.
 
 Require root privileges
@@ -75,6 +80,57 @@ The current threshold value can also be read using `cat` command in `terminal`.
 cat /sys/devices/platform/smapi/BAT0/start_charge_thresh
 cat /sys/devices/platform/smapi/BAT0/stop_charge_thresh
 ```
+<br>
 
+{: .important-title }
+> Condition for applying threshold
+>
+> * Accepted values for `stop_charge_thresh` : 6 - 100
+> * Accepted values for `start_charge_thresh` : 2 - 96
+> * `stop_charge_thresh > start_charge_thresh`
+> * `stop_charge_thresh - start_charge_thresh = 4`
 
+<br>
+
+{: .note }
+> The sequence of applying threshold in command-line matters, as in whether to set `stop_charge_thresh` first or the apply `stop_charge_thresh` first.<br><br>
+> The condition `stop_charge_thresh > start_charge_thresh` must be fulfilled in order for charging threshold to apply. Threshold values will not be accepted if `start_charge_thresh` is less than `stop_charge_thresh`<br>
+>
+>**For example 1: Increase threshold**
+>> Laptops current threshold value is:<br>`start_charge_thresh = 75`<br>`stop_charge_thresh = 80`
+>
+>> User want to apply new threshold value of:<br>`start_charge_thresh = 95`<br>`stop_charge_thresh = 100`
+>
+>>**Incorrect sequence**<br>
+>> ```bash
+echo '95' > /sys/class/power_supply/BAT0/start_charge_thresh
+echo '100' > /sys/class/power_supply/BAT0/stop_charge_thresh
+```
+>> Since start_threshold is applied first `stop_charge_thresh (80)` is less than `start_charge_thresh (95)`, so the condition `stop_charge_thresh > start_charge_thresh` is not fulfilled, hence `start_charge_thresh` wont be updated.
+>
+>>**Correct sequence**<br>
+>> ```bash
+echo '100' > /sys/class/power_supply/BAT0/stop_charge_thresh
+echo '95' > /sys/class/power_supply/BAT0/start_charge_thresh
+```
+>> Since end_threshold is applied first, `stop_charge_thresh (100)` is greater than `start_charge_thresh (75)`, so the condition `stop_charge_thresh > start_charge_thresh` is fulfilled.
+>
+>**For example 2: Decrease threshold**
+>> Laptops current threshold value is:<br>`start_charge_thresh = 75`<br>`stop_charge_thresh = 80`
+>
+>> User want to apply new threshold value of:<br>`start_charge_thresh = 55`<br>`stop_charge_thresh = 60`
+>
+>>**Incorrect sequence**<br>
+>> ```bash
+echo '60' > /sys/class/power_supply/BAT0/stop_charge_thresh
+echo '55' > /sys/class/power_supply/BAT0/start_charge_thresh
+```
+>> Since end_threshold is applied first, `stop_charge_thresh (60)` is less than `start_charge_thresh (75)`, hence the condition `stop_charge_thresh > start_charge_thresh` is not fulfilled. So `stop_charge_thresh` wont be updated.
+>
+>>**Correct sequence**<br>
+>> ```bash
+echo '55' > /sys/class/power_supply/BAT0/start_charge_thresh
+echo '60' > /sys/class/power_supply/BAT0/stop_charge_thresh
+```
+>> Since start_threshold is applied first, `stop_charge_thresh (80)` is greater than `start_charge_thresh (55)`, so the condition `stop_charge_thresh > start_charge_thresh` is fulfilled.
 
