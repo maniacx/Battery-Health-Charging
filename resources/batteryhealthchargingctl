@@ -28,6 +28,8 @@ TUXEDO_PATH='/sys/devices/platform/tuxedo_keyboard/charging_profile/charging_pro
 GIGABYTE_MODE='/sys/devices/platform/gigabyte_laptop/charge_mode'
 GIGABYTE_LIMIT='/sys/devices/platform/gigabyte_laptop/charge_limit'
 APPLE_CHARGING_LED_PATH='/sys/class/power_supply/BAT0/charge_control_full_threshold'
+BAT0_FORCE_DISCHARGE_PATH='/sys/class/power_supply/BAT0/charge_behaviour'
+BAT1_FORCE_DISCHARGE_PATH='/sys/class/power_supply/BAT1/charge_behaviour'
 
 EXTENSION_NAME="Battery Health Charging"
 ACTION_BASE="dem.batteryhealthcharging"
@@ -193,6 +195,14 @@ case "$TOOLCMD" in
         if [ "$ARG2" -ne 0 ];then
             echo "$ARG2" > "$APPLE_CHARGING_LED_PATH"
         fi
+        exit ${EXIT_SUCCESS}
+        ;;
+FORCE_DISCHARGE_BAT0)
+        echo "$ARG1" > "$BAT0_FORCE_DISCHARGE_PATH"
+        exit ${EXIT_SUCCESS}
+        ;;
+FORCE_DISCHARGE_BAT1)
+        echo "$ARG1" > "$BAT1_FORCE_DISCHARGE_PATH"
         exit ${EXIT_SUCCESS}
         ;;
     CHECKINSTALLATION)

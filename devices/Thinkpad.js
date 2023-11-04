@@ -5,13 +5,20 @@ import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import * as Helper from '../lib/helper.js';
 
-const {fileExists, readFileInt, runCommandCtl} = Helper;
+const {fileExists, readFile, readFileInt, readFileUri, runCommandCtl} = Helper;
 
 const VENDOR_THINKPAD = '/sys/devices/platform/thinkpad_acpi';
 const BAT0_END_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold';
 const BAT0_START_PATH = '/sys/class/power_supply/BAT0/charge_control_start_threshold';
 const BAT1_END_PATH = '/sys/class/power_supply/BAT1/charge_control_end_threshold';
 const BAT1_START_PATH = '/sys/class/power_supply/BAT1/charge_control_start_threshold';
+const BAT0_CAPACITY_PATH = '/sys/class/power_supply/BAT0/capacity';
+const BAT1_CAPACITY_PATH = '/sys/class/power_supply/BAT1/capacity';
+const BAT0_FORCE_DISCHARGE_PATH = '/sys/class/power_supply/BAT0/charge_behaviour';
+const BAT1_FORCE_DISCHARGE_PATH = '/sys/class/power_supply/BAT1/charge_behaviour';
+
+const BUS_NAME = 'org.freedesktop.UPower';
+const OBJECT_PATH = '/org/freedesktop/UPower/devices/DisplayDevice';
 
 export const ThinkpadDualBattery = GObject.registerClass({
     Signals: {
@@ -241,21 +248,28 @@ export const ThinkpadSingleBatteryBAT0 = GObject.registerClass({
             return false;
         if (fileExists(BAT1_END_PATH))
             return false;
+        this._batteryMonitoringInitialized = false;
         return true;
     }
 
     async setThresholdLimit(chargingMode) {
         this._status = 0;
-        const ctlPath = this._settings.get_string('ctl-path');
+        this._ctlPath = this._settings.get_string('ctl-path');
         this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
         this._startValue = this._settings.get_int(`current-${chargingMode}-start-threshold`);
+
+        if (!this._batteryMonitoringInitialized)
+            this._initializeBatteryMonitoring();
+        if (this._settings.get_boolean('force-discharge-enabled'))
+            this._forceDischarge();
+
         if (this._verifyThreshold())
             return this._status;
         // Some device wont update end threshold if start threshold > end threshold
         if (this._startValue >= this._oldEndValue)
-            [this._status] = await runCommandCtl(ctlPath, 'BAT0_END_START', `${this._endValue}`, `${this._startValue}`, null);
+            [this._status] = await runCommandCtl(this._ctlPath, 'BAT0_END_START', `${this._endValue}`, `${this._startValue}`, null);
         else
-            [this._status] = await runCommandCtl(ctlPath, 'BAT0_START_END', `${this._endValue}`, `${this._startValue}`, null);
+            [this._status] = await runCommandCtl(this._ctlPath, 'BAT0_START_END', `${this._endValue}`, `${this._startValue}`, null);
 
         if (this._status === 0) {
             if (this._verifyThreshold())
@@ -294,10 +308,77 @@ export const ThinkpadSingleBatteryBAT0 = GObject.registerClass({
         this.emit('threshold-applied', 'failed');
     }
 
+    _enableForceDischarge() {
+        const forceDischargeModeRead = readFile(BAT0_FORCE_DISCHARGE_PATH).replace(/\r?\n|\r/g, '');
+        if (forceDischargeModeRead !== 'force-discharge')
+            runCommandCtl(this._ctlPath, 'FORCE_DISCHARGE_BAT0', 'force-discharge', null, null);
+    }
+
+    _disableForceDischarge() {
+        const forceDischargeModeRead = readFile(BAT0_FORCE_DISCHARGE_PATH).replace(/\r?\n|\r/g, '');
+        if (forceDischargeModeRead !== 'auto')
+            runCommandCtl(this._ctlPath, 'FORCE_DISCHARGE_BAT0', 'auto', null, null);
+    }
+
+    _forceDischarge() {
+        const chargingMode = this._settings.get_string('charging-mode');
+        const currentThresholdValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
+        if (this._batteryLevel > currentThresholdValue)
+            this._enableForceDischarge();
+        else
+            this._disableForceDischarge();
+    }
+
+    _initializeBatteryMonitoring() {
+        if (this._settings.get_boolean('force-discharge-enabled'))
+            this._enableBatteryCapacityMonitoring();
+        this._settings.connectObject(
+            'changed::force-discharge-enabled', () => {
+                if (this._settings.get_boolean('force-discharge-enabled'))
+                    this._enableBatteryCapacityMonitoring();
+                else
+                    this._disableBatteryCapacityMonitoring();
+            },
+            this
+        );
+        this._batteryMonitoringInitialized = true;
+    }
+
+    _enableBatteryCapacityMonitoring() {
+        this._batteryLevel = readFileInt(BAT0_CAPACITY_PATH);
+        this._forceDischarge();
+        const xmlFile = 'resource:///org/gnome/shell/dbus-interfaces/org.freedesktop.UPower.Device.xml';
+        const powerManagerProxy = Gio.DBusProxy.makeProxyWrapper(readFileUri(xmlFile));
+        this._proxy = new powerManagerProxy(Gio.DBus.system, BUS_NAME, OBJECT_PATH, (proxy, error) => {
+            if (error) {
+                log(error.message);
+            } else {
+                this._proxyId = this._proxy.connect('g-properties-changed', () => {
+                    const batteryLevel = this._proxy.Percentage;
+                    if (this._batteryLevel !== batteryLevel) {
+                        this._batteryLevel = batteryLevel;
+                        if (this._batteryMonitoringInitialized)
+                            this._forceDischarge();
+                    }
+                });
+            }
+        });
+    }
+
+    _disableBatteryCapacityMonitoring() {
+        this._disableForceDischarge();
+        if (this._proxy)
+            this._proxy.disconnect(this._proxyId);
+        this._proxyId = null;
+        this._proxy = null;
+    }
+
     destroy() {
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
         this._delayReadTimeoutId = null;
+        this._disableBatteryCapacityMonitoring();
+        this._settings.disconnectObject(this);
     }
 });
 
@@ -347,21 +428,28 @@ export const ThinkpadSingleBatteryBAT1 = GObject.registerClass({
             return false;
         if (fileExists(BAT0_END_PATH))
             return false;
+        this._batteryMonitoringInitialized = false;
         return true;
     }
 
     async setThresholdLimit(chargingMode) {
         this._status = 0;
-        const ctlPath = this._settings.get_string('ctl-path');
+        this._ctlPath = this._settings.get_string('ctl-path');
         this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
         this._startValue = this._settings.get_int(`current-${chargingMode}-start-threshold`);
+
+        if (!this._batteryMonitoringInitialized)
+            this._initializeBatteryMonitoring();
+        if (this._settings.get_boolean('force-discharge-enabled'))
+            this._forceDischarge();
+
         if (this._verifyThreshold())
             return this._status;
         // Some device wont update end threshold if start threshold > end threshold
         if (this._startValue >= this._oldEndValue)
-            [this._status] = await runCommandCtl(ctlPath, 'BAT1_END_START', `${this._endValue}`, `${this._startValue}`, null);
+            [this._status] = await runCommandCtl(this._ctlPath, 'BAT1_END_START', `${this._endValue}`, `${this._startValue}`, null);
         else
-            [this._status] = await runCommandCtl(ctlPath, 'BAT1_START_END', `${this._endValue}`, `${this._startValue}`, null);
+            [this._status] = await runCommandCtl(this._ctlPath, 'BAT1_START_END', `${this._endValue}`, `${this._startValue}`, null);
 
         if (this._status === 0) {
             if (this._verifyThreshold())
@@ -400,10 +488,77 @@ export const ThinkpadSingleBatteryBAT1 = GObject.registerClass({
         this.emit('threshold-applied', 'failed');
     }
 
+    _enableForceDischarge() {
+        const forceDischargeModeRead = readFile(BAT1_FORCE_DISCHARGE_PATH).replace(/\r?\n|\r/g, '');
+        if (forceDischargeModeRead !== 'force-discharge')
+            runCommandCtl(this._ctlPath, 'FORCE_DISCHARGE_BAT1', 'force-discharge', null, null);
+    }
+
+    _disableForceDischarge() {
+        const forceDischargeModeRead = readFile(BAT1_FORCE_DISCHARGE_PATH).replace(/\r?\n|\r/g, '');
+        if (forceDischargeModeRead !== 'auto')
+            runCommandCtl(this._ctlPath, 'FORCE_DISCHARGE_BAT1', 'auto', null, null);
+    }
+
+    _forceDischarge() {
+        const chargingMode = this._settings.get_string('charging-mode');
+        const currentThresholdValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
+        if (this._batteryLevel > currentThresholdValue)
+            this._enableForceDischarge();
+        else
+            this._disableForceDischarge();
+    }
+
+    _initializeBatteryMonitoring() {
+        if (this._settings.get_boolean('force-discharge-enabled'))
+            this._enableBatteryCapacityMonitoring();
+        this._settings.connectObject(
+            'changed::force-discharge-enabled', () => {
+                if (this._settings.get_boolean('force-discharge-enabled'))
+                    this._enableBatteryCapacityMonitoring();
+                else
+                    this._disableBatteryCapacityMonitoring();
+            },
+            this
+        );
+        this._batteryMonitoringInitialized = true;
+    }
+
+    _enableBatteryCapacityMonitoring() {
+        this._batteryLevel = readFileInt(BAT1_CAPACITY_PATH);
+        this._forceDischarge();
+        const xmlFile = 'resource:///org/gnome/shell/dbus-interfaces/org.freedesktop.UPower.Device.xml';
+        const powerManagerProxy = Gio.DBusProxy.makeProxyWrapper(readFileUri(xmlFile));
+        this._proxy = new powerManagerProxy(Gio.DBus.system, BUS_NAME, OBJECT_PATH, (proxy, error) => {
+            if (error) {
+                log(error.message);
+            } else {
+                this._proxyId = this._proxy.connect('g-properties-changed', () => {
+                    const batteryLevel = this._proxy.Percentage;
+                    if (this._batteryLevel !== batteryLevel) {
+                        this._batteryLevel = batteryLevel;
+                        if (this._batteryMonitoringInitialized)
+                            this._forceDischarge();
+                    }
+                });
+            }
+        });
+    }
+
+    _disableBatteryCapacityMonitoring() {
+        this._disableForceDischarge();
+        if (this._proxy)
+            this._proxy.disconnect(this._proxyId);
+        this._proxyId = null;
+        this._proxy = null;
+    }
+
     destroy() {
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
         this._delayReadTimeoutId = null;
+        this._disableBatteryCapacityMonitoring();
+        this._settings.disconnectObject(this);
     }
 });
 
