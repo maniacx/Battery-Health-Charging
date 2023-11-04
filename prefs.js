@@ -7,6 +7,7 @@ const DeviceList = Me.imports.lib.deviceList;
 const {General} = Me.imports.preferences.general;
 const {Apple} = Me.imports.preferences.apple;
 const {Dell} = Me.imports.preferences.dell;
+const {Thinkpad} = Me.imports.preferences.thinkpad;
 const {ThresholdPrimary} = Me.imports.preferences.thresholdPrimary;
 const {ThresholdSecondary} = Me.imports.preferences.thresholdSecondary;
 const {About} = Me.imports.preferences.about;
@@ -33,6 +34,8 @@ function fillPreferencesWindow(window) {
             window.add(new Apple(settings));
         if ((currentDevice.type === 22) && settings.get_boolean('detected-cctk')) // device.type 22 is Dell
             window.add(new Dell(settings));
+        if (currentDevice.type === 20 || currentDevice.type === 21) // device.type 20|21 is Thinkpad
+            window.add(new Thinkpad(settings));
         if (currentDevice.deviceHaveVariableThreshold) // Laptop has customizable threshold
             window.add(new ThresholdPrimary(settings, currentDevice));
         if (currentDevice.deviceHaveDualBattery) // Laptop has dual battery

@@ -77,6 +77,14 @@
             <default>false</default>
             <summary>Need Bios password</summary>
         </key>
+        <key name="force-discharge-feature" type="b">
+            <default>false</default>
+            <summary>Enable force discharge feature</summary>
+        </key>
+        <key name="force-discharge-enabled" type="b">
+            <default>false</default>
+            <summary>Enable force discharge</summary>
+        </key>
         <key name="default-threshold" type="b">
             <default>true</default>
             <summary>Toggle between default and customized threshold</summary>

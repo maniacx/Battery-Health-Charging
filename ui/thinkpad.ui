@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface domain="Battery-Health-Charging@maniacx.github.com">
+  <template class="BHC_Thinkpad" parent="AdwPreferencesPage">
+    <property name="name">Device</property>
+    <property name="title" translatable="yes">Device</property>
+    <property name="icon-name">computer-symbolic</property>
+    <child>
+      <object class="AdwPreferencesGroup" id="device_settings_group">
+        <property name="title" translatable="yes">Device settings</property>
+        <child>
+          <object class="AdwActionRow">
+            <property name="title" translatable="yes">Enable force discharge battery feature</property>
+            <property name="subtitle" translatable="yes">Provides an option Force discharge battery if battery level higher than current threshold</property>
+            <property name="activatable-widget">force_discharge_feature</property>
+            <child>
+              <object class="GtkSwitch" id="force_discharge_feature">
+                <property name="valign">center</property>
+              </object>
+            </child>
+          </object>
+        </child>
+      </object>
+    </child>
+  </template>
+</interface>
