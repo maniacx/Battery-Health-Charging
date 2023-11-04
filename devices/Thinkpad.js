@@ -307,14 +307,22 @@ var ThinkpadSingleBatteryBAT0 = GObject.registerClass({
         this.emit('threshold-applied', 'failed');
     }
 
-    _enableForceDischarge() {
+    _readForceDischargeMode() {
         const forceDischargeModeRead = readFile(BAT0_FORCE_DISCHARGE_PATH).replace(/\r?\n|\r/g, '');
+        return forceDischargeModeRead.substring(
+          forceDischargeModeRead.indexOf("[") + 1,
+          forceDischargeModeRead.lastIndexOf("]")
+        );
+    }
+
+    _enableForceDischarge() {
+        const forceDischargeModeRead = this._readForceDischargeMode();
         if (forceDischargeModeRead !== 'force-discharge')
             runCommandCtl(this._ctlPath, 'FORCE_DISCHARGE_BAT0', 'force-discharge', null, null);
     }
 
     _disableForceDischarge() {
-        const forceDischargeModeRead = readFile(BAT0_FORCE_DISCHARGE_PATH).replace(/\r?\n|\r/g, '');
+        const forceDischargeModeRead = this._readForceDischargeMode();
         if (forceDischargeModeRead !== 'auto')
             runCommandCtl(this._ctlPath, 'FORCE_DISCHARGE_BAT0', 'auto', null, null);
     }
@@ -487,14 +495,22 @@ var ThinkpadSingleBatteryBAT1 = GObject.registerClass({
         this.emit('threshold-applied', 'failed');
     }
 
-    _enableForceDischarge() {
+    _readForceDischargeMode() {
         const forceDischargeModeRead = readFile(BAT1_FORCE_DISCHARGE_PATH).replace(/\r?\n|\r/g, '');
+        return forceDischargeModeRead.substring(
+          forceDischargeModeRead.indexOf("[") + 1,
+          forceDischargeModeRead.lastIndexOf("]")
+        );
+    }
+
+    _enableForceDischarge() {
+        const forceDischargeModeRead = this._readForceDischargeMode();
         if (forceDischargeModeRead !== 'force-discharge')
             runCommandCtl(this._ctlPath, 'FORCE_DISCHARGE_BAT1', 'force-discharge', null, null);
     }
 
     _disableForceDischarge() {
-        const forceDischargeModeRead = readFile(BAT1_FORCE_DISCHARGE_PATH).replace(/\r?\n|\r/g, '');
+        const forceDischargeModeRead = this._readForceDischargeMode();
         if (forceDischargeModeRead !== 'auto')
             runCommandCtl(this._ctlPath, 'FORCE_DISCHARGE_BAT1', 'auto', null, null);
     }
