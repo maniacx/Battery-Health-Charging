@@ -7,6 +7,9 @@ permalink: /installation
 
 # Installation
 
+{: .warning }
+Conflicts with other battery charging threshold controls apps / extensions / local workarounds scripts, so better to disable or remove before using this extension.
+
 ## Gnome Extension Website
 
 [<img src="./assets/images/home/get-it-on-gnome-extension.png" width="45%">](https://extensions.gnome.org/extension/5724/battery-health-charging/)

@@ -46,7 +46,7 @@ A brief description with pictures / animated images.
 
 <br>
 <img src="./assets/images/how-to-use/read-back.png" width="100%">
-* The information displays the threshold or mode read from Embedded controller via kernel or packages after the threshold was set. If for some reason the threshold didn't apply, you will see the feedback here.
+The information displays the threshold or mode read from Embedded controller via kernel or packages after the threshold was set. If for some reason the threshold didn't apply, you will see the feedback here.
 
 ---
 
@@ -54,7 +54,7 @@ A brief description with pictures / animated images.
 
 <br>
 <img src="./assets/images/how-to-use/extension-prefs.png" width="100%">
-* Clicking the **gear** icon on Quick setting panel will take you to extensions preferences page.
+Clicking the **gear** icon on Quick setting panel will take you to extensions preferences page.
 
 ---
 
@@ -62,7 +62,7 @@ A brief description with pictures / animated images.
 
 <br>
 <img src="./assets/images/how-to-use/indicator-icon.gif" width="100%">
-* 3 sets of icons available to choose for indicator and quickpanel.
+3 sets of icons available to choose for indicator and quickpanel.
 
 {: .note }
 For laptops with customization of threshold, this settings is available only with default threshold mode.
@@ -74,7 +74,7 @@ If customize threshold mode is selection, the icons on indicator and quick panel
 
 <br>
 <img src="./assets/images/how-to-use/notification.png" width="100%">
-* When charging threshold or mode is changed, a notification is displayed with the threshold or mode currently applied. If this notifications are too instrusive you can turn off this settings to disable notification.
+When charging threshold or mode is changed, a notification is displayed with the threshold or mode currently applied. If this notifications are too instrusive you can turn off this settings to disable notification.
 
 {: .note }
 Switching this setting OFF, will disable notification only for threshold or mode changes. However, notification related to polkit rules or errors with this extension will still be displayed.
@@ -85,7 +85,7 @@ Switching this setting OFF, will disable notification only for threshold or mode
 
 <br>
 <img src="./assets/images/how-to-use/preference-icon.gif" width="100%">
-* Switching this setting OFF, will remove the extension preferences shortcut (**gear icon**) displayed in quick settings.
+Switching this setting OFF, will remove the extension preferences shortcut (**gear icon**) displayed in quick settings.
 
 ---
 
@@ -93,7 +93,7 @@ Switching this setting OFF, will disable notification only for threshold or mode
 
 <br>
 <img src="./assets/images/how-to-use/quick-setting-subtitles.gif" width="100%">
-* In Gnome 44, the Quick Settings Toggle-button a subtitle (small text) will display the current preset or mode. Disabling this will remove this subtitle, making it look like toggle-button in Gnome 43.
+In Gnome 44, the Quick Settings Toggle-button a subtitle (small text) will display the current preset or mode. Disabling this will remove this subtitle, making it look like toggle-button in Gnome 43.
 
 ---
 
@@ -101,7 +101,7 @@ Switching this setting OFF, will disable notification only for threshold or mode
 
 <br>
 <img src="./assets/images/how-to-use/disable-indicator.gif" width="100%">
-* Disables the indicator icon for this extension from system tray.
+Disables the indicator icon for this extension from system tray.
 
 ---
 
@@ -109,7 +109,7 @@ Switching this setting OFF, will disable notification only for threshold or mode
 
 <br>
 <img src="./assets/images/how-to-use/indicator-index.gif" width="100%">
-* Move the position of indicator icon in system tray.
+Move the position of indicator icon in system tray.
 
 ---
 
@@ -117,12 +117,23 @@ Switching this setting OFF, will disable notification only for threshold or mode
 
 <br>
 <img src="./assets/images/how-to-use/battery-icon.gif" width="100%">
-* When the **charger is powered and plugged-in and the battery level reaches the charging threshold limit** , the UPower system goes into a state called **charge-pending**
-* In **charge-pending** state, the battery icon of Gnome-shell system tray, indicates that the **charger is unplugged and battery is discharging**. Which is true, when we look in the battery perspective.
-* However when this state, there is no way of knowing if the charger is plugged-in and powered on, or if charger is disconnected / powered off.
-* Turning this setting ON, will change the behavior of the battery icon in system tray. When the laptop goes into **charge-pending** state, the battery icon of Gnome-shell system tray, will change to **charger-plugged-in** icon.
-* This helps giving information regarding the status of charger, instead of status of battery, which is indicating if the charger is plugged-in and powered on, or if it is unplugged/powered-off.
-* This mimics the **charge-pending** state behavior of system tray battery icon on Windows OS.
+When the **charger is powered and plugged-in** and **the battery level reaches the charging threshold limit** , the UPower system goes into a state called charge-pending. This in general is also known as ***Charging on hold*** state.
+
+**Default Behavior on Gnome Desktop:**
+
+<img src="./assets/images/features/battery-level-80-discharging.png" width="100">
+* When system enters ***Charging on hold*** state, default behavior of Gnome Desktop is to display the status of battery.
+* So the System battery indicator will display `Battery discharging` icon.
+* The drawback here is ,there is no way of knowing if charger is plugged and powered.
+
+**Behavior on Windows Operating System:**
+
+<img src="./assets/images/features/battery-level-80-charging.png" width="100">
+* When system enters ***Charging on hold*** state, default behavior on Windows Operating system is show the status of charger. The battery icon on system tray will display a `Battery Charging` icon.
+* This way the icon gives us the information if charger is plugged and powered on or not.
+
+Enabling, this option change the behavior of system battery indicator similar to the Windows Operating system way, thereby informing us the status of charger.
+Disabling this option revert the behavior of system battery indicator to default Gnome desktop way, thereby informing us the status of battery.
 
 ---
 
