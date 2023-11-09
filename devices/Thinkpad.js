@@ -308,10 +308,10 @@ var ThinkpadSingleBatteryBAT0 = GObject.registerClass({
     }
 
     _readForceDischargeMode() {
-        const forceDischargeModeRead = readFile(BAT0_FORCE_DISCHARGE_PATH).replace(/\r?\n|\r/g, '');
+        const forceDischargeModeRead = readFile(BAT0_FORCE_DISCHARGE_PATH);
         return forceDischargeModeRead.substring(
-          forceDischargeModeRead.indexOf("[") + 1,
-          forceDischargeModeRead.lastIndexOf("]")
+            forceDischargeModeRead.indexOf('[') + 1,
+            forceDischargeModeRead.lastIndexOf(']')
         );
     }
 
@@ -496,10 +496,10 @@ var ThinkpadSingleBatteryBAT1 = GObject.registerClass({
     }
 
     _readForceDischargeMode() {
-        const forceDischargeModeRead = readFile(BAT1_FORCE_DISCHARGE_PATH).replace(/\r?\n|\r/g, '');
+        const forceDischargeModeRead = readFile(BAT1_FORCE_DISCHARGE_PATH);
         return forceDischargeModeRead.substring(
-          forceDischargeModeRead.indexOf("[") + 1,
-          forceDischargeModeRead.lastIndexOf("]")
+            forceDischargeModeRead.indexOf('[') + 1,
+            forceDischargeModeRead.lastIndexOf(']')
         );
     }
 
