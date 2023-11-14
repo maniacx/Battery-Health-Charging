@@ -18,7 +18,6 @@ export const About = GObject.registerClass({
         super({});
         const actionGroup = new Gio.SimpleActionGroup();
         window.insert_action_group('prefs', actionGroup);
-        this._app_icon_image.gicon = Gio.icon_new_for_string(`${GLib.Uri.resolve_relative(import.meta.url, '../icons/battery-health-charging.svg', GLib.UriFlags.NONE)}`);
         this._app_name_label.label = extensionObject.metadata.name;
         this._version_label.label = extensionObject.metadata.version.toString();
 

@@ -1,4 +1,5 @@
 'use strict';
+import Gtk from 'gi://Gtk';
 import {ExtensionPreferences} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
 import * as DeviceList from './lib/deviceList.js';
@@ -19,6 +20,10 @@ export default class BatteryHealthChargingPrefs extends ExtensionPreferences {
             if (device.type === type)
                 currentDevice = device;
         }
+
+        const iconTheme = Gtk.IconTheme.get_for_display(window.get_display());
+        const iconsDirectory = this.dir.get_child('icons').get_path();
+        iconTheme.add_search_path(iconsDirectory);
 
         window.set_default_size(650, 700);
         window.add(new General(settings, currentDevice));
