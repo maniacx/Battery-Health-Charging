@@ -32,7 +32,6 @@ var RazerSingleBattery = GObject.registerClass({
         this.endBalancedRangeMin = 65;
         this.endMaxLifeSpanRangeMax = 80;
         this.endMaxLifeSpanRangeMin = 50;
-        this.minDiffLimit = 5;
         this.incrementsStep = 5;
         this.incrementsPage = 10;
 
