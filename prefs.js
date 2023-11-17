@@ -27,7 +27,7 @@ export default class BatteryHealthChargingPrefs extends ExtensionPreferences {
 
         window.set_default_size(650, 700);
         window.add(new General(settings, currentDevice));
-        if (currentDevice !== null) {
+        if (currentDevice) {
             if (currentDevice.type === 16) // device.type 16 is AppleIntel
                 window.add(new Apple(settings));
             if ((currentDevice.type === 22) && settings.get_boolean('detected-cctk')) // device.type 22 is Dell

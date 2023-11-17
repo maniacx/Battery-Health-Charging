@@ -33,7 +33,7 @@ export const General = GObject.registerClass({
         this._deviceHaveDualBattery = false;
         this._deviceUsesModeNotValue = false;
 
-        if (currentDevice !== null) {
+        if (currentDevice) {
             this._deviceHaveVariableThreshold = currentDevice.deviceHaveVariableThreshold;
             this._deviceNeedRootPermission = currentDevice.deviceNeedRootPermission;
             this._deviceHaveDualBattery = currentDevice.deviceHaveDualBattery;
