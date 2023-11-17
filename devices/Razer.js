@@ -1,5 +1,5 @@
 'use strict';
-/* Razer Laptops using package razer-laptop-control-no-dkms from libsmbios  https://github.com/Razer-Linux/razer-laptop-control-no-dkms */
+/* Razer Laptops using package razer-cli from https://github.com/Razer-Linux/razer-laptop-control-no-dkms */
 import GObject from 'gi://GObject';
 import * as Helper from '../lib/helper.js';
 const {fileExists, execCheck} = Helper;
