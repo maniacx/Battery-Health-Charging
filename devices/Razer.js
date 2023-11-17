@@ -1,5 +1,5 @@
 'use strict';
-/* Razer Laptops using package razer-laptop-control-no-dkms from libsmbios  https://github.com/Razer-Linux/razer-laptop-control-no-dkms */
+/* Razer Laptops using package razer-cli from https://github.com/Razer-Linux/razer-laptop-control-no-dkms */
 const {GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
