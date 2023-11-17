@@ -88,7 +88,7 @@ var ToshibaSingleBatteryBAT0 = GObject.registerClass({
     }
 
     destroy() {
-        if (this._proxy !== null)
+        if (this._proxy)
             this._proxy.disconnect(this._proxyId);
         this._proxyId = null;
         this._proxy = null;
@@ -168,7 +168,7 @@ var ToshibaSingleBatteryBAT1 = GObject.registerClass({
     }
 
     destroy() {
-        if (this._proxy !== null)
+        if (this._proxy)
             this._proxy.disconnect(this._proxyId);
         this._proxyId = null;
         this._proxy = null;
