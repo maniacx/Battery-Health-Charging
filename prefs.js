@@ -14,6 +14,7 @@ const {About} = Me.imports.preferences.about;
 function fillPreferencesWindow(window) {
     let currentDevice = null;
     const settings = ExtensionUtils.getSettings();
+    const dir = Me.dir;
     const type = settings.get_int('device-type');
     if (type !== 0) {
         const device = new DeviceList.deviceArray[type - 1](settings);
@@ -26,7 +27,7 @@ function fillPreferencesWindow(window) {
     iconTheme.add_search_path(iconsDirectory);
 
     window.set_default_size(650, 700);
-    window.add(new General(settings, currentDevice));
+    window.add(new General(settings, currentDevice, dir));
     if (currentDevice) {
         if (currentDevice.type === 16) // device.type 16 is AppleIntel
             window.add(new Apple(settings));
