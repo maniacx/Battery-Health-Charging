@@ -67,7 +67,11 @@
                     <property name="margin_top">12</property>
                     <child>
                       <object class="AdwActionRow" id="open_readme">
-                        <property name="icon-name">bhc-readme-symbolic</property>
+                        <child type="prefix">
+                          <object class="GtkImage">
+                            <property name="icon-name">bhc-readme-symbolic</property>
+                          </object>
+                        </child>
                         <property name="title" translatable="yes">Read me</property>
                         <property name="tooltip-text">https://maniacx.github.io/Battery-Health-Charging/</property>
                         <property name="action-name">prefs.open-readme</property>
@@ -87,7 +91,11 @@
                     <property name="margin_top">18</property>
                     <child>
                       <object class="AdwActionRow" id="open_bug_report">
-                        <property name="icon-name">bhc-bug-symbolic</property>
+                        <child type="prefix">
+                          <object class="GtkImage">
+                            <property name="icon-name">bhc-bug-symbolic</property>
+                          </object>
+                        </child>
                         <property name="title" translatable="yes">Report an Issue</property>
                         <property name="tooltip-text">https://github.com/maniacx/Battery-Health-Charging/issues</property>
                         <property name="action-name">prefs.open-bug-report</property>
@@ -102,7 +110,11 @@
                     </child>
                     <child>
                       <object class="AdwActionRow" id="open-translation">
-                        <property name="icon-name">bhc-translation-symbolic</property>
+                        <child type="prefix">
+                          <object class="GtkImage">
+                            <property name="icon-name">bhc-translation-symbolic</property>
+                          </object>
+                        </child>
                         <property name="title" translatable="yes">Translations</property>
                         <property name="tooltip-text">https://maniacx.github.io/Battery-Health-Charging/translation</property>
                         <property name="action-name">prefs.open-translation</property>
@@ -122,7 +134,11 @@
                     <property name="margin_top">18</property>
                     <child>
                       <object class="AdwActionRow" id="open-sources">
-                        <property name="icon-name">bhc-github-symbolic</property>
+                        <child type="prefix">
+                          <object class="GtkImage">
+                            <property name="icon-name">bhc-github-symbolic</property>
+                          </object>
+                        </child>
                         <property name="title" translatable="yes">View sources on Github</property>
                         <property name="tooltip-text">https://github.com/maniacx/Battery-Health-Charging/</property>
                         <property name="action-name">prefs.open-sources</property>
@@ -137,7 +153,11 @@
                     </child>
                     <child>
                       <object class="AdwActionRow" id="open-rating">
-                        <property name="icon-name">bhc-rating-symbolic</property>
+                        <child type="prefix">
+                          <object class="GtkImage">
+                            <property name="icon-name">bhc-rating-symbolic</property>
+                          </object>
+                        </child>
                         <property name="title" translatable="yes">Rate this extension</property>
                         <property name="tooltip-text">https://extensions.gnome.org/extension/5724/battery-health-charging</property>
                         <property name="action-name">prefs.open-rating</property>
