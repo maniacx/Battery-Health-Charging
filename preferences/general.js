@@ -5,6 +5,9 @@ import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import {gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
+import * as Helper from '../lib/helper.js';
+const {execCheck} = Helper;
+
 export const General = GObject.registerClass({
     GTypeName: 'BHC_General',
     Template: GLib.Uri.resolve_relative(import.meta.url, '../ui/general.ui', GLib.UriFlags.NONE),
@@ -23,9 +26,10 @@ export const General = GObject.registerClass({
         'install_service_button',
     ],
 }, class General extends Adw.PreferencesPage {
-    constructor(settings, currentDevice) {
+    constructor(settings, currentDevice, dir) {
         super({});
         this._settings = settings;
+        this._dir = dir;
         this._currentDevice = currentDevice;
 
         this._deviceHaveVariableThreshold = false;
@@ -111,7 +115,13 @@ export const General = GObject.registerClass({
 
         if (this._deviceNeedRootPermission) {
             this._install_service.connect('clicked', () => {
-                this._settings.set_boolean('polkit-installation-changed', !this._settings.get_boolean('polkit-installation-changed'));
+                const installType = this._settings.get_string('polkit-status');
+                if (installType === 'not-installed')
+                    this._runInstallerScript('install');
+                else if (installType === 'installed')
+                    this._runInstallerScript('uninstall');
+                else if (installType === 'need-update')
+                    this._runInstallerScript('update');
             });
 
             this._settings.connect('changed::polkit-status', () => {
@@ -162,5 +172,34 @@ export const General = GObject.registerClass({
             this._install_service_button.set_label(_('Update'));
             this._install_service_button.set_icon_name('software-update-available-symbolic');
         }
+    }
+
+    async _runInstallerScript(action) {
+        const user = GLib.get_user_name();
+        const argv = [
+            'pkexec',
+            this._dir.get_child('tool').get_child('installer.sh').get_path(),
+            '--tool-user',
+            user,
+            action,
+        ];
+        const [status, output] = await execCheck(argv);
+        log(`Battery Health Charging: stdout = ${output}`);
+        log(`Battery Health Charging: starus = ${status}`);
+        const toast = new Adw.Toast();
+        toast.set_timeout(3);
+        if (status === 0) {
+            if (action === 'install' || action === 'update') {
+                this._settings.set_string('polkit-status', 'installed');
+                toast.set_title(_('Installation Successful.'));
+            } else if (action === 'uninstall') {
+                this._settings.set_string('polkit-status', 'not-installed');
+                toast.set_title(_('Uninstallation Successful.'));
+            }
+        } else {
+            toast.set_title(_('Encountered an unexpected error.'));
+        }
+        if (status !== 126)
+            this.root.add_toast(toast);
     }
 });

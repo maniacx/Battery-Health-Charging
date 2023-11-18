@@ -26,7 +26,7 @@ export default class BatteryHealthChargingPrefs extends ExtensionPreferences {
         iconTheme.add_search_path(iconsDirectory);
 
         window.set_default_size(650, 700);
-        window.add(new General(settings, currentDevice));
+        window.add(new General(settings, currentDevice, this.dir));
         if (currentDevice) {
             if (currentDevice.type === 16) // device.type 16 is AppleIntel
                 window.add(new Apple(settings));
