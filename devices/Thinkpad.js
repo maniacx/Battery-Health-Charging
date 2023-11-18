@@ -71,6 +71,7 @@ var ThinkpadDualBattery = GObject.registerClass({
             this.battery0Removed = !fileExists(BAT0_END_PATH);
             this.battery1Removed = !fileExists(BAT1_END_PATH);
         }
+        this._initializeBatteryMonitoring();
         return true;
     }
 
@@ -144,7 +145,7 @@ var ThinkpadDualBattery = GObject.registerClass({
         return status;
     }
 
-    initializeBatteryMonitoring() {
+    _initializeBatteryMonitoring() {
         this._battery0LevelPath = Gio.File.new_for_path(BAT0_END_PATH);
         this._monitorLevel = this._battery0LevelPath.monitor_file(Gio.FileMonitorFlags.NONE, null);
         this._monitorLevelId = this._monitorLevel.connect('changed', (obj, theFile, otherFile, eventType) => {

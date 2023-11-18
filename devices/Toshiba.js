@@ -45,6 +45,7 @@ var ToshibaSingleBatteryBAT0 = GObject.registerClass({
             return false;
         if (!fileExists(BAT0_END_PATH))
             return false;
+        this._initializeBatteryMonitoring();
         return true;
     }
 
@@ -65,7 +66,7 @@ var ToshibaSingleBatteryBAT0 = GObject.registerClass({
         return 1;
     }
 
-    initializeBatteryMonitoring() {
+    _initializeBatteryMonitoring() {
         const xmlFile = 'resource:///org/gnome/shell/dbus-interfaces/org.freedesktop.UPower.Device.xml';
         const powerManagerProxy = Gio.DBusProxy.makeProxyWrapper(readFileUri(xmlFile));
         this._proxy = new powerManagerProxy(Gio.DBus.system, BUS_NAME, OBJECT_PATH,
@@ -125,6 +126,7 @@ var ToshibaSingleBatteryBAT1 = GObject.registerClass({
             return false;
         if (!fileExists(BAT1_END_PATH))
             return false;
+        this._initializeBatteryMonitoring();
         return true;
     }
 
@@ -145,7 +147,7 @@ var ToshibaSingleBatteryBAT1 = GObject.registerClass({
         return 1;
     }
 
-    initializeBatteryMonitoring() {
+    _initializeBatteryMonitoring() {
         const xmlFile = 'resource:///org/gnome/shell/dbus-interfaces/org.freedesktop.UPower.Device.xml';
         const powerManagerProxy = Gio.DBusProxy.makeProxyWrapper(readFileUri(xmlFile));
         this._proxy = new powerManagerProxy(Gio.DBus.system, BUS_NAME, OBJECT_PATH,
