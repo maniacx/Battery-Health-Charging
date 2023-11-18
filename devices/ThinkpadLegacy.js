@@ -69,6 +69,7 @@ export const ThinkpadLegacyDualBattery = GObject.registerClass({
             this.battery0Removed = !fileExists(TP_BAT0_END);
             this.battery1Removed = !fileExists(TP_BAT1_END);
         }
+        this._initializeBatteryMonitoring();
         return true;
     }
 
@@ -142,7 +143,7 @@ export const ThinkpadLegacyDualBattery = GObject.registerClass({
         return status;
     }
 
-    initializeBatteryMonitoring() {
+    _initializeBatteryMonitoring() {
         this._battery0LevelPath = Gio.File.new_for_path(TP_BAT0_END);
         this._monitorLevel = this._battery0LevelPath.monitor_file(Gio.FileMonitorFlags.NONE, null);
         this._monitorLevelId = this._monitorLevel.connect('changed', (obj, theFile, otherFile, eventType) => {
