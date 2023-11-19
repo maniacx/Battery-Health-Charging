@@ -7,33 +7,29 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-14 15:32-0700\n"
-"PO-Revision-Date: 2023-10-14 15:33-0700\n"
+"POT-Creation-Date: 2023-11-18 18:18-0800\n"
+"PO-Revision-Date: 2023-11-18 18:33-0800\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.3.2\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: lib/notifier.js:36
 msgid "Battery Health Charging"
 msgstr "Battery Health Charging"
 
-#: lib/notifier.js:46
+#: lib/notifier.js:41
 msgid "Battery Health Charging Error"
 msgstr "Battery Health Charging ошибки"
 
-#: lib/notifier.js:59
-msgid "Log Out"
-msgstr "Выйти"
-
-#: lib/notifier.js:65 ui/general.ui:9
+#: lib/notifier.js:54 ui/general.ui:9
 msgid "Settings"
 msgstr "Настройки"
 
-#: lib/notifier.js:75
+#: lib/notifier.js:64
 msgid ""
 "Unsupported Gnome version.\n"
 "This extension is compatible only with Gnome version 42 and above."
@@ -41,7 +37,7 @@ msgstr ""
 "Неподдерживаемая версия Gnome.\n"
 "Это расширение совместимо только с версией Gnome 42 и выше."
 
-#: lib/notifier.js:79
+#: lib/notifier.js:68
 msgid ""
 "Unsupported device.\n"
 "This extension is not compatible with your device."
@@ -49,27 +45,17 @@ msgstr ""
 "Устройство не поддерживается.\n"
 "Это расширение несовместимо с вашим устройством."
 
-#: lib/notifier.js:83
+#: lib/notifier.js:72
 msgid "Please install polkit from extension settings under Installation."
 msgstr ""
 "Пожалуйста, установите polkit из настроек расширения в разделе Установить."
 
-#: lib/notifier.js:87
+#: lib/notifier.js:76
 msgid "Please update polkit from extension settings under Installation."
 msgstr ""
 "Пожалуйста, обновите polkit из настроек расширений в разделе Установка."
 
-#: lib/notifier.js:91 lib/notifier.js:95
-msgid "Installation Successful. Please save your work and logout."
-msgstr ""
-"Установка успешно завершена. Пожалуйста, сохраните работу и выйдите из "
-"системы."
-
-#: lib/notifier.js:99
-msgid "Uninstallation Successful."
-msgstr "Удалено успешно."
-
-#: lib/notifier.js:104
+#: lib/notifier.js:81
 #, javascript-format
 msgid ""
 "Encountered an unexpected error. (%s)\n"
@@ -80,12 +66,12 @@ msgstr ""
 "Выберите правильный пакет Dell в настройках расширения.\n"
 "Отключить и включить расширение"
 
-#: lib/notifier.js:106
+#: lib/notifier.js:83
 #, javascript-format
 msgid "Encountered an unexpected error. (%s)"
 msgstr "Battery Health Charging столкнулся с проблемой. (%s)"
 
-#: lib/notifier.js:111
+#: lib/notifier.js:88
 #, javascript-format
 msgid ""
 "Charging threshold not updated. (%s)\n"
@@ -96,16 +82,16 @@ msgstr ""
 "Выберите правильный пакет Dell в настройках расширения\n"
 "Отключить и включить расширение"
 
-#: lib/notifier.js:113
+#: lib/notifier.js:90
 #, javascript-format
 msgid "Charging threshold not updated. (%s)"
 msgstr "Остановить значение порога зарядки. (%s)"
 
-#: lib/notifier.js:117
+#: lib/notifier.js:94
 msgid "Apply correct Bios Password to set threshold."
 msgstr ""
 
-#: lib/notifier.js:121
+#: lib/notifier.js:98
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -115,12 +101,12 @@ msgstr ""
 "Пороги заряда установлены на %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:126 lib/thresholdPanel.js:348
+#: lib/notifier.js:103 lib/thresholdPanel.js:346
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "Пороги зарядки: %d / %d %%"
 
-#: lib/notifier.js:131
+#: lib/notifier.js:108
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -130,12 +116,12 @@ msgstr ""
 "Лимит зарядки установлен на %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:135 lib/thresholdPanel.js:352
+#: lib/notifier.js:112 lib/thresholdPanel.js:350
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "Лимит зарядки: %d%%"
 
-#: lib/notifier.js:139
+#: lib/notifier.js:116
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -144,7 +130,7 @@ msgstr ""
 "Батарея 2\n"
 "Пороги заряда установлены на %d / %d %%"
 
-#: lib/notifier.js:144
+#: lib/notifier.js:121
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -153,23 +139,23 @@ msgstr ""
 "Батарея 2\n"
 "Лимит зарядки установлен на %d%%"
 
-#: lib/notifier.js:149
+#: lib/notifier.js:126
 msgid "Charging Mode is set to Full Capacity"
 msgstr "Режим зарядки установлен на Полная мощность"
 
-#: lib/notifier.js:153
+#: lib/notifier.js:130
 msgid "Charging Mode is set to Balanced"
 msgstr "Режим зарядки установлен на Сбалансированный"
 
-#: lib/notifier.js:157
+#: lib/notifier.js:134
 msgid "Charging Mode is set to Maximum Lifespan"
 msgstr "Режим зарядки установлен в максимального срока службы"
 
-#: lib/notifier.js:161
+#: lib/notifier.js:138
 msgid "Charging Mode is set to Express"
 msgstr "Режим зарядки установлен в Express"
 
-#: lib/notifier.js:165
+#: lib/notifier.js:142
 msgid "Charging Mode is set to Adaptive"
 msgstr "Режим зарядки установлен на Адаптивный"
 
@@ -194,7 +180,7 @@ msgid "Battery 2"
 msgstr "Батарея 2"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:36 lib/thresholdPanel.js:325
+#: lib/thresholdPanel.js:36 lib/thresholdPanel.js:323
 msgid "Battery Charging Mode"
 msgstr "Режим зарядки"
 
@@ -227,77 +213,77 @@ msgid "Express Mode"
 msgstr "Express режим"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:329
+#: lib/thresholdPanel.js:327
 msgid "Battery Uninstalled"
 msgstr "Аккумулятор удален"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:339
+#: lib/thresholdPanel.js:337
 msgid "No Battery detected!"
 msgstr "Аккумулятор не обнаружен!"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:342
+#: lib/thresholdPanel.js:340
 #, javascript-format
 msgid "Discharge Battery below %d%%"
 msgstr "Разряд ниже %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:356
+#: lib/thresholdPanel.js:354
 msgid "Charging Mode: Full Capacity"
 msgstr "Режим зарядки: Полная мощность"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:359
+#: lib/thresholdPanel.js:357
 msgid "Charging Mode: Balanced"
 msgstr "Режим зарядки: Сбалансированный"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:362
+#: lib/thresholdPanel.js:360
 msgid "Charging Mode: Maximum Lifespan"
 msgstr "Режим зарядки: Mаксимального срока службы"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:365
+#: lib/thresholdPanel.js:363
 msgid "Charging Mode: Adaptive"
 msgstr "Режим зарядки: Адаптивный"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:368
+#: lib/thresholdPanel.js:366
 msgid "Charging Mode: Express"
 msgstr "Режим зарядки: Express"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:410
+#: lib/thresholdPanel.js:408
 msgid "Uninstalled"
 msgstr "Удалено"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:413
+#: lib/thresholdPanel.js:411
 msgid "Full Capacity"
 msgstr "Полная мощность"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:416
+#: lib/thresholdPanel.js:414
 msgid "Balanced"
 msgstr "Сбалансированный"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:419
+#: lib/thresholdPanel.js:417
 msgid "Max Lifespan"
 msgstr "Макс. срока службы"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:422
+#: lib/thresholdPanel.js:420
 msgid "Adaptive"
 msgstr "Адаптивный"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:425
+#: lib/thresholdPanel.js:423
 msgid "Express"
 msgstr "Express"
 
-#: preferences/general.js:49
+#: preferences/general.js:53
 msgid ""
 "Select the type of icon for indicator and menu.\n"
 "In threshold settings, if <b>Customise</b> mode is selected, icon type will "
@@ -307,21 +293,33 @@ msgstr ""
 "В пороговых настройках, если выбран <b>Настроить</b> режим, тип значка "
 "переключится на <b>Только символы</b> и эта опция будет отключена."
 
-#: preferences/general.js:51
+#: preferences/general.js:55
 msgid "Select the type of icon for indicator and menu."
 msgstr "Выберите тип значка для индикатора и меню."
 
-#: preferences/general.js:156
+#: preferences/general.js:166
 msgid "Remove"
 msgstr "Удалить"
 
-#: preferences/general.js:159
+#: preferences/general.js:169
 msgid "Install"
 msgstr "Установить"
 
-#: preferences/general.js:162
+#: preferences/general.js:172
 msgid "Update"
 msgstr "Обновлять"
+
+#: preferences/general.js:194
+msgid "Installation Successful."
+msgstr "Установка успешно завершена."
+
+#: preferences/general.js:197
+msgid "Uninstallation Successful."
+msgstr "Удалено успешно."
+
+#: preferences/general.js:200
+msgid "Encountered an unexpected error."
+msgstr "Battery Health Charging столкнулся с проблемой."
 
 #: preferences/thresholdPrimary.js:46
 msgid "Threshold"
@@ -348,23 +346,23 @@ msgstr "<i>Принятое значение: от %d до %d</i>"
 msgid "About"
 msgstr "О программе"
 
-#: ui/about.ui:70
+#: ui/about.ui:75
 msgid "Read me"
 msgstr "Читать"
 
-#: ui/about.ui:88
+#: ui/about.ui:99
 msgid "Report an Issue"
 msgstr "Сообщить о проблеме"
 
-#: ui/about.ui:101
+#: ui/about.ui:118
 msgid "Translations"
 msgstr "Перевод"
 
-#: ui/about.ui:119
+#: ui/about.ui:142
 msgid "View sources on Github"
 msgstr "Исходный код"
 
-#: ui/about.ui:132
+#: ui/about.ui:161
 msgid "Rate this extension"
 msgstr "Оценить это расширение"
 
@@ -429,11 +427,11 @@ msgstr ""
 msgid "Note: Bios password will be stored in Gnome Keyring"
 msgstr ""
 
-#: ui/dell.ui:58
+#: ui/dell.ui:83
 msgid "Libsmbios"
 msgstr "Libsmbios"
 
-#: ui/dell.ui:59
+#: ui/dell.ui:84
 msgid "Dell Command Center"
 msgstr "Dell Command Center"
 
@@ -582,6 +580,14 @@ msgstr "Текущее значение"
 #: ui/thresholdSecondary.ui:164 ui/thresholdSecondary.ui:237
 msgid "Start charging threshold value"
 msgstr "Начать значение порога зарядки"
+
+#~ msgid "Log Out"
+#~ msgstr "Выйти"
+
+#~ msgid "Installation Successful. Please save your work and logout."
+#~ msgstr ""
+#~ "Установка успешно завершена. Пожалуйста, сохраните работу и выйдите из "
+#~ "системы."
 
 #~ msgid "Project page"
 #~ msgstr "Страница проекта"
