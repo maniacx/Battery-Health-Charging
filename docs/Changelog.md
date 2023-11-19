@@ -9,6 +9,13 @@ permalink: /changelogs
 
 
 
+{: .important-title }
+> GN-45_Version 37 &emsp;&emsp; Nov 18, 2023 
+> * Remove the need to logout after polkit installation / upgrade
+> * Added indicator icon when polkit is not installed / removed (for laptops that need root privileges
+> * Add checks for undefined before calling destroy.
+> * Added icons in about page
+
 {: .note-title }
 > GN-44_Version 36 &emsp;&emsp; Nov 18, 2023 
 > * Remove the need to logout after polkit installation / upgrade
