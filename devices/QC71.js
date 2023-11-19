@@ -1,5 +1,6 @@
 'use strict';
 /* Intel QC71 Laptops using dkms  https://github.com/pobrn/qc71_laptop */
+/* Slimbook Laptops using dkms  https://github.com/Slimbook-Team/slimbook-qc71-dkms */
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import * as Helper from '../lib/helper.js';
