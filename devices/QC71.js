@@ -1,5 +1,6 @@
 'use strict';
 /* Intel QC71 Laptops using dkms  https://github.com/pobrn/qc71_laptop */
+/* Slimbook Laptops using dkms  https://github.com/Slimbook-Team/slimbook-qc71-dkms */
 const {GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
