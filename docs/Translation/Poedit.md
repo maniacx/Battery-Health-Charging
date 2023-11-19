@@ -7,7 +7,7 @@ permalink: /poedit-guide
 ---
 <style>
     .button1-fixed-width {
-        width:120px;
+        width:100px;
     }
     .button2-fixed-width {
         width:180px;
@@ -20,7 +20,7 @@ permalink: /poedit-guide
 * The source file is found under `po` directory `Battery-Health-Charging.pot`
 * Extension is has two branches. 
  1. <span class="fs-2">[GNOME42-44](https://github.com/maniacx/Battery-Health-Charging/blob/GNOME42-44/po/Battery-Health-Charging.pot){: .btn .btn-purple .v-align-bottom .button1-fixed-width}</span>  for `Gnome 42 43 44`. 
- 2. <span class="fs-2">[GNOME45+](https://github.com/maniacx/Battery-Health-Charging/blob/GNOME45+/po/Battery-Health-Charging.pot){: .btn .btn-purple .v-align-bottom .button1-fixed-width}</span> for `Gnome 45` and later.
+ 2. <span class="fs-2">[GNOME45](https://github.com/maniacx/Battery-Health-Charging/blob/GNOME45/po/Battery-Health-Charging.pot){: .btn .btn-purple .v-align-bottom .button1-fixed-width}</span> for `Gnome 45` and later.
 
 ## Methods
 We can begin by:
