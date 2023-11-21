@@ -259,7 +259,7 @@ var ThinkpadSingleBatteryBAT0 = GObject.registerClass({
 
         if (!this._batteryMonitoringInitialized)
             this._initializeBatteryMonitoring();
-        if (this._settings.get_boolean('force-discharge-enabled'))
+        else if (this._settings.get_boolean('force-discharge-enabled'))
             this._forceDischarge();
 
         if (this._verifyThreshold())
