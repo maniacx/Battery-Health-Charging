@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # batteryhealthchargingctl - This script for setting charging limit
 #
@@ -196,12 +196,12 @@ case "$TOOLCMD" in
         exit ${EXIT_SUCCESS}
         ;;
     CHECKINSTALLATION)
-    printf -v versions '%s\n%s' "$(pkaction --version | cut -d' ' -f3)" "0.106"
-    if [[ $versions != "$(sort -V <<< "$versions")" ]];then
-        LEGACY_POLKIT=false
-    else
-        LEGACY_POLKIT=true
-    fi
+        printf -v versions '%s\n%s' "$(pkaction --version | cut -d' ' -f3)" "0.106"
+        if [[ $versions != "$(sort -V <<< "$versions")" ]];then
+            LEGACY_POLKIT=false
+        else
+            LEGACY_POLKIT=true
+        fi
         EXTDIR=$ARG1
         TOOL_USER=$ARG2
         RULE_IN="${EXTDIR}/10-${RULE_BASE}.rules"

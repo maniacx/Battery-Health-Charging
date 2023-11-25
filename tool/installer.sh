@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # installer.sh - This script installs a policykit rule for the Battery Health Charging gnome-shell extension.
 #
