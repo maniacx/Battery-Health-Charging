@@ -185,7 +185,7 @@ export const General = GObject.registerClass({
         ];
         const [status, output] = await execCheck(argv);
         log(`Battery Health Charging: stdout = ${output}`);
-        log(`Battery Health Charging: starus = ${status}`);
+        log(`Battery Health Charging: status = ${status}`);
         const toast = new Adw.Toast();
         toast.set_timeout(3);
         if (status === 0) {
