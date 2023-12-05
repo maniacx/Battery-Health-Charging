@@ -2,7 +2,7 @@
 <interface domain="Battery-Health-Charging@maniacx.github.com">
   <template class="BHC_Dell" parent="AdwPreferencesPage">
     <property name="name">Dell</property>
-    <property name="title" translatable="yes">Dell</property>
+    <property name="title" translatable="yes">Device</property>
     <property name="icon-name">computer-symbolic</property>
     <child>
       <object class="AdwPreferencesGroup" id="device_settings_group">
