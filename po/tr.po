@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battery-Health-Charging@maniacx.github.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-18 18:18-0800\n"
-"PO-Revision-Date: 2023-11-18 18:34-0800\n"
+"POT-Creation-Date: 2023-12-05 16:51-0800\n"
+"PO-Revision-Date: 2023-12-05 14:42-0800\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #: lib/notifier.js:36
 msgid "Battery Health Charging"
@@ -101,7 +101,7 @@ msgstr ""
 "Şarj eşikleri %%%d / %%%d olarak ayarlandı"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:103 lib/thresholdPanel.js:346
+#: lib/notifier.js:103 lib/thresholdPanel.js:366
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "Şarj eşikleri %%%d / %%%d olarak ayarlandı"
@@ -116,7 +116,7 @@ msgstr ""
 "Şarj Sınırı %%%d olarak ayarlandı"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:112 lib/thresholdPanel.js:350
+#: lib/notifier.js:112 lib/thresholdPanel.js:370
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "Şarj Sınırı %%%d olarak ayarlandı"
@@ -180,7 +180,7 @@ msgid "Battery 2"
 msgstr "Pil 2"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:36 lib/thresholdPanel.js:323
+#: lib/thresholdPanel.js:36 lib/thresholdPanel.js:343
 msgid "Battery Charging Mode"
 msgstr "Pil Şarj Kipi"
 
@@ -213,75 +213,79 @@ msgid "Express Mode"
 msgstr "Hızlı Kip"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:327
+#: lib/thresholdPanel.js:347
 msgid "Battery Uninstalled"
 msgstr "Pil Kaldırıldı"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:337
+#: lib/thresholdPanel.js:357
 msgid "No Battery detected!"
 msgstr "Pil algılanmadı!"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:340
+#: lib/thresholdPanel.js:360
 #, javascript-format
 msgid "Discharge Battery below %d%%"
 msgstr "Pil Düzeyi %%%d altına düştü"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:354
+#: lib/thresholdPanel.js:374
 msgid "Charging Mode: Full Capacity"
 msgstr "Şarj Kipi: Tam Kapasite"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:357
+#: lib/thresholdPanel.js:377
 msgid "Charging Mode: Balanced"
 msgstr "Şarj Kipi: Dengeli"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:360
+#: lib/thresholdPanel.js:380
 msgid "Charging Mode: Maximum Lifespan"
 msgstr "Şarj Kipi: Azami Ömür"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:363
+#: lib/thresholdPanel.js:383
 msgid "Charging Mode: Adaptive"
 msgstr "Şarj Kipi: Uyarlanabilir"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:366
+#: lib/thresholdPanel.js:386
 msgid "Charging Mode: Express"
 msgstr "Şarj Kipi: Hızlı"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:408
+#: lib/thresholdPanel.js:428
 msgid "Uninstalled"
 msgstr "Kaldır"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:411
+#: lib/thresholdPanel.js:431
 msgid "Full Capacity"
 msgstr "Tam Kapasite"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:414
+#: lib/thresholdPanel.js:434
 msgid "Balanced"
 msgstr "Dengeli"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:417
+#: lib/thresholdPanel.js:437
 msgid "Max Lifespan"
 msgstr "Azami ömür"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:420
+#: lib/thresholdPanel.js:440
 msgid "Adaptive"
 msgstr "Uyarlanabilir"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:423
+#: lib/thresholdPanel.js:443
 msgid "Express"
 msgstr "Hızlı"
+
+#: lib/thresholdPanel.js:480
+msgid "Force Discharge to threshold value"
+msgstr ""
 
 #: preferences/general.js:53
 msgid ""
@@ -367,11 +371,11 @@ msgstr "Kaynakları görüntüle"
 msgid "Rate this extension"
 msgstr "Uzantıyı Oyla"
 
-#: ui/apple.ui:5
-msgid "Apple"
-msgstr "Apple"
+#: ui/apple.ui:5 ui/dell.ui:5 ui/thinkpad.ui:5
+msgid "Device"
+msgstr "Aygıt"
 
-#: ui/apple.ui:9 ui/dell.ui:9
+#: ui/apple.ui:9 ui/dell.ui:9 ui/thinkpad.ui:9
 msgid "Device settings"
 msgstr "Aygıt ayarları"
 
@@ -393,10 +397,6 @@ msgid ""
 "reaches charging threshold).\n"
 "• Indicator light glows <b>amber</b> while charging.\n"
 msgstr ""
-
-#: ui/dell.ui:5
-msgid "Dell"
-msgstr "Dell"
 
 #: ui/dell.ui:12
 msgid "Dell package for charging mode"
@@ -548,6 +548,16 @@ msgstr "Simge ve Yüzde"
 msgid "Percentage Highlighted"
 msgstr "Yüzde Vurgulanmış"
 
+#: ui/thinkpad.ui:12
+msgid "Enable force discharge battery feature (Experimental)"
+msgstr ""
+
+#: ui/thinkpad.ui:13
+msgid ""
+"Enable option to force discharge battery when battery level higher than "
+"current threshold"
+msgstr ""
+
 #: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
 msgid "Customize"
 msgstr "Özelleştir"
@@ -580,27 +590,3 @@ msgstr "Geçerli Değer"
 #: ui/thresholdSecondary.ui:164 ui/thresholdSecondary.ui:237
 msgid "Start charging threshold value"
 msgstr "Şarj etmeye başlama değeri"
-
-#~ msgid "Log Out"
-#~ msgstr "Oturumu Kapat"
-
-#~ msgid "Installation Successful. Please save your work and logout."
-#~ msgstr "Kurulum Başarılı. Lütfen çalışmanızı kaydedin ve oturumu kapatın."
-
-# Menü ögesi
-#~ msgid "Project page"
-#~ msgstr "Proje Sayfası"
-
-#~ msgid "Charging stopped (Threshold)"
-#~ msgstr "Şarj durdu (Eşik)"
-
-#, javascript-format
-#~ msgid "Charge thresholds: %d / %d %%"
-#~ msgstr "Şarj eşikleri: %%%d / %%%d"
-
-#, javascript-format
-#~ msgid "Charging Limit: %d%%"
-#~ msgstr "Şarj Sınırı: %%%d"
-
-#~ msgid "Charging Mode: Max. Lifespan"
-#~ msgstr "Şarj Kipi: Azami Ömür"

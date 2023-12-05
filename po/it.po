@@ -1,6 +1,7 @@
-# ITALIAN TRANSLATION.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Italian translation for Battery-Health-Charging@maniacx.github.com.
+# Copyright (C) 2023 Battery-Health-Charging@maniacx.github.com's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Battery-Health-Charging@maniacx.github.com package.
+#
 # ALBANO BATTISTELLA <ALBANO_BATTISTELLA@HOTMAIL.COM>, 2023.
 # dalz <translations@alsd.eu>, 2023.
 #
@@ -8,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-18 18:18-0800\n"
-"PO-Revision-Date: 2023-11-18 18:30-0800\n"
+"POT-Creation-Date: 2023-12-05 16:51-0800\n"
+"PO-Revision-Date: 2023-12-05 14:38-0800\n"
 "Last-Translator: dalz <translations@alsd.eu>\n"
 "Language-Team: Italian <translations@alsd.eu>\n"
 "Language: it\n"
@@ -17,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #: lib/notifier.js:36
 msgid "Battery Health Charging"
@@ -107,7 +108,7 @@ msgstr ""
 "Le soglie di ricarica sono impostate a %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:103 lib/thresholdPanel.js:346
+#: lib/notifier.js:103 lib/thresholdPanel.js:366
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "Le soglie di ricarica sono impostate a %d / %d %%"
@@ -122,7 +123,7 @@ msgstr ""
 "Limite di ricarica impostato a %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:112 lib/thresholdPanel.js:350
+#: lib/notifier.js:112 lib/thresholdPanel.js:370
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "Limite di ricarica impostato a %d%%"
@@ -186,7 +187,7 @@ msgid "Battery 2"
 msgstr "Batteria 2"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:36 lib/thresholdPanel.js:323
+#: lib/thresholdPanel.js:36 lib/thresholdPanel.js:343
 msgid "Battery Charging Mode"
 msgstr "Modalità di ricarica"
 
@@ -219,75 +220,79 @@ msgid "Express Mode"
 msgstr "Modalità express"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:327
+#: lib/thresholdPanel.js:347
 msgid "Battery Uninstalled"
 msgstr "Batteria rimossa"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:337
+#: lib/thresholdPanel.js:357
 msgid "No Battery detected!"
 msgstr "Nessuna batteria rilevata!"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:340
+#: lib/thresholdPanel.js:360
 #, javascript-format
 msgid "Discharge Battery below %d%%"
 msgstr "Uso batteria fino al %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:354
+#: lib/thresholdPanel.js:374
 msgid "Charging Mode: Full Capacity"
 msgstr "Modalità di ricarica: Capacità massima"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:357
+#: lib/thresholdPanel.js:377
 msgid "Charging Mode: Balanced"
 msgstr "Modalità di ricarica: Bilanciata"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:360
+#: lib/thresholdPanel.js:380
 msgid "Charging Mode: Maximum Lifespan"
 msgstr "Modalità di ricarica: Ciclo vita max."
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:363
+#: lib/thresholdPanel.js:383
 msgid "Charging Mode: Adaptive"
 msgstr "Modalità di ricarica: Adattiva"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:366
+#: lib/thresholdPanel.js:386
 msgid "Charging Mode: Express"
 msgstr "Modalità di ricarica: Express"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:408
+#: lib/thresholdPanel.js:428
 msgid "Uninstalled"
 msgstr "Rimossa"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:411
+#: lib/thresholdPanel.js:431
 msgid "Full Capacity"
 msgstr "Capacità massima"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:414
+#: lib/thresholdPanel.js:434
 msgid "Balanced"
 msgstr "Bilanciata"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:417
+#: lib/thresholdPanel.js:437
 msgid "Max Lifespan"
 msgstr "Ciclo di vita massimo"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:420
+#: lib/thresholdPanel.js:440
 msgid "Adaptive"
 msgstr "Adattiva"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:423
+#: lib/thresholdPanel.js:443
 msgid "Express"
 msgstr "Express"
+
+#: lib/thresholdPanel.js:480
+msgid "Force Discharge to threshold value"
+msgstr ""
 
 #: preferences/general.js:53
 msgid ""
@@ -373,11 +378,11 @@ msgstr "Visualizza sorgenti"
 msgid "Rate this extension"
 msgstr "Valuta l'estensione"
 
-#: ui/apple.ui:5
-msgid "Apple"
-msgstr "Apple"
+#: ui/apple.ui:5 ui/dell.ui:5 ui/thinkpad.ui:5
+msgid "Device"
+msgstr "Dispositivo"
 
-#: ui/apple.ui:9 ui/dell.ui:9
+#: ui/apple.ui:9 ui/dell.ui:9 ui/thinkpad.ui:9
 msgid "Device settings"
 msgstr "Impostazioni dispositivo"
 
@@ -399,10 +404,6 @@ msgid ""
 "reaches charging threshold).\n"
 "• Indicator light glows <b>amber</b> while charging.\n"
 msgstr ""
-
-#: ui/dell.ui:5
-msgid "Dell"
-msgstr "Dell"
 
 #: ui/dell.ui:12
 msgid "Dell package for charging mode"
@@ -564,6 +565,16 @@ msgstr "Simbolo e percentuale"
 msgid "Percentage Highlighted"
 msgstr "Percentuale evidenziata"
 
+#: ui/thinkpad.ui:12
+msgid "Enable force discharge battery feature (Experimental)"
+msgstr ""
+
+#: ui/thinkpad.ui:13
+msgid ""
+"Enable option to force discharge battery when battery level higher than "
+"current threshold"
+msgstr ""
+
 #: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
 msgid "Customize"
 msgstr "Personalizza"
@@ -596,27 +607,3 @@ msgstr "Valore attuale"
 #: ui/thresholdSecondary.ui:164 ui/thresholdSecondary.ui:237
 msgid "Start charging threshold value"
 msgstr "Soglia per l'inizio della ricarica"
-
-#~ msgid "Log Out"
-#~ msgstr "Termina sessione"
-
-#~ msgid "Installation Successful. Please save your work and logout."
-#~ msgstr ""
-#~ "Installazione avvenuta con successo. Salva il tuo lavoro e disconnettiti."
-
-#~ msgid "Project page"
-#~ msgstr "Pagina del progetto"
-
-#~ msgid "Charging stopped (Threshold)"
-#~ msgstr "Ricarica interrotta (soglia)"
-
-#, javascript-format
-#~ msgid "Charge thresholds: %d / %d %%"
-#~ msgstr "Soglie di ricarica: %d / %d %%"
-
-#, javascript-format
-#~ msgid "Charging Limit: %d%%"
-#~ msgstr "Limite di ricarica: %d%%"
-
-#~ msgid "Charging Mode: Max. Lifespan"
-#~ msgstr "Modalità di ricarica: Ciclo vita max."
