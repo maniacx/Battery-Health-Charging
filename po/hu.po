@@ -1,14 +1,15 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
+# Hungarian translation for Battery-Health-Charging@maniacx.github.com.
+# Copyright (C) 2023 Battery-Health-Charging@maniacx.github.com's COPYRIGHT HOLDER
+# This file is distributed under the same license as the Battery-Health-Charging@maniacx.github.com package.
+#
 # ViBE <vibe@protonmail.com>, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-11-18 18:18-0800\n"
-"PO-Revision-Date: 2023-11-18 18:42-0800\n"
+"POT-Creation-Date: 2023-12-05 15:58-0800\n"
+"PO-Revision-Date: 2023-12-05 16:12-0800\n"
 "Last-Translator: ViBE <vibe@protonmail.com>\n"
 "Language-Team: Hungarian <vibe@protonmail.com>\n"
 "Language: hu\n"
@@ -16,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #: lib/notifier.js:39
 msgid "Battery Health Charging"
@@ -90,7 +91,7 @@ msgid ""
 msgstr "1. akkumulátor töltési küszöbszintje beállítva %d / %d %%-ra"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:102 lib/thresholdPanel.js:374
+#: lib/notifier.js:102 lib/thresholdPanel.js:401
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "Töltési küszöbszint beállítva %d / %d %%-ra"
@@ -103,7 +104,7 @@ msgid ""
 msgstr "1. akkumulátor töltési küszöbszintje beállítva %d%%-ra"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:111 lib/thresholdPanel.js:378
+#: lib/notifier.js:111 lib/thresholdPanel.js:405
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "Töltési küszöbszint beállítva %d%%-ra"
@@ -153,92 +154,96 @@ msgid "Charging stopped (Threshold)"
 msgstr "Nincs töltés"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel42.js:148 lib/thresholdPanel42.js:161
+#: lib/thresholdPanel42.js:145 lib/thresholdPanel42.js:158
 #: lib/thresholdPanel.js:38 ui/thresholdSecondary.ui:5
 msgid "Battery 2"
 msgstr "2. akkumulátor"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel42.js:148 lib/thresholdPanel42.js:161
+#: lib/thresholdPanel42.js:145 lib/thresholdPanel42.js:158
 #: lib/thresholdPanel.js:36 preferences/thresholdPrimary.js:46
 msgid "Battery 1"
 msgstr "1. akkumulátor"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:167 lib/thresholdPanel.js:82
+#: lib/thresholdPanel42.js:164 lib/thresholdPanel.js:82
 #: preferences/thresholdPrimary.js:203 preferences/thresholdSecondary.js:198
 msgid "Full Capacity Mode"
 msgstr "Teljes feltöltés"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:171 lib/thresholdPanel.js:91
+#: lib/thresholdPanel42.js:168 lib/thresholdPanel.js:91
 #: preferences/thresholdPrimary.js:207 preferences/thresholdSecondary.js:202
 msgid "Balanced Mode"
 msgstr "Kiegyensúlyozott"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:175 lib/thresholdPanel.js:100
+#: lib/thresholdPanel42.js:172 lib/thresholdPanel.js:100
 #: preferences/thresholdPrimary.js:211 preferences/thresholdSecondary.js:206
 msgid "Maximum Lifespan Mode"
 msgstr "Tárolás"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:179 lib/thresholdPanel.js:108
+#: lib/thresholdPanel42.js:176 lib/thresholdPanel.js:108
 msgid "Adaptive Mode"
 msgstr "Adaptív"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:183 lib/thresholdPanel.js:116
+#: lib/thresholdPanel42.js:180 lib/thresholdPanel.js:116
 msgid "Express Mode"
 msgstr "ExpressCharge™"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:368 lib/thresholdPanel.js:365
+#: lib/thresholdPanel42.js:386 lib/thresholdPanel.js:392
 msgid "No Battery detected!"
 msgstr "Nem található akkumulátor."
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:371 lib/thresholdPanel.js:368
+#: lib/thresholdPanel42.js:389 lib/thresholdPanel.js:395
 #, javascript-format
 msgid "Discharge Battery below %d%%"
 msgstr "Akkumulátor merítése %d%% alá"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:377
+#: lib/thresholdPanel42.js:395
 #, javascript-format
 msgid "Charge thresholds: %d / %d %%"
 msgstr "Töltési küszöb: %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:381
+#: lib/thresholdPanel42.js:399
 #, javascript-format
 msgid "Charging Limit: %d%%"
 msgstr "Töltési küszöb: %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:384 lib/thresholdPanel.js:382
+#: lib/thresholdPanel42.js:402 lib/thresholdPanel.js:409
 msgid "Charging Mode: Full Capacity"
 msgstr "Töltési mód: Teljes feltöltés"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:386 lib/thresholdPanel.js:385
+#: lib/thresholdPanel42.js:404 lib/thresholdPanel.js:412
 msgid "Charging Mode: Balanced"
 msgstr "Töltési mód: Kiegyensúlyozott"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:389
+#: lib/thresholdPanel42.js:407
 msgid "Charging Mode: Max. Lifespan"
 msgstr "Töltési mód: Tárolás"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:391 lib/thresholdPanel.js:391
+#: lib/thresholdPanel42.js:409 lib/thresholdPanel.js:418
 msgid "Charging Mode: Adaptive"
 msgstr "Töltési mód: Adaptív"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:393 lib/thresholdPanel.js:394
+#: lib/thresholdPanel42.js:411 lib/thresholdPanel.js:421
 msgid "Charging Mode: Express"
 msgstr "Töltési mód: ExpressCharge™"
+
+#: lib/thresholdPanel42.js:460 lib/thresholdPanel.js:524
+msgid "Force Discharge to threshold value"
+msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
 #: lib/thresholdPanel.js:34
@@ -246,47 +251,47 @@ msgid "Battery"
 msgstr "Akkumulátor"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:46 lib/thresholdPanel.js:351
+#: lib/thresholdPanel.js:46 lib/thresholdPanel.js:378
 msgid "Battery Charging Mode"
 msgstr "Töltési mód"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
-#: lib/thresholdPanel.js:355
+#: lib/thresholdPanel.js:382
 msgid "Battery Uninstalled"
 msgstr "Akkumulátor eltávolítva"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel.js:388
+#: lib/thresholdPanel.js:415
 msgid "Charging Mode: Maximum Lifespan"
 msgstr "Töltési mód: Tárolás"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:445
+#: lib/thresholdPanel.js:472
 msgid "Uninstalled"
 msgstr "Eltávolítva"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:448
+#: lib/thresholdPanel.js:475
 msgid "Full Capacity"
 msgstr "Teljes feltöltés"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:451
+#: lib/thresholdPanel.js:478
 msgid "Balanced"
 msgstr "Kiegyensúlyozott"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:454
+#: lib/thresholdPanel.js:481
 msgid "Max Lifespan"
 msgstr "Tárolás"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:457
+#: lib/thresholdPanel.js:484
 msgid "Adaptive"
 msgstr "Adaptív"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
-#: lib/thresholdPanel.js:460
+#: lib/thresholdPanel.js:487
 msgid "Express"
 msgstr "ExpressCharge™"
 
@@ -373,11 +378,11 @@ msgstr "Hiba jelentése"
 msgid "Rate this extension"
 msgstr "Kiterjesztés értékelése"
 
-#: ui/apple.ui:5
-msgid "Apple"
-msgstr "Apple"
+#: ui/apple.ui:5 ui/dell.ui:5 ui/thinkpad.ui:5
+msgid "Device"
+msgstr ""
 
-#: ui/apple.ui:9 ui/dell.ui:9
+#: ui/apple.ui:9 ui/dell.ui:9 ui/thinkpad.ui:9
 msgid "Device settings"
 msgstr "Eszköz beállítások"
 
@@ -399,10 +404,6 @@ msgid ""
 "reaches charging threshold).\n"
 "• Indicator light glows <b>amber</b> while charging.\n"
 msgstr ""
-
-#: ui/dell.ui:5
-msgid "Dell"
-msgstr "Dell"
 
 #: ui/dell.ui:12
 msgid "Dell package for charging mode"
@@ -551,6 +552,16 @@ msgstr "Ikon és százalék"
 msgid "Percentage Highlighted"
 msgstr "Csak százalék"
 
+#: ui/thinkpad.ui:12
+msgid "Enable force discharge battery feature (Experimental)"
+msgstr ""
+
+#: ui/thinkpad.ui:13
+msgid ""
+"Enable option to force discharge battery when battery level higher than "
+"current threshold"
+msgstr ""
+
 #: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
 msgid "Customize"
 msgstr "Testre szabás"
@@ -584,19 +595,3 @@ msgstr "Jelenlegi érték"
 msgid "Start charging threshold value"
 msgstr "Töltés indítása"
 
-#~ msgid "Log Out"
-#~ msgstr "Kijelentkezés"
-
-#~ msgid ""
-#~ "Unsupported Gnome version.\n"
-#~ "This extension is compatible only with Gnome version 42 and above."
-#~ msgstr ""
-#~ "Nem támogatott GNOME verzió.\n"
-#~ "Ez a kiterjesztés a GNOME Shell 42 vagy újabb verziójával kompatibilis."
-
-#~ msgid "Installation Successful. Please save your work and logout."
-#~ msgstr ""
-#~ "Szabályok létrehozva. Kérem, fejezze be a munkamenetet és jelentkezzen ki!"
-
-#~ msgid "Project page"
-#~ msgstr "Honlap"
