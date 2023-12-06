@@ -7,7 +7,24 @@ permalink: /changelogs
 
 # Changelogs
 
+{: .important-title }
+> GN-45_Version 40 &emsp;&emsp; Dec 06, 2023 
+> * Added support for Framework Laptops
+> * Fix compatibility for Nix OS
+> * Added force-discharge support for Thinkpad. (Experimental)
 
+{: .note-title }
+> GN-44_Version 39 &emsp;&emsp; Dec 06, 2023 
+> * Added support for Framework Laptops
+> * Fix compatibility for Nix OS
+> * Added force-discharge support for Thinkpad. (Experimental)
+
+{: .note-title }
+> GN-44_Version 38 &emsp;&emsp; Dec 05, 2023 
+> * Not published due to incomplete submission
+> * ~~Added support for Framework Laptops~~
+> * ~~Fix compatibility for Nix OS~~
+> * ~~Added force-discharge support for Thinkpad. (Experimental)~~
 
 {: .important-title }
 > GN-45_Version 37 &emsp;&emsp; Nov 18, 2023 

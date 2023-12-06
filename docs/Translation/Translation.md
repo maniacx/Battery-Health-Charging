@@ -14,7 +14,7 @@ has_toc: false
 
 ## Translation
 
-Thank you for taking the interest in contributing with this porject.
+Thank you for taking the interest in contributing with this project.
 There are two easy ways to create/update translations for your language.
 1. Locally using `Poedit` software
 2. Using `crowdin` website.
