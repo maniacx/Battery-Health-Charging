@@ -16,7 +16,7 @@ permalink: /crowdin-guide
 
 # Crowdin Guide
 Two projects available on crowdin.
-1. [Battery-Health-Charging-44-43-42](https://crowdin.com/project/battery-health-charging){: .btn .btn-green .v-align-bottom .fs-2 .button1-fixed-width} for `Gnome 42 43 44`
+1. [Battery-Health-Charging-44](https://crowdin.com/project/battery-health-charging){: .btn .btn-green .v-align-bottom .fs-2 .button1-fixed-width} for `Gnome 42 43 44`
 2. [Battery-Health-Charging-45](https://crowdin.com/project/battery-health-charging-45){: .btn .btn-green .v-align-bottom .fs-2 .button1-fixed-width} for `Gnome 45 and above`
 
 

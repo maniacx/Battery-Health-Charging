@@ -50,7 +50,7 @@ There are two easy ways to create/update translations for your language.
 
 ## Get Started
 [Poedit Guide](./poedit-guide){: .btn .btn-blue .button2-fixed-width}<br>
-[Crowdin Guide](./pull-request-guide){: .btn .btn-green .button2-fixed-width}<br>
+[Crowdin Guide](./crowdin-guide){: .btn .btn-green .button2-fixed-width}<br>
 [Pull Request Guide](./pull-request-guide){: .btn .btn-purple .button2-fixed-width}<br>
 
 
