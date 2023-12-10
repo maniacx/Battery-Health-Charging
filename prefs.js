@@ -40,6 +40,6 @@ export default class BatteryHealthChargingPrefs extends ExtensionPreferences {
             if (currentDevice.type === 20 || currentDevice.type === 21) // device.type 20|21 is Thinkpad
                 window.add(new Thinkpad(settings));
         }
-        window.add(new About(window, this));
+        window.add(new About(this));
     }
 }

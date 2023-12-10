@@ -8,168 +8,316 @@
       <object class="AdwPreferencesGroup">
         <property name="margin_start">90</property>
         <property name="margin_end">90</property>
+        <property name="hexpand">False</property>
         <child>
           <object class="AdwActionRow">
             <property name="child">
-              <object class="GtkBox">
-                <property name="orientation">vertical</property>
-                <property name="margin_start">12</property>
-                <property name="margin_end">12</property>
-                <property name="margin_bottom">12</property>
+              <object class="GtkStack" id="stack">
+                <property name="transition_type">slide-left-right</property>
+                <property name="transition-duration">200</property>
+                <property name="vexpand">True</property>
                 <child>
-                  <object class="GtkImage" id="app_icon_image">
-                    <property name="icon-name">bhc-logo</property>
-                    <property name="pixel-size">150</property>
-                    <style>
-                      <class name="icon-dropshadow" />
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="app_name_label">
-                    <property name="label">App Name</property>
-                    <property name="wrap">True</property>
-                    <property name="justify">center</property>
-                    <style>
-                      <class name="title-1" />
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel" id="developer_name_label">
-                    <property name="margin_top">10</property>
-                    <property name="margin_bottom">6</property>
-                    <property name="wrap">True</property>
-                    <property name="justify">center</property>
-                    <property name="label">maniacx@github.com</property>
-                    <style>
-                      <class name="title-5" />
-                    </style>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkButton">
-                    <property name="margin_top">8</property>
-                    <property name="margin_bottom">12</property>
-                    <property name="halign">center</property>
-                    <style>
-                      <class name="success" />
-                    </style>
-                    <child>
-                      <object class="GtkLabel" id="version_label">
-                        <property name="width-chars">4</property>
-                      </object>
-                    </child>
-                  </object>
-                </child>
-                <child>
-                  <object class="AdwPreferencesGroup">
-                    <property name="margin_top">12</property>
-                    <child>
-                      <object class="AdwActionRow" id="open_readme">
-                        <child type="prefix">
-                          <object class="GtkImage">
-                            <property name="icon-name">bhc-readme-symbolic</property>
-                          </object>
-                        </child>
-                        <property name="title" translatable="yes">Read me</property>
-                        <property name="tooltip-text">https://maniacx.github.io/Battery-Health-Charging/</property>
-                        <property name="action-name">prefs.open-readme</property>
-                        <property name="activatable">true</property>
+                  <object class="GtkStackPage">
+                    <property name="name">page_main</property>
+                    <property name="child">
+                      <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <property name="margin_start">12</property>
+                        <property name="margin_end">12</property>
+                        <property name="margin_bottom">12</property>
                         <child>
-                          <object class="GtkImage" id="readme_icon">
-                            <property name="icon-name">bhc-external-link-symbolic</property>
-                            <property name="valign">center</property>
+                          <object class="GtkImage" id="extension_icon_image">
+                            <property name="pixel-size">150</property>
+                            <style>
+                              <class name="icon-dropshadow" />
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="extension_name_label">
+                            <property name="wrap">True</property>
+                            <property name="justify">center</property>
+                            <style>
+                              <class name="title-1" />
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkLabel" id="developer_name_label">
+                            <property name="margin_top">10</property>
+                            <property name="margin_bottom">6</property>
+                            <property name="wrap">True</property>
+                            <property name="justify">center</property>
+                            <style>
+                              <class name="title-5" />
+                            </style>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="GtkButton">
+                            <property name="margin_top">8</property>
+                            <property name="margin_bottom">12</property>
+                            <property name="halign">center</property>
+                            <style>
+                              <class name="success" />
+                            </style>
+                            <child>
+                              <object class="GtkLabel" id="extension_version">
+                                <property name="width-chars">4</property>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwPreferencesGroup">
+                            <property name="margin_top">6</property>
+                            <child>
+                              <object class="AdwActionRow" id="row_readme">
+                                <child type="prefix">
+                                  <object class="GtkImage">
+                                    <property name="icon-name">bhc-readme-symbolic</property>
+                                  </object>
+                                </child>
+                                <property name="title" translatable="yes">Read me</property>
+                                <property name="activatable">true</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="icon-name">bhc-external-link-symbolic</property>
+                                    <property name="valign">center</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwPreferencesGroup">
+                            <property name="margin_top">18</property>
+                            <child>
+                              <object class="AdwActionRow" id="row_bug_report">
+                                <child type="prefix">
+                                  <object class="GtkImage">
+                                    <property name="icon-name">bhc-bug-symbolic</property>
+                                  </object>
+                                </child>
+                                <property name="title" translatable="yes">Report an Issue</property>
+                                <property name="activatable">true</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="icon-name">bhc-external-link-symbolic</property>
+                                    <property name="valign">center</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwActionRow" id="row_translation">
+                                <child type="prefix">
+                                  <object class="GtkImage">
+                                    <property name="icon-name">bhc-translation-symbolic</property>
+                                  </object>
+                                </child>
+                                <property name="title" translatable="yes">Translations</property>
+                                <property name="activatable">true</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="icon-name">go-next-symbolic</property>
+                                    <property name="valign">center</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                          </object>
+                        </child>
+                        <child>
+                          <object class="AdwPreferencesGroup">
+                            <property name="margin_top">18</property>
+                            <child>
+                              <object class="AdwActionRow" id="row_sources">
+                                <child type="prefix">
+                                  <object class="GtkImage">
+                                    <property name="icon-name">bhc-github-symbolic</property>
+                                  </object>
+                                </child>
+                                <property name="title" translatable="yes">View sources on Github</property>
+                                <property name="activatable">true</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="icon-name">bhc-external-link-symbolic</property>
+                                    <property name="valign">center</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwActionRow" id="row_license">
+                                <child type="prefix">
+                                  <object class="GtkImage">
+                                    <property name="icon-name">bhc-legal-symbolic</property>
+                                  </object>
+                                </child>
+                                <property name="title" translatable="yes">Legal</property>
+                                <property name="activatable">true</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="icon-name">go-next-symbolic</property>
+                                    <property name="valign">center</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
-                    </child>
+                    </property>
                   </object>
                 </child>
                 <child>
-                  <object class="AdwPreferencesGroup">
-                    <property name="margin_top">18</property>
-                    <child>
-                      <object class="AdwActionRow" id="open_bug_report">
-                        <child type="prefix">
-                          <object class="GtkImage">
-                            <property name="icon-name">bhc-bug-symbolic</property>
+                  <object class="GtkStackPage">
+                    <property name="name">page_translation</property>
+                    <property name="child">
+                      <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkBox" id="box_translation">
+                            <property name="margin_start">2</property>
+                            <property name="margin_end">2</property>
+                            <property name="margin_top">2</property>
+                            <property name="orientation">horizontal</property>
+                            <property name="homogeneous">False</property>
+                            <child>
+                              <object class="GtkButton" id="button_back_translation">
+                                <property name="halign">start</property>
+                                <property name="css-classes">flat</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="icon-name">go-previous-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="label_translation">
+                                <property name="hexpand">True</property>
+                                <property name="halign">center</property>
+                                <property name="label">Translation</property>
+                                <property name="css-classes">heading</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="sensitive">False</property>
+                                <property name="halign">end</property>
+                                <property name="css-classes">flat</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
-                        <property name="title" translatable="yes">Report an Issue</property>
-                        <property name="tooltip-text">https://github.com/maniacx/Battery-Health-Charging/issues</property>
-                        <property name="action-name">prefs.open-bug-report</property>
-                        <property name="activatable">true</property>
                         <child>
-                          <object class="GtkImage" id="bug_icon">
-                            <property name="icon-name">bhc-external-link-symbolic</property>
-                            <property name="valign">center</property>
+                          <object class="AdwPreferencesGroup">
+                            <property name="margin_top">12</property>
+                            <property name="margin_start">12</property>
+                            <property name="margin_end">12</property>
+                            <child>
+                              <object class="AdwActionRow" id="row_crowdin">
+                                <property name="title" translatable="yes">Crowdin</property>
+                                <property name="activatable">true</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="icon-name">bhc-external-link-symbolic</property>
+                                    <property name="valign">center</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="AdwActionRow" id="row_translation_guide">
+                                <property name="title" translatable="yes">Online Tutorials</property>
+                                <property name="activatable">true</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="icon-name">bhc-external-link-symbolic</property>
+                                    <property name="valign">center</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
-                    </child>
-                    <child>
-                      <object class="AdwActionRow" id="open-translation">
-                        <child type="prefix">
-                          <object class="GtkImage">
-                            <property name="icon-name">bhc-translation-symbolic</property>
-                          </object>
-                        </child>
-                        <property name="title" translatable="yes">Translations</property>
-                        <property name="tooltip-text">https://maniacx.github.io/Battery-Health-Charging/translation</property>
-                        <property name="action-name">prefs.open-translation</property>
-                        <property name="activatable">true</property>
-                        <child>
-                          <object class="GtkImage" id="translation_icon">
-                            <property name="icon-name">bhc-external-link-symbolic</property>
-                            <property name="valign">center</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                    </property>
                   </object>
                 </child>
                 <child>
-                  <object class="AdwPreferencesGroup">
-                    <property name="margin_top">18</property>
-                    <child>
-                      <object class="AdwActionRow" id="open-sources">
-                        <child type="prefix">
-                          <object class="GtkImage">
-                            <property name="icon-name">bhc-github-symbolic</property>
+                  <object class="GtkStackPage">
+                    <property name="name">page_legal</property>
+                    <property name="child">
+                      <object class="GtkBox">
+                        <property name="orientation">vertical</property>
+                        <child>
+                          <object class="GtkBox" id="box_legal">
+                            <property name="margin_start">2</property>
+                            <property name="margin_end">2</property>
+                            <property name="margin_top">2</property>
+                            <property name="orientation">horizontal</property>
+                            <property name="homogeneous">False</property>
+                            <child>
+                              <object class="GtkButton" id="button_back_legal">
+                                <property name="halign">start</property>
+                                <property name="css-classes">flat</property>
+                                <child>
+                                  <object class="GtkImage">
+                                    <property name="icon-name">go-previous-symbolic</property>
+                                  </object>
+                                </child>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="label_legal">
+                                <property name="label">Label</property>
+                                <property name="hexpand">True</property>
+                                <property name="halign">center</property>
+                                <property name="css-classes">heading</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkButton">
+                                <property name="sensitive">False</property>
+                                <property name="halign">end</property>
+                                <property name="css-classes">flat</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
-                        <property name="title" translatable="yes">View sources on Github</property>
-                        <property name="tooltip-text">https://github.com/maniacx/Battery-Health-Charging/</property>
-                        <property name="action-name">prefs.open-sources</property>
-                        <property name="activatable">true</property>
                         <child>
-                          <object class="GtkImage" id="sources_icon">
-                            <property name="icon-name">bhc-external-link-symbolic</property>
-                            <property name="valign">center</property>
+                          <object class="GtkBox">
+                            <property name="orientation">vertical</property>
+                            <property name="margin_start">4</property>
+                            <property name="margin_end">4</property>
+                            <property name="margin_top">12</property>
+                            <child>
+                              <object class="GtkLabel" id="copyright_content">
+                                <property name="margin_top">12</property>
+                                <property name="hexpand">True</property>
+                                <property name="halign">start</property>
+                                <property name="wrap">True</property>
+                                <property name="use-markup">True</property>
+                                <property name="selectable">True</property>
+                              </object>
+                            </child>
+                            <child>
+                              <object class="GtkLabel" id="license_content">
+                                <property name="margin_top">18</property>
+                                <property name="hexpand">True</property>
+                                <property name="wrap">True</property>
+                                <property name="use-markup">True</property>
+                                <property name="selectable">True</property>
+                              </object>
+                            </child>
                           </object>
                         </child>
                       </object>
-                    </child>
-                    <child>
-                      <object class="AdwActionRow" id="open-rating">
-                        <child type="prefix">
-                          <object class="GtkImage">
-                            <property name="icon-name">bhc-rating-symbolic</property>
-                          </object>
-                        </child>
-                        <property name="title" translatable="yes">Rate this extension</property>
-                        <property name="tooltip-text">https://extensions.gnome.org/extension/5724/battery-health-charging</property>
-                        <property name="action-name">prefs.open-rating</property>
-                        <property name="activatable">true</property>
-                        <child>
-                          <object class="GtkImage" id="rating_icon">
-                            <property name="icon-name">bhc-external-link-symbolic</property>
-                            <property name="valign">center</property>
-                          </object>
-                        </child>
-                      </object>
-                    </child>
+                    </property>
                   </object>
                 </child>
               </object>
