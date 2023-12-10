@@ -3,53 +3,72 @@ const {Adw, Gio, GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 
+const gettextDomain = Me.metadata['gettext-domain'];
+const Gettext = imports.gettext.domain(gettextDomain);
+const _ = Gettext.gettext;
+
 var About = GObject.registerClass({
     GTypeName: 'BHC_About',
     Template: `file://${GLib.build_filenamev([Me.path, 'ui', 'about.ui'])}`,
     InternalChildren: [
-        'app_icon_image',
-        'app_name_label',
-        'version_label',
+        'stack',
+        'extension_icon_image',
+        'extension_name_label',
+        'extension_version',
+        'license_content',
+        'copyright_content',
+        'row_readme',
+        'row_bug_report',
+        'row_translation',
+        'row_sources',
+        'row_license',
+        'row_crowdin',
+        'row_translation_guide',
+        'button_back_translation',
+        'button_back_legal',
+        'box_legal',
+        'box_translation',
+        'label_translation',
+        'label_legal',
     ],
 }, class About extends Adw.PreferencesPage {
-    constructor(window) {
+    constructor(extensionObject) {
         super({});
-        const actionGroup = new Gio.SimpleActionGroup();
-        window.insert_action_group('prefs', actionGroup);
-        this._app_name_label.label = Me.metadata.name;
-        this._version_label.label = Me.metadata.version.toString();
 
-        // a list of actions with their associated link
-        const actions = [
-            {
-                name: 'open-readme',
-                link: 'https://maniacx.github.io/Battery-Health-Charging/',
-            },
-            {
-                name: 'open-bug-report',
-                link: 'https://github.com/maniacx/Battery-Health-Charging/issues',
-            },
-            {
-                name: 'open-translation',
-                link: 'https://maniacx.github.io/Battery-Health-Charging/translation',
-            },
-            {
-                name: 'open-sources',
-                link: 'https://github.com/maniacx/Battery-Health-Charging/',
-            },
-            {
-                name: 'open-rating',
-                link: 'https://extensions.gnome.org/extension/5724/battery-health-charging',
-            },
-        ];
+        const extensionIcon = 'bhc-logo';
+        const developerName = 'maniacx@github.com';
+        const copyrightYear = _('2023');
+        const licenseName = _('GNU General Public License, version 3 or later');
+        const licenseLink = 'https://www.gnu.org/licenses/gpl-3.0.html';
 
-        actions.forEach(action => {
-            const act = new Gio.SimpleAction({name: action.name});
-            act.connect(
-                'activate',
-                _ => Gio.AppInfo.launch_default_for_uri_async(action.link, null, null, null)
-            );
-            actionGroup.add_action(act);
+        this._extension_icon_image.icon_name = extensionIcon;
+        this._extension_name_label.label = extensionObject.metadata.name;
+        this._extension_version.label = extensionObject.metadata.version.toString();
+        this._copyright_content.label = _('© %s %s').format(copyrightYear, developerName);
+        this._license_content.label = _('This application comes with absolutely no warranty. See the <a href="%s">%s</a> for details.').format(licenseLink, licenseName);
+
+        this._linkPage('activated', this._row_translation, 'page_translation');
+        this._linkPage('activated', this._row_license, 'page_legal');
+        this._linkPage('clicked', this._button_back_translation, 'page_main');
+        this._linkPage('clicked', this._button_back_legal, 'page_main');
+
+        this._assignURL(this._row_readme, 'https://maniacx.github.io/Battery-Health-Charging/');
+        this._assignURL(this._row_bug_report, 'https://github.com/maniacx/Battery-Health-Charging/issues');
+        this._assignURL(this._row_sources, 'https://github.com/maniacx/Battery-Health-Charging/');
+        this._assignURL(this._row_crowdin, 'https://crowdin.com/project/battery-health-charging');
+        this._assignURL(this._row_translation_guide, 'https://maniacx.github.io/Battery-Health-Charging/translation');
+    }
+
+    _linkPage(signal, widget, page) {
+        widget.connect(signal, () => {
+            this._stack.set_visible_child_name(page);
+        });
+    }
+
+    _assignURL(row, link) {
+        row.set_tooltip_text(link);
+        row.connect('activated', () => {
+            Gio.AppInfo.launch_default_for_uri_async(link, null, null, null);
         });
     }
 });
