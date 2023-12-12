@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battery Health Charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 16:47-0800\n"
+"POT-Creation-Date: 2023-12-13 17:42-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,21 +29,29 @@ msgstr ""
 msgid "Settings"
 msgstr ""
 
-#: lib/notifier.js:67
+#: lib/notifier.js:61
+msgid "Show details"
+msgstr ""
+
+#: lib/notifier.js:73
 msgid ""
 "Unsupported device.\n"
 "This extension is not compatible with your device."
 msgstr ""
 
-#: lib/notifier.js:71
+#: lib/notifier.js:75
+msgid "Missing dependencies"
+msgstr ""
+
+#: lib/notifier.js:79
 msgid "Please install polkit from extension settings under Installation."
 msgstr ""
 
-#: lib/notifier.js:75
+#: lib/notifier.js:83
 msgid "Please update polkit from extension settings under Installation."
 msgstr ""
 
-#: lib/notifier.js:80
+#: lib/notifier.js:88
 #, javascript-format
 msgid ""
 "Encountered an unexpected error. (%s)\n"
@@ -51,12 +59,12 @@ msgid ""
 "Disable and enable the extension"
 msgstr ""
 
-#: lib/notifier.js:82
+#: lib/notifier.js:90
 #, javascript-format
 msgid "Encountered an unexpected error. (%s)"
 msgstr ""
 
-#: lib/notifier.js:87
+#: lib/notifier.js:95
 #, javascript-format
 msgid ""
 "Charging threshold not updated. (%s)\n"
@@ -64,16 +72,16 @@ msgid ""
 "Disable and enable the extension"
 msgstr ""
 
-#: lib/notifier.js:89
+#: lib/notifier.js:97
 #, javascript-format
 msgid "Charging threshold not updated. (%s)"
 msgstr ""
 
-#: lib/notifier.js:93
+#: lib/notifier.js:101
 msgid "Apply correct Bios Password to set threshold."
 msgstr ""
 
-#: lib/notifier.js:97
+#: lib/notifier.js:105
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -81,55 +89,55 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:102 lib/thresholdPanel.js:401
+#: lib/notifier.js:110 lib/thresholdPanel.js:401
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
-msgstr ""
-
-#: lib/notifier.js:107
-#, javascript-format
-msgid ""
-"Battery 1\n"
-"Charging Limit is set to %d%%"
-msgstr ""
-
-#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:111 lib/thresholdPanel.js:405
-#, javascript-format
-msgid "Charging Limit is set to %d%%"
 msgstr ""
 
 #: lib/notifier.js:115
 #, javascript-format
 msgid ""
+"Battery 1\n"
+"Charging Limit is set to %d%%"
+msgstr ""
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/notifier.js:119 lib/thresholdPanel.js:405
+#, javascript-format
+msgid "Charging Limit is set to %d%%"
+msgstr ""
+
+#: lib/notifier.js:123
+#, javascript-format
+msgid ""
 "Battery 2\n"
 "Charge thresholds are set to %d / %d %%"
 msgstr ""
 
-#: lib/notifier.js:120
+#: lib/notifier.js:128
 #, javascript-format
 msgid ""
 "Battery 2\n"
 "Charging Limit is set to %d%%"
 msgstr ""
 
-#: lib/notifier.js:125
+#: lib/notifier.js:133
 msgid "Charging Mode is set to Full Capacity"
 msgstr ""
 
-#: lib/notifier.js:129
+#: lib/notifier.js:137
 msgid "Charging Mode is set to Balanced"
 msgstr ""
 
-#: lib/notifier.js:133
+#: lib/notifier.js:141
 msgid "Charging Mode is set to Maximum Lifespan"
 msgstr ""
 
-#: lib/notifier.js:137
+#: lib/notifier.js:145
 msgid "Charging Mode is set to Express"
 msgstr ""
 
-#: lib/notifier.js:141
+#: lib/notifier.js:149
 msgid "Charging Mode is set to Adaptive"
 msgstr ""
 
@@ -232,7 +240,7 @@ msgid "Charging Mode: Express"
 msgstr ""
 
 #: lib/thresholdPanel42.js:460 lib/thresholdPanel.js:524
-msgid "Force Discharge to threshold value"
+msgid "Force Discharge"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
@@ -283,6 +291,26 @@ msgstr ""
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:487
 msgid "Express"
+msgstr ""
+
+#: preferences/about.js:40
+msgid "2023"
+msgstr ""
+
+#: preferences/about.js:41
+msgid "GNU General Public License, version 3 or later"
+msgstr ""
+
+#: preferences/about.js:47
+#, javascript-format
+msgid "© %s %s"
+msgstr ""
+
+#: preferences/about.js:48
+#, javascript-format
+msgid ""
+"This application comes with absolutely no warranty. See the <a "
+"href=\"%s\">%s</a> for details."
 msgstr ""
 
 #: preferences/general.js:58
@@ -345,24 +373,32 @@ msgstr ""
 msgid "About"
 msgstr ""
 
-#: ui/about.ui:71
+#: ui/about.ui:81
 msgid "Read me"
 msgstr ""
 
-#: ui/about.ui:91
+#: ui/about.ui:103
 msgid "Report an Issue"
 msgstr ""
 
-#: ui/about.ui:106
+#: ui/about.ui:120
 msgid "Translations"
 msgstr ""
 
-#: ui/about.ui:126
+#: ui/about.ui:142
 msgid "View sources on Github"
 msgstr ""
 
-#: ui/about.ui:141
-msgid "Rate this extension"
+#: ui/about.ui:159
+msgid "Legal"
+msgstr ""
+
+#: ui/about.ui:223
+msgid "Crowdin"
+msgstr ""
+
+#: ui/about.ui:235
+msgid "Online Tutorials"
 msgstr ""
 
 #: ui/apple.ui:5 ui/dell.ui:5 ui/thinkpad.ui:5
@@ -375,21 +411,6 @@ msgstr ""
 
 #: ui/apple.ui:12
 msgid "Change the behavior of charging indicator light"
-msgstr ""
-
-#: ui/apple.ui:23
-msgid ""
-"<b>Enabled:</b>\n"
-"• Indicator light glows <b>green</b> when charger on hold. (battery level "
-"reaches charging threshold).\n"
-"• Indicator light glows <b>amber</b> while charging.\n"
-"\n"
-"<b>Disabled (system default behavior):</b>\n"
-"• Indicator light glows <b>green</b> only when battery is fully charged "
-"(battery level 100%)\n"
-"• Indicator light glows <b>amber</b> when charger on hold. (battery level "
-"reaches charging threshold).\n"
-"• Indicator light glows <b>amber</b> while charging.\n"
 msgstr ""
 
 #: ui/dell.ui:12

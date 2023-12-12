@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-05 15:58-0800\n"
-"PO-Revision-Date: 2023-12-05 16:12-0800\n"
+"POT-Creation-Date: 2023-12-13 17:42-0800\n"
+"PO-Revision-Date: 2023-12-13 15:46-0800\n"
 "Last-Translator: ViBE <vibe@protonmail.com>\n"
 "Language-Team: Hungarian <vibe@protonmail.com>\n"
 "Language: hu\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: lib/notifier.js:39
 msgid "Battery Health Charging"
@@ -31,7 +31,11 @@ msgstr "Battery Health Charging: hiba"
 msgid "Settings"
 msgstr "Beállítások"
 
-#: lib/notifier.js:67
+#: lib/notifier.js:61
+msgid "Show details"
+msgstr "Részletek megjelenítése"
+
+#: lib/notifier.js:73
 msgid ""
 "Unsupported device.\n"
 "This extension is not compatible with your device."
@@ -39,15 +43,19 @@ msgstr ""
 "Nem támogatott eszköz.\n"
 "Ez a kiterjesztés nem kompatibilis ezzel az eszközzel."
 
-#: lib/notifier.js:71
+#: lib/notifier.js:75
+msgid "Missing dependencies"
+msgstr "Hiányzó függőségek"
+
+#: lib/notifier.js:79
 msgid "Please install polkit from extension settings under Installation."
 msgstr "Kérem, hozzon létre szabályokat a kiterjesztés beállításaiban!"
 
-#: lib/notifier.js:75
+#: lib/notifier.js:83
 msgid "Please update polkit from extension settings under Installation."
 msgstr "Kérem, frissítse a szabályokat a kiterjesztés beállításaiban!"
 
-#: lib/notifier.js:80
+#: lib/notifier.js:88
 #, javascript-format
 msgid ""
 "Encountered an unexpected error. (%s)\n"
@@ -58,12 +66,12 @@ msgstr ""
 "Megfelelő Dell modul beállítása szükséges.\n"
 "Majd a kiegészítőt újra engedélyezni kell"
 
-#: lib/notifier.js:82
+#: lib/notifier.js:90
 #, javascript-format
 msgid "Encountered an unexpected error. (%s)"
 msgstr "Váratlan hiba történt. (%s)"
 
-#: lib/notifier.js:87
+#: lib/notifier.js:95
 #, javascript-format
 msgid ""
 "Charging threshold not updated. (%s)\n"
@@ -74,16 +82,16 @@ msgstr ""
 "Megfelelő Dell modul beállítása szükséges\n"
 "Majd a kiegészítőt újra engedélyezni kell"
 
-#: lib/notifier.js:89
+#: lib/notifier.js:97
 #, javascript-format
 msgid "Charging threshold not updated. (%s)"
 msgstr "Töltési küszöbszint nem változott. (%s)"
 
-#: lib/notifier.js:93
+#: lib/notifier.js:101
 msgid "Apply correct Bios Password to set threshold."
 msgstr ""
 
-#: lib/notifier.js:97
+#: lib/notifier.js:105
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -91,12 +99,12 @@ msgid ""
 msgstr "1. akkumulátor töltési küszöbszintje beállítva %d / %d %%-ra"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:102 lib/thresholdPanel.js:401
+#: lib/notifier.js:110 lib/thresholdPanel.js:401
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "Töltési küszöbszint beállítva %d / %d %%-ra"
 
-#: lib/notifier.js:107
+#: lib/notifier.js:115
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -104,42 +112,42 @@ msgid ""
 msgstr "1. akkumulátor töltési küszöbszintje beállítva %d%%-ra"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:111 lib/thresholdPanel.js:405
+#: lib/notifier.js:119 lib/thresholdPanel.js:405
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "Töltési küszöbszint beállítva %d%%-ra"
 
-#: lib/notifier.js:115
+#: lib/notifier.js:123
 #, javascript-format
 msgid ""
 "Battery 2\n"
 "Charge thresholds are set to %d / %d %%"
 msgstr "2. akkumulátor töltési küszöbszintje beállítva %d / %d %%-ra"
 
-#: lib/notifier.js:120
+#: lib/notifier.js:128
 #, javascript-format
 msgid ""
 "Battery 2\n"
 "Charging Limit is set to %d%%"
 msgstr "2. akkumulátor töltési küszöbszintje beállítva %d%%-ra"
 
-#: lib/notifier.js:125
+#: lib/notifier.js:133
 msgid "Charging Mode is set to Full Capacity"
 msgstr "Töltési mód beállítva teljes feltöltésre"
 
-#: lib/notifier.js:129
+#: lib/notifier.js:137
 msgid "Charging Mode is set to Balanced"
 msgstr "Töltési mód beállítva kiegyensúlyozottra"
 
-#: lib/notifier.js:133
+#: lib/notifier.js:141
 msgid "Charging Mode is set to Maximum Lifespan"
 msgstr "Töltési mód beállítva tárolásra"
 
-#: lib/notifier.js:137
+#: lib/notifier.js:145
 msgid "Charging Mode is set to Express"
 msgstr "Töltési mód beállítva Dell ExpressCharge™ töltésre"
 
-#: lib/notifier.js:141
+#: lib/notifier.js:149
 msgid "Charging Mode is set to Adaptive"
 msgstr "Töltési mód beállítva Dell Adaptív töltésre"
 
@@ -242,7 +250,7 @@ msgid "Charging Mode: Express"
 msgstr "Töltési mód: ExpressCharge™"
 
 #: lib/thresholdPanel42.js:460 lib/thresholdPanel.js:524
-msgid "Force Discharge to threshold value"
+msgid "Force Discharge"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
@@ -294,6 +302,28 @@ msgstr "Adaptív"
 #: lib/thresholdPanel.js:487
 msgid "Express"
 msgstr "ExpressCharge™"
+
+#: preferences/about.js:40
+msgid "2023"
+msgstr ""
+
+#: preferences/about.js:41
+msgid "GNU General Public License, version 3 or later"
+msgstr "GNU General Public License, 3-as vagy későbbi verzió"
+
+#: preferences/about.js:47
+#, javascript-format
+msgid "© %s %s"
+msgstr ""
+
+#: preferences/about.js:48
+#, javascript-format
+msgid ""
+"This application comes with absolutely no warranty. See the <a "
+"href=\"%s\">%s</a> for details."
+msgstr ""
+"Erre az alkalmazásra egyáltalán nem vonatkozik garancia. További részletek "
+"a(z) <a href=\"%s\">%s</a> szövegében."
 
 #: preferences/general.js:58
 msgid ""
@@ -358,25 +388,33 @@ msgstr "<i>Megadható érték : %d és %d között</i>"
 msgid "About"
 msgstr "Névjegy"
 
-#: ui/about.ui:71
+#: ui/about.ui:81
 msgid "Read me"
 msgstr "Olvass el"
 
-#: ui/about.ui:91
+#: ui/about.ui:103
 msgid "Report an Issue"
 msgstr "Hiba jelentése"
 
-#: ui/about.ui:106
+#: ui/about.ui:120
 msgid "Translations"
 msgstr "Fordítások"
 
-#: ui/about.ui:126
+#: ui/about.ui:142
 msgid "View sources on Github"
 msgstr "Hiba jelentése"
 
-#: ui/about.ui:141
-msgid "Rate this extension"
-msgstr "Kiterjesztés értékelése"
+#: ui/about.ui:159
+msgid "Legal"
+msgstr "Jogi információk"
+
+#: ui/about.ui:223
+msgid "Crowdin"
+msgstr ""
+
+#: ui/about.ui:235
+msgid "Online Tutorials"
+msgstr "Online Oktatóanyagok"
 
 #: ui/apple.ui:5 ui/dell.ui:5 ui/thinkpad.ui:5
 msgid "Device"
@@ -388,21 +426,6 @@ msgstr "Eszköz beállítások"
 
 #: ui/apple.ui:12
 msgid "Change the behavior of charging indicator light"
-msgstr ""
-
-#: ui/apple.ui:23
-msgid ""
-"<b>Enabled:</b>\n"
-"• Indicator light glows <b>green</b> when charger on hold. (battery level "
-"reaches charging threshold).\n"
-"• Indicator light glows <b>amber</b> while charging.\n"
-"\n"
-"<b>Disabled (system default behavior):</b>\n"
-"• Indicator light glows <b>green</b> only when battery is fully charged "
-"(battery level 100%)\n"
-"• Indicator light glows <b>amber</b> when charger on hold. (battery level "
-"reaches charging threshold).\n"
-"• Indicator light glows <b>amber</b> while charging.\n"
 msgstr ""
 
 #: ui/dell.ui:12
@@ -595,3 +618,5 @@ msgstr "Jelenlegi érték"
 msgid "Start charging threshold value"
 msgstr "Töltés indítása"
 
+#~ msgid "Rate this extension"
+#~ msgstr "Kiterjesztés értékelése"
