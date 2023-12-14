@@ -27,18 +27,58 @@ permalink: /device-compatibility/tuxedo
 
 ## Dependencies
 Depends on separate kernel module `tuxedo-keyboard` (dkms) installation, that need to be installed.<br>
-<https://github.com/tuxedocomputers/tuxedo-keyboard>
+<https://gitlab.com/tuxedocomputers/development/packages/tuxedo-drivers>
 
 {: .note }
 `tuxedo-keyboard` module is supported by a third party and this extension/author is not in any way responsible for the kernel module installation, bugs or damages.
 
-## Detection
-This extension supports Tuxedo laptops by checking the existence of either one following sysfs paths for charging threshold below.
+## Testing charging threshold using command-line
+After installing `tuxedo-keyboard` below sysfs path will be available and charging threshold/mode can be changed.
+Now user will be able to set charging threshold, using commandline and test charging behavior.
+Charging mode can be set by using  `echo` command in `terminal`.
+<br>
+<br>
 
+To set mode to  **High Capacity**
+
+Require root privileges
+{: .label .label-yellow .mt-0}
+```bash
+echo 'high_capacity' | pkexec tee /sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile
 ```
-/sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profiles_available
-/sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile
+<br>
+
+To set mode to  **Balanced**
+
+Require root privileges
+{: .label .label-yellow .mt-0}
+```bash
+echo 'balanced' | pkexec tee /sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile
 ```
+<br>
+
+To set mode to  **Stationary**
+
+Require root privileges
+{: .label .label-yellow .mt-0}
+```bash
+echo 'stationary' | pkexec tee /sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile
+```
+<br>
+`sudo` also can be used in place of `pkexec` in the above commands as both `sudo` and `pkexec` can be use to run commands in root mode. To make use of polkit rules, the extension uses `pkexec`.
+
+The current threshold value can also be read using `cat` command in `terminal`.
+```bash
+cat /sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile
+```
+<br>
+
+{: .important-title }
+> Condition for applying threshold
+>
+> * Accepted values for `charging_profile` : high_capacity, balanced,  or stationary
+
+If charging threshold are applied successfully using above commands, the extension is compatible.
 
 ## Quick Settings
 <br>
@@ -52,52 +92,6 @@ This extension supports Tuxedo laptops by checking the existence of either one f
 <br>
 <img src="../assets/images/device-compatibility/tuxedo/settings.png" width="100%">
 
-## Information
-The extension changes mode using `echo` command.<br>
-Charging mode can be also set by using  `echo` command in `terminal`.
-Command below are helpful :
-* Prior to installing extension, to check compatibility.
-* During debugging, to check if threshold can be applied and read using command-line correctly.
-* Incase user decides to not use extension and prefer changing via command-line.
 
-<br>
-
-To set mode to  **High Capacity**
-
-Require root privileges
-{: .label .label-yellow .mt-0}
-```bash
-echo 'high_capacity' > /sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile
-```
-<br>
-
-To set mode to  **Balanced**
-
-Require root privileges
-{: .label .label-yellow .mt-0}
-```bash
-echo 'balanced' > /sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile
-```
-<br>
-
-To set mode to  **Stationary**
-
-Require root privileges
-{: .label .label-yellow .mt-0}
-```bash
-echo 'stationary' > /sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile
-```
-<br>
-
-The current threshold value can also be read using `cat` command in `terminal`.
-```bash
-cat /sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile
-```
-<br>
-
-{: .important-title }
-> Condition for applying threshold
->
-> * Accepted values for `charging_profile` : high_capacity, balanced,  or stationary
 
 

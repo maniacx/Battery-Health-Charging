@@ -69,20 +69,7 @@ Use of `Express` mode may cause battery health to diminish more quickly.
 
 <img src="../assets/images/device-compatibility/dell/choose-package.png" width="100%">
 
-## Quick Settings
-<br>
-<img src="../assets/images/device-compatibility/dell/quick-settings.png" width="100%">
-<div class="outer-container">
-    <span class="txt-horizantal-align"><b>Gnome 43 and above</b></span>
-    <span class="txt-horizantal-align"><b>Gnome 42</b></span>
-</div>
-
-## Extension Preferences
-<br>
-<img src="../assets/images/device-compatibility/dell/quick-settings.png" width="100%">
-<br>
-
-## Information
+## Testing charging threshold using command-line
 
 {: .new-title }
 > libsmbios
@@ -95,16 +82,17 @@ Use of `Express` mode may cause battery health to diminish more quickly.
 > * During debugging, to check if threshold can be applied and read using command-line correctly.
 > * Incase user decides to not use extension and prefer changing via command-line.
 >
+> Note `sudo` also can be used in place of `pkexec` in the below commands as both `sudo` and `pkexec` can be use to run commands in root mode. To make use of polkit rules, the extension uses `pkexec`.
 >
 > To set mode to Express mode<br>
-> `smbios-battery-ctl --set-charging-mode=express`<br><br>
+> `pkexec smbios-battery-ctl --set-charging-mode=express`<br><br>
 > To set mode to Adaptive<br>
-> `smbios-battery-ctl --set-charging-mode=adaptive`<br><br>
+> `pkexec smbios-battery-ctl --set-charging-mode=adaptive`<br><br>
 > Two commands are use to set threshold. For example if need to apply, start threshold to 55% and end threshold to 60%, the command would be<br>
-> `smbios-battery-ctl --set-charging-mode=custom`<br>
-> `smbios-battery-ctl --set-custom-charge-interval=55 60`<br><br>
+> `pkexec smbios-battery-ctl --set-charging-mode=custom`<br>
+> `pkexec smbios-battery-ctl --set-custom-charge-interval=55 60`<br><br>
 > Command to read current mode or threshold<br>
-> `smbios-battery-ctl --get-charging-cfg`<br><br>
+> `pkexec smbios-battery-ctl --get-charging-cfg`<br><br>
 
 
 {: .note-title }
@@ -118,17 +106,18 @@ Use of `Express` mode may cause battery health to diminish more quickly.
 > * During debugging, to check if threshold can be applied and read using command-line correctly.
 > * Incase user decides to not use extension and prefer changing via command-line.
 >
+> Note `sudo` also can be used in place of `pkexec` in the below commands as both `sudo` and `pkexec` can be use to run commands in root mode. To make use of polkit rules, the extension uses `pkexec`.
 >
 > To set mode to Express mode<br>
-> `/opt/dell/dcc/cctk --PrimaryBattChargeCfg=Express`<br><br>
+> `pkexec /opt/dell/dcc/cctk --PrimaryBattChargeCfg=Express`<br><br>
 > To set mode to Adaptive<br>
-> `/opt/dell/dcc/cctk --PrimaryBattChargeCfg=Adaptive`<br><br>
+> `pkexec /opt/dell/dcc/cctk --PrimaryBattChargeCfg=Adaptive`<br><br>
 > To set threshold to specific value. For example if need to apply, start threshold to 55% and end threshold to 60%, the command would be<br>
-> `/opt/dell/dcc/cctk --PrimaryBattChargeCfg=Custom:55-60`<br><br>
+> `pkexec /opt/dell/dcc/cctk --PrimaryBattChargeCfg=Custom:55-60`<br><br>
 > An example of changing mode or threshold with Bios Password Validation by adding `--ValSetupPwd=` followed by the bios password and the command to set mode or threshold<br>
-> `/opt/dell/dcc/cctk --ValSetupPwd=PASSWORD --PrimaryBattChargeCfg=Express`<br><br>
+> `pkexec /opt/dell/dcc/cctk --ValSetupPwd=PASSWORD --PrimaryBattChargeCfg=Express`<br><br>
 > Command to read current mode or threshold<br>
-> `/opt/dell/dcc/cctk --PrimaryBattChargeCfg`<br><br>
+> `pkexec /opt/dell/dcc/cctk --PrimaryBattChargeCfg`<br><br>
 
 <br>
 
@@ -138,6 +127,20 @@ Use of `Express` mode may cause battery health to diminish more quickly.
 > * Accepted end threshold values : 55 or 100
 > * Accepted start threshold values : 50 or 95
 > * end threshold values > start threshold values + 5
+
+## Quick Settings
+<br>
+<img src="../assets/images/device-compatibility/dell/quick-settings.png" width="100%">
+<div class="outer-container">
+    <span class="txt-horizantal-align"><b>Gnome 43 and above</b></span>
+    <span class="txt-horizantal-align"><b>Gnome 42</b></span>
+</div>
+
+## Extension Preferences
+<br>
+<img src="../assets/images/device-compatibility/dell/quick-settings.png" width="100%">
+<br>
+
 
 ## Validate using Bios Password (Dell Command Configure Only)
 

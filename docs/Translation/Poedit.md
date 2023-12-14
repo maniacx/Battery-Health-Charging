@@ -16,6 +16,10 @@ permalink: /poedit-guide
 
 # Poedit Guide
 
+## Prerequisites
+* Install Poedit using your package manager or using [Flatpak](https://flathub.org/apps/net.poedit.Poedit)
+* Github account / logged in
+
 ## Download Source File
 * The source file is found under `po` directory `Battery-Health-Charging.pot`
 * Extension is has two branches. 
@@ -25,6 +29,7 @@ permalink: /poedit-guide
 ## Methods
 We can begin by:
 1. [**Create translation po files for a new language**](#create-translation-po-files-for-a-new-language): We create a new language file, when zero contibutions have been made to that language and the `po` file does not exist for that language.
+<br>OR<br>
 2. [**Update translation po file for an existing language**](#update-translation-po-file-for-an-existing-language): When translator have already contributed to the language and the `po` file exist, but you want to correct a translation or input translation to a untranslated string.
 
 <br>
@@ -64,10 +69,8 @@ We can begin by:
 ---
 
 ### 9. Once the file is saved (For example pt_BR.po for Brazillian Portuguese), create a Pull Request to upload on Github.
-
-<br>
 [Pull Request Guide](./pull-request-guide){: .btn .btn-purple .button2-fixed-width}<br>
-[Crowdin Guide](./crowdin-guide){: .btn .btn-green .button2-fixed-width}
+
 
 ---
 
@@ -88,28 +91,16 @@ We can begin by:
 <img src="./assets/images/translation/poedit-guide/update-open-dialog.png" width="80%">
 
 ---
-### 3. Click `Translation`  and `Update from POT file`
-<br>
-<img src="./assets/images/translation/poedit-guide/update-pot-file.png" width="100%">
-
----
-### 4. Select file `Battery Health Charging.pot` and Click `Open` 
-
-<img src="./assets/images/translation/poedit-guide/update-open-template.png" width="80%">
-
----
-### 5. Select the string to translate
-### 6. Enter the translation for the selected string
-### 7. Repeat the same for other strings
-### 8.  Once complete click `Save`
+### 3. Select the string to translate
+### 4. Enter the translation for the selected string
+### 5. Repeat the same for other strings
+### 6.  Once complete click `Save`
 
 <img src="./assets/images/translation/poedit-guide/update-translation.png" width="100%">
 
 ---
 
-### 9. Once the file is saved (For example pt_BR.po for Brazillian Portuguese), create a Pull Request to upload on Github.
-
-<br>
+### 7. Once the file is saved (For example pt_BR.po for Brazillian Portuguese), create a Pull Request to upload on Github.
 [Pull Request Guide](./pull-request-guide){: .btn .btn-purple .button2-fixed-width}<br>
-[Crowdin Guide](./crowdin-guide){: .btn .btn-green .button2-fixed-width}
+
 

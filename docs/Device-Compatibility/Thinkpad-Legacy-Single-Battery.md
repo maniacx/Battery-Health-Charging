@@ -33,50 +33,31 @@ permalink: /device-compatibility/thinkpad-legacy
 {: .note }
 `tp_smapi` module is supported by a third party and this extension/author is not in any way responsible for the kernel module installation, bugs or damages.
 
-## Detection
-This extension supports Thinkpad laptops by checking the existence of either one of the pairs of sysfs paths for charging threshold below.
+## Testing charging threshold using command-line
+After installing `tp_smapi` below sysfs path will be available. For Thinkpad(Legacy) laptops the battery powersupply name could be `BAT0` or `BAT1`. Hence charging threshold path could be one of the following and can be check using `ls` command.<br>
+```
+ls-l /sys/devices/platform/smapi/BAT0/stop_charge_thresh
+ls-l /sys/devices/platform/smapi/BAT0/start_charge_thresh
+```
+```
+ls-l /sys/devices/platform/smapi/BAT1/stop_charge_thresh
+ls-l /sys/devices/platform/smapi/BAT1/start_charge_thresh
+```
 
-```
-/sys/devices/platform/smapi/BAT0/stop_charge_thresh
-/sys/devices/platform/smapi/BAT0/start_charge_thresh
-```
-```
-/sys/devices/platform/smapi/BAT1/stop_charge_thresh
-/sys/devices/platform/smapi/BAT1/start_charge_thresh
-```
-
-## Quick Settings
+Charging mode can be set by using  `echo` command in `terminal`.
 <br>
-<img src="../assets/images/device-compatibility/thinkpad-legacy-single-battery/quick-settings.png" width="100%">
-<div class="outer-container">
-    <span class="txt-horizantal-align"><b>Gnome 43 and above</b></span>
-    <span class="txt-horizantal-align"><b>Gnome 42</b></span>
-</div>
-
-## Extension Preferences
-<br>
-<img src="../assets/images/device-compatibility/thinkpad-legacy-single-battery/settings.png" width="100%">
 <br>
 
-## Information
-The extension changes mode using `echo` command.<br>
-Charging threshold value can be applied by using `echo` command in `terminal`.
-Command below are helpful :
-* Prior to installing extension, to check compatibility.
-* During debugging, to check if threshold can be applied and read using command-line correctly.
-* Incase user decides to not use extension and prefer changing via command-line.
-
-<br>
-
-**For example:**<br>If power supply sysfs name is  `BAT0`, to apply start threshold value of `55`, end threshold value of `60`, command would be.
+**For example:**<br>If battery powersupply name is  `BAT0`, to apply start threshold value of `55`, end threshold value of `60`, command would be.
 
 Require root privileges
 {: .label .label-yellow .mt-0}
 ```bash
-echo '55' > /sys/devices/platform/smapi/BAT0/start_charge_thresh
-echo '60' > /sys/devices/platform/smapi/BAT0/stop_charge_thresh
+echo '55' | pkexec tee /sys/devices/platform/smapi/BAT0/start_charge_thresh
+echo '60' | pkexec tee /sys/devices/platform/smapi/BAT0/stop_charge_thresh
 ```
 <br>
+`sudo` also can be used in place of `pkexec` in the above commands as both `sudo` and `pkexec` can be use to run commands in root mode. To make use of polkit rules, the extension uses `pkexec`.
 
 The current threshold value can also be read using `cat` command in `terminal`.
 ```bash
@@ -84,6 +65,8 @@ cat /sys/devices/platform/smapi/BAT0/start_charge_thresh
 cat /sys/devices/platform/smapi/BAT0/stop_charge_thresh
 ```
 <br>
+If charging threshold are applied successfully using above commands, the extension is compatible.
+
 
 {: .important-title }
 > Condition for applying threshold
@@ -113,8 +96,8 @@ echo '100' > /sys/class/power_supply/BAT0/stop_charge_thresh
 >
 >>**Correct sequence**<br>
 >> ```bash
-echo '100' > /sys/class/power_supply/BAT0/stop_charge_thresh
-echo '95' > /sys/class/power_supply/BAT0/start_charge_thresh
+echo '100' | pkexec tee /sys/class/power_supply/BAT0/stop_charge_thresh
+echo '95' | pkexec tee /sys/class/power_supply/BAT0/start_charge_thresh
 ```
 >> Since end_threshold is applied first, `stop_charge_thresh (100)` is greater than `start_charge_thresh (75)`, so the condition `stop_charge_thresh > start_charge_thresh` is fulfilled.
 >
@@ -125,15 +108,30 @@ echo '95' > /sys/class/power_supply/BAT0/start_charge_thresh
 >
 >>**Incorrect sequence**<br>
 >> ```bash
-echo '60' > /sys/class/power_supply/BAT0/stop_charge_thresh
-echo '55' > /sys/class/power_supply/BAT0/start_charge_thresh
+echo '60' | pkexec tee /sys/class/power_supply/BAT0/stop_charge_thresh
+echo '55' | pkexec tee /sys/class/power_supply/BAT0/start_charge_thresh
 ```
 >> Since end_threshold is applied first, `stop_charge_thresh (60)` is less than `start_charge_thresh (75)`, hence the condition `stop_charge_thresh > start_charge_thresh` is not fulfilled. So `stop_charge_thresh` wont be updated.
 >
 >>**Correct sequence**<br>
 >> ```bash
-echo '55' > /sys/class/power_supply/BAT0/start_charge_thresh
-echo '60' > /sys/class/power_supply/BAT0/stop_charge_thresh
+echo '55' | pkexec tee /sys/class/power_supply/BAT0/start_charge_thresh
+echo '60' | pkexec tee /sys/class/power_supply/BAT0/stop_charge_thresh
 ```
 >> Since start_threshold is applied first, `stop_charge_thresh (80)` is greater than `start_charge_thresh (55)`, so the condition `stop_charge_thresh > start_charge_thresh` is fulfilled.
+
+
+## Quick Settings
+<br>
+<img src="../assets/images/device-compatibility/thinkpad-legacy-single-battery/quick-settings.png" width="100%">
+<div class="outer-container">
+    <span class="txt-horizantal-align"><b>Gnome 43 and above</b></span>
+    <span class="txt-horizantal-align"><b>Gnome 42</b></span>
+</div>
+
+## Extension Preferences
+<br>
+<img src="../assets/images/device-compatibility/thinkpad-legacy-single-battery/settings.png" width="100%">
+<br>
+
 

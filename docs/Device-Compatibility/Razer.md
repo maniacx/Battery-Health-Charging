@@ -32,30 +32,10 @@ Depends on separate package `razer-cli`, that need to be installed.<br>
 {: .note }
 `razer-cli` package is supported by a third party and this extension/author is not in any way responsible for the kernel module installation, bugs or damages.
 
-## Detection
-This extension supports Razer laptops by checking for the razer-cli installation at default path.
-
-`/usr/bin/razer-cli`<br>
-
-## Quick Settings
+## Testing charging threshold using command-line
+After installing `razer-cli` user will be able to set charging threshold, using commandline and test charging behavior.
+Charging mode can be set by using  `razer-cli` command in `terminal`.
 <br>
-<img src="../assets/images/device-compatibility/razer/quick-settings.png" width="100%">
-<div class="outer-container">
-    <span class="txt-horizantal-align"><b>Gnome 43 and above</b></span>
-    <span class="txt-horizantal-align"><b>Gnome 42</b></span>
-</div>
-
-## Extension Preferences
-<br>
-<img src="../assets/images/device-compatibility/razer/settings.png" width="100%">
-
-## Information
-It is possible to set charging mode or threshold using `razer-cli` command in `terminal`.
-Command below are helpful :
-* Prior to installing extension, to check compatibility.
-* During debugging, to check if threshold can be applied and read using command-line correctly.
-* Incase user decides to not use extension and prefer changing via command-line.
-
 <br>
 
 **For example**
@@ -82,4 +62,19 @@ razer-cli read bho
 > Condition for applying threshold
 >
 > * Accepted values for `bho` : 50 - 80
+
+If charging threshold are applied successfully using above commands, the extension is compatible.
+
+## Quick Settings
+<br>
+<img src="../assets/images/device-compatibility/razer/quick-settings.png" width="100%">
+<div class="outer-container">
+    <span class="txt-horizantal-align"><b>Gnome 43 and above</b></span>
+    <span class="txt-horizantal-align"><b>Gnome 42</b></span>
+</div>
+
+## Extension Preferences
+<br>
+<img src="../assets/images/device-compatibility/razer/settings.png" width="100%">
+
 

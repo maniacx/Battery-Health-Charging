@@ -29,11 +29,44 @@ permalink: /device-compatibility/panasonic
 * No dependencies required.
 * Panasonic laptop that allows setting charging threshold are supported by mainline linux kernels.
 
-## Detection
-This extension supports Panasonic laptops by checking the existence of following sysfs path for charging threshold below.
+## Testing charging threshold using command-line
+Charging mode can be set by using  `echo` command in `terminal`.
+<br>
+<br>
 
+To enable **Echo Mode**
+
+Require root privileges
+{: .label .label-yellow .mt-0}
+```bash
+echo '1' | pkexec tee /sys/devices/platform/panasonic/eco_mode
+```
+<br>
+
+To disable **Echo Mode**
+
+Require root privileges
+{: .label .label-yellow .mt-0}
+```bash
+echo '0' | pkexec tee /sys/devices/platform/panasonic/eco_mode
+```
+<br>
+`sudo` also can be used in place of `pkexec` in the above commands as both `sudo` and `pkexec` can be use to run commands in root mode. To make use of polkit rules, the extension uses `pkexec`.
+
+The current threshold value can also be read using `cat` command in `terminal`.
+```bash
+cat /sys/devices/platform/panasonic/eco_mode
+```
+<br>
+
+{: .important-title }
+> Condition for applying threshold
+>
+> * Accepted values for `eco_mode` : 0 or 1
 `/sys/devices/platform/panasonic/eco_mode`
 <br>
+
+If charging threshold are applied successfully using above commands, the extension is compatible.
 
 ## Quick Settings
 <br>
@@ -47,42 +80,4 @@ This extension supports Panasonic laptops by checking the existence of following
 <br>
 <img src="../assets/images/device-compatibility/panasonic/settings.png" width="100%">
 
-## Information
-The extension changes mode using `echo` command.<br>
-Charging mode can be also set by using  `echo` command in `terminal`.
-Command below are helpful :
-* Prior to installing extension, to check compatibility.
-* During debugging, to check if threshold can be applied and read using command-line correctly.
-* Incase user decides to not use extension and prefer changing via command-line.
-
-<br>
-
-To enable **Echo Mode**
-
-Require root privileges
-{: .label .label-yellow .mt-0}
-```bash
-echo '1' > /sys/devices/platform/panasonic/eco_mode
-```
-<br>
-
-To disable **Echo Mode**
-
-Require root privileges
-{: .label .label-yellow .mt-0}
-```bash
-echo '0' > /sys/devices/platform/panasonic/eco_mode
-```
-<br>
-
-The current threshold value can also be read using `cat` command in `terminal`.
-```bash
-cat /sys/devices/platform/panasonic/eco_mode
-```
-<br>
-
-{: .important-title }
-> Condition for applying threshold
->
-> * Accepted values for `eco_mode` : 0 or 1
 

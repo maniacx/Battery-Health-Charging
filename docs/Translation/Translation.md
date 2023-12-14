@@ -16,20 +16,9 @@ has_toc: false
 
 Thank you for taking the interest in contributing with this project.
 There are two easy ways to create/update translations for your language.
-1. Locally using `Poedit` software
-2. Using `crowdin` website.
+1. Using `crowdin` website.
+2. Locally using `Poedit` software
   
----
-
-## Translation using Poedit
-
-[<img src="./assets/images/translation/poedit-logo.png" width="40%">](https://flathub.org/apps/net.poedit.Poedit)
-
-* Requires to download and install the software on your computer.
-* Fast and Easy to interact.
-
-<img src="./assets/images/translation/poedit.png" width="100%">
-
 ---
 
 ## Translation on crowdin
@@ -48,9 +37,20 @@ There are two easy ways to create/update translations for your language.
 
 ---
 
+## Translation using Poedit
+
+[<img src="./assets/images/translation/poedit-logo.png" width="40%">](https://flathub.org/apps/net.poedit.Poedit)
+
+* Requires to download and install the software on your computer.
+* Fast and Easy to interact.
+
+<img src="./assets/images/translation/poedit.png" width="100%">
+
+---
+
 ## Get Started
-[Poedit Guide](./poedit-guide){: .btn .btn-blue .button2-fixed-width}<br>
 [Crowdin Guide](./crowdin-guide){: .btn .btn-green .button2-fixed-width}<br>
+[Poedit Guide](./poedit-guide){: .btn .btn-blue .button2-fixed-width}<br>
 [Pull Request Guide](./pull-request-guide){: .btn .btn-purple .button2-fixed-width}<br>
 
 

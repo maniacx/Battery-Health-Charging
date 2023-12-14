@@ -30,13 +30,36 @@ Depends on separate kernel module `gigabyte-laptop-wmi`, that need to be install
 {: .note }
 `gigabyte-laptop-wmi` module is supported by a third party and this extension/author is not in any way responsible for the kernel module installation, bugs or damages.
 
-## Detection
-This extension supports Gigabyte laptops by checking the existence of following sysfs paths for charging threshold below.
+## Testing charging threshold using command-line
+After installing `gigabyte-laptop-wmi` below sysfs path will be available and charging threshold/mode can be changed.
+Now user will be able to set charging threshold, using commandline and test charging behavior.
+Charging mode can be set by using  `echo` command in `terminal`.
+<br>
+<br>
+**For example:**<br>To apply threshold value of `60`, the command would be.
 
+Require root privileges
+{: .label .label-yellow .mt-0}
+```bash
+echo '1' | pkexec tee /sys/devices/platform/gigabyte_laptop/charge_mode
+echo '60' | pkexec tee /sys/devices/platform/gigabyte_laptop/charge_limit
 ```
-/sys/devices/platform/gigabyte_laptop/charge_mode
-/sys/devices/platform/gigabyte_laptop/charge_limit
+<br>
+`sudo` also can be used in place of `pkexec` in the above commands as both `sudo` and `pkexec` can be use to run commands in root mode. To make use of polkit rules, the extension uses `pkexec`.
+
+The current threshold value can also be read using `cat` command in `terminal`. For example, the laptops battery name in power supply sysfs is `BAT0`, command would be.
+```bash
+cat /sys/devices/platform/gigabyte_laptop/charge_limit
 ```
+<br>
+
+{: .important-title }
+> Condition for applying threshold
+>
+> * Accepted values for `charge_mode` : 0 or 1
+> * Accepted values for `charge_limit` : 60 - 100
+
+If charging threshold are applied successfully using above commands, the extension is compatible.
 
 ## Quick Settings
 <br>
@@ -50,34 +73,4 @@ This extension supports Gigabyte laptops by checking the existence of following 
 <br>
 <img src="../assets/images/device-compatibility/gigabyte/settings.png" width="100%">
 
-
-## Information
-The extension applies threshold using `echo` command.<br>
-Charging threshold value can be applied by using `echo` command in `terminal`.
-Command below are helpful :
-* Prior to installing extension, to check compatibility.
-* During debugging, to check if threshold can be applied and read using command-line correctly.
-* Incase user decides to not use extension and prefer changing via command-line.
-
-<br>
-**For example:**<br>To apply threshold value of `60`, the command would be.
-
-Require root privileges
-{: .label .label-yellow .mt-0}
-```bash
-echo '1' > /sys/devices/platform/gigabyte_laptop/charge_mode
-echo '60' > /sys/devices/platform/gigabyte_laptop/charge_limit
-```
-<br>
-The current threshold value can also be read using `cat` command in `terminal`. For example, the laptops battery name in power supply sysfs is `BAT0`, command would be.
-```bash
-cat /sys/devices/platform/gigabyte_laptop/charge_limit
-```
-<br>
-
-{: .important-title }
-> Condition for applying threshold
->
-> * Accepted values for `charge_mode` : 0 or 1
-> * Accepted values for `charge_limit` : 60 - 100
 

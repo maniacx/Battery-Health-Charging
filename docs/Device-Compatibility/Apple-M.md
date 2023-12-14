@@ -39,13 +39,51 @@ Depends on `asahi linux kernel`.<br>
 {: .note }
 `asahi linux kernel` is supported by a third party and this extension/author is not in any way responsible for the kernel module installation, bugs or damages.
 
-## Detection
-This extension supports Apple-M laptops by checking the existence of following sysfs paths for charging threshold below.
+## Testing charging threshold using command-line
+Charging mode can be set by using  `echo` command in `terminal`.
+<br>
+<br>
+### Post Kernel 6.3.xxx
+**For example:**<br>To apply threshold value of `80`, the command would be.
 
+Require root privileges
+{: .label .label-yellow .mt-0}
+```bash
+echo '80' | pkexec tee /sys/class/power_supply/macsmc-battery/charge_control_end_threshold
 ```
-/sys/class/power_supply/macsmc-battery/charge_control_end_threshold
-/sys/class/power_supply/macsmc-battery/charge_control_start_threshold
+<br>
+`sudo` also can be used in place of `pkexec` in the above commands as both `sudo` and `pkexec` can be use to run commands in root mode. To make use of polkit rules, the extension uses `pkexec`.
+
+{: .note }
+In kernel 6.3.xxx,  setting threshold value of `charge_control_start_threshold` is not required.<br>The value of `charge_control_start_threshold` is automatically set by the kernel, depending on the value of `charge_control_end_threshold`.
+
+<br>
+### Post Kernel 6.2.xxx
+**For example:**<br>To apply start threshold value of `55`, end threshold value of `60`, command would be.
+
+Require root privileges
+{: .label .label-yellow .mt-0}
+```bash
+echo '55' | pkexec tee /sys/class/power_supply/macsmc-battery/charge_control_start_threshold
+echo '60' | pkexec tee /sys/class/power_supply/macsmc-battery/charge_control_end_threshold
 ```
+<br>
+`sudo` also can be used in place of `pkexec` in the above commands as both `sudo` and `pkexec` can be use to run commands in root mode. To make use of polkit rules, the extension uses `pkexec`.
+
+The current threshold value can also be read using `cat` command in `terminal`.
+```bash
+cat /sys/class/power_supply/macsmc-battery/charge_control_end_threshold
+```
+<br>
+
+{: .important-title }
+> Condition for applying threshold
+>
+> * For Post Kernel 6.3.xxx , accepted values for `charge_control_end_threshold` : 80 or 100
+> * For Pre Kernel 6.2.xxx , accepted values for `charge_control_end_threshold` : 1 or 100
+> * For Pre Kernel 6.2.xxx , accepted values for `charge_control_start_threshold` : 0 or 99
+
+If charging threshold are applied successfully using above commands, the extension is compatible.
 
 ## Quick Settings
 ### Post Kernel 6.3.xxx
@@ -69,49 +107,4 @@ This extension supports Apple-M laptops by checking the existence of following s
 ### Pre Kernel 6.2.xxx
 <img src="../assets/images/device-compatibility/apple-m/settings-62.png" width="100%">
 
-## Information
-The extension applies threshold using `echo` command.<br>
-Charging threshold value can be applied by using `echo` command in `terminal`.
-Command below are helpful :
-* Prior to installing extension, to check compatibility.
-* During debugging, to check if threshold can be applied and read using command-line correctly.
-* Incase user decides to not use extension and prefer changing via command-line.
 
-<br>
-### Post Kernel 6.3.xxx
-**For example:**<br>To apply threshold value of `80`, the command would be.
-
-Require root privileges
-{: .label .label-yellow .mt-0}
-```bash
-echo '80' > /sys/class/power_supply/macsmc-battery/charge_control_end_threshold
-```
-
-{: .note }
-In kernel 6.3.xxx,  setting threshold value of `charge_control_start_threshold` is not required.<br>The value of `charge_control_start_threshold` is automatically set by the kernel, depending on the value of `charge_control_end_threshold`.
-
-<br>
-### Post Kernel 6.2.xxx
-**For example:**<br>To apply start threshold value of `55`, end threshold value of `60`, command would be.
-
-Require root privileges
-{: .label .label-yellow .mt-0}
-```bash
-echo '55' > /sys/class/power_supply/macsmc-battery/charge_control_start_threshold
-echo '60' > /sys/class/power_supply/macsmc-battery/charge_control_end_threshold
-```
-
-<br>
-<br>
-The current threshold value can also be read using `cat` command in `terminal`.
-```bash
-cat /sys/class/power_supply/macsmc-battery/charge_control_end_threshold
-```
-<br>
-
-{: .important-title }
-> Condition for applying threshold
->
-> * For Post Kernel 6.3.xxx , accepted values for `charge_control_end_threshold` : 80 or 100
-> * For Pre Kernel 6.2.xxx , accepted values for `charge_control_end_threshold` : 1 or 100
-> * For Pre Kernel 6.2.xxx , accepted values for `charge_control_start_threshold` : 0 or 99

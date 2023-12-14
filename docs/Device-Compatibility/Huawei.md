@@ -29,11 +29,34 @@ permalink: /device-compatibility/huawei
 * No dependencies required.
 * Huawei laptop that allows setting charging threshold are supported by mainline linux kernels.
 
-## Detection
-This extension supports Huawei laptops by checking the existence of following sysfs path for charging threshold below.
+## Testing charging threshold using command-line
+Charging mode can be set by using  `echo` command in `terminal`.
 
-`/sys/devices/platform/huawei-wmi/charge_thresholds`
 <br>
+**For example:**<br>To apply start threshold value of `55`, end threshold value of `60`, command would be.
+
+Require root privileges
+{: .label .label-yellow .mt-0}
+```bash
+echo '55 60' | pkexec tee /sys/devices/platform/huawei-wmi/charge_thresholds
+```
+<br>
+`sudo` also can be used in place of `pkexec` in the above commands as both `sudo` and `pkexec` can be use to run commands in root mode. To make use of polkit rules, the extension uses `pkexec`.
+
+<br>
+The current threshold value can also be read using `cat` command in `terminal`.
+```bash
+cat /sys/devices/platform/huawei-wmi/charge_thresholds
+```
+<br>
+
+{: .important-title }
+> Condition for applying threshold
+>
+> * Accepted values for `charge_control_end_threshold` : 1 - 100
+> * Accepted values for `charge_control_start_threshold` : 0 - 99
+
+If charging threshold are applied successfully using above commands, the extension is compatible.
 
 ## Quick Settings
 <br>
@@ -47,32 +70,4 @@ This extension supports Huawei laptops by checking the existence of following sy
 <br>
 <img src="../assets/images/device-compatibility/huawei/settings.png" width="100%">
 
-## Information
-The extension changes mode using `echo` command.<br>
-Charging threshold value can be applied by using `echo` command in `terminal`.
-Command below are helpful :
-* Prior to installing extension, to check compatibility.
-* During debugging, to check if threshold can be applied and read using command-line correctly.
-* Incase user decides to not use extension and prefer changing via command-line.
-
-<br>
-**For example:**<br>To apply start threshold value of `55`, end threshold value of `60`, command would be.
-
-Require root privileges
-{: .label .label-yellow .mt-0}
-```bash
-echo '55 60' > /sys/devices/platform/huawei-wmi/charge_thresholds
-```
-<br>
-The current threshold value can also be read using `cat` command in `terminal`.
-```bash
-cat /sys/devices/platform/huawei-wmi/charge_thresholds
-```
-<br>
-
-{: .important-title }
-> Condition for applying threshold
->
-> * Accepted values for `charge_control_end_threshold` : 1 - 100
-> * Accepted values for `charge_control_start_threshold` : 0 - 99
 

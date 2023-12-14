@@ -60,9 +60,6 @@ Two projects available on crowdin.
 ---
 
 ### 8. Once downloaded (For example fr.po for French), create a Pull Request to upload on Github.
-
-<br>
 [Pull Request Guide](./pull-request-guide){: .btn .btn-purple .button2-fixed-width}<br>
-[Poedit Guide](./poedit-guide){: .btn .btn-blue .button2-fixed-width}
 
 ---

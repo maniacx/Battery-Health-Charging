@@ -29,11 +29,42 @@ permalink: /device-compatibility/samsung
 * No dependencies required.
 * Samsung laptop that allows setting charging threshold are supported by mainline linux kernels.
 
-## Detection
-This extension supports Samsung laptops by checking the existence of following sysfs path for charging threshold below.
-
-`/sys/devices/platform/samsung/battery_life_extender`
+## Testing charging threshold using command-line
+Charging mode can be set by using  `echo` command in `terminal`.
 <br>
+<br>
+
+To enable **Smart Charging Mode**
+
+Require root privileges
+{: .label .label-yellow .mt-0}
+```bash
+echo '1' | pkexec tee /sys/devices/platform/samsung/battery_life_extender
+```
+<br>
+
+To disable **Smart Charging Mode**
+
+Require root privileges
+{: .label .label-yellow .mt-0}
+```bash
+echo '0' | pkexec tee /sys/devices/platform/samsung/battery_life_extender
+```
+<br>
+`sudo` also can be used in place of `pkexec` in the above commands as both `sudo` and `pkexec` can be use to run commands in root mode. To make use of polkit rules, the extension uses `pkexec`.
+
+The current threshold value can also be read using `cat` command in `terminal`.
+```bash
+cat /sys/devices/platform/samsung/battery_life_extender
+```
+<br>
+
+{: .important-title }
+> Condition for applying threshold
+>
+> * Accepted values for `battery_life_extender` : 0 or 1
+
+If charging threshold are applied successfully using above commands, the extension is compatible.
 
 ## Quick Settings
 <br>
@@ -46,43 +77,4 @@ This extension supports Samsung laptops by checking the existence of following s
 ## Extension Preferences
 <br>
 <img src="../assets/images/device-compatibility/samsung/settings.png" width="100%">
-
-## Information
-The extension changes mode using `echo` command.<br>
-Charging mode can be also set by using  `echo` command in `terminal`.
-Command below are helpful :
-* Prior to installing extension, to check compatibility.
-* During debugging, to check if threshold can be applied and read using command-line correctly.
-* Incase user decides to not use extension and prefer changing via command-line.
-
-<br>
-
-To enable **Smart Charging Mode**
-
-Require root privileges
-{: .label .label-yellow .mt-0}
-```bash
-echo '1' > /sys/devices/platform/samsung/battery_life_extender
-```
-<br>
-
-To disable **Smart Charging Mode**
-
-Require root privileges
-{: .label .label-yellow .mt-0}
-```bash
-echo '0' > /sys/devices/platform/samsung/battery_life_extender
-```
-<br>
-
-The current threshold value can also be read using `cat` command in `terminal`.
-```bash
-cat /sys/devices/platform/samsung/battery_life_extender
-```
-<br>
-
-{: .important-title }
-> Condition for applying threshold
->
-> * Accepted values for `battery_life_extender` : 0 or 1
 
