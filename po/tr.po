@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Battery-Health-Charging@maniacx.github.com\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-12-13 12:05-0800\n"
-"PO-Revision-Date: 2023-12-11 21:21-0800\n"
+"PO-Revision-Date: 2023-12-15 00:13+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
 "Language: tr\n"
@@ -45,7 +45,7 @@ msgstr ""
 
 #: lib/notifier.js:72
 msgid "Missing dependencies"
-msgstr ""
+msgstr "Eksik bağımlılıklar"
 
 #: lib/notifier.js:76
 msgid "Please install polkit from extension settings under Installation."
@@ -89,7 +89,7 @@ msgstr "Şarj eşiği güncellenmedi. (%s)"
 
 #: lib/notifier.js:98
 msgid "Apply correct Bios Password to set threshold."
-msgstr ""
+msgstr "Eşiği ayarlamak için doğru Bios Parolasını girin."
 
 #: lib/notifier.js:102
 #, javascript-format
@@ -285,11 +285,11 @@ msgstr "Hızlı"
 
 #: lib/thresholdPanel.js:480
 msgid "Force Discharge"
-msgstr ""
+msgstr "Boşalmaya Zorla"
 
 #: preferences/about.js:38
 msgid "2023"
-msgstr ""
+msgstr "2023"
 
 #: preferences/about.js:39
 msgid "GNU General Public License, version 3 or later"
@@ -298,16 +298,16 @@ msgstr "GNU Genel Kamu Lisansı, sürüm 3 ya da sonrası"
 #: preferences/about.js:45
 #, javascript-format
 msgid "© %s %s"
-msgstr ""
+msgstr "© %s %s"
 
 #: preferences/about.js:46
 #, javascript-format
 msgid ""
-"This application comes with absolutely no warranty. See the <a "
-"href=\"%s\">%s</a> for details."
+"This application comes with absolutely no warranty. See the <a href=\"%s\">"
+"%s</a> for details."
 msgstr ""
-"Bu program kesinlikle hiçbir garanti vermiyor. Ayrıntılar için <a "
-"href=\"%s\">%s</a> bağlantısına bakın."
+"Bu program kesinlikle hiçbir garanti vermiyor. Ayrıntılar için <a href=\"%s"
+"\">%s</a> bağlantısına bakın."
 
 #: preferences/general.js:53
 msgid ""
@@ -394,7 +394,7 @@ msgstr "Yasal"
 
 #: ui/about.ui:223
 msgid "Crowdin"
-msgstr ""
+msgstr "Crowdin"
 
 #: ui/about.ui:235
 msgid "Online Tutorials"
@@ -410,7 +410,7 @@ msgstr "Aygıt ayarları"
 
 #: ui/apple.ui:12
 msgid "Change the behavior of charging indicator light"
-msgstr ""
+msgstr "Şarj gösterge ışığının davranışını değiştir"
 
 #: ui/dell.ui:12
 msgid "Dell package for charging mode"
@@ -422,25 +422,27 @@ msgstr "Şarj kipini/eşiği değiştirmek için kullanılan Dell paketini seçi
 
 #: ui/dell.ui:27
 msgid "Bios Authentication"
-msgstr ""
+msgstr "Bios Kimlik Doğrulama"
 
 #: ui/dell.ui:30
 msgid "Requires Bios password validation to change mode/threshold"
-msgstr ""
+msgstr "Modu/eşiği değiştirmek için Bios parola doğrulaması gerekir"
 
 #: ui/dell.ui:31
 msgid ""
 "Enable if Dell command configure uses Bios (system) password to change mode/"
 "threshold"
 msgstr ""
+"Dell configure komutu, modu/eşiği değiştirmek için Bios (sistem) parolasını "
+"kullanıyorsa etkinleştirin"
 
 #: ui/dell.ui:43
 msgid "Enter Bios Password"
-msgstr ""
+msgstr "Bios Parolasını Girin"
 
 #: ui/dell.ui:44
 msgid "Note: Bios password will be stored in Gnome Keyring"
-msgstr ""
+msgstr "Not: Bios parolası GNOME Anahtarlığında saklanacaktır"
 
 #: ui/dell.ui:83
 msgid "Libsmbios"
@@ -564,13 +566,15 @@ msgstr "Yüzde Vurgulanmış"
 
 #: ui/thinkpad.ui:12
 msgid "Enable force discharge battery feature (Experimental)"
-msgstr ""
+msgstr "Boşalmaya zorla özelliğini etkinleştir (Deneysel)"
 
 #: ui/thinkpad.ui:13
 msgid ""
 "Enable option to force discharge battery when battery level higher than "
 "current threshold"
 msgstr ""
+"Pil seviyesi geçerli eşikten yüksek olduğunda pili boşalmaya zorlama "
+"seçeneğini etkinleştir"
 
 #: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
 msgid "Customize"
@@ -588,7 +592,7 @@ msgstr "Uygula"
 #: ui/thresholdPrimary.ui:202 ui/thresholdSecondary.ui:58
 #: ui/thresholdSecondary.ui:130 ui/thresholdSecondary.ui:202
 msgid "Stop charging threshold value"
-msgstr "Şarj etmeyi durdurma değeri"
+msgstr "Şarj etmeyi durdurma eşik değeri"
 
 #: ui/thresholdPrimary.ui:70 ui/thresholdPrimary.ui:104
 #: ui/thresholdPrimary.ui:142 ui/thresholdPrimary.ui:176
@@ -603,5 +607,4 @@ msgstr "Geçerli Değer"
 #: ui/thresholdPrimary.ui:237 ui/thresholdSecondary.ui:92
 #: ui/thresholdSecondary.ui:164 ui/thresholdSecondary.ui:237
 msgid "Start charging threshold value"
-msgstr "Şarj etmeye başlama değeri"
-
+msgstr "Şarj etmeye başlama eşik değeri"
