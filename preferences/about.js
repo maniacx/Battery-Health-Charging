@@ -12,6 +12,7 @@ export const About = GObject.registerClass({
         'stack',
         'extension_icon_image',
         'extension_name_label',
+        'developer_name_label',
         'extension_version',
         'license_content',
         'copyright_content',
@@ -42,6 +43,7 @@ export const About = GObject.registerClass({
         this._extension_icon_image.icon_name = extensionIcon;
         this._extension_name_label.label = extensionObject.metadata.name;
         this._extension_version.label = extensionObject.metadata.version.toString();
+        this._developer_name_label.label = developerName;
         this._copyright_content.label = _('© %s %s').format(copyrightYear, developerName);
         this._license_content.label = _('This application comes with absolutely no warranty. See the <a href="%s">%s</a> for details.').format(licenseLink, licenseName);
 
