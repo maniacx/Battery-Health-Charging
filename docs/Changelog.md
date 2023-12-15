@@ -8,6 +8,17 @@ permalink: /changelogs
 # Changelogs
 
 {: .important-title }
+> GN-45_Version 42 &emsp;&emsp; Dec 15, 2023 
+> * Nofity users if laptop is supported and dependencies are missing
+> * Pref: About updated
+
+{: .note-title }
+> GN-44_Version 31 &emsp;&emsp; Dec 15, 2023 
+> * Nofity users if laptop is supported and dependencies are missing
+> * Pref: About updated
+
+
+{: .important-title }
 > GN-45_Version 40 &emsp;&emsp; Dec 06, 2023 
 > * Added support for Framework Laptops
 > * Fix compatibility for Nix OS
