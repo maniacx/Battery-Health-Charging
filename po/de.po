@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-13 12:05-0800\n"
-"PO-Revision-Date: 2023-12-11 21:08-0800\n"
+"POT-Creation-Date: 2023-12-15 11:48-0800\n"
+"PO-Revision-Date: 2023-12-15 11:46-0800\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: lib/notifier.js:36
 msgid "Battery Health Charging"
@@ -93,6 +93,7 @@ msgstr "Schwelle zum Stoppen des Batterieladens. (%s)"
 #: lib/notifier.js:98
 msgid "Apply correct Bios Password to set threshold."
 msgstr ""
+"Wenden Sie das richtige BIOS-Passwort an, um den Schwellenwert einzustellen."
 
 #: lib/notifier.js:102
 #, javascript-format
@@ -288,22 +289,22 @@ msgstr "Express"
 
 #: lib/thresholdPanel.js:480
 msgid "Force Discharge"
-msgstr ""
-
-#: preferences/about.js:38
-msgid "2023"
-msgstr ""
+msgstr "Erzwungene Entladung"
 
 #: preferences/about.js:39
+msgid "2023"
+msgstr "2023"
+
+#: preferences/about.js:40
 msgid "GNU General Public License, version 3 or later"
 msgstr "GNU General Public License, Version 3 oder neuer"
 
-#: preferences/about.js:45
+#: preferences/about.js:47
 #, javascript-format
 msgid "© %s %s"
-msgstr ""
+msgstr "© %s %s"
 
-#: preferences/about.js:46
+#: preferences/about.js:48
 #, javascript-format
 msgid ""
 "This application comes with absolutely no warranty. See the <a "
@@ -376,31 +377,31 @@ msgstr "<i>Akzeptierter Wert: %d bis %d</i>"
 msgid "About"
 msgstr "Über"
 
-#: ui/about.ui:81
+#: ui/about.ui:73
 msgid "Read me"
 msgstr "Lies mich"
 
-#: ui/about.ui:103
+#: ui/about.ui:95
 msgid "Report an Issue"
 msgstr "Ein Problem melden"
 
-#: ui/about.ui:120
+#: ui/about.ui:112
 msgid "Translations"
 msgstr "Übersetzungen"
 
-#: ui/about.ui:142
+#: ui/about.ui:134
 msgid "View sources on Github"
 msgstr "Quellcode anzeigen"
 
-#: ui/about.ui:159
+#: ui/about.ui:151
 msgid "Legal"
 msgstr "Rechtshinweis"
 
-#: ui/about.ui:223
+#: ui/about.ui:215
 msgid "Crowdin"
-msgstr ""
+msgstr "Crowdin"
 
-#: ui/about.ui:235
+#: ui/about.ui:227
 msgid "Online Tutorials"
 msgstr "Anleitungen im Netz"
 
@@ -414,7 +415,7 @@ msgstr "Geräteeinstellungen"
 
 #: ui/apple.ui:12
 msgid "Change the behavior of charging indicator light"
-msgstr ""
+msgstr "Ändere das Verhalten der Ladeanzeige"
 
 #: ui/dell.ui:12
 msgid "Dell package for charging mode"
@@ -428,31 +429,35 @@ msgstr ""
 
 #: ui/dell.ui:27
 msgid "Bios Authentication"
-msgstr ""
+msgstr "Bios-Authentifizierung"
 
 #: ui/dell.ui:30
 msgid "Requires Bios password validation to change mode/threshold"
 msgstr ""
+"Erfordert die Validierung des BIOS-Passworts zum Ändern des Modus/"
+"Schwellenwerts"
 
 #: ui/dell.ui:31
 msgid ""
 "Enable if Dell command configure uses Bios (system) password to change mode/"
 "threshold"
 msgstr ""
+"Aktivieren, wenn Dell Command Configure ein Bios (System)-Passwort zum "
+"Ändern des Modus/Schwellenwerts verwendet"
 
 #: ui/dell.ui:43
 msgid "Enter Bios Password"
-msgstr ""
+msgstr "Geben Sie das BIOS-Passwort ein"
 
 #: ui/dell.ui:44
 msgid "Note: Bios password will be stored in Gnome Keyring"
-msgstr ""
+msgstr "Hinweis: Das BIOS-Passwort wird im Gnome Keyring gespeichert"
 
-#: ui/dell.ui:83
+#: ui/dell.ui:79
 msgid "Libsmbios"
 msgstr "Libsmbios"
 
-#: ui/dell.ui:84
+#: ui/dell.ui:80
 msgid "Dell Command Center"
 msgstr "Dell Command Center"
 
@@ -576,43 +581,45 @@ msgstr "Prozentsatz hervorgehoben"
 #: ui/thinkpad.ui:12
 msgid "Enable force discharge battery feature (Experimental)"
 msgstr ""
+"Aktivieren Sie die Funktion für erzwungenen Batterieentladung (Experimentell)"
 
 #: ui/thinkpad.ui:13
 msgid ""
 "Enable option to force discharge battery when battery level higher than "
 "current threshold"
 msgstr ""
+"Option aktivieren, um die Batterie zu entladen, wenn der Batteriestand höher "
+"als die aktuelle Schwelle ist"
 
-#: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
+#: ui/thresholdPrimary.ui:21 ui/thresholdSecondary.ui:21
 msgid "Customize"
 msgstr "Anpassen"
 
-#: ui/thresholdPrimary.ui:29 ui/thresholdSecondary.ui:29
+#: ui/thresholdPrimary.ui:27 ui/thresholdSecondary.ui:27
 msgid "Default"
 msgstr "Standard"
 
-#: ui/thresholdPrimary.ui:48 ui/thresholdSecondary.ui:48
+#: ui/thresholdPrimary.ui:47 ui/thresholdSecondary.ui:47
 msgid "Apply"
 msgstr "Anwenden"
 
-#: ui/thresholdPrimary.ui:58 ui/thresholdPrimary.ui:130
-#: ui/thresholdPrimary.ui:202 ui/thresholdSecondary.ui:58
-#: ui/thresholdSecondary.ui:130 ui/thresholdSecondary.ui:202
+#: ui/thresholdPrimary.ui:54 ui/thresholdPrimary.ui:122
+#: ui/thresholdPrimary.ui:190 ui/thresholdSecondary.ui:54
+#: ui/thresholdSecondary.ui:122 ui/thresholdSecondary.ui:190
 msgid "Stop charging threshold value"
 msgstr "Schwelle zum Stoppen des Batterieladens"
 
-#: ui/thresholdPrimary.ui:70 ui/thresholdPrimary.ui:104
-#: ui/thresholdPrimary.ui:142 ui/thresholdPrimary.ui:176
-#: ui/thresholdPrimary.ui:214 ui/thresholdPrimary.ui:249
-#: ui/thresholdSecondary.ui:70 ui/thresholdSecondary.ui:104
-#: ui/thresholdSecondary.ui:142 ui/thresholdSecondary.ui:176
-#: ui/thresholdSecondary.ui:214 ui/thresholdSecondary.ui:249
+#: ui/thresholdPrimary.ui:67 ui/thresholdPrimary.ui:99
+#: ui/thresholdPrimary.ui:135 ui/thresholdPrimary.ui:167
+#: ui/thresholdPrimary.ui:203 ui/thresholdPrimary.ui:236
+#: ui/thresholdSecondary.ui:67 ui/thresholdSecondary.ui:99
+#: ui/thresholdSecondary.ui:135 ui/thresholdSecondary.ui:167
+#: ui/thresholdSecondary.ui:203 ui/thresholdSecondary.ui:236
 msgid "Current Value"
 msgstr "Aktueller Wert"
 
-#: ui/thresholdPrimary.ui:92 ui/thresholdPrimary.ui:164
-#: ui/thresholdPrimary.ui:237 ui/thresholdSecondary.ui:92
-#: ui/thresholdSecondary.ui:164 ui/thresholdSecondary.ui:237
+#: ui/thresholdPrimary.ui:86 ui/thresholdPrimary.ui:154
+#: ui/thresholdPrimary.ui:223 ui/thresholdSecondary.ui:86
+#: ui/thresholdSecondary.ui:154 ui/thresholdSecondary.ui:223
 msgid "Start charging threshold value"
 msgstr "Schwelle zum Starten des Batterieladens"
-

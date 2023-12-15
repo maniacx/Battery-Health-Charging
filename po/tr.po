@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battery-Health-Charging@maniacx.github.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-13 12:05-0800\n"
+"POT-Creation-Date: 2023-12-15 11:48-0800\n"
 "PO-Revision-Date: 2023-12-15 00:13+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
@@ -287,27 +287,27 @@ msgstr "Hızlı"
 msgid "Force Discharge"
 msgstr "Boşalmaya Zorla"
 
-#: preferences/about.js:38
+#: preferences/about.js:39
 msgid "2023"
 msgstr "2023"
 
-#: preferences/about.js:39
+#: preferences/about.js:40
 msgid "GNU General Public License, version 3 or later"
 msgstr "GNU Genel Kamu Lisansı, sürüm 3 ya da sonrası"
 
-#: preferences/about.js:45
+#: preferences/about.js:47
 #, javascript-format
 msgid "© %s %s"
 msgstr "© %s %s"
 
-#: preferences/about.js:46
+#: preferences/about.js:48
 #, javascript-format
 msgid ""
-"This application comes with absolutely no warranty. See the <a href=\"%s\">"
-"%s</a> for details."
+"This application comes with absolutely no warranty. See the <a "
+"href=\"%s\">%s</a> for details."
 msgstr ""
-"Bu program kesinlikle hiçbir garanti vermiyor. Ayrıntılar için <a href=\"%s"
-"\">%s</a> bağlantısına bakın."
+"Bu program kesinlikle hiçbir garanti vermiyor. Ayrıntılar için <a "
+"href=\"%s\">%s</a> bağlantısına bakın."
 
 #: preferences/general.js:53
 msgid ""
@@ -372,31 +372,31 @@ msgstr "<i>Kabul Edilen Değerler : %d ile %d arası</i>"
 msgid "About"
 msgstr "Hakkında"
 
-#: ui/about.ui:81
+#: ui/about.ui:73
 msgid "Read me"
 msgstr "Beni oku"
 
-#: ui/about.ui:103
+#: ui/about.ui:95
 msgid "Report an Issue"
 msgstr "Sorun Bildir"
 
-#: ui/about.ui:120
+#: ui/about.ui:112
 msgid "Translations"
 msgstr "Çeviriler"
 
-#: ui/about.ui:142
+#: ui/about.ui:134
 msgid "View sources on Github"
 msgstr "Kaynakları görüntüle"
 
-#: ui/about.ui:159
+#: ui/about.ui:151
 msgid "Legal"
 msgstr "Yasal"
 
-#: ui/about.ui:223
+#: ui/about.ui:215
 msgid "Crowdin"
 msgstr "Crowdin"
 
-#: ui/about.ui:235
+#: ui/about.ui:227
 msgid "Online Tutorials"
 msgstr "Çevrimiçi eğitimler"
 
@@ -444,11 +444,11 @@ msgstr "Bios Parolasını Girin"
 msgid "Note: Bios password will be stored in Gnome Keyring"
 msgstr "Not: Bios parolası GNOME Anahtarlığında saklanacaktır"
 
-#: ui/dell.ui:83
+#: ui/dell.ui:79
 msgid "Libsmbios"
 msgstr "Libsmbios"
 
-#: ui/dell.ui:84
+#: ui/dell.ui:80
 msgid "Dell Command Center"
 msgstr "Dell Yönetim Merkezi"
 
@@ -576,35 +576,35 @@ msgstr ""
 "Pil seviyesi geçerli eşikten yüksek olduğunda pili boşalmaya zorlama "
 "seçeneğini etkinleştir"
 
-#: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
+#: ui/thresholdPrimary.ui:21 ui/thresholdSecondary.ui:21
 msgid "Customize"
 msgstr "Özelleştir"
 
-#: ui/thresholdPrimary.ui:29 ui/thresholdSecondary.ui:29
+#: ui/thresholdPrimary.ui:27 ui/thresholdSecondary.ui:27
 msgid "Default"
 msgstr "Öntanımlı"
 
-#: ui/thresholdPrimary.ui:48 ui/thresholdSecondary.ui:48
+#: ui/thresholdPrimary.ui:47 ui/thresholdSecondary.ui:47
 msgid "Apply"
 msgstr "Uygula"
 
-#: ui/thresholdPrimary.ui:58 ui/thresholdPrimary.ui:130
-#: ui/thresholdPrimary.ui:202 ui/thresholdSecondary.ui:58
-#: ui/thresholdSecondary.ui:130 ui/thresholdSecondary.ui:202
+#: ui/thresholdPrimary.ui:54 ui/thresholdPrimary.ui:122
+#: ui/thresholdPrimary.ui:190 ui/thresholdSecondary.ui:54
+#: ui/thresholdSecondary.ui:122 ui/thresholdSecondary.ui:190
 msgid "Stop charging threshold value"
 msgstr "Şarj etmeyi durdurma eşik değeri"
 
-#: ui/thresholdPrimary.ui:70 ui/thresholdPrimary.ui:104
-#: ui/thresholdPrimary.ui:142 ui/thresholdPrimary.ui:176
-#: ui/thresholdPrimary.ui:214 ui/thresholdPrimary.ui:249
-#: ui/thresholdSecondary.ui:70 ui/thresholdSecondary.ui:104
-#: ui/thresholdSecondary.ui:142 ui/thresholdSecondary.ui:176
-#: ui/thresholdSecondary.ui:214 ui/thresholdSecondary.ui:249
+#: ui/thresholdPrimary.ui:67 ui/thresholdPrimary.ui:99
+#: ui/thresholdPrimary.ui:135 ui/thresholdPrimary.ui:167
+#: ui/thresholdPrimary.ui:203 ui/thresholdPrimary.ui:236
+#: ui/thresholdSecondary.ui:67 ui/thresholdSecondary.ui:99
+#: ui/thresholdSecondary.ui:135 ui/thresholdSecondary.ui:167
+#: ui/thresholdSecondary.ui:203 ui/thresholdSecondary.ui:236
 msgid "Current Value"
 msgstr "Geçerli Değer"
 
-#: ui/thresholdPrimary.ui:92 ui/thresholdPrimary.ui:164
-#: ui/thresholdPrimary.ui:237 ui/thresholdSecondary.ui:92
-#: ui/thresholdSecondary.ui:164 ui/thresholdSecondary.ui:237
+#: ui/thresholdPrimary.ui:86 ui/thresholdPrimary.ui:154
+#: ui/thresholdPrimary.ui:223 ui/thresholdSecondary.ui:86
+#: ui/thresholdSecondary.ui:154 ui/thresholdSecondary.ui:223
 msgid "Start charging threshold value"
 msgstr "Şarj etmeye başlama eşik değeri"

@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-13 12:05-0800\n"
-"PO-Revision-Date: 2023-12-11 21:13-0800\n"
+"POT-Creation-Date: 2023-12-15 11:48-0800\n"
+"PO-Revision-Date: 2023-12-15 11:47-0800\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4.1\n"
+"X-Generator: Poedit 3.2.2\n"
 
 #: lib/notifier.js:36
 msgid "Battery Health Charging"
@@ -90,7 +90,7 @@ msgstr "Остановить значение порога зарядки. (%s)"
 
 #: lib/notifier.js:98
 msgid "Apply correct Bios Password to set threshold."
-msgstr ""
+msgstr "Примените правильный пароль BIOS для установки порога."
 
 #: lib/notifier.js:102
 #, javascript-format
@@ -286,22 +286,22 @@ msgstr "Express"
 
 #: lib/thresholdPanel.js:480
 msgid "Force Discharge"
-msgstr ""
-
-#: preferences/about.js:38
-msgid "2023"
-msgstr ""
+msgstr "Принудительный разряд"
 
 #: preferences/about.js:39
+msgid "2023"
+msgstr "2023"
+
+#: preferences/about.js:40
 msgid "GNU General Public License, version 3 or later"
 msgstr "GNU General Public License, версии 3 или позднее"
 
-#: preferences/about.js:45
+#: preferences/about.js:47
 #, javascript-format
 msgid "© %s %s"
-msgstr ""
+msgstr "© %s %s"
 
-#: preferences/about.js:46
+#: preferences/about.js:48
 #, javascript-format
 msgid ""
 "This application comes with absolutely no warranty. See the <a "
@@ -373,31 +373,31 @@ msgstr "<i>Принятое значение: от %d до %d</i>"
 msgid "About"
 msgstr "О программе"
 
-#: ui/about.ui:81
+#: ui/about.ui:73
 msgid "Read me"
 msgstr "Читать"
 
-#: ui/about.ui:103
+#: ui/about.ui:95
 msgid "Report an Issue"
 msgstr "Сообщить о проблеме"
 
-#: ui/about.ui:120
+#: ui/about.ui:112
 msgid "Translations"
 msgstr "Перевод"
 
-#: ui/about.ui:142
+#: ui/about.ui:134
 msgid "View sources on Github"
 msgstr "Исходный код"
 
-#: ui/about.ui:159
+#: ui/about.ui:151
 msgid "Legal"
 msgstr "Правовые сведения"
 
-#: ui/about.ui:223
+#: ui/about.ui:215
 msgid "Crowdin"
-msgstr ""
+msgstr "Crowdin"
 
-#: ui/about.ui:235
+#: ui/about.ui:227
 msgid "Online Tutorials"
 msgstr "Учебники"
 
@@ -411,7 +411,7 @@ msgstr "Настройки устройства"
 
 #: ui/apple.ui:12
 msgid "Change the behavior of charging indicator light"
-msgstr ""
+msgstr "Изменить поведение индикатора заряда"
 
 #: ui/dell.ui:12
 msgid "Dell package for charging mode"
@@ -423,31 +423,33 @@ msgstr "Выберите пакет Dell, используемый для изм
 
 #: ui/dell.ui:27
 msgid "Bios Authentication"
-msgstr ""
+msgstr "Аутентификация BIOS"
 
 #: ui/dell.ui:30
 msgid "Requires Bios password validation to change mode/threshold"
-msgstr ""
+msgstr "Требуется проверка пароля BIOS для изменения режима/порога"
 
 #: ui/dell.ui:31
 msgid ""
 "Enable if Dell command configure uses Bios (system) password to change mode/"
 "threshold"
 msgstr ""
+"Включить, если Dell Command Configure использует пароль BIOS (системы) для "
+"изменения режима/порога"
 
 #: ui/dell.ui:43
 msgid "Enter Bios Password"
-msgstr ""
+msgstr "Введите пароль BIOS"
 
 #: ui/dell.ui:44
 msgid "Note: Bios password will be stored in Gnome Keyring"
-msgstr ""
+msgstr "Примечание: Пароль BIOS будет сохранен в Gnome Keyring"
 
-#: ui/dell.ui:83
+#: ui/dell.ui:79
 msgid "Libsmbios"
 msgstr "Libsmbios"
 
-#: ui/dell.ui:84
+#: ui/dell.ui:80
 msgid "Dell Command Center"
 msgstr "Dell Command Center"
 
@@ -566,45 +568,45 @@ msgstr "Проценты выделены"
 
 #: ui/thinkpad.ui:12
 msgid "Enable force discharge battery feature (Experimental)"
-msgstr ""
+msgstr "Включить функцию принудительного разряда батареи (Экспериментально)"
 
 #: ui/thinkpad.ui:13
 msgid ""
 "Enable option to force discharge battery when battery level higher than "
 "current threshold"
 msgstr ""
+"Включить опцию принудительного разряда батареи, если уровень заряда батареи "
+"выше текущего порога"
 
-#: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
+#: ui/thresholdPrimary.ui:21 ui/thresholdSecondary.ui:21
 msgid "Customize"
 msgstr "Настроить"
 
-#: ui/thresholdPrimary.ui:29 ui/thresholdSecondary.ui:29
+#: ui/thresholdPrimary.ui:27 ui/thresholdSecondary.ui:27
 msgid "Default"
 msgstr "По умолчанию"
 
-#: ui/thresholdPrimary.ui:48 ui/thresholdSecondary.ui:48
+#: ui/thresholdPrimary.ui:47 ui/thresholdSecondary.ui:47
 msgid "Apply"
 msgstr "Применить"
 
-#: ui/thresholdPrimary.ui:58 ui/thresholdPrimary.ui:130
-#: ui/thresholdPrimary.ui:202 ui/thresholdSecondary.ui:58
-#: ui/thresholdSecondary.ui:130 ui/thresholdSecondary.ui:202
+#: ui/thresholdPrimary.ui:54 ui/thresholdPrimary.ui:122
+#: ui/thresholdPrimary.ui:190 ui/thresholdSecondary.ui:54
+#: ui/thresholdSecondary.ui:122 ui/thresholdSecondary.ui:190
 msgid "Stop charging threshold value"
 msgstr "Остановить значение порога зарядки"
 
-#: ui/thresholdPrimary.ui:70 ui/thresholdPrimary.ui:104
-#: ui/thresholdPrimary.ui:142 ui/thresholdPrimary.ui:176
-#: ui/thresholdPrimary.ui:214 ui/thresholdPrimary.ui:249
-#: ui/thresholdSecondary.ui:70 ui/thresholdSecondary.ui:104
-#: ui/thresholdSecondary.ui:142 ui/thresholdSecondary.ui:176
-#: ui/thresholdSecondary.ui:214 ui/thresholdSecondary.ui:249
+#: ui/thresholdPrimary.ui:67 ui/thresholdPrimary.ui:99
+#: ui/thresholdPrimary.ui:135 ui/thresholdPrimary.ui:167
+#: ui/thresholdPrimary.ui:203 ui/thresholdPrimary.ui:236
+#: ui/thresholdSecondary.ui:67 ui/thresholdSecondary.ui:99
+#: ui/thresholdSecondary.ui:135 ui/thresholdSecondary.ui:167
+#: ui/thresholdSecondary.ui:203 ui/thresholdSecondary.ui:236
 msgid "Current Value"
 msgstr "Текущее значение"
 
-#: ui/thresholdPrimary.ui:92 ui/thresholdPrimary.ui:164
-#: ui/thresholdPrimary.ui:237 ui/thresholdSecondary.ui:92
-#: ui/thresholdSecondary.ui:164 ui/thresholdSecondary.ui:237
+#: ui/thresholdPrimary.ui:86 ui/thresholdPrimary.ui:154
+#: ui/thresholdPrimary.ui:223 ui/thresholdSecondary.ui:86
+#: ui/thresholdSecondary.ui:154 ui/thresholdSecondary.ui:223
 msgid "Start charging threshold value"
 msgstr "Начать значение порога зарядки"
-
-

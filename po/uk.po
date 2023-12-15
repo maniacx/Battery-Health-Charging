@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-13 12:05-0800\n"
+"POT-Creation-Date: 2023-12-15 11:48-0800\n"
 "PO-Revision-Date: 2023-12-11 21:16-0800\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
@@ -296,20 +296,20 @@ msgstr "Express"
 msgid "Force Discharge"
 msgstr ""
 
-#: preferences/about.js:38
+#: preferences/about.js:39
 msgid "2023"
 msgstr ""
 
-#: preferences/about.js:39
+#: preferences/about.js:40
 msgid "GNU General Public License, version 3 or later"
 msgstr "Загальна громадська ліцензія GNU (GNU GPL), версія 3 або новіша"
 
-#: preferences/about.js:45
+#: preferences/about.js:47
 #, javascript-format
 msgid "© %s %s"
 msgstr ""
 
-#: preferences/about.js:46
+#: preferences/about.js:48
 #, javascript-format
 msgid ""
 "This application comes with absolutely no warranty. See the <a "
@@ -382,31 +382,31 @@ msgstr "<i>Прийшло значення: від %d до %d</i>"
 msgid "About"
 msgstr "Про програму"
 
-#: ui/about.ui:81
+#: ui/about.ui:73
 msgid "Read me"
 msgstr "Прочитай мене"
 
-#: ui/about.ui:103
+#: ui/about.ui:95
 msgid "Report an Issue"
 msgstr "Повідомити про ваду"
 
-#: ui/about.ui:120
+#: ui/about.ui:112
 msgid "Translations"
 msgstr "Переклади"
 
-#: ui/about.ui:142
+#: ui/about.ui:134
 msgid "View sources on Github"
 msgstr "Переглянути вихідний код"
 
-#: ui/about.ui:159
+#: ui/about.ui:151
 msgid "Legal"
 msgstr "Юридичні відомості"
 
-#: ui/about.ui:223
+#: ui/about.ui:215
 msgid "Crowdin"
 msgstr ""
 
-#: ui/about.ui:235
+#: ui/about.ui:227
 msgid "Online Tutorials"
 msgstr "Підручники в інтернеті"
 
@@ -454,11 +454,11 @@ msgstr ""
 msgid "Note: Bios password will be stored in Gnome Keyring"
 msgstr ""
 
-#: ui/dell.ui:83
+#: ui/dell.ui:79
 msgid "Libsmbios"
 msgstr "Libsmbios"
 
-#: ui/dell.ui:84
+#: ui/dell.ui:80
 msgid "Dell Command Center"
 msgstr "Командний центр Dell"
 
@@ -586,36 +586,35 @@ msgid ""
 "current threshold"
 msgstr ""
 
-#: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
+#: ui/thresholdPrimary.ui:21 ui/thresholdSecondary.ui:21
 msgid "Customize"
 msgstr "Налаштувати"
 
-#: ui/thresholdPrimary.ui:29 ui/thresholdSecondary.ui:29
+#: ui/thresholdPrimary.ui:27 ui/thresholdSecondary.ui:27
 msgid "Default"
 msgstr "За замовчуванням"
 
-#: ui/thresholdPrimary.ui:48 ui/thresholdSecondary.ui:48
+#: ui/thresholdPrimary.ui:47 ui/thresholdSecondary.ui:47
 msgid "Apply"
 msgstr "Застосувати"
 
-#: ui/thresholdPrimary.ui:58 ui/thresholdPrimary.ui:130
-#: ui/thresholdPrimary.ui:202 ui/thresholdSecondary.ui:58
-#: ui/thresholdSecondary.ui:130 ui/thresholdSecondary.ui:202
+#: ui/thresholdPrimary.ui:54 ui/thresholdPrimary.ui:122
+#: ui/thresholdPrimary.ui:190 ui/thresholdSecondary.ui:54
+#: ui/thresholdSecondary.ui:122 ui/thresholdSecondary.ui:190
 msgid "Stop charging threshold value"
 msgstr "Припинити порогове значення зарядки"
 
-#: ui/thresholdPrimary.ui:70 ui/thresholdPrimary.ui:104
-#: ui/thresholdPrimary.ui:142 ui/thresholdPrimary.ui:176
-#: ui/thresholdPrimary.ui:214 ui/thresholdPrimary.ui:249
-#: ui/thresholdSecondary.ui:70 ui/thresholdSecondary.ui:104
-#: ui/thresholdSecondary.ui:142 ui/thresholdSecondary.ui:176
-#: ui/thresholdSecondary.ui:214 ui/thresholdSecondary.ui:249
+#: ui/thresholdPrimary.ui:67 ui/thresholdPrimary.ui:99
+#: ui/thresholdPrimary.ui:135 ui/thresholdPrimary.ui:167
+#: ui/thresholdPrimary.ui:203 ui/thresholdPrimary.ui:236
+#: ui/thresholdSecondary.ui:67 ui/thresholdSecondary.ui:99
+#: ui/thresholdSecondary.ui:135 ui/thresholdSecondary.ui:167
+#: ui/thresholdSecondary.ui:203 ui/thresholdSecondary.ui:236
 msgid "Current Value"
 msgstr "Поточне значення"
 
-#: ui/thresholdPrimary.ui:92 ui/thresholdPrimary.ui:164
-#: ui/thresholdPrimary.ui:237 ui/thresholdSecondary.ui:92
-#: ui/thresholdSecondary.ui:164 ui/thresholdSecondary.ui:237
+#: ui/thresholdPrimary.ui:86 ui/thresholdPrimary.ui:154
+#: ui/thresholdPrimary.ui:223 ui/thresholdSecondary.ui:86
+#: ui/thresholdSecondary.ui:154 ui/thresholdSecondary.ui:223
 msgid "Start charging threshold value"
 msgstr "Початкове значення порогового значення зарядки"
-
