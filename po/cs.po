@@ -8,15 +8,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-13 17:42-0800\n"
-"PO-Revision-Date: 2023-12-13 15:38-0800\n"
+"POT-Creation-Date: 2023-12-15 10:43-0800\n"
+"PO-Revision-Date: 2023-12-15 10:30-0800\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4.1\n"
 
 #: lib/notifier.js:39
 msgid "Battery Health Charging"
@@ -88,7 +88,7 @@ msgstr "Prahová hodnota zastavení nabíjení. (%s)"
 
 #: lib/notifier.js:101
 msgid "Apply correct Bios Password to set threshold."
-msgstr ""
+msgstr "Použijte správné heslo BIOSu k nastavení prahu."
 
 #: lib/notifier.js:105
 #, javascript-format
@@ -258,7 +258,7 @@ msgstr "Režim nabíjení: Express"
 
 #: lib/thresholdPanel42.js:460 lib/thresholdPanel.js:524
 msgid "Force Discharge"
-msgstr ""
+msgstr "Vynucené vybíjení"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
 #: lib/thresholdPanel.js:34
@@ -310,20 +310,20 @@ msgstr "Adaptivní"
 msgid "Express"
 msgstr "Express"
 
-#: preferences/about.js:40
-msgid "2023"
-msgstr ""
-
 #: preferences/about.js:41
+msgid "2023"
+msgstr "2023"
+
+#: preferences/about.js:42
 msgid "GNU General Public License, version 3 or later"
 msgstr "GNU General Public License, verze 3 nebo novější"
 
-#: preferences/about.js:47
+#: preferences/about.js:49
 #, javascript-format
 msgid "© %s %s"
-msgstr ""
+msgstr "© %s %s"
 
-#: preferences/about.js:48
+#: preferences/about.js:50
 #, javascript-format
 msgid ""
 "This application comes with absolutely no warranty. See the <a "
@@ -395,31 +395,31 @@ msgstr "<i>Přijatá hodnota: %d až %d</i>"
 msgid "About"
 msgstr "O aplikaci"
 
-#: ui/about.ui:81
+#: ui/about.ui:73
 msgid "Read me"
 msgstr "Čti mě"
 
-#: ui/about.ui:103
+#: ui/about.ui:95
 msgid "Report an Issue"
 msgstr "Nahlásit problém"
 
-#: ui/about.ui:120
+#: ui/about.ui:112
 msgid "Translations"
 msgstr "Překlady"
 
-#: ui/about.ui:142
+#: ui/about.ui:134
 msgid "View sources on Github"
 msgstr "Zobrazit zdrojový kód"
 
-#: ui/about.ui:159
+#: ui/about.ui:151
 msgid "Legal"
 msgstr "Právní ustanovení"
 
-#: ui/about.ui:223
+#: ui/about.ui:215
 msgid "Crowdin"
-msgstr ""
+msgstr "Crowdin"
 
-#: ui/about.ui:235
+#: ui/about.ui:227
 msgid "Online Tutorials"
 msgstr "Online návody"
 
@@ -433,7 +433,7 @@ msgstr "Nastavení zařízení"
 
 #: ui/apple.ui:12
 msgid "Change the behavior of charging indicator light"
-msgstr ""
+msgstr "Změnit chování indikátoru nabíjení"
 
 #: ui/dell.ui:12
 msgid "Dell package for charging mode"
@@ -445,31 +445,33 @@ msgstr "Vyberte balíček Dell používaný pro změnu režimu/prahu nabíjení.
 
 #: ui/dell.ui:27
 msgid "Bios Authentication"
-msgstr ""
+msgstr "Ověření v BIOSu"
 
 #: ui/dell.ui:30
 msgid "Requires Bios password validation to change mode/threshold"
-msgstr ""
+msgstr "Vyžaduje ověření hesla BIOSu k změně režimu/prahu"
 
 #: ui/dell.ui:31
 msgid ""
 "Enable if Dell command configure uses Bios (system) password to change mode/"
 "threshold"
 msgstr ""
+"Povolit, pokud Dell Command Configure používá heslo BIOSu ke změně režimu/"
+"prahu"
 
 #: ui/dell.ui:43
 msgid "Enter Bios Password"
-msgstr ""
+msgstr "Zadejte heslo do BIOSu"
 
 #: ui/dell.ui:44
 msgid "Note: Bios password will be stored in Gnome Keyring"
-msgstr ""
+msgstr "Poznámka: Heslo BIOSu bude uloženo v Gnome Keyring"
 
-#: ui/dell.ui:83
+#: ui/dell.ui:79
 msgid "Libsmbios"
 msgstr "Libsmbios"
 
-#: ui/dell.ui:84
+#: ui/dell.ui:80
 msgid "Dell Command Center"
 msgstr "Dell Command Center"
 
@@ -586,44 +588,46 @@ msgstr "Procento zvýrazněno"
 
 #: ui/thinkpad.ui:12
 msgid "Enable force discharge battery feature (Experimental)"
-msgstr ""
+msgstr "Povolit funkci vynuceného vybíjení baterie (Experimentální)"
 
 #: ui/thinkpad.ui:13
 msgid ""
 "Enable option to force discharge battery when battery level higher than "
 "current threshold"
 msgstr ""
+"Povolit možnost vynuceného vybíjení baterie, když je úroveň baterie vyšší "
+"než aktuální práh"
 
-#: ui/thresholdPrimary.ui:23 ui/thresholdSecondary.ui:23
+#: ui/thresholdPrimary.ui:21 ui/thresholdSecondary.ui:21
 msgid "Customize"
 msgstr "Přizpůsobit"
 
-#: ui/thresholdPrimary.ui:29 ui/thresholdSecondary.ui:29
+#: ui/thresholdPrimary.ui:27 ui/thresholdSecondary.ui:27
 msgid "Default"
 msgstr "Výchozí"
 
-#: ui/thresholdPrimary.ui:48 ui/thresholdSecondary.ui:48
+#: ui/thresholdPrimary.ui:47 ui/thresholdSecondary.ui:47
 msgid "Apply"
 msgstr "Použít"
 
-#: ui/thresholdPrimary.ui:58 ui/thresholdPrimary.ui:130
-#: ui/thresholdPrimary.ui:202 ui/thresholdSecondary.ui:58
-#: ui/thresholdSecondary.ui:130 ui/thresholdSecondary.ui:202
+#: ui/thresholdPrimary.ui:54 ui/thresholdPrimary.ui:122
+#: ui/thresholdPrimary.ui:190 ui/thresholdSecondary.ui:54
+#: ui/thresholdSecondary.ui:122 ui/thresholdSecondary.ui:190
 msgid "Stop charging threshold value"
 msgstr "Prahová hodnota zastavení nabíjení"
 
-#: ui/thresholdPrimary.ui:70 ui/thresholdPrimary.ui:104
-#: ui/thresholdPrimary.ui:142 ui/thresholdPrimary.ui:176
-#: ui/thresholdPrimary.ui:214 ui/thresholdPrimary.ui:249
-#: ui/thresholdSecondary.ui:70 ui/thresholdSecondary.ui:104
-#: ui/thresholdSecondary.ui:142 ui/thresholdSecondary.ui:176
-#: ui/thresholdSecondary.ui:214 ui/thresholdSecondary.ui:249
+#: ui/thresholdPrimary.ui:67 ui/thresholdPrimary.ui:99
+#: ui/thresholdPrimary.ui:135 ui/thresholdPrimary.ui:167
+#: ui/thresholdPrimary.ui:203 ui/thresholdPrimary.ui:236
+#: ui/thresholdSecondary.ui:67 ui/thresholdSecondary.ui:99
+#: ui/thresholdSecondary.ui:135 ui/thresholdSecondary.ui:167
+#: ui/thresholdSecondary.ui:203 ui/thresholdSecondary.ui:236
 msgid "Current Value"
 msgstr "Aktuální hodnota"
 
-#: ui/thresholdPrimary.ui:92 ui/thresholdPrimary.ui:164
-#: ui/thresholdPrimary.ui:237 ui/thresholdSecondary.ui:92
-#: ui/thresholdSecondary.ui:164 ui/thresholdSecondary.ui:237
+#: ui/thresholdPrimary.ui:86 ui/thresholdPrimary.ui:154
+#: ui/thresholdPrimary.ui:223 ui/thresholdSecondary.ui:86
+#: ui/thresholdSecondary.ui:154 ui/thresholdSecondary.ui:223
 msgid "Start charging threshold value"
 msgstr "Počáteční prahová hodnota nabíjení"
 
