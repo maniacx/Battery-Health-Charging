@@ -28,18 +28,14 @@
                         <child>
                           <object class="GtkImage" id="extension_icon_image">
                             <property name="pixel-size">150</property>
-                            <style>
-                              <class name="icon-dropshadow" />
-                            </style>
+                            <property name="css-classes">icon-dropshadow</property>
                           </object>
                         </child>
                         <child>
                           <object class="GtkLabel" id="extension_name_label">
                             <property name="wrap">True</property>
                             <property name="justify">center</property>
-                            <style>
-                              <class name="title-1" />
-                            </style>
+                            <property name="css-classes">title-1</property>
                           </object>
                         </child>
                         <child>
@@ -48,9 +44,7 @@
                             <property name="margin_bottom">6</property>
                             <property name="wrap">True</property>
                             <property name="justify">center</property>
-                            <style>
-                              <class name="title-5" />
-                            </style>
+                            <property name="css-classes">title-5</property>
                           </object>
                         </child>
                         <child>
@@ -58,9 +52,7 @@
                             <property name="margin_top">8</property>
                             <property name="margin_bottom">12</property>
                             <property name="halign">center</property>
-                            <style>
-                              <class name="success" />
-                            </style>
+                            <property name="css-classes">success</property>
                             <child>
                               <object class="GtkLabel" id="extension_version">
                                 <property name="width-chars">4</property>

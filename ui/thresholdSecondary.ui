@@ -14,9 +14,7 @@
             <property name="homogeneous">1</property>
             <property name="margin_top">0</property>
             <property name="margin_bottom">0</property>
-            <style>
-              <class name="linked" />
-            </style>
+            <property name="css-classes">linked</property>
             <child>
               <object class="GtkToggleButton" id="customize_threshold_2">
                 <property name="hexpand">1</property>
@@ -41,6 +39,7 @@
             <property name="halign">start</property>
             <property name="valign">center</property>
             <property name="margin-start">6</property>
+            <property name="css-classes">destructive-action</property>
             <property name="sensitive" bind-source="customize_threshold_2" bind-property="active" bind-flags="sync-create" />
             <child>
               <object class="AdwButtonContent">
@@ -48,9 +47,6 @@
                 <property name="label" translatable="yes">Apply</property>
               </object>
             </child>
-            <style>
-              <class name="destructive-action" />
-            </style>
           </object>
         </property>
         <child>
@@ -64,15 +60,13 @@
                 <property name="valign">center</property>
                 <child>
                   <object class="GtkButton">
+                    <property name="css-classes">destructive-action</property>
                     <child>
                       <object class="GtkLabel" id="full_capacity_end_threshold_actual_value_2">
                         <property name="width-chars">4</property>
                         <property name="tooltip-text" translatable="yes">Current Value</property>
                       </object>
                     </child>
-                    <style>
-                      <class name="destructive-action" />
-                    </style>
                   </object>
                 </child>
               </object>
@@ -98,15 +92,13 @@
                 <property name="valign">center</property>
                 <child>
                   <object class="GtkButton">
+                    <property name="css-classes">destructive-action</property>
                     <child>
                       <object class="GtkLabel" id="full_capacity_start_threshold_actual_value_2">
                         <property name="width-chars">4</property>
                         <property name="tooltip-text" translatable="yes">Current Value</property>
                       </object>
                     </child>
-                    <style>
-                      <class name="destructive-action" />
-                    </style>
                   </object>
                 </child>
               </object>
@@ -136,15 +128,13 @@
                 <property name="valign">center</property>
                 <child>
                   <object class="GtkButton">
+                    <property name="css-classes">destructive-action</property>
                     <child>
                       <object class="GtkLabel" id="balanced_end_threshold_actual_value_2">
                         <property name="width-chars">4</property>
                         <property name="tooltip-text" translatable="yes">Current Value</property>
                       </object>
                     </child>
-                    <style>
-                      <class name="destructive-action" />
-                    </style>
                   </object>
                 </child>
               </object>
@@ -170,15 +160,13 @@
                 <property name="valign">center</property>
                 <child>
                   <object class="GtkButton">
+                    <property name="css-classes">destructive-action</property>
                     <child>
                       <object class="GtkLabel" id="balanced_start_threshold_actual_value_2">
                         <property name="width-chars">4</property>
                         <property name="tooltip-text" translatable="yes">Current Value</property>
                       </object>
                     </child>
-                    <style>
-                      <class name="destructive-action" />
-                    </style>
                   </object>
                 </child>
               </object>
@@ -208,15 +196,13 @@
                 <property name="valign">center</property>
                 <child>
                   <object class="GtkButton">
+                    <property name="css-classes">destructive-action</property>
                     <child>
                       <object class="GtkLabel" id="maxlife_end_threshold_actual_value_2">
                         <property name="width-chars">4</property>
                         <property name="tooltip-text" translatable="yes">Current Value</property>
                       </object>
                     </child>
-                    <style>
-                      <class name="destructive-action" />
-                    </style>
                   </object>
                 </child>
               </object>
@@ -243,15 +229,13 @@
                 <property name="valign">center</property>
                 <child>
                   <object class="GtkButton">
+                    <property name="css-classes">destructive-action</property>
                     <child>
                       <object class="GtkLabel" id="maxlife_start_threshold_actual_value_2">
                         <property name="width-chars">4</property>
                         <property name="tooltip-text" translatable="yes">Current Value</property>
                       </object>
                     </child>
-                    <style>
-                      <class name="destructive-action" />
-                    </style>
                   </object>
                 </child>
               </object>
