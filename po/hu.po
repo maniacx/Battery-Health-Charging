@@ -1,31 +1,29 @@
 # Hungarian translation for Battery-Health-Charging@maniacx.github.com.
-# Copyright (C) 2023 Battery-Health-Charging@maniacx.github.com's COPYRIGHT HOLDER
+# Copyright (C) 2023 Battery-Health-Charging@maniacx.github.com
 # This file is distributed under the same license as the Battery-Health-Charging@maniacx.github.com package.
-#
 # ViBE <vibe@protonmail.com>, 2023.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: battery-health-charging\n"
+"Project-Id-Version: Battery Health Charging\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-12-15 11:48-0800\n"
-"PO-Revision-Date: 2023-12-11 21:10-0800\n"
+"PO-Revision-Date: 2023-12-16 17:33+0100\n"
 "Last-Translator: ViBE <vibe@protonmail.com>\n"
 "Language-Team: Hungarian <vibe@protonmail.com>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.4.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: lib/notifier.js:36
 msgid "Battery Health Charging"
-msgstr "Battery Health Charging"
+msgstr "Töltési mód"
 
 #: lib/notifier.js:41
 msgid "Battery Health Charging Error"
-msgstr "Battery Health Charging: hiba"
+msgstr "Töltési mód - hiba"
 
 #: lib/notifier.js:54 ui/general.ui:9
 msgid "Settings"
@@ -45,7 +43,7 @@ msgstr ""
 
 #: lib/notifier.js:72
 msgid "Missing dependencies"
-msgstr "Hiányzó függőségek"
+msgstr "Megoldatlan függőségek vannak."
 
 #: lib/notifier.js:76
 msgid "Please install polkit from extension settings under Installation."
@@ -64,7 +62,7 @@ msgid ""
 msgstr ""
 "Váratlan hiba történt. (%s)\n"
 "Megfelelő Dell modul beállítása szükséges.\n"
-"Majd a kiegészítőt újra engedélyezni kell"
+"Majd a kiterjesztést újra engedélyezni kell"
 
 #: lib/notifier.js:87
 #, javascript-format
@@ -80,7 +78,7 @@ msgid ""
 msgstr ""
 "Töltési küszöb nem változott. (%s)\n"
 "Megfelelő Dell modul beállítása szükséges\n"
-"Majd a kiegészítőt újra engedélyezni kell"
+"Majd a kiterjesztést újra engedélyezni kell"
 
 #: lib/notifier.js:94
 #, javascript-format
@@ -89,7 +87,7 @@ msgstr "Töltési küszöbszint nem változott. (%s)"
 
 #: lib/notifier.js:98
 msgid "Apply correct Bios Password to set threshold."
-msgstr ""
+msgstr "BIOS/UEFI jelszó megadása szükséges a küszöbszint módosításához."
 
 #: lib/notifier.js:102
 #, javascript-format
@@ -277,20 +275,20 @@ msgstr "ExpressCharge™"
 
 #: lib/thresholdPanel.js:480
 msgid "Force Discharge"
-msgstr ""
+msgstr "Merítés kényszerítése"
 
 #: preferences/about.js:39
 msgid "2023"
-msgstr ""
+msgstr "2023"
 
 #: preferences/about.js:40
 msgid "GNU General Public License, version 3 or later"
-msgstr "GNU General Public License, 3-as vagy későbbi verzió"
+msgstr "GNU General Public License 3. vagy újabb verzió"
 
 #: preferences/about.js:47
 #, javascript-format
 msgid "© %s %s"
-msgstr ""
+msgstr "© %s %s"
 
 #: preferences/about.js:48
 #, javascript-format
@@ -298,8 +296,8 @@ msgid ""
 "This application comes with absolutely no warranty. See the <a "
 "href=\"%s\">%s</a> for details."
 msgstr ""
-"Erre az alkalmazásra egyáltalán nem vonatkozik garancia. További részletek "
-"a(z) <a href=\"%s\">%s</a> szövegében."
+"A programra nem vállalunk semmiféle garanciát. Részletekért lásd: <a "
+"href=\"%s\">%s</a>."
 
 #: preferences/general.js:53
 msgid ""
@@ -386,23 +384,23 @@ msgstr "Jogi információk"
 
 #: ui/about.ui:215
 msgid "Crowdin"
-msgstr ""
+msgstr "Crowdin fordítás"
 
 #: ui/about.ui:227
 msgid "Online Tutorials"
-msgstr "Online Oktatóanyagok"
+msgstr "Segédlet"
 
 #: ui/apple.ui:5 ui/dell.ui:5 ui/thinkpad.ui:5
 msgid "Device"
-msgstr ""
+msgstr "Eszköz"
 
 #: ui/apple.ui:9 ui/dell.ui:9 ui/thinkpad.ui:9
 msgid "Device settings"
-msgstr "Eszköz beállítások"
+msgstr "Vezérlés"
 
 #: ui/apple.ui:12
 msgid "Change the behavior of charging indicator light"
-msgstr ""
+msgstr "Jelzőlámpa jelzéseinek felülírása"
 
 #: ui/dell.ui:12
 msgid "Dell package for charging mode"
@@ -414,25 +412,27 @@ msgstr "Dell laptopok töltését szabályozó modul kiválasztása."
 
 #: ui/dell.ui:27
 msgid "Bios Authentication"
-msgstr ""
+msgstr "BIOS/UEFI hozzáférés"
 
 #: ui/dell.ui:30
 msgid "Requires Bios password validation to change mode/threshold"
-msgstr ""
+msgstr "Felügyelet nélküli módosítás engedélyezése"
 
 #: ui/dell.ui:31
 msgid ""
 "Enable if Dell command configure uses Bios (system) password to change mode/"
 "threshold"
 msgstr ""
+"Amennyiben a BIOS/UEFI jelszóval védett szükséges lehet annak megadása a "
+"töltés vezérlésének engedélyezéséhez"
 
 #: ui/dell.ui:43
 msgid "Enter Bios Password"
-msgstr ""
+msgstr "Jelszó megadása"
 
 #: ui/dell.ui:44
 msgid "Note: Bios password will be stored in Gnome Keyring"
-msgstr ""
+msgstr "Megjegyzés: A jelszót a Gnome kulcstartó fogja tárolni"
 
 #: ui/dell.ui:79
 msgid "Libsmbios"
@@ -553,13 +553,14 @@ msgstr "Csak százalék"
 
 #: ui/thinkpad.ui:12
 msgid "Enable force discharge battery feature (Experimental)"
-msgstr ""
+msgstr "Merítés kényszerítésének engedélyezése (kísérleti)"
 
 #: ui/thinkpad.ui:13
 msgid ""
 "Enable option to force discharge battery when battery level higher than "
 "current threshold"
 msgstr ""
+"Akkumulátor merítése akkor is, ha annak töltöttsége küszöbszint felett van"
 
 #: ui/thresholdPrimary.ui:21 ui/thresholdSecondary.ui:21
 msgid "Customize"
