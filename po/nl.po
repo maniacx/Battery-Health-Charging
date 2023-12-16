@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2023-12-15 11:48-0800\n"
-"PO-Revision-Date: 2023-12-11 21:11-0800\n"
+"PO-Revision-Date: 2023-12-16 19:10+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -45,7 +45,7 @@ msgstr ""
 
 #: lib/notifier.js:72
 msgid "Missing dependencies"
-msgstr ""
+msgstr "Ontbrekende afhankelijkheden"
 
 #: lib/notifier.js:76
 msgid "Please install polkit from extension settings under Installation."
@@ -89,7 +89,7 @@ msgstr "De oplaaddrempelwaarde is niet bijgewerkt. (%s)"
 
 #: lib/notifier.js:98
 msgid "Apply correct Bios Password to set threshold."
-msgstr ""
+msgstr "Verstuur het juiste bioswachtwoord om de drempelwaarde in te stellen."
 
 #: lib/notifier.js:102
 #, javascript-format
@@ -285,11 +285,11 @@ msgstr "Snel"
 
 #: lib/thresholdPanel.js:480
 msgid "Force Discharge"
-msgstr ""
+msgstr "Ontladen afdwingen"
 
 #: preferences/about.js:39
 msgid "2023"
-msgstr ""
+msgstr "2023"
 
 #: preferences/about.js:40
 msgid "GNU General Public License, version 3 or later"
@@ -298,7 +298,7 @@ msgstr "GNU General Public License, versie 3 of later"
 #: preferences/about.js:47
 #, javascript-format
 msgid "© %s %s"
-msgstr ""
+msgstr "© %s %s"
 
 #: preferences/about.js:48
 #, javascript-format
@@ -378,7 +378,7 @@ msgstr "Lees mij"
 
 #: ui/about.ui:95
 msgid "Report an Issue"
-msgstr "Een probleem melden"
+msgstr "Probleem melden"
 
 #: ui/about.ui:112
 msgid "Translations"
@@ -394,11 +394,11 @@ msgstr "Juridisch"
 
 #: ui/about.ui:215
 msgid "Crowdin"
-msgstr ""
+msgstr "Crowdin"
 
 #: ui/about.ui:227
 msgid "Online Tutorials"
-msgstr "Online Documentatie"
+msgstr "Online-documentatie"
 
 #: ui/apple.ui:5 ui/dell.ui:5 ui/thinkpad.ui:5
 msgid "Device"
@@ -406,11 +406,11 @@ msgstr "Apparaat"
 
 #: ui/apple.ui:9 ui/dell.ui:9 ui/thinkpad.ui:9
 msgid "Device settings"
-msgstr "Toestel instellingen"
+msgstr "Apparaatvoorkeuren"
 
 #: ui/apple.ui:12
 msgid "Change the behavior of charging indicator light"
-msgstr ""
+msgstr "Pas het gedrag van het indicatorlicht aan"
 
 #: ui/dell.ui:12
 msgid "Dell package for charging mode"
@@ -424,25 +424,27 @@ msgstr ""
 
 #: ui/dell.ui:27
 msgid "Bios Authentication"
-msgstr ""
+msgstr "Biosauthenticatie"
 
 #: ui/dell.ui:30
 msgid "Requires Bios password validation to change mode/threshold"
-msgstr ""
+msgstr "Vereist het bioswachtwoord om de modus/drempelwaarde aan te passen"
 
 #: ui/dell.ui:31
 msgid ""
 "Enable if Dell command configure uses Bios (system) password to change mode/"
 "threshold"
 msgstr ""
+"Schakel in als de Dell-opdracht het bioswachtwoord dient te gebruiken om de "
+"modus/drempelwaarde aan te passen"
 
 #: ui/dell.ui:43
 msgid "Enter Bios Password"
-msgstr ""
+msgstr "Voer het bioswachtwoord in"
 
 #: ui/dell.ui:44
 msgid "Note: Bios password will be stored in Gnome Keyring"
-msgstr ""
+msgstr "Let op: het bioswachtwoord wordt opgeslagen in GNOME Sleutelbos"
 
 #: ui/dell.ui:79
 msgid "Libsmbios"
@@ -567,13 +569,15 @@ msgstr "Percentage (gemarkeerd)"
 
 #: ui/thinkpad.ui:12
 msgid "Enable force discharge battery feature (Experimental)"
-msgstr ""
+msgstr "Accu gedwongen leeg laten lopen (experimenteel)"
 
 #: ui/thinkpad.ui:13
 msgid ""
 "Enable option to force discharge battery when battery level higher than "
 "current threshold"
 msgstr ""
+"Schakel de optie in om de accu te ontladen als het accuniveau lager is dan "
+"de huidige drempelwaarde"
 
 #: ui/thresholdPrimary.ui:21 ui/thresholdSecondary.ui:21
 msgid "Customize"
