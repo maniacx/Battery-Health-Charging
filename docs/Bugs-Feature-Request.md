@@ -8,49 +8,46 @@ permalink: /bugs-feature-request
 
 # Bugs and Debugging
 
-If for some reason you face issue's with this extension. Do the following.
+If you encounter issues with this extension, please follow these steps:
 
 1. Check if your laptop is supported under `Device Compatibility`.
-2. Check if any dependencies required. You will find it under `Device Compatibility > [Make/Model] > Dependencies`
-3. Disable the extension, and set mode or threshold using command line. You will find it under `Device Compatibility > [Make/Model] >  Information`
-4. Reset gsetting for this extension. To do this first disable the extension using `Extensions` or `Extension Manager` app. To reset gsettings for Battery Health Charging extension, in `terminal` use the command below:<br>
+2. Check for any required dependencies. You will find them listed under `Device Compatibility > [Make/Model] > Dependencies`.
+3. Disable the extension, and set the mode or threshold using the command line. Instructions can be found under `Device Compatibility > [Make/Model] > Testing charging threshold using command-line`.
+4. Reset the `gsettings` for this extension. First, disable the extension using the `Extensions` or `Extension Manager` app. To reset `gsettings` for the Battery Health Charging extension, use the command below in the `terminal`:
 ```bash
 gsettings --schemadir /home/$USER/.local/share/gnome-shell/extensions/Battery-Health-Charging@maniacx.github.com/schemas reset-recursively org.gnome.shell.extensions.Battery-Health-Charging
 ```
-5. check the extension by enabling it again in `Extensions` or `Extension Manager` app.
-6. If issue still persist, [Raise an issue on Github](https://github.com/maniacx/Battery-Health-Charging/issues){: .btn .btn-purple .v-align-bottom .fs-2}
-7. Mention your problem with the details below.
-   * Gnome Version (you will find it in `about` section in your desktop Settings (Gnome Control Center))
-   * Operating system (e.g. Ubuntu 22.04)
-   * Laptop Make and Model (e.g. Asus Viwobook)
+5. Check the extension by enabling it again in the `Extensions` or `Extension Manager` app.
+6. If the issue still persists, [Raise an issue on Github](https://github.com/maniacx/Battery-Health-Charging/issues){: .btn .btn-purple .v-align-bottom .fs-2}.
+7. When reporting the issue, include the following details:
+   * Gnome Version (found in the `about` section of your desktop settings (Gnome Control Center))
+   * Operating system (e.g., Ubuntu 22.04)
+   * Laptop Make and Model (e.g., Asus Vivobook)
    
-Although there are no logs included in this extension, you can still check and monitor, if there are any error showing in the log by using the command in `terminal`
+Although there are no logs included in this extension, you can still monitor for any errors in the log by using the following commands in the `terminal`:
 
-Gnome Shell - logs related to extension 
+For Gnome Shell - logs related to the extension:
 ```bash
 journalctl -f -o cat /usr/bin/gnome-shell
 ```
 
-GJS - logs related to extension preferences
+For GJS - logs related to extension preferences:
 ```bash
 journalctl -f -o cat /usr/bin/gjs
 ```
 
 # Feature Request
 
-### New feature
-For new feature request or new laptop support [Raise an issue on Github](https://github.com/maniacx/Battery-Health-Charging/issues){: .btn .btn-purple .v-align-bottom .fs-2}
+### New Feature
+For new feature requests or support for new laptop models, [Raise an issue on Github](https://github.com/maniacx/Battery-Health-Charging/issues){: .btn .btn-purple .v-align-bottom .fs-2}.
 
-
-### Support new model
+### Support New Model
 
 {: .note } 
-Charging threshold is hardware feature and is controlled by laptop's hardware `Embedded Controller` which controls the charging limits even when laptop is powered off. It is not a software feature.
+The charging threshold is a hardware feature controlled by the laptop's `Embedded Controller`, which sets the charging limits even when the laptop is powered off. It is not a software feature.
 
-For request to support new laptop model
- 1. Verify the laptop has hardware capability to change charging limit/threshold. Usually you will see charging threshold settings in system BIOS or/and Software apps provided by OEM.
- 2. Verify the laptop can change charging limit/threshold in linux.
- 3. [Raise an issue on Github](https://github.com/maniacx/Battery-Health-Charging/issues){: .btn .btn-purple .v-align-bottom .fs-2} with the detail description on command used to change threshold.
- 
- 
+To request support for a new laptop model:
+ 1. Verify that the laptop has the hardware capability to change the charging limit/threshold. This is usually evident in the system BIOS or software apps provided by the OEM.
+ 2. Confirm that the laptop can change the charging limit/threshold in Linux.
+3. [Raise an issue on Github](https://github.com/maniacx/Battery-Health-Charging/issues){: .btn .btn-purple .v-align-bottom .fs-2} with a detailed description of the commands or procedure used to change the threshold.
 

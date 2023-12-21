@@ -19,15 +19,15 @@ permalink: /device-compatibility/dell
 # Dell
 
 ## Capability
-* 3 presets: Full Capacity Mode, Balance Mode, and Maximum Life Span mode.
-* 2 additional modes: Express Mode and Adaptive mode.
-* Default threshold values of these 3 preset modes are set at 100/95%, 80/75%, and 60/55%.
-* Each preset end threshold value can be customized between 100-80 %, 85-65 %, and 85-55 % respectively.
-* Each preset start threshold value can be customized between is 95-75 %, 80-60 %, and 80-50 % respectively.
-* The difference between end and start threshold cannot be less than 5%.
+* 3 Presets**: Full Capacity, Balance, and Maximum Life Span.
+* 2 Additional Modes**: Express and Adaptive.
+* Thresholds**: Preset modes have default threshold values set at 100/95%, 80/75%, and 60/55%. Customization options are available for each preset:
+* End threshold values can be set between 100-80%, 85-65%, and 85-55%.
+* Start threshold values can be set between 95-75%, 80-60%, and 80-50%.
+* Note: The difference between end and start threshold values must be at least 5%.
 
 {: .warning }
-Use of `Express` mode may cause battery health to diminish more quickly.
+Using `Express` mode may accelerate battery wear.
 
 ## Dependencies
 * There are two available packages for Dell laptop to control charging threshold / mode. **<span style="color:#0e755f">Libsmbios</span>** and **<span style="color:#213c8b">Dell command configure (cctk)</span>**
@@ -35,7 +35,7 @@ Use of `Express` mode may cause battery health to diminish more quickly.
 {: .new-title }
 > libsmbios:
 >
-> * Open source and was the first module developed by open source community for dell laptops.
+> * An open-source module developed for Dell laptops. available in most distro's package managers. 
 > * Available with your distro's package manager.
 > * The extension will use the `smbios-battery-ctl` module from libsmbios to change threshold/mode.
 > * More information check the link below:<br><https://github.com/dell/libsmbios>
@@ -44,28 +44,27 @@ Use of `Express` mode may cause battery health to diminish more quickly.
 {: .note-title }
 > Dell command configure:
 >
-> * Close source and was the later developed by Dell.
+> * A closed-source tool developed later by Dell.
 > * distributed by Dell and is available at link below:<br><https://www.dell.com/support/kbdoc/en-us/000178000/dell-command-configure>
 
-* For some Dell model, libsmbios works well but Dell command configure doesn't and for others Dell laptops Dell Command Configure works well, but libsmbios doesn't.
-* It is entirely up to the user to choose which package to use and test if it works.
-* If both package are installed, the extension will detect and give an option to choose the package the extension should use to interact.
+* Some Dell models work better with libsmbios, while others with Dell Command Configure.
+* Users should choose and test the package that works best for their model.
+* If both packages are installed, the extension will prompt the user to select the preferred package.
 
-## Detection
+## Detection Mechanism
 
 {: .new-title }
 > libsmbios
 >
-> This Extension will check if the module `smbios-battery-ctl` from **libsmbios** is installed at the default location.<br>`/usr/sbin/smbios-battery-ctl`
+> The extension checks if `smbios-battery-ctl` from **libsmbios** is installed at <br>`/usr/sbin/smbios-battery-ctl`.
 
 
 {: .note-title }
 > Dell Command Configure
 >
-> This Extension will also check if **Dell Command Center** is installed at the default location.<br>`/opt/dell/dcc/cctk`
+> The extension checks for the installation of **Dell Command Center** at <br>`/opt/dell/dcc/cctk`.
 
-* If the extension find any one module installed (`smbios-battery-ctl or cctk`), it will use that module to change mode/threshold
-* If the extension finds both `smbios-battery-ctl and cctk` modules installed, it will display an option to choose the package to use for changing threshold/mode as shown below.
+* If both `smbios-battery-ctl` and `cctk` are found, an option to choose the preferred package is presented.
 
 <img src="../assets/images/device-compatibility/dell/choose-package.png" width="100%">
 
@@ -76,22 +75,17 @@ Use of `Express` mode may cause battery health to diminish more quickly.
 >
 > Require root privileges
 > {: .label .label-yellow .float-right}
-> It is possible to set charging mode or threshold using one or two command in `terminal`.
-> Command below are helpful :
-> * Prior to installing extension, to check compatibility.
-> * During debugging, to check if threshold can be applied and read using command-line correctly.
-> * Incase user decides to not use extension and prefer changing via command-line.
+> Use `sudo` or `pkexec` to run command as root<br>
+> It is possible to set charging mode or threshold using comands in `terminal`.
 >
-> Note `sudo` also can be used in place of `pkexec` in the below commands as both `sudo` and `pkexec` can be use to run commands in root mode. To make use of polkit rules, the extension uses `pkexec`.
->
-> To set mode to Express mode<br>
+> Set mode to Express mode<br>
 > `pkexec smbios-battery-ctl --set-charging-mode=express`<br><br>
-> To set mode to Adaptive<br>
+> Set to Adaptive<br>
 > `pkexec smbios-battery-ctl --set-charging-mode=adaptive`<br><br>
-> Two commands are use to set threshold. For example if need to apply, start threshold to 55% and end threshold to 60%, the command would be<br>
+> Set custom threshold.<br>Example below shows setting start threshold to 55% and end threshold to 60%<br>
 > `pkexec smbios-battery-ctl --set-charging-mode=custom`<br>
 > `pkexec smbios-battery-ctl --set-custom-charge-interval=55 60`<br><br>
-> Command to read current mode or threshold<br>
+> Read current charging mode or threshold the laptop is using<br>
 > `pkexec smbios-battery-ctl --get-charging-cfg`<br><br>
 
 
@@ -100,23 +94,18 @@ Use of `Express` mode may cause battery health to diminish more quickly.
 >
 > Require root privileges
 > {: .label .label-yellow .float-right}
+> Use `sudo` or `pkexec` to run command as root<br>
 > It is possible to set charging mode or threshold using one or two command in `terminal`.
-> Command below are helpful :
-> * Prior to installing extension, to check compatibility.
-> * During debugging, to check if threshold can be applied and read using command-line correctly.
-> * Incase user decides to not use extension and prefer changing via command-line.
 >
-> Note `sudo` also can be used in place of `pkexec` in the below commands as both `sudo` and `pkexec` can be use to run commands in root mode. To make use of polkit rules, the extension uses `pkexec`.
->
-> To set mode to Express mode<br>
+> Set mode to Express mode<br>
 > `pkexec /opt/dell/dcc/cctk --PrimaryBattChargeCfg=Express`<br><br>
-> To set mode to Adaptive<br>
+> Set to Adaptive<br>
 > `pkexec /opt/dell/dcc/cctk --PrimaryBattChargeCfg=Adaptive`<br><br>
-> To set threshold to specific value. For example if need to apply, start threshold to 55% and end threshold to 60%, the command would be<br>
+> Set custom threshold.<br>Example below shows setting start threshold to 55% and end threshold to 60%<br>
 > `pkexec /opt/dell/dcc/cctk --PrimaryBattChargeCfg=Custom:55-60`<br><br>
 > An example of changing mode or threshold with Bios Password Validation by adding `--ValSetupPwd=` followed by the bios password and the command to set mode or threshold<br>
 > `pkexec /opt/dell/dcc/cctk --ValSetupPwd=PASSWORD --PrimaryBattChargeCfg=Express`<br><br>
-> Command to read current mode or threshold<br>
+> Read current charging mode or threshold the laptop is using<br>
 > `pkexec /opt/dell/dcc/cctk --PrimaryBattChargeCfg`<br><br>
 
 <br>
@@ -147,16 +136,15 @@ Use of `Express` mode may cause battery health to diminish more quickly.
 {: .note-title }
 > Dell Command Configure
 >
-> * If changing mode or threshold needs to be validated by using BIOS password, it can be enabled in Extension Preference, Under Dell Tab.<br>
-> * When `Need bios password to change mode/threshold` is turned on, and option will appear to enter bios password.<br>
-> * Entering the bios password will store it in Gnome Keyring, which will be used by the extension whenever mode or threshold is changed.<br>
-> * When `Need bios password to change mode/threshold` is turned off, it will clear/delete the stored bios password from Gnome Keyring.<br>
+> * Enable BIOS password validation in the Extension Preferences under the Device tab.
+> * When `Need bios password to change mode/threshold` is enabled, and option will presented to enter bios password, which is then stored securely in Gnome Keyring.<br>
+> * Disabling the feature removes the stored BIOS password from Gnome keyring.
 >
 > <img src="../assets/images/device-compatibility/dell/bios-password.png" width="100%">
 
 
 {: .warning }
-If decision has been made to uninstall and not use this extension, users that have used Bios password to validate changing mode / threshold are recommended to turn off `Need bios password to change mode/threshold`. This will remove/delete the saved bios password in Gnome Keyring.
+If you decide to uninstall this extension, it's recommended to disable the BIOS password feature to remove the stored password from Gnome Keyring.
 
 
 

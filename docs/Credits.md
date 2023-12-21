@@ -7,7 +7,7 @@ permalink: /credits
 
 ## Credits and Reference
 
-I made this extension for my Asus Viwobook. I have looked into codes of other extensions to create this extension.
+I made this extension for my Asus Viwobook. I refered to codes of other extensions to create this extension.
 
 ### Credits to them.
 

@@ -14,43 +14,42 @@ has_toc: false
 
 ## Translation
 
-Thank you for taking the interest in contributing with this project.
-There are two easy ways to create/update translations for your language.
-1. Using `crowdin` website.
-2. Locally using `Poedit` software
-  
+Thank you for your interest in contributing to this project. There are two straightforward ways to create or update translations for your language:
+1. Using the `crowdin` website.
+2. Locally using the `Poedit` software.
+
 ---
 
-## Translation on crowdin
+## Translation on Crowdin
 
 [<img src="./assets/images/translation/crowdin-logo.png" width="40%" target="_blank">](https://accounts.crowdin.com/register)
 
-* Requires to register a free account on crowdin website.
-* Once registration of account is completed, crowdin is easier, as several suggestions are already provided.
+* Registering a free account on the Crowdin website is required.
+* Once your account registration is completed, Crowdin becomes easier to use as it provides several suggestions.
 
 {: .note }
-> * This repo's Github Action automatically exports the Battery-Health-Charging.pot file to crowdin as soon as pot files is pushed on Github. So the source on crowdin is always updates.
-> * This repo's Github cannot import translation from crowdin. Therefore, on completion of translation, contributor will have to upload files manually using github pull request.
-> * I do not get notification from crowdin, so please communication using github issue reqarding any queries.
+> * This repository's GitHub Action automatically exports the `Battery-Health-Charging.pot` file to Crowdin as soon as the POT file is pushed to GitHub. Therefore, the source on Crowdin is always updated.
+> * This repository's GitHub cannot import translations from Crowdin. Consequently, upon completing the translation, contributors will need to manually upload files using a GitHub pull request.
+> * I do not receive notifications from Crowdin, so please communicate any queries using GitHub issues.
 
 <img src="./assets/images/translation/crowdin.png" width="100%">
 
 ---
 
-## Translation using Poedit
+## Translation Using Poedit
 
 [<img src="./assets/images/translation/poedit-logo.png" width="40%">](https://flathub.org/apps/net.poedit.Poedit)
 
-* Requires to download and install the software on your computer.
-* Fast and Easy to interact.
+* Downloading and installing the Poedit software on your computer is required.
+* It's fast and easy to interact with.
 
 <img src="./assets/images/translation/poedit.png" width="100%">
 
 ---
 
 ## Get Started
+
 [Crowdin Guide](./crowdin-guide){: .btn .btn-green .button2-fixed-width}<br>
 [Poedit Guide](./poedit-guide){: .btn .btn-blue .button2-fixed-width}<br>
 [Pull Request Guide](./pull-request-guide){: .btn .btn-purple .button2-fixed-width}<br>
-
 
