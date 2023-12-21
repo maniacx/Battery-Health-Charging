@@ -1,7 +1,14 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # Change working directory to project folder
 cd "${0%/*}"
+
+if ! command -v msgfmt &> /dev/null
+then
+    echo "Missing gettext!!!"
+    echo "Please install gettext and re-run this installer"
+    exit 1
+fi
 
 echo "Packing extension..."
 gnome-extensions pack ./ \
