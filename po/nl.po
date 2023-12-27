@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-15 11:48-0800\n"
+"POT-Creation-Date: 2023-12-26 19:42-0800\n"
 "PO-Revision-Date: 2023-12-16 19:10+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -159,7 +159,7 @@ msgstr "Er wordt momenteel snel opgeladen"
 msgid "Charging Mode is set to Adaptive"
 msgstr "Er wordt momenteel alleen indien nodig snel opgeladen"
 
-#: lib/powerIcon42.js:134 lib/powerIcon.js:133 lib/powerIcon.js:139
+#: lib/powerIcon42.js:134 lib/powerIcon.js:116 lib/powerIcon.js:122
 #, javascript-format
 msgid "%d %%"
 msgstr "%d %%"
@@ -170,94 +170,94 @@ msgid "Charging stopped (Threshold)"
 msgstr "Het opladen is stopgezet (drempelwaarde)"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel42.js:145 lib/thresholdPanel42.js:158
+#: lib/thresholdPanel42.js:144 lib/thresholdPanel42.js:157
 #: lib/thresholdPanel.js:38 ui/thresholdSecondary.ui:5
 msgid "Battery 2"
 msgstr "Accu 2"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel42.js:145 lib/thresholdPanel42.js:158
+#: lib/thresholdPanel42.js:144 lib/thresholdPanel42.js:157
 #: lib/thresholdPanel.js:36 preferences/thresholdPrimary.js:46
 msgid "Battery 1"
 msgstr "Accu 1"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:164 lib/thresholdPanel.js:82
+#: lib/thresholdPanel42.js:163 lib/thresholdPanel.js:82
 #: preferences/thresholdPrimary.js:203 preferences/thresholdSecondary.js:198
 msgid "Full Capacity Mode"
 msgstr "Volledige capaciteit"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:168 lib/thresholdPanel.js:91
+#: lib/thresholdPanel42.js:167 lib/thresholdPanel.js:91
 #: preferences/thresholdPrimary.js:207 preferences/thresholdSecondary.js:202
 msgid "Balanced Mode"
 msgstr "Gebalanceerd"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:172 lib/thresholdPanel.js:100
+#: lib/thresholdPanel42.js:171 lib/thresholdPanel.js:100
 #: preferences/thresholdPrimary.js:211 preferences/thresholdSecondary.js:206
 msgid "Maximum Lifespan Mode"
 msgstr "Maximale levensduur"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:176 lib/thresholdPanel.js:108
+#: lib/thresholdPanel42.js:175 lib/thresholdPanel.js:108
 msgid "Adaptive Mode"
 msgstr "Aanpasbaar"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:180 lib/thresholdPanel.js:116
+#: lib/thresholdPanel42.js:179 lib/thresholdPanel.js:116
 msgid "Express Mode"
 msgstr "Snel"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:386 lib/thresholdPanel.js:392
+#: lib/thresholdPanel42.js:385 lib/thresholdPanel.js:392
 msgid "No Battery detected!"
 msgstr "Er is geen accu aangetroffen!"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:389 lib/thresholdPanel.js:395
+#: lib/thresholdPanel42.js:388 lib/thresholdPanel.js:395
 #, javascript-format
 msgid "Discharge Battery below %d%%"
 msgstr "De accu is %d%% ontladen"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:395
+#: lib/thresholdPanel42.js:394
 #, javascript-format
 msgid "Charge thresholds: %d / %d %%"
 msgstr "Oplaaddrempelwaarden: %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:399
+#: lib/thresholdPanel42.js:398
 #, javascript-format
 msgid "Charging Limit: %d%%"
 msgstr "Maximaal oplaadniveau: %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:402 lib/thresholdPanel.js:409
+#: lib/thresholdPanel42.js:401 lib/thresholdPanel.js:409
 msgid "Charging Mode: Full Capacity"
 msgstr "Oplaadmodus: volledige capaciteit"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:404 lib/thresholdPanel.js:412
+#: lib/thresholdPanel42.js:403 lib/thresholdPanel.js:412
 msgid "Charging Mode: Balanced"
 msgstr "Oplaadmodus: gebalanceerd"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:407
+#: lib/thresholdPanel42.js:406
 msgid "Charging Mode: Max. Lifespan"
 msgstr "Oplaadmodus: max. levensduur"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:409 lib/thresholdPanel.js:418
+#: lib/thresholdPanel42.js:408 lib/thresholdPanel.js:418
 msgid "Charging Mode: Adaptive"
 msgstr "Oplaadmodus: aanpasbaar"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:411 lib/thresholdPanel.js:421
+#: lib/thresholdPanel42.js:410 lib/thresholdPanel.js:421
 msgid "Charging Mode: Express"
 msgstr "Oplaadmodus: snel"
 
-#: lib/thresholdPanel42.js:460 lib/thresholdPanel.js:524
+#: lib/thresholdPanel42.js:459 lib/thresholdPanel.js:524
 msgid "Force Discharge"
 msgstr "Ontladen afdwingen"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-15 10:43-0800\n"
+"POT-Creation-Date: 2023-12-26 19:42-0800\n"
 "PO-Revision-Date: 2023-12-15 10:42-0800\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -158,7 +158,7 @@ msgstr "充电方式：Express"
 msgid "Charging Mode is set to Adaptive"
 msgstr "充电方式：自适应"
 
-#: lib/powerIcon42.js:134 lib/powerIcon.js:133 lib/powerIcon.js:139
+#: lib/powerIcon42.js:134 lib/powerIcon.js:116 lib/powerIcon.js:122
 #, javascript-format
 msgid "%d %%"
 msgstr "%d%%"
@@ -169,94 +169,94 @@ msgid "Charging stopped (Threshold)"
 msgstr "充电已停止 (阈值)"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel42.js:145 lib/thresholdPanel42.js:158
+#: lib/thresholdPanel42.js:144 lib/thresholdPanel42.js:157
 #: lib/thresholdPanel.js:38 ui/thresholdSecondary.ui:5
 msgid "Battery 2"
 msgstr "电池2"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
-#: lib/thresholdPanel42.js:145 lib/thresholdPanel42.js:158
+#: lib/thresholdPanel42.js:144 lib/thresholdPanel42.js:157
 #: lib/thresholdPanel.js:36 preferences/thresholdPrimary.js:46
 msgid "Battery 1"
 msgstr "电池1"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:164 lib/thresholdPanel.js:82
+#: lib/thresholdPanel42.js:163 lib/thresholdPanel.js:82
 #: preferences/thresholdPrimary.js:203 preferences/thresholdSecondary.js:198
 msgid "Full Capacity Mode"
 msgstr "长效使用模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:168 lib/thresholdPanel.js:91
+#: lib/thresholdPanel42.js:167 lib/thresholdPanel.js:91
 #: preferences/thresholdPrimary.js:207 preferences/thresholdSecondary.js:202
 msgid "Balanced Mode"
 msgstr "平衡模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:172 lib/thresholdPanel.js:100
+#: lib/thresholdPanel42.js:171 lib/thresholdPanel.js:100
 #: preferences/thresholdPrimary.js:211 preferences/thresholdSecondary.js:206
 msgid "Maximum Lifespan Mode"
 msgstr "最佳保养模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:176 lib/thresholdPanel.js:108
+#: lib/thresholdPanel42.js:175 lib/thresholdPanel.js:108
 msgid "Adaptive Mode"
 msgstr "自适应模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:180 lib/thresholdPanel.js:116
+#: lib/thresholdPanel42.js:179 lib/thresholdPanel.js:116
 msgid "Express Mode"
 msgstr "Express 模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:386 lib/thresholdPanel.js:392
+#: lib/thresholdPanel42.js:385 lib/thresholdPanel.js:392
 msgid "No Battery detected!"
 msgstr "未检测到电池"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:389 lib/thresholdPanel.js:395
+#: lib/thresholdPanel42.js:388 lib/thresholdPanel.js:395
 #, javascript-format
 msgid "Discharge Battery below %d%%"
 msgstr "放电量低于 %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:395
+#: lib/thresholdPanel42.js:394
 #, javascript-format
 msgid "Charge thresholds: %d / %d %%"
 msgstr "充电阈值： %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:399
+#: lib/thresholdPanel42.js:398
 #, javascript-format
 msgid "Charging Limit: %d%%"
 msgstr "充电限制： %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:402 lib/thresholdPanel.js:409
+#: lib/thresholdPanel42.js:401 lib/thresholdPanel.js:409
 msgid "Charging Mode: Full Capacity"
 msgstr "充电方式：长效使用模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:404 lib/thresholdPanel.js:412
+#: lib/thresholdPanel42.js:403 lib/thresholdPanel.js:412
 msgid "Charging Mode: Balanced"
 msgstr "充电方式：平衡模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:407
+#: lib/thresholdPanel42.js:406
 msgid "Charging Mode: Max. Lifespan"
 msgstr "充电方式：最佳保养模式"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:409 lib/thresholdPanel.js:418
+#: lib/thresholdPanel42.js:408 lib/thresholdPanel.js:418
 msgid "Charging Mode: Adaptive"
 msgstr "充电方式：自适应"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/thresholdPanel42.js:411 lib/thresholdPanel.js:421
+#: lib/thresholdPanel42.js:410 lib/thresholdPanel.js:421
 msgid "Charging Mode: Express"
 msgstr "充电方式：Express"
 
-#: lib/thresholdPanel42.js:460 lib/thresholdPanel.js:524
+#: lib/thresholdPanel42.js:459 lib/thresholdPanel.js:524
 msgid "Force Discharge"
 msgstr "强制放电"
 
