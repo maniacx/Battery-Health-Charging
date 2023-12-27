@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battery Health Charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-15 11:48-0800\n"
+"POT-Creation-Date: 2023-12-26 19:36-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -139,11 +139,6 @@ msgstr ""
 
 #: lib/notifier.js:146
 msgid "Charging Mode is set to Adaptive"
-msgstr ""
-
-#: lib/powerIcon.js:138
-#, javascript-format
-msgid "%d %%"
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here

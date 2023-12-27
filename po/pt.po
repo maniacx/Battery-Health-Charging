@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-15 11:48-0800\n"
+"POT-Creation-Date: 2023-12-26 19:36-0800\n"
 "PO-Revision-Date: 2023-12-15 11:47-0800\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
@@ -157,11 +157,6 @@ msgstr "Modo de carregamento definido para Express"
 #: lib/notifier.js:146
 msgid "Charging Mode is set to Adaptive"
 msgstr "Modo de carregamento definido para adaptável"
-
-#: lib/powerIcon.js:138
-#, javascript-format
-msgid "%d %%"
-msgstr "%d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
 #: lib/thresholdPanel.js:28
@@ -612,3 +607,7 @@ msgstr "Valor Atual"
 #: ui/thresholdSecondary.ui:154 ui/thresholdSecondary.ui:223
 msgid "Start charging threshold value"
 msgstr "Iniciar carregamento do valor limite"
+
+#, javascript-format
+#~ msgid "%d %%"
+#~ msgstr "%d %%"
