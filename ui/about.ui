@@ -27,6 +27,8 @@
                         <property name="margin_bottom">12</property>
                         <child>
                           <object class="GtkImage" id="extension_icon_image">
+                            <property name="margin_top">4</property>
+                            <property name="margin_bottom">4</property>
                             <property name="pixel-size">150</property>
                             <property name="css-classes">icon-dropshadow</property>
                           </object>
@@ -40,8 +42,8 @@
                         </child>
                         <child>
                           <object class="GtkLabel" id="developer_name_label">
-                            <property name="margin_top">10</property>
-                            <property name="margin_bottom">6</property>
+                            <property name="margin_top">4</property>
+                            <property name="margin_bottom">4</property>
                             <property name="wrap">True</property>
                             <property name="justify">center</property>
                             <property name="css-classes">title-5</property>
@@ -49,7 +51,7 @@
                         </child>
                         <child>
                           <object class="GtkButton">
-                            <property name="margin_top">8</property>
+                            <property name="margin_top">4</property>
                             <property name="margin_bottom">12</property>
                             <property name="halign">center</property>
                             <property name="css-classes">success</property>
