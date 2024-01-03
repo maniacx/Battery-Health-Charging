@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-12-26 19:42-0800\n"
+"POT-Creation-Date: 2024-01-03 11:49-0800\n"
 "PO-Revision-Date: 2023-12-13 15:45-0800\n"
 "Last-Translator: Valeria Cubero Tapia <vct@duck.com>\n"
 "Language-Team: Spanish <LL@li.org>\n"
@@ -18,23 +18,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: lib/notifier.js:39
+#: lib/notifier.js:38
 msgid "Battery Health Charging"
 msgstr "Battery Health Charging"
 
-#: lib/notifier.js:44
+#: lib/notifier.js:43
 msgid "Battery Health Charging Error"
 msgstr "Battery Health Charging (Error de la extensión)"
 
-#: lib/notifier.js:57 ui/general.ui:9
+#: lib/notifier.js:56 ui/general.ui:9
 msgid "Settings"
 msgstr "Configuración"
 
-#: lib/notifier.js:61
+#: lib/notifier.js:60
 msgid "Show details"
 msgstr "Mostrar detalles"
 
-#: lib/notifier.js:73
+#: lib/notifier.js:72
 msgid ""
 "Unsupported device.\n"
 "This extension is not compatible with your device."
@@ -42,23 +42,23 @@ msgstr ""
 "Dispositivo no compatible.\n"
 "Esta extensión no es compatible con su dispositivo."
 
-#: lib/notifier.js:75
+#: lib/notifier.js:74
 msgid "Missing dependencies"
 msgstr "Dependencias faltantes"
 
-#: lib/notifier.js:79
+#: lib/notifier.js:78
 msgid "Please install polkit from extension settings under Installation."
 msgstr ""
 "Por favor, instale el script de polkit en las opciones de extensión, sección "
 "Instalación."
 
-#: lib/notifier.js:83
+#: lib/notifier.js:82
 msgid "Please update polkit from extension settings under Installation."
 msgstr ""
 "Por favor, actualice el script de polkit en las opciones de extensión, "
 "sección Instalación."
 
-#: lib/notifier.js:88
+#: lib/notifier.js:87
 #, javascript-format
 msgid ""
 "Encountered an unexpected error. (%s)\n"
@@ -69,12 +69,12 @@ msgstr ""
 "Seleccione el paquete dell correcto en la configuración de la extensión.\n"
 "Desactivar y habilitar la extensión"
 
-#: lib/notifier.js:90
+#: lib/notifier.js:89
 #, javascript-format
 msgid "Encountered an unexpected error. (%s)"
 msgstr "Se encontró un error inesperado. (%s)"
 
-#: lib/notifier.js:95
+#: lib/notifier.js:94
 #, javascript-format
 msgid ""
 "Charging threshold not updated. (%s)\n"
@@ -85,16 +85,16 @@ msgstr ""
 "Seleccione el paquete dell correcto en la configuración de extensión\n"
 "Desactivar y habilitar la extensión"
 
-#: lib/notifier.js:97
+#: lib/notifier.js:96
 #, javascript-format
 msgid "Charging threshold not updated. (%s)"
 msgstr "Umbral de carga no actualizado. (%s)"
 
-#: lib/notifier.js:101
+#: lib/notifier.js:100
 msgid "Apply correct Bios Password to set threshold."
 msgstr ""
 
-#: lib/notifier.js:105
+#: lib/notifier.js:104
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -104,12 +104,12 @@ msgstr ""
 "Límites de carga establecidos a %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:110 lib/thresholdPanel.js:401
+#: lib/notifier.js:109 lib/thresholdPanel.js:401
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "Límites de carga establecidos: %d/%d %%"
 
-#: lib/notifier.js:115
+#: lib/notifier.js:114
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -119,12 +119,12 @@ msgstr ""
 "Límite de carga establecido a %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:119 lib/thresholdPanel.js:405
+#: lib/notifier.js:118 lib/thresholdPanel.js:405
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "Límite de carga establecido: %d%%"
 
-#: lib/notifier.js:123
+#: lib/notifier.js:122
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -133,7 +133,7 @@ msgstr ""
 "Batería 2 - \n"
 "Límites de carga establecidos a %d / %d %%"
 
-#: lib/notifier.js:128
+#: lib/notifier.js:127
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -142,23 +142,23 @@ msgstr ""
 "Batería 2 - \n"
 "Límite de carga establecido a %d%%"
 
-#: lib/notifier.js:133
+#: lib/notifier.js:132
 msgid "Charging Mode is set to Full Capacity"
 msgstr "Modo de carga establecido a capacidad completa"
 
-#: lib/notifier.js:137
+#: lib/notifier.js:136
 msgid "Charging Mode is set to Balanced"
 msgstr "Modo de carga establecido a balanceado"
 
-#: lib/notifier.js:141
+#: lib/notifier.js:140
 msgid "Charging Mode is set to Maximum Lifespan"
 msgstr "Modo de carga establecido a vida máxima"
 
-#: lib/notifier.js:145
+#: lib/notifier.js:144
 msgid "Charging Mode is set to Express"
 msgstr "Modo de carga establecido a express"
 
-#: lib/notifier.js:149
+#: lib/notifier.js:148
 msgid "Charging Mode is set to Adaptive"
 msgstr "Modo de carga establecido a adaptable"
 
@@ -399,31 +399,31 @@ msgstr "<i>Valores aceptados: desde el %d al %d</i>"
 msgid "About"
 msgstr "Acerca de"
 
-#: ui/about.ui:73
+#: ui/about.ui:75
 msgid "Read me"
 msgstr "Leeme"
 
-#: ui/about.ui:95
+#: ui/about.ui:97
 msgid "Report an Issue"
 msgstr "Informar de un problema"
 
-#: ui/about.ui:112
+#: ui/about.ui:114
 msgid "Translations"
 msgstr "Traducciones"
 
-#: ui/about.ui:134
+#: ui/about.ui:136
 msgid "View sources on Github"
 msgstr "Ver el código fuente"
 
-#: ui/about.ui:151
+#: ui/about.ui:153
 msgid "Legal"
 msgstr "Legal"
 
-#: ui/about.ui:215
+#: ui/about.ui:217
 msgid "Crowdin"
 msgstr ""
 
-#: ui/about.ui:227
+#: ui/about.ui:229
 msgid "Online Tutorials"
 msgstr "Tutoriales en línea"
 
