@@ -8,15 +8,34 @@ permalink: /changelogs
 # Changelogs
 
 {: .important-title }
+> GN-45_Version 46 &emsp;&emsp; Jan 03, 2024 
+> * Added support for Purism Librem Laptops
+> * Some minor about ui changes and cleanup
+
+{: .note-title }
+> GN-44_Version 45 &emsp;&emsp; Jan 03, 2024 
+> * Added support for Purism Librem Laptops
+> * Some minor about ui changes and cleanup
+
+{: .important-title }
+> GN-45_Version 44 &emsp;&emsp; Dec 26, 2023 
+> * Translation: updates Credits: sabriunal, ViBE-HU, Vistaus
+> * Power icon: Use upower for checking charging state of barrel/usb charging for Charging behaviour icon modification
+
+{: .note-title }
+> GN-44_Version 43 &emsp;&emsp; Dec 26, 2023 
+> * Translation: updates Credits: sabriunal, ViBE-HU, Vistaus
+> * Power icon: Use upower for checking charging state of barrel/usb charging for Charging behaviour icon modification
+
+{: .important-title }
 > GN-45_Version 42 &emsp;&emsp; Dec 15, 2023 
 > * Nofity users if laptop is supported and dependencies are missing
 > * Pref: About updated
 
 {: .note-title }
-> GN-44_Version 31 &emsp;&emsp; Dec 15, 2023 
+> GN-44_Version 41 &emsp;&emsp; Dec 15, 2023 
 > * Nofity users if laptop is supported and dependencies are missing
 > * Pref: About updated
-
 
 {: .important-title }
 > GN-45_Version 40 &emsp;&emsp; Dec 06, 2023 
@@ -75,12 +94,12 @@ permalink: /changelogs
 {: .important-title }
 > GN-45_Version 32 &emsp;&emsp; Sep 25, 2023 
 > * Razer doesn't need root privileges for razer-cli so they do no need to install polkit rules. No Installation setting or notifications regarding polkit rules will be available for Razer devices
-> * Add missing properties for thinkpad
+> * Add missing properties for Thinkpad
 
 {: .note-title }
 > GN-44_Version 31 &emsp;&emsp; Sep 25, 2023
 > * Razer doesn't need root privileges for razer-cli so they do no need to install polkit rules. No Installation setting or notifications regarding polkit rules will be available for Razer devices
-> * Add missing properties for thinkpad
+> * Add missing properties for Thinkpad
 
 {: .important-title }
 > GN-45_Version 30 &emsp;&emsp; Sep 23, 2023
@@ -110,7 +129,7 @@ permalink: /changelogs
 {: .important-title }
 > Version 25 &emsp;&emsp; Sep 06, 2023
 > * Fix for devices which doesn't immediately update threshold after writing. Added re-verification by reading threshold after 200ms if threshold fails verification the first time.
-> * Fix error for thinkpad legacy when disabling extension
+> * Fix error for Thinkpad legacy when disabling extension
 
 {: .important-title }
 > Version 24 &emsp;&emsp; Jul 05, 2023
@@ -125,28 +144,28 @@ permalink: /changelogs
 {: .important-title }
 > Version 22  &emsp;&emsp; May 31, 2023
 > * Italian translation contribution (Thanks dalz)
-> * Added additional check for detection of laptop, as dells libsmbios can be installed as dependencies on non-dell laptops (Thanks hensnenenej for debugging and report it)
-> * Added a settings option to choose betweem libsmbios and dell command center if both packages are installed on dell device.
-> * Added battery removal detection for dual battery thinkpads (untested).
-> * Fix threshold setting on full-capacity mode for sony laptops.
+> * Added additional check for detection of laptop, as Dells libsmbios can be installed as dependencies on non-dell laptops (Thanks hensnenenej for debugging and report it)
+> * Added a settings option to choose between libsmbios and Dell command center if both packages are installed on dell device.
+> * Added battery removal detection for dual battery Thinkpads (untested).
+> * Fix threshold setting on full-capacity mode for Sony laptops.
 > * Added a notification message if threshold fails to update.
-> * Added detected device name on error notifications (Helps debugging incase extension detect as wrong device)
-> * Removed verify threshold by readback after setting threshold as reading charging threshold is buggy on toshiba
-> * Remove option to change charging threshold to 80% if battery level is more than 80% on toshiba.
+> * Added detected device name on error notifications (Helps debugging in case extension detect as wrong device)
+> * Removed verify threshold by readback after setting threshold as reading charging threshold is buggy on Toshiba
+> * Remove option to change charging threshold to 80% if battery level is more than 80% on Toshiba.
 
 {: .important-title }
 > Version 21  &emsp;&emsp; May 22, 2023
 > * German translation contribution (Thanks olebole)
-> * Fix for some thinkpad mode conditions where start threshold should be less than end threshold. (Thanks olebole)
-> * Adjusted allowed custom valueLegacy thinkpad (tpsmapi) as allowed values for end endthreshold > startthreshold + 5
+> * Fix for some Thinkpad mode conditions where start threshold should be less than end threshold. (Thanks olebole)
+> * Adjusted allowed custom value Legacy Thinkpad (tpsmapi) as allowed values for end endthreshold > startthreshold + 5
 
 {: .important-title }
 > Version 20  &emsp;&emsp; May 18, 2023
 > * Turkish translation contribution (Thanks sabriunal)
 > * Used CHECK Icons (Same as wifi) for displaying selected mode, instead of ugly CHECK ornament unicode.
-> * Removed threshold value displayed on panel/notification for lenovo ideapad/legion. When charging limit is enabled (conservation mode), Some models sets threshold to 60% and some models set threhsold to 80%, and the kernel doesnt report what is the current threshold value is, but only informs that charging limit is enabled or disabled. Now it will report only the current mode. conservation mode enabled displays max lifespan mode. conservation mode disable display full capacity mode.
-> * Removed threshold value displayed on panel/notification for Samsung laptop. When charging limit is enabled (battery_life_extender), Some models sets threshold to 60% and some models set threhsold to 80%, and the kernel doesnt report what is the current threshold value is, but only informs that charging limit is enabled or disabled. Now it will report only the current mode. battery_life_extender mode enabled, displays max lifespan mode. battery_life_extender mode disable, display full capacity mode.
-> * Same goes for panasonic
+> * Removed threshold value displayed on panel/notification for Lenovo Ideapad/Legion. When charging limit is enabled (conservation mode), Some models sets threshold to 60% and some models set threshold to 80%, and the kernel doesn't report what is the current threshold value is, but only informs that charging limit is enabled or disabled. Now it will report only the current mode. conservation mode enabled displays max lifespan mode. conservation mode disable display full capacity mode.
+> * Removed threshold value displayed on panel/notification for Samsung laptop. When charging limit is enabled (battery_life_extender), Some models sets threshold to 60% and some models set threshold to 80%, and the kernel doesn't report what is the current threshold value is, but only informs that charging limit is enabled or disabled. Now it will report only the current mode. battery_life_extender mode enabled, displays max lifespan mode. battery_life_extender mode disable, display full capacity mode.
+> * Same goes for Panasonic
 
 {: .important-title }
 > Version 19  &emsp;&emsp; May 12, 2023
@@ -161,7 +180,7 @@ permalink: /changelogs
 > Version 17  &emsp;&emsp; May 08, 2023
 > * Strings correction
 > * Used suggested crowdin translations for incomplete translation
-> * Few asus device do not restore threshold on resume after suspend. Fixed. (Thanks AbrarSL)
+> * Few Asus device do not restore threshold on resume after suspend. Fixed. (Thanks AbrarSL)
 > * Used session-mode.
 
 {: .important-title }
@@ -170,11 +189,11 @@ permalink: /changelogs
 > * Extension only writes new threshold if new mode/threshold is different than the current mode/threshold. 
 > * Added support for Dell laptop using cctk
 > * Added support for Tuxedo laptops using tuxedo-keyboard (Thanks r_wraith)
-> * Added support for few gigabyte aero/aorus module (Thanks tangalbert919)
+> * Added support for few Gigabyte Aero/Aorus module (Thanks tangalbert919)
 
 {: .important-title }
 > Version 15  &emsp;&emsp; Apr 27, 2023
-> * Added support to Apple Macbook M processora running Asahi Linux (teohhanhui)
+> * Added support for Apple Macbook M processor running Asahi Linux (teohhanhui)
 
 {: .important-title }
 > Version 14  &emsp;&emsp; Apr 25, 2023
@@ -192,14 +211,14 @@ permalink: /changelogs
 
 {: .important-title }
 > Version 11  &emsp;&emsp; Apr 2, 2023
-> * Added option to change behavior of system battery indicator
+> * Added option to change behaviour of system battery indicator
 > * In current threshold the text "currently active" will be displayed indicating the current mode
 
 
 {: .important-title }
 > Version 10  &emsp;&emsp; Mar 28, 2023
 > * Add option to change index of system indicator in general prefs
-> * Re-add vendor checks for thinkpad with correct path as it conflicts with huawei which also uses the same sysfs path.
+> * Re-add vendor checks for Thinkpad with correct path as it conflicts with Huawei which also uses the same sysfs path.
 > * Fix for Huawei. Used correct sysfs path.
 > * Added support for Panasonic devices and Intel QC71 devices
 >
@@ -216,7 +235,7 @@ permalink: /changelogs
 {: .important-title }
 > Version 8  &emsp;&emsp; Mar 17, 2023
 > * Added dell, msi and sys76 
-> * Seperated devices in different class
+> * Separated devices in different class
 > * Removed delay timer and update UI with signal on completion of writing and reading threshold value
 > * Changed/widen the range for end and start threshold for custom device
 >
@@ -226,7 +245,7 @@ permalink: /changelogs
 
 {: .important-title }
 > Version 7  &emsp;&emsp; Mar 3, 2023
-> * Do not detroy popupmenu during UIupdates instead. Instead just change/update the text and icon. Instead of updating everything, update only specific items that requires updates.
+> * Do not destroy popupmenu during UI updates instead. Instead just change/update the text and icon. Instead of updating everything, update only specific items that requires updates.
 > * Fixed Binding
 > * Added extension pref button in quicksettings
 > * Added option in Prefs to remove extension pref button from quicksettings
@@ -235,14 +254,14 @@ permalink: /changelogs
 > * Added option in Prefs to remove mode mode showing in quicksetting toggle subtitle
 > * Fixed initializing of pref if pref is open before enabling extension for the first time
 > * Destroy notification of this extension on extension disable
-> * Destroy notification on when new notification recieved.
+> * Destroy notification on when new notification received.
 > * Added icon on popup menu showing current threshold read
 > * Spanish translation contribution (Thanks: Valeria)
 
 
 {: .important-title }
 > Version 6  &emsp;&emsp; Feb 25, 2023
-> * Log only during installation and uninstalltion of polkit script
+> * Log only during installation and removal of polkit script
 
 
 {: .important-title }
@@ -253,14 +272,14 @@ permalink: /changelogs
 
 {: .important-title }
 > Version 4  &emsp;&emsp; Feb 20, 2023
-> * Removed usage of systemd service to change permision of sysfs charge_control_end_threshold.
+> * Removed usage of systemd service to change permission of sysfs charge_control_end_threshold.
 > * Use Polkit for a way to write to sysfs threshold using root permission. (Ported from Deminder Shutdown timer)
 > * Pref UI changes
 > * Added option to disable notification
 > * Quick Setting UI changes
-> * Polkit: Fixed serveral issue, and issue checking of version of polkit and ctl
+> * Polkit: Fixed several issue, and issue checking of version of polkit and ctl
 > * Polkit: clean up and remove unneeded code
-> * Added support for more device. Thinkpad, acer, lenovo, huawei, sony, samsung, lg.
+> * Added support for more device. Thinkpad, Acer, Lenovo, Huawei, Sony, Samsung, lg.
 > * Added notification to remove older systemd service files if detected.
 > * Added delay timer to delay updating panel and indicator UI so that threshold are written and read back from sysfs 
 > * Added more icon for different devices
@@ -276,14 +295,14 @@ permalink: /changelogs
 
 {: .important-title }
 > Version 2  &emsp;&emsp; Feb 4, 2023
-> * Added Extension prefs button to notifcation prompt for installation
-> * Added notifcation upon sucessfull removal of systemd service file
+> * Added Extension prefs button to notification prompt for installation
+> * Added notification upon successfully removal of systemd service file
  
  
 {: .important-title }
 > Version 1  &emsp;&emsp; Feb 3, 2023
 > * Initial Release.
 > * Works on asus device
-> * Uses systemd service to change permision of sysfs charge_control_end_threshold.
+> * Uses systemd service to change permission of sysfs charge_control_end_threshold.
 > * Feature enable/disable system indicator, change icons, install systemd service, customizable threshold, notifications for installation, removal and error
 
