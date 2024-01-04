@@ -36,7 +36,7 @@ export const About = GObject.registerClass({
 
         const extensionIcon = 'bhc-logo';
         const developerName = 'maniacx@github.com';
-        const copyrightYear = _('2023');
+        const copyrightYear = _('2023-2024');
         const licenseName = _('GNU General Public License, version 3 or later');
         const licenseLink = 'https://www.gnu.org/licenses/gpl-3.0.html';
 
