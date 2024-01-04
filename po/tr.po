@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battery-Health-Charging@maniacx.github.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-03 11:49-0800\n"
+"POT-Creation-Date: 2024-01-03 22:10-0800\n"
 "PO-Revision-Date: 2023-12-15 00:13+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
@@ -312,8 +312,8 @@ msgid "Express"
 msgstr "Hızlı"
 
 #: preferences/about.js:41
-msgid "2023"
-msgstr "2023"
+msgid "2023-2024"
+msgstr ""
 
 #: preferences/about.js:42
 msgid "GNU General Public License, version 3 or later"
@@ -632,3 +632,6 @@ msgstr "Geçerli Değer"
 #: ui/thresholdSecondary.ui:154 ui/thresholdSecondary.ui:223
 msgid "Start charging threshold value"
 msgstr "Şarj etmeye başlama eşik değeri"
+
+#~ msgid "2023"
+#~ msgstr "2023"

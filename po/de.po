@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-03 11:49-0800\n"
+"POT-Creation-Date: 2024-01-03 22:10-0800\n"
 "PO-Revision-Date: 2023-12-15 10:34-0800\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
@@ -316,8 +316,8 @@ msgid "Express"
 msgstr "Express"
 
 #: preferences/about.js:41
-msgid "2023"
-msgstr "2023"
+msgid "2023-2024"
+msgstr ""
 
 #: preferences/about.js:42
 msgid "GNU General Public License, version 3 or later"
@@ -647,6 +647,9 @@ msgstr "Aktueller Wert"
 #: ui/thresholdSecondary.ui:154 ui/thresholdSecondary.ui:223
 msgid "Start charging threshold value"
 msgstr "Schwelle zum Starten des Batterieladens"
+
+#~ msgid "2023"
+#~ msgstr "2023"
 
 #~ msgid "Rate this extension"
 #~ msgstr "Diese Erweiterung bewerten"
