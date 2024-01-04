@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-03 11:33-0800\n"
+"POT-Creation-Date: 2024-01-03 22:15-0800\n"
 "PO-Revision-Date: 2023-12-15 11:47-0800\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
@@ -282,8 +282,8 @@ msgid "Force Discharge"
 msgstr "Descarga Forçada"
 
 #: preferences/about.js:39
-msgid "2023"
-msgstr "2023"
+msgid "2023-2024"
+msgstr ""
 
 #: preferences/about.js:40
 msgid "GNU General Public License, version 3 or later"
@@ -607,6 +607,9 @@ msgstr "Valor Atual"
 #: ui/thresholdSecondary.ui:154 ui/thresholdSecondary.ui:223
 msgid "Start charging threshold value"
 msgstr "Iniciar carregamento do valor limite"
+
+#~ msgid "2023"
+#~ msgstr "2023"
 
 #, javascript-format
 #~ msgid "%d %%"
