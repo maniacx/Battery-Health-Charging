@@ -9,6 +9,14 @@ permalink: /changelogs
 
 {: .important-title }
 > GN-45_Version 46 &emsp;&emsp; Jan 03, 2024 
+> * Updated License
+
+{: .note-title }
+> GN-44_Version 45 &emsp;&emsp; Jan 03, 2024 
+> * Updated License
+
+{: .important-title }
+> GN-45_Version 46 &emsp;&emsp; Jan 03, 2024 
 > * Added support for Purism Librem Laptops
 > * Some minor about ui changes and cleanup
 
