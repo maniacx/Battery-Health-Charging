@@ -76,10 +76,18 @@ Begin by choosing one of the following methods:
 <img src="./assets/images/translation/poedit-guide/update-open-dialog.png" width="80%">
 
 ---
-### 3. Select the string to translate.
-### 4. Enter the translation for the selected string.
-### 5. Repeat for other strings.
-### 6. Once complete, click `Save`.
+### 3. Click `Translation` and `Update from POT File`
+<img src="./assets/images/translation/poedit-guide/update-pot-file.png" width="100%">
+
+---
+### 4. Select the pot file and Click `Open`
+<img src="./assets/images/translation/poedit-guide/update-pot.png" width="100%">
+
+---
+### 5. Select the string to translate.
+### 6. Enter the translation for the selected string.
+### 7. Repeat for other strings.
+### 8. Once complete, click `Save`.
 <img src="./assets/images/translation/poedit-guide/update-translation.png" width="100%">
 
 ---
