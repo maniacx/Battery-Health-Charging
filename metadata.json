@@ -3,7 +3,7 @@
   "name": "Battery Health Charging",
   "description": "Set battery charging threshold / charging limit / charging mode\nBattery Health Charging: An extension to maximize the battery life of laptops by setting their charging threshold or modes.\n\nCompatible with\n- Asus\n- LG\n- Samsung\n- Sony\n- Huawei\n- Toshiba\n- System76\n- Lenovo (Ideapad, Legion)\n- Thinkpad\n- Panasonic\n- Acer (dependencies: kernel module)\n- MSI (dependencies: kernel module)\n- Tuxedo (dependencies: kernel module)\n- Slimbook (dependencies: kernel module)\n- Tuxedo IntelQC71 (dependencies: kernel module)\n- XMG IntelQC71 (dependencies: kernel module)\n- Eluktronics IntelQC71 (dependencies: kernel module)\n- Purism Librem (dependencies: kernel module)\n- Gigabyte Aero/Aorus (dependencies: kernel module)\n- Dell (dependencies: custom package libsmbios)\n- Dell (dependencies: custom package Dell Command Center)\n- Apple Macbook Intel-series chip (dependencies: kernel module)\n- Apple Macbook M-series chip (dependencies: custom kernel)\n- Razer (dependencies: custom package razer-cli)\n- Framework (dependencies: kernel module)\n\nNot all models are comaptible. Please read about the compatibility and dependencies of your device on github link below.\n\nhttps://maniacx.github.io/Battery-Health-Charging/",
   "url": "https://github.com/maniacx/Battery-Health-Charging",
-    "shell-version": [ "45" ],
+    "shell-version": [ "45", "46" ],
   "session-modes": ["user", "unlock-dialog"],
   "version": 48,
   "settings-schema": "org.gnome.shell.extensions.Battery-Health-Charging",
