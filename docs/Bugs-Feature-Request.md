@@ -36,6 +36,35 @@ For GJS - logs related to extension preferences:
 journalctl -f -o cat /usr/bin/gjs
 ```
 
+### Command Line Tips
+```
+#List UUID of all extensions installed
+gnome-extensions list
+
+#Enable extension using UUID
+gnome-extensions enable Bluetooth-Battery-Meter@maniacx.github.com
+
+# Open extension prefs using UUID
+gnome-extensions prefs Bluetooth-Battery-Meter@maniacx.github.com
+
+#Disable extension using UUID
+gnome-extensions disable Bluetooth-Battery-Meter@maniacx.github.com
+
+#Disable all extensions
+gsettings set org.gnome.shell disable-user-extensions true
+
+#Enable all extensions
+gsettings set org.gnome.shell disable-user-extensions false
+
+# Kill gnome-shell
+killall -3 gnome-shell
+
+# Force shutdown
+sudo reboot -f
+```
+This can be helpful if gnome shell freezes (GUI stops). You can always move to terminal session using keys `CTRL+ALT+F3`, login, disable extension (if you know extension causing the problem) or disable all extension, kill gnome shell. Use `CTRL+ALT+F1` to login to display session.
+
+
 # Feature Request
 
 ### New Feature

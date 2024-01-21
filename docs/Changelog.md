@@ -8,11 +8,17 @@ permalink: /changelogs
 # Changelogs
 
 {: .important-title }
-> GN-45_Version 46 &emsp;&emsp; Jan 03, 2024 
+> GN-45_Version 49 &emsp;&emsp; Jan 20, 2024 
+> * Add Gnome 46 to supported shell version. Tested on GNOME46.Alpha
+> * Cleanup with eslint
+> * Indicator: Remove indicator before adding it again.
+
+{: .important-title }
+> GN-45_Version 48 &emsp;&emsp; Jan 03, 2024 
 > * Updated License
 
 {: .note-title }
-> GN-44_Version 45 &emsp;&emsp; Jan 03, 2024 
+> GN-44_Version 47 &emsp;&emsp; Jan 03, 2024 
 > * Updated License
 
 {: .important-title }
