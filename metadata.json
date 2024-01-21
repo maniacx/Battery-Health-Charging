@@ -5,7 +5,7 @@
   "url": "https://github.com/maniacx/Battery-Health-Charging",
     "shell-version": [ "45", "46" ],
   "session-modes": ["user", "unlock-dialog"],
-  "version": 48,
+  "version": 49,
   "settings-schema": "org.gnome.shell.extensions.Battery-Health-Charging",
   "gettext-domain": "Battery-Health-Charging@maniacx.github.com"
 }
