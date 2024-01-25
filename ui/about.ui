@@ -194,7 +194,7 @@
                               <object class="GtkLabel" id="label_translation">
                                 <property name="hexpand">True</property>
                                 <property name="halign">center</property>
-                                <property name="label">Translation</property>
+                                <property name="label" translatable="yes">Translations</property>
                                 <property name="css-classes">heading</property>
                               </object>
                             </child>
@@ -268,7 +268,7 @@
                             </child>
                             <child>
                               <object class="GtkLabel" id="label_legal">
-                                <property name="label">Label</property>
+                                <property name="label" translatable="yes">Legal</property>
                                 <property name="hexpand">True</property>
                                 <property name="halign">center</property>
                                 <property name="css-classes">heading</property>
