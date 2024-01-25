@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battery Health Charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-03 22:15-0800\n"
+"POT-Creation-Date: 2024-01-25 10:45-0800\n"
 "PO-Revision-Date: 2023-12-16 17:33+0100\n"
 "Last-Translator: ViBE <vibe@protonmail.com>\n"
 "Language-Team: Hungarian <vibe@protonmail.com>\n"
@@ -365,7 +365,7 @@ msgstr "Olvass el"
 msgid "Report an Issue"
 msgstr "Hiba jelentése"
 
-#: ui/about.ui:114
+#: ui/about.ui:114 ui/about.ui:197
 msgid "Translations"
 msgstr "Fordítások"
 
@@ -373,7 +373,7 @@ msgstr "Fordítások"
 msgid "View sources on Github"
 msgstr "Forrás megtekintése"
 
-#: ui/about.ui:153
+#: ui/about.ui:153 ui/about.ui:271
 msgid "Legal"
 msgstr "Jogi információk"
 

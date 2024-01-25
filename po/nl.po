@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-03 22:15-0800\n"
+"POT-Creation-Date: 2024-01-25 10:45-0800\n"
 "PO-Revision-Date: 2023-12-16 19:10+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -375,7 +375,7 @@ msgstr "Lees mij"
 msgid "Report an Issue"
 msgstr "Probleem melden"
 
-#: ui/about.ui:114
+#: ui/about.ui:114 ui/about.ui:197
 msgid "Translations"
 msgstr "Vertalingen"
 
@@ -383,7 +383,7 @@ msgstr "Vertalingen"
 msgid "View sources on Github"
 msgstr "Bekijk de broncode"
 
-#: ui/about.ui:153
+#: ui/about.ui:153 ui/about.ui:271
 msgid "Legal"
 msgstr "Juridisch"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battery-Health-Charging@maniacx.github.com\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-03 22:15-0800\n"
+"POT-Creation-Date: 2024-01-25 10:45-0800\n"
 "PO-Revision-Date: 2023-12-15 00:13+0300\n"
 "Last-Translator: Sabri Ünal <libreajans@gmail.com>\n"
 "Language-Team: Turkish <takim@gnome.org.tr>\n"
@@ -375,7 +375,7 @@ msgstr "Beni oku"
 msgid "Report an Issue"
 msgstr "Sorun Bildir"
 
-#: ui/about.ui:114
+#: ui/about.ui:114 ui/about.ui:197
 msgid "Translations"
 msgstr "Çeviriler"
 
@@ -383,7 +383,7 @@ msgstr "Çeviriler"
 msgid "View sources on Github"
 msgstr "Kaynakları görüntüle"
 
-#: ui/about.ui:153
+#: ui/about.ui:153 ui/about.ui:271
 msgid "Legal"
 msgstr "Yasal"
 
