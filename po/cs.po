@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-03 22:10-0800\n"
+"POT-Creation-Date: 2024-01-25 10:43-0800\n"
 "PO-Revision-Date: 2023-12-15 10:30-0800\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
@@ -403,7 +403,7 @@ msgstr "Čti mě"
 msgid "Report an Issue"
 msgstr "Nahlásit problém"
 
-#: ui/about.ui:114
+#: ui/about.ui:114 ui/about.ui:197
 msgid "Translations"
 msgstr "Překlady"
 
@@ -411,7 +411,7 @@ msgstr "Překlady"
 msgid "View sources on Github"
 msgstr "Zobrazit zdrojový kód"
 
-#: ui/about.ui:153
+#: ui/about.ui:153 ui/about.ui:271
 msgid "Legal"
 msgstr "Právní ustanovení"
 
