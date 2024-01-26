@@ -1,6 +1,7 @@
 'use strict';
 /* Dell Laptops using package smbios-battery-ctl from https://github.com/dell/libsmbios */
 /* Dell Laptops using package dell command configure from https://www.dell.com/support/kbdoc/en-us/000178000/dell-command-configure */
+import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Secret from 'gi://Secret';
 import * as Helper from '../lib/helper.js';
@@ -51,12 +52,29 @@ export const DellSmBiosSingleBattery = GObject.registerClass({
     isAvailable() {
         if (!fileExists(DELL_PATH))
             return false;
-        this._usesLibSmbios = fileExists(SMBIOS_PATH);
+        let smbiosUsesAbsolutePath = false;
+        let cctkUsesRelativePath = false;
+        this._usesLibSmbios = GLib.find_program_in_path('smbios-battery-ctl') ? true : false;
+        if(!this._usesLibSmbios) {
+            this._usesLibSmbios = fileExists(SMBIOS_PATH);
+            smbiosUsesAbsolutePath = this._usesLibSmbios
+        }
         this._usesCctk = fileExists(CCTK_PATH);
-        this._settings.set_boolean('detected-libsmbios', this._usesLibSmbios);
-        this._settings.set_boolean('detected-cctk', this._usesCctk);
+        if(!this._usesCctk) {
+            this._usesCctk = GLib.find_program_in_path('cctk') ? true : false;
+            cctkUsesRelativePath = this._usesCctk
+        }
         if (!this._usesCctk && !this._usesLibSmbios)
             return false;
+
+        this._settings.set_boolean('detected-libsmbios', this._usesLibSmbios);
+        this._settings.set_boolean('detected-cctk', this._usesCctk);
+
+        this._readSmbiosCmd = smbiosUsesAbsolutePath ? 'DELL_ABSOLUTE_SMBIOS_BAT_READ' : 'DELL_RELATIVE_SMBIOS_BAT_READ';
+        this._writeSmbiosCmd = smbiosUsesAbsolutePath ? 'DELL_ABSOLUTE_SMBIOS_BAT_WRITE' : 'DELL_RELATIVE_SMBIOS_BAT_WRITE';
+        this._readCctkCmd = cctkUsesRelativePath ? 'DELL_RELATIVE_CCTK_BAT_READ' : 'DELL_ABSOLUTE_CCTK_BAT_READ';
+        this._writeCctkCmd = cctkUsesRelativePath ? 'DELL_RELATIVE_CCTK_BAT_WRITE' : 'DELL_ABSOLUTE_CCTK_BAT_WRITE';
+        this._writeCctkPassCmd = cctkUsesRelativePath ? 'DELL_RELATIVE_CCTK_PASSWORD_BAT_WRITE' : 'DELL_ABSOLUTE_CCTK_PASSWORD_BAT_WRITE';
         return true;
     }
 
@@ -98,7 +116,8 @@ export const DellSmBiosSingleBattery = GObject.registerClass({
             arg1 = `${this._endValue}`;
             arg2 = `${this._startValue}`;
         }
-        await runCommandCtl(this._ctlPath, 'DELL_SMBIOS_BAT_WRITE', arg1, arg2, null);
+
+        await runCommandCtl(this._ctlPath, this._writeSmbiosCmd, arg1, arg2, null);
         verified = await this._verifySmbiosThreshold();
         if (verified)
             return 0;
@@ -107,7 +126,7 @@ export const DellSmBiosSingleBattery = GObject.registerClass({
     }
 
     async _verifySmbiosThreshold() {
-        const [, output] = await runCommandCtl(this._ctlPath, 'DELL_SMBIOS_BAT_READ', null, null, null);
+        const [, output] = await runCommandCtl(this._ctlPath, this._readSmbiosCmd, null, null, null);
         const filteredOutput = output.trim().replace('(', '').replace(')', '').replace(',', '').replace(/:/g, '');
         const splitOutput = filteredOutput.split('\n');
         const firstLine = splitOutput[0].split(' ');
@@ -183,7 +202,7 @@ export const DellSmBiosSingleBattery = GObject.registerClass({
     }
 
     async _writeCctkThreshold(arg3) {
-        const cmd = arg3 ? 'DELL_CCTK_PASSWORD_BAT_WRITE' : 'DELL_CCTK_BAT_WRITE';
+        const cmd = arg3 ? this._writeCctkPassCmd : this._writeCctkCmd;
         const [status] = await runCommandCtl(this._ctlPath, cmd, this._arg1, this._arg2, arg3);
         if (status === 65 || status === 58) {
             this.emit('threshold-applied', 'password-required');
@@ -197,7 +216,7 @@ export const DellSmBiosSingleBattery = GObject.registerClass({
     }
 
     async _verifyCctkThreshold() {
-        const [, output] = await runCommandCtl(this._ctlPath, 'DELL_CCTK_BAT_READ', null, null, null);
+        const [, output] = await runCommandCtl(this._ctlPath, this._readCctkCmd, null, null, null);
         const filteredOutput = output.trim().replace('=', ' ').replace(':', ' ').replace('-', ' ');
         const splitOutput = filteredOutput.split(' ');
         if (splitOutput[0] === 'PrimaryBattChargeCfg') {
