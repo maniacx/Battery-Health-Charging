@@ -1,6 +1,6 @@
 'use strict';
 /* Razer Laptops using package razer-cli from https://github.com/Razer-Linux/razer-laptop-control-no-dkms */
-const {GObject} = imports.gi;
+const {GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 const Helper = Me.imports.lib.helper;
@@ -39,7 +39,7 @@ var RazerSingleBattery = GObject.registerClass({
     }
 
     isAvailable() {
-        if (!fileExists(RAZERCLI_PATH))
+        if (!GLib.find_program_in_path('razer-cli'))
             return false;
         return true;
     }
