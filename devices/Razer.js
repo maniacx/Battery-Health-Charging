@@ -1,10 +1,9 @@
 'use strict';
 /* Razer Laptops using package razer-cli from https://github.com/Razer-Linux/razer-laptop-control-no-dkms */
+import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import * as Helper from '../lib/helper.js';
 const {fileExists, execCheck} = Helper;
-
-const RAZERCLI_PATH = '/usr/bin/razer-cli';
 
 export const  RazerSingleBattery = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
@@ -37,7 +36,7 @@ export const  RazerSingleBattery = GObject.registerClass({
     }
 
     isAvailable() {
-        if (!fileExists(RAZERCLI_PATH))
+        if (!GLib.find_program_in_path('razer-cli'))
             return false;
         return true;
     }
