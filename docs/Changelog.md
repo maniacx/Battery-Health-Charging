@@ -8,6 +8,16 @@ permalink: /changelogs
 # Changelogs
 
 {: .important-title }
+> GN-45_Version 51 &emsp;&emsp; Jan 30, 2024 
+> * Add option to use packages in path for Dell and Razer executables (NixOS compatibility)
+> * Corrected some string from about.js
+
+{: .note-title }
+> GN-44_Version 50 &emsp;&emsp; Jan 30, 2024
+> * Add option to use packages in path for Dell and Razer executables (NixOS compatibility)
+> * Corrected some string from about.js
+
+{: .important-title }
 > GN-45_Version 49 &emsp;&emsp; Jan 20, 2024 
 > * Add Gnome 46 to supported shell version. Tested on GNOME46.Alpha
 > * Cleanup with eslint
