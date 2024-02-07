@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 10:43-0800\n"
+"POT-Creation-Date: 2024-02-06 16:42-0800\n"
 "PO-Revision-Date: 2023-12-16 19:10+0100\n"
 "Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
 "Language-Team: \n"
@@ -55,43 +55,21 @@ msgstr "Installeer polkit via de uitbreidingsvoorkeuren."
 msgid "Please update polkit from extension settings under Installation."
 msgstr "Werk polkit bij via de uitbreidingsvoorkeuren."
 
-#: lib/notifier.js:87
-#, javascript-format
-msgid ""
-"Encountered an unexpected error. (%s)\n"
-"Choose correct dell package in extension settings.\n"
-"Disable and enable the extension"
-msgstr ""
-"Er is een onverwachte fout opgetreden. (%s)\n"
-"Kies het juiste Dell-pakket in de uitbreidingsvoorkeuren.\n"
-"Schakel daarna de uitbreiding uit en weer in."
-
-#: lib/notifier.js:89
+#: lib/notifier.js:86
 #, javascript-format
 msgid "Encountered an unexpected error. (%s)"
 msgstr "Er is een onverwachte fout opgetreden. (%s)"
 
-#: lib/notifier.js:94
-#, javascript-format
-msgid ""
-"Charging threshold not updated. (%s)\n"
-"Choose correct dell package in extension settings\n"
-"Disable and enable the extension"
-msgstr ""
-"De oplaaddrempelwaarde is niet bijgewerkt. (%s)\n"
-"Kies het juiste Dell-pakket in de uitbreidingsvoorkeuren.\n"
-"Schakel daarna de uitbreiding uit en weer in."
-
-#: lib/notifier.js:96
+#: lib/notifier.js:90
 #, javascript-format
 msgid "Charging threshold not updated. (%s)"
 msgstr "De oplaaddrempelwaarde is niet bijgewerkt. (%s)"
 
-#: lib/notifier.js:100
+#: lib/notifier.js:94
 msgid "Apply correct Bios Password to set threshold."
 msgstr "Verstuur het juiste bioswachtwoord om de drempelwaarde in te stellen."
 
-#: lib/notifier.js:104
+#: lib/notifier.js:98
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -101,12 +79,12 @@ msgstr ""
 "De oplaaddrempelwaarden zijn ingesteld op %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:109 lib/thresholdPanel.js:401
+#: lib/notifier.js:103 lib/thresholdPanel.js:401
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "De oplaaddrempelwaarden zijn ingesteld op %d / %d %%"
 
-#: lib/notifier.js:114
+#: lib/notifier.js:108
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -116,12 +94,12 @@ msgstr ""
 "Het maximale oplaadniveau in ingesteld op %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:118 lib/thresholdPanel.js:405
+#: lib/notifier.js:112 lib/thresholdPanel.js:405
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "Het maximale oplaadniveau in ingesteld op %d%%"
 
-#: lib/notifier.js:122
+#: lib/notifier.js:116
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -130,7 +108,7 @@ msgstr ""
 "Accu 2\n"
 "De oplaaddrempelwaarden zijn ingesteld op %d / %d %%"
 
-#: lib/notifier.js:127
+#: lib/notifier.js:121
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -139,23 +117,23 @@ msgstr ""
 "Accu 2\n"
 "Het maximale oplaadniveau in ingesteld op %d%%"
 
-#: lib/notifier.js:132
+#: lib/notifier.js:126
 msgid "Charging Mode is set to Full Capacity"
 msgstr "Er wordt momenteel alleen indien nodig volledige capaciteit opgeladen"
 
-#: lib/notifier.js:136
+#: lib/notifier.js:130
 msgid "Charging Mode is set to Balanced"
 msgstr "Er wordt momenteel alleen indien nodig gebalanceerd opgeladen"
 
-#: lib/notifier.js:140
+#: lib/notifier.js:134
 msgid "Charging Mode is set to Maximum Lifespan"
 msgstr "Er wordt momenteel maximale levensduur opgeladen"
 
-#: lib/notifier.js:144
+#: lib/notifier.js:138
 msgid "Charging Mode is set to Express"
 msgstr "Er wordt momenteel snel opgeladen"
 
-#: lib/notifier.js:148
+#: lib/notifier.js:142
 msgid "Charging Mode is set to Adaptive"
 msgstr "Er wordt momenteel alleen indien nodig snel opgeladen"
 
@@ -635,6 +613,26 @@ msgstr "Huidige waarde"
 #: ui/thresholdSecondary.ui:154 ui/thresholdSecondary.ui:223
 msgid "Start charging threshold value"
 msgstr "Drempelwaarde om te beginnen met opladen"
+
+#, javascript-format
+#~ msgid ""
+#~ "Encountered an unexpected error. (%s)\n"
+#~ "Choose correct dell package in extension settings.\n"
+#~ "Disable and enable the extension"
+#~ msgstr ""
+#~ "Er is een onverwachte fout opgetreden. (%s)\n"
+#~ "Kies het juiste Dell-pakket in de uitbreidingsvoorkeuren.\n"
+#~ "Schakel daarna de uitbreiding uit en weer in."
+
+#, javascript-format
+#~ msgid ""
+#~ "Charging threshold not updated. (%s)\n"
+#~ "Choose correct dell package in extension settings\n"
+#~ "Disable and enable the extension"
+#~ msgstr ""
+#~ "De oplaaddrempelwaarde is niet bijgewerkt. (%s)\n"
+#~ "Kies het juiste Dell-pakket in de uitbreidingsvoorkeuren.\n"
+#~ "Schakel daarna de uitbreiding uit en weer in."
 
 #~ msgid "2023"
 #~ msgstr "2023"

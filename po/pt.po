@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-25 10:43-0800\n"
+"POT-Creation-Date: 2024-02-06 16:42-0800\n"
 "PO-Revision-Date: 2023-12-15 10:38-0800\n"
 "Last-Translator: \n"
 "Language-Team: Portuguese\n"
@@ -54,43 +54,21 @@ msgstr "Instale o polkit nas configurações de extensão em Instalação."
 msgid "Please update polkit from extension settings under Installation."
 msgstr "Atualize o polkit nas configurações de extensão em Instalação."
 
-#: lib/notifier.js:87
-#, javascript-format
-msgid ""
-"Encountered an unexpected error. (%s)\n"
-"Choose correct dell package in extension settings.\n"
-"Disable and enable the extension"
-msgstr ""
-"Encontrou um erro inesperado. (%s)\n"
-"Escolha o pacote Dell correto nas configurações de extensão.\n"
-"Desative e ative a extensão"
-
-#: lib/notifier.js:89
+#: lib/notifier.js:86
 #, javascript-format
 msgid "Encountered an unexpected error. (%s)"
 msgstr "Battery Health Charging encontrou um erro inesperado.(%s)"
 
-#: lib/notifier.js:94
-#, javascript-format
-msgid ""
-"Charging threshold not updated. (%s)\n"
-"Choose correct dell package in extension settings\n"
-"Disable and enable the extension"
-msgstr ""
-"Limite de carregamento não atualizado. (%s)\n"
-"Escolha o pacote Dell correto nas configurações de extensão\n"
-"Desative e ative a extensão"
-
-#: lib/notifier.js:96
+#: lib/notifier.js:90
 #, javascript-format
 msgid "Charging threshold not updated. (%s)"
 msgstr "Parar carregamento do valor limite.(%s)"
 
-#: lib/notifier.js:100
+#: lib/notifier.js:94
 msgid "Apply correct Bios Password to set threshold."
 msgstr "Aplicar a senha correta do BIOS para definir o limiar."
 
-#: lib/notifier.js:104
+#: lib/notifier.js:98
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -100,12 +78,12 @@ msgstr ""
 "Limites de carga são definidos para %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:109 lib/thresholdPanel.js:401
+#: lib/notifier.js:103 lib/thresholdPanel.js:401
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "Limite de carga: %d / %d %%"
 
-#: lib/notifier.js:114
+#: lib/notifier.js:108
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -115,12 +93,12 @@ msgstr ""
 "O limite de carregamento está definido para %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:118 lib/thresholdPanel.js:405
+#: lib/notifier.js:112 lib/thresholdPanel.js:405
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "Limite de carga: %d%%"
 
-#: lib/notifier.js:122
+#: lib/notifier.js:116
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -129,7 +107,7 @@ msgstr ""
 "Bateria 2\n"
 "Limites de carga são definidos para %d / %d %%"
 
-#: lib/notifier.js:127
+#: lib/notifier.js:121
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -138,23 +116,23 @@ msgstr ""
 "Bateria 2\n"
 "O limite de carregamento está definido para %d%%"
 
-#: lib/notifier.js:132
+#: lib/notifier.js:126
 msgid "Charging Mode is set to Full Capacity"
 msgstr "Modo de carregamento definido para equilibrado"
 
-#: lib/notifier.js:136
+#: lib/notifier.js:130
 msgid "Charging Mode is set to Balanced"
 msgstr "Modo de carregamento definido para equilibrado"
 
-#: lib/notifier.js:140
+#: lib/notifier.js:134
 msgid "Charging Mode is set to Maximum Lifespan"
 msgstr "Modo de carregamento definido para vida útil máx"
 
-#: lib/notifier.js:144
+#: lib/notifier.js:138
 msgid "Charging Mode is set to Express"
 msgstr "Modo de carregamento definido para Express"
 
-#: lib/notifier.js:148
+#: lib/notifier.js:142
 msgid "Charging Mode is set to Adaptive"
 msgstr "Modo de carregamento definido para adaptável"
 
@@ -636,6 +614,26 @@ msgstr "Valor Atual"
 #: ui/thresholdSecondary.ui:154 ui/thresholdSecondary.ui:223
 msgid "Start charging threshold value"
 msgstr "Iniciar carregamento do valor limite"
+
+#, javascript-format
+#~ msgid ""
+#~ "Encountered an unexpected error. (%s)\n"
+#~ "Choose correct dell package in extension settings.\n"
+#~ "Disable and enable the extension"
+#~ msgstr ""
+#~ "Encontrou um erro inesperado. (%s)\n"
+#~ "Escolha o pacote Dell correto nas configurações de extensão.\n"
+#~ "Desative e ative a extensão"
+
+#, javascript-format
+#~ msgid ""
+#~ "Charging threshold not updated. (%s)\n"
+#~ "Choose correct dell package in extension settings\n"
+#~ "Disable and enable the extension"
+#~ msgstr ""
+#~ "Limite de carregamento não atualizado. (%s)\n"
+#~ "Escolha o pacote Dell correto nas configurações de extensão\n"
+#~ "Desative e ative a extensão"
 
 #~ msgid "2023"
 #~ msgstr "2023"
