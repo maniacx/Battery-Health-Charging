@@ -8,6 +8,14 @@ permalink: /changelogs
 # Changelogs
 
 {: .important-title }
+> GN-45_Version 53 &emsp;&emsp; Feb 09, 2024
+> * Remove unused leftover code
+
+{: .note-title }
+> GN-44_Version 52 &emsp;&emsp; Feb 09, 2024
+> * Remove unused leftover code
+
+{: .important-title }
 > GN-45_Version 51 &emsp;&emsp; Jan 30, 2024 
 > * Add option to use packages in path for Dell and Razer executables (NixOS compatibility)
 > * Corrected some string from about.js
