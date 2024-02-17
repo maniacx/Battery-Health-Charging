@@ -3,7 +3,7 @@
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import * as Helper from '../lib/helper.js';
-const {fileExists, execCheck} = Helper;
+const {execCheck} = Helper;
 
 export const  RazerSingleBattery = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
