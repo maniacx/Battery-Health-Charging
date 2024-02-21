@@ -40,11 +40,17 @@ var AppleSingleBattery = GObject.registerClass({
     }
 
     isAvailable() {
-        if (!fileExists(VENDOR_APPLE))
+        log('Battery Health Extension:  Checking apple intel ');
+        if (!fileExists(VENDOR_APPLE)) {
+            log('Battery Health Extension:  -- VENDOR_APPLE not found -- ');
             return false;
-        if (!fileExists(BAT0_END_PATH))
+        }
+        if (!fileExists(BAT0_END_PATH)) {
+            log('Battery Health Extension:  -- BAT0_END_PATH not found -- ');
             return false;
+        }
         this._chargingDisable = false;
+        log('Battery Health Extension:  -- found apple path check 1 -- ');
         this._settings.connectObject(
             'changed::apple-charging-led', () => {
                 this._chargingLedStatusChanged = true;
@@ -52,6 +58,7 @@ var AppleSingleBattery = GObject.registerClass({
             },
             this
         );
+        log('Battery Health Extension:  -- found apple path check 2 -- ');
         return true;
     }
 
