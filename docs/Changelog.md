@@ -8,6 +8,21 @@ permalink: /changelogs
 # Changelogs
 
 {: .important-title }
+> GN-45_Version 56 &emsp;&emsp; Feb 21, 2024
+> * Logo update
+> * fix dependencies notification for Apple
+> * Adapt to Gnome46 message tray
+
+{: .note-title }
+> GN-44_Version 55 &emsp;&emsp; Feb 21, 2024
+> * Remove added logs during debugging
+
+{: .note-title }
+> GN-44_Version 54 &emsp;&emsp; Feb 21, 2024
+> * Logo update
+> * fix dependencies notification for Apple
+
+{: .important-title }
 > GN-45_Version 53 &emsp;&emsp; Feb 09, 2024
 > * Remove unused leftover code
 
