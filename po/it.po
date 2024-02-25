@@ -2,7 +2,7 @@
 # Copyright (C) 2023 Battery-Health-Charging@maniacx.github.com's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Battery-Health-Charging@maniacx.github.com package.
 #
-# ALBANO BATTISTELLA <ALBANO_BATTISTELLA@HOTMAIL.COM>, 2023.
+# ALBANO BATTISTELLA <ALBANO_BATTISTELLA@HOTMAIL.COM>, 2023,2024.
 # dalz <translations@alsd.eu>, 2023.
 #
 msgid ""
@@ -10,9 +10,9 @@ msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-06 16:27-0800\n"
-"PO-Revision-Date: 2023-12-11 18:31-0800\n"
-"Last-Translator: dalz <translations@alsd.eu>\n"
-"Language-Team: Italian <translations@alsd.eu>\n"
+"PO-Revision-Date: 2024-02-25 18:31+0100\n"
+"Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
+"Language-Team: Italian <>\n"
 "Language: it\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -72,7 +72,7 @@ msgstr "Impossibile modificare la soglia di ricarica. (%s)"
 
 #: lib/notifier.js:91
 msgid "Apply correct Bios Password to set threshold."
-msgstr ""
+msgstr "Applicare la password del BIOS corretta per impostare la soglia."
 
 #: lib/notifier.js:95
 #, javascript-format
@@ -263,11 +263,11 @@ msgstr "Express"
 
 #: lib/thresholdPanel.js:480
 msgid "Force Discharge"
-msgstr ""
+msgstr "Scarica forzata"
 
 #: preferences/about.js:39
 msgid "2023-2024"
-msgstr ""
+msgstr "2023-2024"
 
 #: preferences/about.js:40
 msgid "GNU General Public License, version 3 or later"
@@ -389,7 +389,7 @@ msgstr "Impostazioni dispositivo"
 
 #: ui/apple.ui:12
 msgid "Change the behavior of charging indicator light"
-msgstr ""
+msgstr "Modifica il comportamento della spia di carica"
 
 #: ui/dell.ui:12
 msgid "Dell package for charging mode"
@@ -403,25 +403,27 @@ msgstr ""
 
 #: ui/dell.ui:27
 msgid "Bios Authentication"
-msgstr ""
+msgstr "Autenticazione del BIOS"
 
 #: ui/dell.ui:30
 msgid "Requires Bios password validation to change mode/threshold"
-msgstr ""
+msgstr "Richiede la convalida della password del BIOS per modificare modalità/soglia"
 
 #: ui/dell.ui:31
 msgid ""
 "Enable if Dell command configure uses Bios (system) password to change mode/"
 "threshold"
 msgstr ""
+"Abilita se la configurazione del comando Dell utilizza la password del BIOS (sistema) per cambiare modalità/"
+"soglia"
 
 #: ui/dell.ui:43
 msgid "Enter Bios Password"
-msgstr ""
+msgstr "Inserisci la password del BIOS"
 
 #: ui/dell.ui:44
 msgid "Note: Bios password will be stored in Gnome Keyring"
-msgstr ""
+msgstr "Nota: la password del BIOS verrà archiviata in Gnome Keyring"
 
 #: ui/dell.ui:79
 msgid "Libsmbios"
@@ -553,13 +555,15 @@ msgstr "Percentuale evidenziata"
 
 #: ui/thinkpad.ui:12
 msgid "Enable force discharge battery feature (Experimental)"
-msgstr ""
+msgstr "Abilita la funzione di scarica forzata della batteria (sperimentale)"
 
 #: ui/thinkpad.ui:13
 msgid ""
 "Enable option to force discharge battery when battery level higher than "
 "current threshold"
 msgstr ""
+"Abilita l'opzione per forzare lo scaricamento della batteria quando il livello della batteria è superiore alla "
+"soglia attuale"
 
 #: ui/thresholdPrimary.ui:21 ui/thresholdSecondary.ui:21
 msgid "Customize"
