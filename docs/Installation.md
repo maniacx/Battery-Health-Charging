@@ -16,12 +16,20 @@ This extension may conflict with other battery charging threshold control apps, 
 
 * The extension is available on the Gnome Extension Website https://extensions.gnome.org/, where it undergoes a review process upon submission.
 * Therefore, it's recommended to install this extension from the website.
-* This will require installing an Extensions or Extension Manager app to manage the Gnome extension.
 
- 
+### Using Apps
+
 [<img src="./assets/images/installation/extension.png" width="45%">](https://flathub.org/apps/org.gnome.Extensions)[<img src="./assets/images/installation/extension-manager.png" width="45%" class="float-right">](https://flathub.org/apps/com.mattjakeman.ExtensionManager)
 
+* This will require installing an Extensions or Extension Manager app to manage the Gnome extension.
 * Either search for the extension by its name, "Battery Health Charging" or use the website link below<br><https://extensions.gnome.org/extension/5724/battery-health-charging/>
+
+### Using dbus command
+
+```text
+busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gnome.Shell.Extensions InstallRemoteExtension s Battery-Health-Charging@maniacx.github.com
+```
+* Running this in console/terminal will download and install extension from Gnome Extension Website.
 
 ## From Github
 
@@ -39,12 +47,19 @@ This extension may conflict with other battery charging threshold control apps, 
 Polkit Rules: Uninstalling this extension will not remove polkit rules, so it has to be done manually.<br>If decided to uninstall and not use this extension, before uninstallation, please remove/uninstall polkit rules using Extension Preferences > General Tab.
 
 {: .warning }
+For Dell only.<br>
 Dell Command Configure BIOS Password: If decided to uninstall this extension, users who used a BIOS password to validate changing mode/threshold are recommended to turn off Need BIOS password to change mode/threshold. This action will remove/delete the saved BIOS password in Gnome Keyring.
 
 To uninstall this extension, use the `Extensions`  or `Extension Manager` app.
 <br>
 <br>
+Or
 <br>
+<br>
+Using commandline to uninstall
+```bash
+gnome-extensions uninstall Battery-Health-Charging@maniacx.github.com
+```
 Although not neccesary, to take a step further and remove all gsettings saved by this extension, you can use the following terminal command:
 ```bash
 gsettings --schemadir /home/$USER/.local/share/gnome-shell/extensions/Battery-Health-Charging@maniacx.github.com/schemas reset-recursively org.gnome.shell.extensions.Battery-Health-Charging
