@@ -8,6 +8,14 @@ permalink: /changelogs
 # Changelogs
 
 {: .important-title }
+> GN-45_Version 58 &emsp;&emsp; Feb 28, 2024
+> * Update Italian translation. Credits: albanobattistella
+
+{: .note-title }
+> GN-44_Version 57 &emsp;&emsp; Feb 28, 2024
+> * Update Italian translation. Credits: albanobattistella
+
+{: .important-title }
 > GN-45_Version 56 &emsp;&emsp; Feb 21, 2024
 > * Logo update
 > * fix dependencies notification for Apple
