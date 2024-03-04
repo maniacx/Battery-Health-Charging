@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-06 16:42-0800\n"
+"POT-Creation-Date: 2024-03-04 08:49-0800\n"
 "PO-Revision-Date: 2023-12-13 15:49-0800\n"
 "Last-Translator: \n"
 "Language-Team: Ukrainian\n"
@@ -26,23 +26,23 @@ msgstr ""
 "X-Crowdin-File-ID: 41\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: lib/notifier.js:38
+#: lib/notifier.js:23
 msgid "Battery Health Charging"
 msgstr "Battery Health Charging"
 
-#: lib/notifier.js:43
+#: lib/notifier.js:28
 msgid "Battery Health Charging Error"
 msgstr "Battery Health Charging помилки"
 
-#: lib/notifier.js:56 ui/general.ui:9
+#: lib/notifier.js:40 ui/general.ui:9
 msgid "Settings"
 msgstr "Налаштування"
 
-#: lib/notifier.js:60
+#: lib/notifier.js:44
 msgid "Show details"
 msgstr "Показати подробиці"
 
-#: lib/notifier.js:72
+#: lib/notifier.js:59
 msgid ""
 "Unsupported device.\n"
 "This extension is not compatible with your device."
@@ -50,35 +50,35 @@ msgstr ""
 "Пристрій не підтримується.\n"
 "Це розширення несумісне з вашим пристроєм."
 
-#: lib/notifier.js:74
+#: lib/notifier.js:61
 msgid "Missing dependencies"
 msgstr "Не знайдено потрібної програми"
 
-#: lib/notifier.js:78
+#: lib/notifier.js:65
 msgid "Please install polkit from extension settings under Installation."
 msgstr ""
 "Будь ласка, встановіть polkit з налаштувань розширень під час встановлення."
 
-#: lib/notifier.js:82
+#: lib/notifier.js:69
 msgid "Please update polkit from extension settings under Installation."
 msgstr ""
 "Будь ласка, оновіть polkit з налаштувань розширень під час встановлення."
 
-#: lib/notifier.js:86
+#: lib/notifier.js:73
 #, javascript-format
 msgid "Encountered an unexpected error. (%s)"
 msgstr "Battery Health Charging виявив неочікувану помилку. (%s)"
 
-#: lib/notifier.js:90
+#: lib/notifier.js:77
 #, javascript-format
 msgid "Charging threshold not updated. (%s)"
 msgstr "Припинити порогове значення зарядки. (%s)"
 
-#: lib/notifier.js:94
+#: lib/notifier.js:81
 msgid "Apply correct Bios Password to set threshold."
 msgstr ""
 
-#: lib/notifier.js:98
+#: lib/notifier.js:85
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -88,12 +88,12 @@ msgstr ""
 "поріг заряду змінено на %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:103 lib/thresholdPanel.js:401
+#: lib/notifier.js:90 lib/thresholdPanel.js:401
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "Поріг заряду батареї: %d / %d %%"
 
-#: lib/notifier.js:108
+#: lib/notifier.js:95
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -103,12 +103,12 @@ msgstr ""
 "Ліміт зарядки встановлено на %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:112 lib/thresholdPanel.js:405
+#: lib/notifier.js:99 lib/thresholdPanel.js:405
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "Ліміт зарядження: %d%%"
 
-#: lib/notifier.js:116
+#: lib/notifier.js:103
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -117,7 +117,7 @@ msgstr ""
 "Акумулятор 2\n"
 "поріг заряду змінено на %d / %d %%"
 
-#: lib/notifier.js:121
+#: lib/notifier.js:108
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -126,23 +126,23 @@ msgstr ""
 "Акумулятор 2\n"
 "Ліміт зарядки встановлено на %d%%"
 
-#: lib/notifier.js:126
+#: lib/notifier.js:113
 msgid "Charging Mode is set to Full Capacity"
 msgstr "Режим заряджання: Повна поємність"
 
-#: lib/notifier.js:130
+#: lib/notifier.js:117
 msgid "Charging Mode is set to Balanced"
 msgstr "Режим заряджання: Збалансований"
 
-#: lib/notifier.js:134
+#: lib/notifier.js:121
 msgid "Charging Mode is set to Maximum Lifespan"
 msgstr "Режим заряджання: Збереження"
 
-#: lib/notifier.js:138
+#: lib/notifier.js:125
 msgid "Charging Mode is set to Express"
 msgstr "Режим заряджання: Express"
 
-#: lib/notifier.js:142
+#: lib/notifier.js:129
 msgid "Charging Mode is set to Adaptive"
 msgstr "Режим заряджання: Адаптивний"
 

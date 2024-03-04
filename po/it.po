@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: unnamed project\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-06 16:27-0800\n"
+"POT-Creation-Date: 2024-03-04 08:49-0800\n"
 "PO-Revision-Date: 2024-02-25 18:31+0100\n"
 "Last-Translator: Albano Battistella <albanobattistella@gmail.com>\n"
 "Language-Team: Italian <>\n"
@@ -20,23 +20,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.2.2\n"
 
-#: lib/notifier.js:38
+#: lib/notifier.js:23
 msgid "Battery Health Charging"
 msgstr "Battery Health Charging"
 
-#: lib/notifier.js:43
+#: lib/notifier.js:28
 msgid "Battery Health Charging Error"
 msgstr "Errore di Battery Health Charging"
 
-#: lib/notifier.js:56 ui/general.ui:9
+#: lib/notifier.js:40 ui/general.ui:9
 msgid "Settings"
 msgstr "Impostazioni"
 
-#: lib/notifier.js:60
+#: lib/notifier.js:44
 msgid "Show details"
 msgstr "Mostra dettagli"
 
-#: lib/notifier.js:72
+#: lib/notifier.js:59
 msgid ""
 "Unsupported device.\n"
 "This extension is not compatible with your device."
@@ -44,37 +44,37 @@ msgstr ""
 "Dispositivo non supportato.\n"
 "Questa estensione non è compatibile con il tuo dispositivo."
 
-#: lib/notifier.js:74
+#: lib/notifier.js:61
 msgid "Missing dependencies"
 msgstr "Dipendenze mancanti"
 
-#: lib/notifier.js:78
+#: lib/notifier.js:65
 msgid "Please install polkit from extension settings under Installation."
 msgstr ""
 "Si prega di installare polkit dalle impostazioni dell'estensione in "
 "Installazione."
 
-#: lib/notifier.js:82
+#: lib/notifier.js:69
 msgid "Please update polkit from extension settings under Installation."
 msgstr ""
 "Si prega di aggiornare polkit dalle impostazioni dell'estensione in "
 "Installazione."
 
-#: lib/notifier.js:86
+#: lib/notifier.js:73
 #, javascript-format
 msgid "Encountered an unexpected error. (%s)"
 msgstr "È stato incontrato un errore inatteso. (%s)"
 
-#: lib/notifier.js:90
+#: lib/notifier.js:77
 #, javascript-format
 msgid "Charging threshold not updated. (%s)"
 msgstr "Impossibile modificare la soglia di ricarica. (%s)"
 
-#: lib/notifier.js:94
+#: lib/notifier.js:81
 msgid "Apply correct Bios Password to set threshold."
 msgstr "Applicare la password del BIOS corretta per impostare la soglia."
 
-#: lib/notifier.js:98
+#: lib/notifier.js:85
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -84,12 +84,12 @@ msgstr ""
 "Le soglie di ricarica sono impostate a %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:103 lib/thresholdPanel.js:401
+#: lib/notifier.js:90 lib/thresholdPanel.js:401
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "Le soglie di ricarica sono impostate a %d / %d %%"
 
-#: lib/notifier.js:108
+#: lib/notifier.js:95
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -99,12 +99,12 @@ msgstr ""
 "Limite di ricarica impostato a %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:112 lib/thresholdPanel.js:405
+#: lib/notifier.js:99 lib/thresholdPanel.js:405
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "Limite di ricarica impostato a %d%%"
 
-#: lib/notifier.js:116
+#: lib/notifier.js:103
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -113,7 +113,7 @@ msgstr ""
 "Batteria 2\n"
 "Le soglie di ricarica sono impostate a %d / %d %%"
 
-#: lib/notifier.js:121
+#: lib/notifier.js:108
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -122,23 +122,23 @@ msgstr ""
 "Batteria 2\n"
 "Limite di ricarica impostato a %d%%"
 
-#: lib/notifier.js:126
+#: lib/notifier.js:113
 msgid "Charging Mode is set to Full Capacity"
 msgstr "La modalità di ricarica è impostata su Capacità massima"
 
-#: lib/notifier.js:130
+#: lib/notifier.js:117
 msgid "Charging Mode is set to Balanced"
 msgstr "La modalità di ricarica è impostata su Bilanciata"
 
-#: lib/notifier.js:134
+#: lib/notifier.js:121
 msgid "Charging Mode is set to Maximum Lifespan"
 msgstr "La modalità di ricarica è impostata su Ciclo di vita massimo"
 
-#: lib/notifier.js:138
+#: lib/notifier.js:125
 msgid "Charging Mode is set to Express"
 msgstr "La modalità di ricarica è impostata su Express"
 
-#: lib/notifier.js:142
+#: lib/notifier.js:129
 msgid "Charging Mode is set to Adaptive"
 msgstr "La modalità di ricarica è impostata su Adattiva"
 
@@ -436,15 +436,16 @@ msgstr "Autenticazione del BIOS"
 
 #: ui/dell.ui:30
 msgid "Requires Bios password validation to change mode/threshold"
-msgstr "Richiede la convalida della password del BIOS per modificare modalità/soglia"
+msgstr ""
+"Richiede la convalida della password del BIOS per modificare modalità/soglia"
 
 #: ui/dell.ui:31
 msgid ""
 "Enable if Dell command configure uses Bios (system) password to change mode/"
 "threshold"
 msgstr ""
-"Abilita se la configurazione del comando Dell utilizza la password del BIOS (sistema) per cambiare modalità/"
-"soglia"
+"Abilita se la configurazione del comando Dell utilizza la password del BIOS "
+"(sistema) per cambiare modalità/soglia"
 
 #: ui/dell.ui:43
 msgid "Enter Bios Password"
@@ -591,8 +592,8 @@ msgid ""
 "Enable option to force discharge battery when battery level higher than "
 "current threshold"
 msgstr ""
-"Abilita l'opzione per forzare lo scaricamento della batteria quando il livello della batteria è superiore alla "
-"soglia attuale"
+"Abilita l'opzione per forzare lo scaricamento della batteria quando il "
+"livello della batteria è superiore alla soglia attuale"
 
 #: ui/thresholdPrimary.ui:21 ui/thresholdSecondary.ui:21
 msgid "Customize"

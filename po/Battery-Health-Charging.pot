@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battery Health Charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-06 16:42-0800\n"
+"POT-Creation-Date: 2024-03-04 08:49-0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,55 +17,55 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: lib/notifier.js:38
+#: lib/notifier.js:23
 msgid "Battery Health Charging"
 msgstr ""
 
-#: lib/notifier.js:43
+#: lib/notifier.js:28
 msgid "Battery Health Charging Error"
 msgstr ""
 
-#: lib/notifier.js:56 ui/general.ui:9
+#: lib/notifier.js:40 ui/general.ui:9
 msgid "Settings"
 msgstr ""
 
-#: lib/notifier.js:60
+#: lib/notifier.js:44
 msgid "Show details"
 msgstr ""
 
-#: lib/notifier.js:72
+#: lib/notifier.js:59
 msgid ""
 "Unsupported device.\n"
 "This extension is not compatible with your device."
 msgstr ""
 
-#: lib/notifier.js:74
+#: lib/notifier.js:61
 msgid "Missing dependencies"
 msgstr ""
 
-#: lib/notifier.js:78
+#: lib/notifier.js:65
 msgid "Please install polkit from extension settings under Installation."
 msgstr ""
 
-#: lib/notifier.js:82
+#: lib/notifier.js:69
 msgid "Please update polkit from extension settings under Installation."
 msgstr ""
 
-#: lib/notifier.js:86
+#: lib/notifier.js:73
 #, javascript-format
 msgid "Encountered an unexpected error. (%s)"
 msgstr ""
 
-#: lib/notifier.js:90
+#: lib/notifier.js:77
 #, javascript-format
 msgid "Charging threshold not updated. (%s)"
 msgstr ""
 
-#: lib/notifier.js:94
+#: lib/notifier.js:81
 msgid "Apply correct Bios Password to set threshold."
 msgstr ""
 
-#: lib/notifier.js:98
+#: lib/notifier.js:85
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -73,55 +73,55 @@ msgid ""
 msgstr ""
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:103 lib/thresholdPanel.js:401
+#: lib/notifier.js:90 lib/thresholdPanel.js:401
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
+msgstr ""
+
+#: lib/notifier.js:95
+#, javascript-format
+msgid ""
+"Battery 1\n"
+"Charging Limit is set to %d%%"
+msgstr ""
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/notifier.js:99 lib/thresholdPanel.js:405
+#, javascript-format
+msgid "Charging Limit is set to %d%%"
+msgstr ""
+
+#: lib/notifier.js:103
+#, javascript-format
+msgid ""
+"Battery 2\n"
+"Charge thresholds are set to %d / %d %%"
 msgstr ""
 
 #: lib/notifier.js:108
 #, javascript-format
 msgid ""
-"Battery 1\n"
-"Charging Limit is set to %d%%"
-msgstr ""
-
-#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:112 lib/thresholdPanel.js:405
-#, javascript-format
-msgid "Charging Limit is set to %d%%"
-msgstr ""
-
-#: lib/notifier.js:116
-#, javascript-format
-msgid ""
-"Battery 2\n"
-"Charge thresholds are set to %d / %d %%"
-msgstr ""
-
-#: lib/notifier.js:121
-#, javascript-format
-msgid ""
 "Battery 2\n"
 "Charging Limit is set to %d%%"
 msgstr ""
 
-#: lib/notifier.js:126
+#: lib/notifier.js:113
 msgid "Charging Mode is set to Full Capacity"
 msgstr ""
 
-#: lib/notifier.js:130
+#: lib/notifier.js:117
 msgid "Charging Mode is set to Balanced"
 msgstr ""
 
-#: lib/notifier.js:134
+#: lib/notifier.js:121
 msgid "Charging Mode is set to Maximum Lifespan"
 msgstr ""
 
-#: lib/notifier.js:138
+#: lib/notifier.js:125
 msgid "Charging Mode is set to Express"
 msgstr ""
 
-#: lib/notifier.js:142
+#: lib/notifier.js:129
 msgid "Charging Mode is set to Adaptive"
 msgstr ""
 
