@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-02-06 16:27-0800\n"
+"POT-Creation-Date: 2024-03-04 09:05-0800\n"
 "PO-Revision-Date: 2023-12-11 21:12-0800\n"
 "Last-Translator: \n"
 "Language-Team: Polish\n"
@@ -26,23 +26,27 @@ msgstr ""
 "X-Crowdin-File-ID: 41\n"
 "X-Generator: Poedit 3.4.1\n"
 
-#: lib/notifier.js:35
+#: lib/notifier.js:29
 msgid "Battery Health Charging"
 msgstr "Battery Health Charging"
 
-#: lib/notifier.js:40
+#: lib/notifier.js:29
+msgid "Mode updated"
+msgstr ""
+
+#: lib/notifier.js:34
 msgid "Battery Health Charging Error"
 msgstr "Błąd Battery Health Charging"
 
-#: lib/notifier.js:53 ui/general.ui:9
+#: lib/notifier.js:55 ui/general.ui:9
 msgid "Settings"
 msgstr "Ustawienia"
 
-#: lib/notifier.js:57
+#: lib/notifier.js:59
 msgid "Show details"
 msgstr "Wyświetl szczegóły"
 
-#: lib/notifier.js:69
+#: lib/notifier.js:76
 msgid ""
 "Unsupported device.\n"
 "This extension is not compatible with your device."
@@ -50,33 +54,33 @@ msgstr ""
 "Nieobsługiwane urządzenie.\n"
 "To rozszerzenie nie jest kompatybilne z twoim urządzeniem."
 
-#: lib/notifier.js:71
+#: lib/notifier.js:78
 msgid "Missing dependencies"
 msgstr "Brakujące zależności"
 
-#: lib/notifier.js:75
+#: lib/notifier.js:82
 msgid "Please install polkit from extension settings under Installation."
 msgstr "Zainstaluj polkit z ustawień rozszerzenia w Instalacji."
 
-#: lib/notifier.js:79
+#: lib/notifier.js:86
 msgid "Please update polkit from extension settings under Installation."
 msgstr "Proszę zaktualizować polkit z ustawień rozszerzenia w Instalacji."
 
-#: lib/notifier.js:83
+#: lib/notifier.js:90
 #, javascript-format
 msgid "Encountered an unexpected error. (%s)"
 msgstr "Ładowanie baterii napotkało nieoczekiwany błąd. (%s)"
 
-#: lib/notifier.js:87
+#: lib/notifier.js:94
 #, javascript-format
 msgid "Charging threshold not updated. (%s)"
 msgstr "Zatrzymaj ładowanie wartości progowej. (%s)"
 
-#: lib/notifier.js:91
+#: lib/notifier.js:98
 msgid "Apply correct Bios Password to set threshold."
 msgstr ""
 
-#: lib/notifier.js:95
+#: lib/notifier.js:102
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -86,12 +90,12 @@ msgstr ""
 "Progi ładowania ustawione na %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:100 lib/thresholdPanel.js:366
+#: lib/notifier.js:107 lib/thresholdPanel.js:366
 #, javascript-format
 msgid "Charge thresholds are set to %d / %d %%"
 msgstr "Progi ładowania ustawione na %d / %d %%"
 
-#: lib/notifier.js:105
+#: lib/notifier.js:112
 #, javascript-format
 msgid ""
 "Battery 1\n"
@@ -101,12 +105,12 @@ msgstr ""
 "Limit ładowania ustawiony na %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
-#: lib/notifier.js:109 lib/thresholdPanel.js:370
+#: lib/notifier.js:116 lib/thresholdPanel.js:370
 #, javascript-format
 msgid "Charging Limit is set to %d%%"
 msgstr "Limit ładowania ustawiony na %d%%"
 
-#: lib/notifier.js:113
+#: lib/notifier.js:120
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -115,7 +119,7 @@ msgstr ""
 "Bateria 2\n"
 "Progi ładowania ustawione na %d / %d %%"
 
-#: lib/notifier.js:118
+#: lib/notifier.js:125
 #, javascript-format
 msgid ""
 "Battery 2\n"
@@ -124,23 +128,23 @@ msgstr ""
 "Bateria 2\n"
 "Limit ładowania ustawiony na %d%%"
 
-#: lib/notifier.js:123
+#: lib/notifier.js:130
 msgid "Charging Mode is set to Full Capacity"
 msgstr "Tryb ładowania jest ustawiony na Do pełna"
 
-#: lib/notifier.js:127
+#: lib/notifier.js:134
 msgid "Charging Mode is set to Balanced"
 msgstr "Tryb ładowania jest ustawiony na Zrównoważony"
 
-#: lib/notifier.js:131
+#: lib/notifier.js:138
 msgid "Charging Mode is set to Maximum Lifespan"
 msgstr "Tryb ładowania jest ustawiony na Ekonomiczny"
 
-#: lib/notifier.js:135
+#: lib/notifier.js:142
 msgid "Charging Mode is set to Express"
 msgstr "Tryb ładowania jest ustawiony na Ekspresowy"
 
-#: lib/notifier.js:139
+#: lib/notifier.js:146
 msgid "Charging Mode is set to Adaptive"
 msgstr "Tryb ładowania jest ustawiony na Adaptacyjny"
 
