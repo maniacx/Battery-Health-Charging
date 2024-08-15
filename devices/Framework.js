@@ -4,7 +4,7 @@ import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import * as Helper from '../lib/helper.js';
 
-const {fileExists, readFileInt, runCommandCtl} = Helper;
+const {fileExists, readFileInt,readFile, runCommandCtl} = Helper;
 
 const VENDOR_FRAMEWORK = '/sys/devices/platform/framework_laptop';
 const BAT1_END_PATH = '/sys/class/power_supply/BAT1/charge_control_end_threshold';
@@ -41,6 +41,9 @@ export const FrameworkSingleBatteryBAT1 = GObject.registerClass({
     }
 
     isAvailable() {
+        // check if framework_tool is installed and check if is framework laptop
+        if (fileExists("/usr/bin/framework_tool") && readFile('/sys/devices/virtual/dmi/id/sys_vendor').includes("Framework"))
+            return true;
         if (!fileExists(VENDOR_FRAMEWORK))
             return false;
         if (!fileExists(BAT1_END_PATH))
@@ -52,16 +55,26 @@ export const FrameworkSingleBatteryBAT1 = GObject.registerClass({
         this._status = 0;
         const ctlPath = this._settings.get_string('ctl-path');
         this._endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
-        if (this._verifyThreshold())
+        
+        if (await this._verifyThreshold())
             return this._status;
-        [this._status] = await runCommandCtl(ctlPath, 'BAT1_END', `${this._endValue}`, null, null);
+
+        //if framework tool exists, use it
+        if(fileExists("/usr/bin/framework_tool"))
+            [this._status] = await runCommandCtl(ctlPath, 'FRAMEWORK_TOOL_SET_END', `${this._endValue}`,null, null)
+        else
+            [this._status] = await runCommandCtl(ctlPath, 'BAT1_END', `${this._endValue}`, null, null);
+
+
         if (this._status === 0) {
-            if (this._verifyThreshold())
+            if (await this._verifyThreshold())
                 return this._status;
         }
+        
 
         if (this._delayReadTimeoutId)
             GLib.source_remove(this._delayReadTimeoutId);
+        
         this._delayReadTimeoutId = null;
 
         this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
@@ -69,11 +82,29 @@ export const FrameworkSingleBatteryBAT1 = GObject.registerClass({
             this._delayReadTimeoutId = null;
             return GLib.SOURCE_REMOVE;
         });
+   
+
         return this._status;
     }
 
-    _verifyThreshold() {
-        this.endLimitValue = readFileInt(BAT1_END_PATH);
+    async _verifyThreshold() {
+
+        //if framework tool exists, use it
+        if(fileExists("/usr/bin/framework_tool"))
+        {
+            const ctlPath = this._settings.get_string('ctl-path');
+
+            this._stdout = "";
+            [this._status,this._stdout] = await runCommandCtl(ctlPath, 'FRAMEWORK_TOOL_GET_END', null,null, null)
+            if(this._status === 0)
+                this.endLimitValue = parseInt(this._stdout.split(" ")[3].slice(0,-1));
+            else
+                return false;
+
+        }
+        else
+            this.endLimitValue = readFileInt(BAT1_END_PATH);
+        
         if (this._endValue === this.endLimitValue) {
             this.emit('threshold-applied', 'success');
             return true;
@@ -81,9 +112,10 @@ export const FrameworkSingleBatteryBAT1 = GObject.registerClass({
         return false;
     }
 
-    _reVerifyThreshold() {
+
+    async _reVerifyThreshold() {
         if (this._status === 0) {
-            if (this._verifyThreshold())
+            if (await this._verifyThreshold())
                 return;
         }
         this.emit('threshold-applied', 'failed');
@@ -95,5 +127,4 @@ export const FrameworkSingleBatteryBAT1 = GObject.registerClass({
         this._delayReadTimeoutId = null;
     }
 });
-
 

@@ -256,6 +256,22 @@ case "$TOOLCMD" in
         echo "$ARG1" > "$CMB1_END_PATH"
         exit ${EXIT_SUCCESS}
         ;;
+    FRAMEWORK_TOOL_GET_END)
+        if [ -e "/dev/cros_ec" ];then
+            framework_tool --driver cros-ec --charge-limit
+        else
+            framework_tool --driver portio --charge-limit
+        fi
+        exit ${EXIT_SUCCESS}
+        ;;
+    FRAMEWORK_TOOL_SET_END)
+        if [ -e "/dev/cros_ec" ];then
+            framework_tool --driver cros-ec --charge-limit "$ARG1"
+        else
+            framework_tool --driver portio --charge-limit "$ARG1"
+        fi
+        exit ${EXIT_SUCCESS}
+        ;;
     CHECKINSTALLATION)
         printf -v versions '%s\n%s' "$(pkaction --version | cut -d' ' -f3)" "0.106"
         if [[ $versions != "$(sort -V <<< "$versions")" ]];then
