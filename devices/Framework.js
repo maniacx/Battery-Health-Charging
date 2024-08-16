@@ -42,7 +42,7 @@ export const FrameworkSingleBatteryBAT1 = GObject.registerClass({
 
     isAvailable() {
         // check if framework_tool is installed and check if is framework laptop
-        if (fileExists("/usr/bin/framework_tool") && readFile('/sys/devices/virtual/dmi/id/sys_vendor').includes("Framework"))
+        if (GLib.find_program_in_path('framework_tool') && readFile('/sys/devices/virtual/dmi/id/sys_vendor').includes("Framework"))
             return true;
         if (!fileExists(VENDOR_FRAMEWORK))
             return false;
@@ -60,7 +60,7 @@ export const FrameworkSingleBatteryBAT1 = GObject.registerClass({
             return this._status;
 
         //if framework tool exists, use it
-        if(fileExists("/usr/bin/framework_tool"))
+        if(GLib.find_program_in_path('framework_tool'))
             [this._status] = await runCommandCtl(ctlPath, 'FRAMEWORK_TOOL_SET_END', `${this._endValue}`,null, null)
         else
             [this._status] = await runCommandCtl(ctlPath, 'BAT1_END', `${this._endValue}`, null, null);
@@ -90,7 +90,7 @@ export const FrameworkSingleBatteryBAT1 = GObject.registerClass({
     async _verifyThreshold() {
 
         //if framework tool exists, use it
-        if(fileExists("/usr/bin/framework_tool"))
+        if(GLib.find_program_in_path('/usr/bin/framework_tool'))
         {
             const ctlPath = this._settings.get_string('ctl-path');
 
