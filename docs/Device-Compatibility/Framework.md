@@ -24,13 +24,16 @@ permalink: /device-compatibility/framework
 * Each preset threshold value can be customized between 100-80 %, 85-65 %, and 85-50 % respectively.
 
 ## Dependencies
-Depends on separate kernel module `framework-laptop-kmod`, that need to be installed.<br>
+Use one of the two dependencies: the framework-laptop-kmod kernel module or the official framework_tool package.
+* kernel module: `framework-laptop-kmod`. <br>
 <https://github.com/DHowett/framework-laptop-kmod>
+* framework_tool package
+<https://github.com/FrameworkComputer/framework-system>
 
 {: .note }
-`framework-laptop-kmod` module is supported by a third party and this extension/author is not in any way responsible for the kernel module installation, bugs or damages.
+`framework-laptop-kmod` and `framework_tool`are supported by a third party and this extension/author is not in any way responsible for the kernel module installation, bugs or damages.
 
-## Testing charging threshold using command-line
+## Testing charging threshold with framework-laptop-kmod installed using command-line
 After installing `framework-laptop-kmod` below sysfs path will be available and charging threshold/mode can be changed.
 Now user will be able to set charging threshold, using commandline and test charging behavior.
 Charging mode can be set by using  `echo` command in `terminal`.
@@ -59,6 +62,14 @@ cat /sys/class/power_supply/BAT1/charge_control_end_threshold
 > * Accepted values for `charge_control_end_threshold` : 1 - 100
 
 If charging threshold are applied successfully using above commands, the extension is compatible.
+
+## Testing charging threshold with framework_tool installed using command-line
+Require root privileges
+{: .label .label-yellow .mt-0}
+If drivers use may be `cros_ec` or `portio`, so choose accordingly.
+```bash
+pkexec /usr/bin/framework_tool --driver portio --charge-limit 60
+```
 
 ## Quick Settings
 <br>

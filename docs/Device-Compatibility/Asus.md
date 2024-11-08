@@ -74,4 +74,13 @@ If charging threshold are applied successfully using above commands, the extensi
 <img src="../assets/images/device-compatibility/asus/settings.png" width="100%">
 
 
+## Skip Threshold Verification
+<img src="./assets/images/home/prefs-device.png" width="100%">
+
+Some Asus laptops exhibit inconsistent behavior:
+* They can set and store threshold values but fail to report the correct threshold when read.
+* They may report incorrect values after sleep or hibernation.
+
+This can cause the extension to display an error notification for the user.
+Enable this feature to prevent the extension from reading and verifying the threshold.
 
