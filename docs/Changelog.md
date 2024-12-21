@@ -7,6 +7,33 @@ permalink: /changelogs
 
 # Changelogs
 
+
+{: .important-title }
+> GN-45_Version 67 &emsp;&emsp; Dec 22, 2024
+> * Dell: Added support to change threshold through sysfs introduced in newer kernels
+> * Framework: Added support to change threshold using framework tool
+> * Add support for Chromebook  to change threshold using ectool and sysfs in newer kernel
+> * Asus: Add skip threshold verification settings.
+> * Bug fixes, Optimization, Security fixes and better notification when extension error out
+> * Notification when setting threshold takes longer than 5 seconds
+> * translation updates: French: credits: damienflament
+> * translation updates: Hungarian: credits: ViBE-HU
+> * translation updates: Traditional Chinese: credits: PeterDaveHello
+> * translation updates: Simplified Chinese: credits: YSXX1013
+
+{: .note-title }
+> GN-44_Version 66 &emsp;&emsp; Dec 22, 2024
+> * Dell: Added support to change threshold through sysfs introduced in newer kernels
+> * Framework: Added support to change threshold using framework tool
+> * Add support for Chromebook  to change threshold using ectool and sysfs in newer kernel
+> * Asus: Add skip threshold verification settings.
+> * Bug fixes, Optimization, Security fixes and better notification when extension error out
+> * Notification when setting threshold takes longer than 5 seconds
+> * translation updates: French: credits: damienflament
+> * translation updates: Hungarian: credits: ViBE-HU
+> * translation updates: Traditional Chinese: credits: PeterDaveHello
+> * translation updates: Simplified Chinese: credits: YSXX1013
+
 {: .important-title }
 > GN-45_Version 65 &emsp;&emsp; Sep 15, 2024
 > * Add support for Gnome-shell 47
