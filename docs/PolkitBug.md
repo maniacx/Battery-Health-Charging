@@ -31,13 +31,18 @@ permalink: /polkitbug
 
 ## Workaround: Use sudo Instead of pkexec
 
-To resolve this issue, replace `pkexec` with `sudo` for commands setting the threshold. This requires creating an exemption to allow `batteryhealthchargingctl` to run with `sudo` without requiring a password. This can be done **manually** or using the provided **bash script**.
+To resolve this issue, replace `pkexec` with `sudo` for commands setting the threshold. This requires creating an exemption to allow `batteryhealthchargingctl` to run with `sudo` without requiring a password. 
+This can be done:
+* **Using bash script provided**.
+or
+* **Do it yourself by editing sudo config files and extension files manually**
 
 <br>
 
 ## Workaround Using the Script
 
-[Download script](https://github.com/maniacx/Battery-Health-Charging/blob/Documentation/battery-health-charging-resources/downloads/bhc_patch.zip){: .btn .btn-blue .button2-fixed-width}<br>
+[Download script](https://raw.githubusercontent.com/maniacx/Battery-Health-Charging/Documentation/battery-health-charging-resources/downloads/bhc_patch.zip){: .btn .btn-blue .button2-fixed-width}<br>
+
 
 ### Note
 Some systems, like Debian, do not add users to the `sudo` group by default. If prompted, use `su` instead of `sudo` to update the configuration.
