@@ -38,6 +38,7 @@ busctl --user call org.gnome.Shell.Extensions /org/gnome/Shell/Extensions org.gn
 * Installation from sources is not recommended but can be done for debugging or testing new updates not yet submitted to Gnome Extension.
 * A prerequisite is that gettext needs to be installed.
 * Run `./install.sh` from terminal to install.
+* Restart GNOME Shell by logging out and logging back in. Alternatively, on Xorg, you can restart GNOME Shell using `Alt + F2`, then typing `r`, and pressing Enter.
 
 
 ## Uninstallation
