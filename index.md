@@ -24,7 +24,7 @@ permalink: /
 {: .important-title }
 > Currently supported on Gnome Versions:
 > 
-> `42, 43, 44, 45, 46, 47`
+> `42, 43, 44, 45, 46, 47, 48`
 
 **Battery Health Charging is a Gnome Extension that provides a graphical user interface for setting a laptop's charging limit (charging threshold) within a Gnome environment.**
 <br>

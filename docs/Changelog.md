@@ -7,6 +7,17 @@ permalink: /changelogs
 
 # Changelogs
 
+{: .important-title }
+> GN-45_Version 72 &emsp;&emsp; Mar 01, 2025
+> * translation updates: Hungarian: credits: ViBE-HU
+> * Update Italian translation. Credits: albanobattistella
+> * Chromebook: Add support for cros_ec charge control driver changes for V2 systems
+
+{: .note-title }
+> GN-44_Version 71 &emsp;&emsp; Mar 01, 2025
+> * translation updates: Hungarian: credits: ViBE-HU
+> * Update Italian translation. Credits: albanobattistella
+> * Chromebook: Add support for cros_ec charge control driver changes for V2 systems
 
 {: .important-title }
 > GN-45_Version 67 &emsp;&emsp; Dec 22, 2024
