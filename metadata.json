@@ -3,7 +3,7 @@
   "name": "Battery Health Charging",
   "description": "Set battery charging threshold / charging limit / charging mode\nBattery Health Charging: An extension to maximize the battery life of laptops by setting their charging threshold or modes.\n\nCompatibility (no dependencies required):\n- Asus\n- LG\n- Samsung\n- Sony/Vaio\n- Huawei\n- Toshiba/Dynabook\n- System76\n- Lenovo (Ideapad, Legion)\n- Thinkpad\n- Panasonic\n- Fujitsu\n- Dell (recent kernel)\n- Chromebook (recent kernel)\n\nCompatibility with dependencies\n- Acer (kernel module)\n- MSI (older kernel requires kernel module)\n- Tuxedo (kernel module)\n- Slimbook (kernel module)\n- Tuxedo IntelQC71 (kernel module)\n- XMG IntelQC71 (kernel module)\n- Eluktronics IntelQC71 (kernel module)\n- Purism Librem (kernel module)\n- Gigabyte Aero/Aorus (kernel module)\n- Dell (older kernel requires libsmbios/Dell Command Configure)\n- Apple Macbook Intel-series chip (kernel module)\n- Apple Macbook M-series chip (custom kernel)\n- Razer (package razer-cli)\n- Framework (kernel module / package: framework_tool)\n- Chromebook (older kernel requires package ectool)\n\nNot all models are comaptible. Please read about the compatibility and dependencies of your device on github link below.\n\nhttps://maniacx.github.io/Battery-Health-Charging/",
   "url": "https://github.com/maniacx/Battery-Health-Charging",
-    "shell-version": [ "45", "46", "47" ],
+    "shell-version": [ "45", "46", "47", "48"],
   "session-modes": ["user", "unlock-dialog"],
   "version": 69,
   "settings-schema": "org.gnome.shell.extensions.Battery-Health-Charging",
