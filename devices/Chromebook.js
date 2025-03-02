@@ -147,10 +147,10 @@ var ChromebookSingleBattery = GObject.registerClass({
         await new Promise(resolve => {
             this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
                 resolve();
+                this._delayReadTimeoutId = null;
                 return GLib.SOURCE_REMOVE;
             });
         });
-        this._delayReadTimeoutId = null;
 
         if (this._verifySysFsThreshold())
             return exitCode.SUCCESS;
@@ -284,10 +284,10 @@ var ChromebookSingleBatteryV2 = GObject.registerClass({
         await new Promise(resolve => {
             this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
                 resolve();
+                this._delayReadTimeoutId = null;
                 return GLib.SOURCE_REMOVE;
             });
         });
-        this._delayReadTimeoutId = null;
 
         if (this._verifyThreshold())
             return exitCode.SUCCESS;
