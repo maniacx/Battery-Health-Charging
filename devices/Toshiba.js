@@ -74,10 +74,10 @@ export const ToshibaSingleBatteryBAT0 = GObject.registerClass({
         await new Promise(resolve => {
             this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
                 resolve();
+                this._delayReadTimeoutId = null;
                 return GLib.SOURCE_REMOVE;
             });
         });
-        this._delayReadTimeoutId = null;
 
         this.endLimitValue = readFileInt(BAT0_END_PATH);
         if (endValue === this.endLimitValue) {
@@ -161,10 +161,10 @@ export const ToshibaSingleBatteryBAT1 = GObject.registerClass({
         await new Promise(resolve => {
             this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
                 resolve();
+                this._delayReadTimeoutId = null;
                 return GLib.SOURCE_REMOVE;
             });
         });
-        this._delayReadTimeoutId = null;
 
         this.endLimitValue = readFileInt(BAT1_END_PATH);
         if (endValue === this.endLimitValue) {
