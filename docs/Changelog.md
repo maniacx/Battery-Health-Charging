@@ -8,6 +8,14 @@ permalink: /changelogs
 # Changelogs
 
 {: .important-title }
+> GN-45_Version 74 &emsp;&emsp; Mar 02, 2025
+> * improve readablity
+
+{: .note-title }
+> GN-44_Version 73 &emsp;&emsp; Mar 02, 2025
+> * improve readablity
+
+{: .important-title }
 > GN-45_Version 72 &emsp;&emsp; Mar 01, 2025
 > * translation updates: Hungarian: credits: ViBE-HU
 > * Update Italian translation. Credits: albanobattistella
