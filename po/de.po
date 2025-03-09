@@ -68,11 +68,11 @@ msgstr ""
 
 #: lib/notifier.js:99
 msgid "Install check failed."
-msgstr ""
+msgstr "Installationsprüfung fehlgeschlagen."
 
 #: lib/notifier.js:103
 msgid "Install check timed out."
-msgstr ""
+msgstr "Zeitüberschreitung bei der Installationsprüfung."
 
 #: lib/notifier.js:107
 #, javascript-format
@@ -82,17 +82,17 @@ msgstr "Battery Health Charging ist auf ein Problem gestoßen. (%s)"
 #: lib/notifier.js:111
 #, javascript-format
 msgid "Charging threshold not updated. (%s)"
-msgstr "Schwelle zum Stoppen des Batterieladens. (%s)"
+msgstr "Batterieladeschwelle nicht festgelegt. (%s)"
 
 #: lib/notifier.js:115
 #, javascript-format
 msgid "Threshold update process timed out. (%s)"
-msgstr ""
+msgstr "Zeitüberschreitung beim Festlegen des Schwellenwertes. (%s)"
 
 #: lib/notifier.js:119
 msgid "Apply correct Bios Password to set threshold."
 msgstr ""
-"Wenden Sie das richtige BIOS-Passwort an, um den Schwellenwert einzustellen."
+"Verwenden Sie das richtige BIOS-Passwort, um den Schwellenwert festzulegen."
 
 #: lib/notifier.js:123
 #, javascript-format
@@ -100,7 +100,7 @@ msgid ""
 "Battery 1\n"
 "Charge thresholds are set to %d / %d %%"
 msgstr ""
-"Batterie 1\n"
+"Akku 1\n"
 "Batterieladeschwellen: %d / %d %%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
@@ -115,7 +115,7 @@ msgid ""
 "Battery 1\n"
 "Charging Limit is set to %d%%"
 msgstr ""
-"Batterie 1\n"
+"Akku 1\n"
 "Batterieladeschwelle: %d%%"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
@@ -130,7 +130,7 @@ msgid ""
 "Battery 2\n"
 "Charge thresholds are set to %d / %d %%"
 msgstr ""
-"Batterie 2\n"
+"Akku 2\n"
 "Batterieladeschwellen: %d / %d %%"
 
 #: lib/notifier.js:146
@@ -139,34 +139,37 @@ msgid ""
 "Battery 2\n"
 "Charging Limit is set to %d%%"
 msgstr ""
-"Batterie 2\n"
+"Akku 2\n"
 "Batterieladeschwelle: %d%%"
 
 #: lib/notifier.js:151
 msgid "Charging Mode is set to Full Capacity"
-msgstr "Lademodus ist auf Volle Kapazität gesetzt"
+msgstr "Lademodus ist auf Volle Kapazität festgelegt"
 
 #: lib/notifier.js:155
 msgid "Charging Mode is set to Balanced"
-msgstr "Lademodus ist auf Ausgeglichen gesetzt"
+msgstr "Lademodus ist auf Ausgeglichen festgelegt"
 
 #: lib/notifier.js:159
 msgid "Charging Mode is set to Maximum Lifespan"
-msgstr "Lademodus ist auf Maximale Lebensdauer gesetzt"
+msgstr "Lademodus ist auf Maximale Lebensdauer festgelegt"
 
 #: lib/notifier.js:163
 msgid "Charging Mode is set to Express"
-msgstr "Lademodus ist auf Express gesetzt"
+msgstr "Lademodus ist auf Express festgelegt"
 
 #: lib/notifier.js:167
 msgid "Charging Mode is set to Adaptive"
-msgstr "Lademodus ist auf Anpassungsfähig gesetzt"
+msgstr "Lademodus ist auf Anpassungsfähig festgelegt"
 
 #: lib/notifier.js:171
 msgid ""
 "Threshold not applied: Battery level above 75%. Please unplug the charger "
 "and discharge the battery below 75% to apply the 80% limit."
 msgstr ""
+"Schwellenwert nicht festgelegt: Ladestand über 75%. Bitte Netzstecker "
+"entfernen und den Akku auf unter 75% entladen, um die Schwelle von 80% "
+"festzulegen."
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
 #: lib/thresholdPanel.js:24
@@ -219,12 +222,12 @@ msgstr "Express"
 #. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
 #: lib/thresholdPanel.js:319
 msgid "Battery Uninstalled"
-msgstr "Batterie deinstalliert"
+msgstr "Akku entfernt"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:329
 msgid "No Battery detected!"
-msgstr "Keine Batterie erkannt!"
+msgstr "Kein Akku erkannt!"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:343
@@ -335,7 +338,7 @@ msgid ""
 "switch to <b>Symbols Only</b> and this option will be disabled."
 msgstr ""
 "Wählen Sie den Symboltyp für Anzeige und Menü aus.\n"
-"Wenn in den Schwellenwerteinstellungen der Modus <b>Anpassen</b> ausgewählt "
+"Wenn in den Schwellenwerteinstellungen der Modus <b>Angepasst</b> ausgewählt "
 "ist, wechselt der Symboltyp zu <b>Nur Symbole</b> und diese Option wird "
 "deaktiviert."
 
@@ -349,7 +352,7 @@ msgstr "Entfernen"
 
 #: preferences/general.js:169
 msgid "Install"
-msgstr "Install"
+msgstr "Installieren"
 
 #: preferences/general.js:172
 msgid "Update"
@@ -390,7 +393,7 @@ msgstr "<i>Akzeptierter Wert: %d bis %d</i>"
 
 #: ui/about.ui:5
 msgid "About"
-msgstr "Über"
+msgstr "Info"
 
 #: ui/about.ui:97
 msgid "Report an Issue"
@@ -402,7 +405,7 @@ msgstr "Übersetzungen"
 
 #: ui/about.ui:136
 msgid "View sources on Github"
-msgstr "Quellcode anzeigen"
+msgstr "Quellcode auf GitHub anzeigen"
 
 #: ui/about.ui:153 ui/about.ui:271
 msgid "Legal"
@@ -607,11 +610,11 @@ msgstr ""
 
 #: ui/thresholdPrimary.ui:21 ui/thresholdSecondary.ui:21
 msgid "Customize"
-msgstr "Anpassen"
+msgstr "Angepasst"
 
 #: ui/thresholdPrimary.ui:27 ui/thresholdSecondary.ui:27
 msgid "Default"
-msgstr "Standard"
+msgstr "Voreinstellung"
 
 #: ui/thresholdPrimary.ui:47 ui/thresholdSecondary.ui:47
 msgid "Apply"
