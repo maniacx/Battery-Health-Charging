@@ -1,0 +1,627 @@
+# Danish translations for Battery Health package.
+# Copyright (C) 2025 maniacx@github.com
+# This file is distributed under the same license as the Battery Health Charging package.
+# Automatically generated, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Battery Health Charging\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-12-21 22:40-0800\n"
+"PO-Revision-Date: 2024-12-21 22:40-0800\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/notifier.js:19
+msgid "Battery Health Charging"
+msgstr "Battery Health Charging"
+
+#: lib/notifier.js:34
+msgid "Mode updated"
+msgstr "Tilstand opdateret"
+
+#: lib/notifier.js:39
+msgid "Battery Health Charging Error"
+msgstr "Battery Health Charging fejl"
+
+#: lib/notifier.js:60 ui/general.ui:9
+msgid "Settings"
+msgstr "Indstillinger"
+
+#: lib/notifier.js:64
+msgid "Show details"
+msgstr "Vis detaljer"
+
+#: lib/notifier.js:68 ui/about.ui:75
+msgid "Read me"
+msgstr "Instruktioner"
+
+#: lib/notifier.js:85
+msgid ""
+"Unsupported device.\n"
+"This extension is not compatible with your device."
+msgstr ""
+"Enhed ikke understøttet.\n"
+"Denne udvidelse understøtter ikke din enhed."
+
+#: lib/notifier.js:87
+msgid "Missing dependencies"
+msgstr "Manglende afhængigheder"
+
+#: lib/notifier.js:91
+msgid "Please install polkit from extension settings under Installation."
+msgstr "Installer venligst polkit fra udvidelsesindstillingerne under installation."
+
+#: lib/notifier.js:95
+msgid "Please update polkit from extension settings under Installation."
+msgstr "Opdater venligst polkit fra udvidelsesindstillingerne under installation."
+
+#: lib/notifier.js:99
+msgid "Install check failed."
+msgstr "Installationstjek fejlede."
+
+#: lib/notifier.js:103
+msgid "Install check timed out."
+msgstr "Installationstjek udløb."
+
+#: lib/notifier.js:107
+#, javascript-format
+msgid "Encountered an unexpected error. (%s)"
+msgstr "Der opstod en uventet fejl. (%s)"
+
+#: lib/notifier.js:111
+#, javascript-format
+msgid "Charging threshold not updated. (%s)"
+msgstr "Batteritærsklen blev ikke opdateret. (%s)"
+
+#: lib/notifier.js:115
+#, javascript-format
+msgid "Threshold update process timed out. (%s)"
+msgstr "Opdatering af tærsklen udløb. (%s)"
+
+#: lib/notifier.js:119
+msgid "Apply correct Bios Password to set threshold."
+msgstr "Anvend korrekt BIOS-adgangskode for at opdatere tærskel."
+
+#: lib/notifier.js:123
+#, javascript-format
+msgid ""
+"Battery 1\n"
+"Charge thresholds are set to %d / %d %%"
+msgstr ""
+"Batteri 1\n"
+"Batteritærskler er sat til %d / %d %%"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/notifier.js:128 lib/thresholdPanel.js:335
+#, javascript-format
+msgid "Charge thresholds are set to %d / %d %%"
+msgstr "Batteritærskler er sat til %d / %d %%"
+
+#: lib/notifier.js:133
+#, javascript-format
+msgid ""
+"Battery 1\n"
+"Charging Limit is set to %d%%"
+msgstr ""
+"Batteri 1\n"
+"Batterigrænsen er sat til %d%%"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/notifier.js:137 lib/thresholdPanel.js:339
+#, javascript-format
+msgid "Charging Limit is set to %d%%"
+msgstr "Batterigrænsen er sat til %d%%"
+
+#: lib/notifier.js:141
+#, javascript-format
+msgid ""
+"Battery 2\n"
+"Charge thresholds are set to %d / %d %%"
+msgstr "Batterigrænser er sat til %d / %d %%"
+
+#: lib/notifier.js:146
+#, javascript-format
+msgid ""
+"Battery 2\n"
+"Charging Limit is set to %d%%"
+msgstr ""
+"Batteri 2\n"
+"Batterigrænsen er sat til %d%%"
+
+#: lib/notifier.js:151
+msgid "Charging Mode is set to Full Capacity"
+msgstr "Ladetilstand er sat til fuld kapacitet"
+
+#: lib/notifier.js:155
+msgid "Charging Mode is set to Balanced"
+msgstr "Ladetilstand er sat til balanceret"
+
+#: lib/notifier.js:159
+msgid "Charging Mode is set to Maximum Lifespan"
+msgstr "Ladetilstand er sat til skånsom"
+
+#: lib/notifier.js:163
+msgid "Charging Mode is set to Express"
+msgstr "Ladetilstand er sat til ekspres"
+
+#: lib/notifier.js:167
+msgid "Charging Mode is set to Adaptive"
+msgstr "Ladetilstand er sat til adaptiv"
+
+#: lib/notifier.js:171
+msgid ""
+"Threshold not applied: Battery level above 75%. Please unplug the charger "
+"and discharge the battery below 75% to apply the 80% limit."
+msgstr ""
+"Tærskel ikke anvendt: Batteriniveau over 75%. Tag venligst laderen ud "
+"og aflad batteriet til under 75% for at anvende grænsen på 80%."
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
+#: lib/thresholdPanel.js:24
+msgid "Battery"
+msgstr "Batteri"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
+#: lib/thresholdPanel.js:26 preferences/thresholdPrimary.js:44
+msgid "Battery 1"
+msgstr "Batteri 1"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
+#: lib/thresholdPanel.js:28 ui/thresholdSecondary.ui:5
+msgid "Battery 2"
+msgstr "Batteri 2"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
+#: lib/thresholdPanel.js:32 lib/thresholdPanel.js:315
+msgid "Battery Charging Mode"
+msgstr "Ladetilstand"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:65 preferences/thresholdPrimary.js:204
+#: preferences/thresholdSecondary.js:199
+msgid "Full Capacity Mode"
+msgstr "Fuld kapacitet"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:71 preferences/thresholdPrimary.js:208
+#: preferences/thresholdSecondary.js:203
+msgid "Balanced Mode"
+msgstr "Balanceret"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:77 preferences/thresholdPrimary.js:212
+#: preferences/thresholdSecondary.js:207
+msgid "Maximum Lifespan Mode"
+msgstr "Skånsom"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:82
+msgid "Adaptive Mode"
+msgstr "Adaptiv"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:87
+msgid "Express Mode"
+msgstr "Ekspres"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  21 characters can be displayed here
+#: lib/thresholdPanel.js:319
+msgid "Battery Uninstalled"
+msgstr "Batteri afinstalleret"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:329
+msgid "No Battery detected!"
+msgstr "Batteri ikke fundet!"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:343
+msgid "Charging Mode: Full Capacity"
+msgstr "Ladetilstand: Fuld kapacitet"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:346
+msgid "Charging Mode: Balanced"
+msgstr "Ladetilstand: Balanceret"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:349
+msgid "Charging Mode: Maximum Lifespan"
+msgstr "Ladetilstand: Skånsom"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:352
+msgid "Charging Mode: Adaptive"
+msgstr "Ladetilstand: Adaptiv"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#: lib/thresholdPanel.js:355
+msgid "Charging Mode: Express"
+msgstr "Ladetilstand: Ekspres"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
+#: lib/thresholdPanel.js:397
+msgid "Uninstalled"
+msgstr "Afinstalleret"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
+#: lib/thresholdPanel.js:400
+msgid "Full Capacity"
+msgstr "Fuld kapacitet"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
+#: lib/thresholdPanel.js:403
+msgid "Balanced"
+msgstr "Balanceret"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
+#: lib/thresholdPanel.js:406
+msgid "Max Lifespan"
+msgstr "Skånsom"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
+#: lib/thresholdPanel.js:409
+msgid "Adaptive"
+msgstr "Adaptiv"
+
+#. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
+#: lib/thresholdPanel.js:412
+msgid "Express"
+msgstr "Ekspres"
+
+#: lib/thresholdPanel.js:449
+msgid "Force Discharge"
+msgstr "Tving afladning"
+
+#: preferences/about.js:39
+msgid "2023-2024"
+msgstr "2023-2024"
+
+#: preferences/about.js:40
+msgid "GNU General Public License, version 3 or later"
+msgstr "GNU General Public License, version 3 eller nyere"
+
+#: preferences/about.js:47
+#, javascript-format
+msgid "© %s %s"
+msgstr "© %s %s"
+
+#: preferences/about.js:48
+#, javascript-format
+msgid ""
+"This application comes with absolutely no warranty. See the <a "
+"href=\"%s\">%s</a> for details."
+msgstr ""
+"Dette program er uden garantier. Se <a "
+"href=\"%s\">%s</a> for detaljer"
+
+#: preferences/chromebook.js:20 preferences/dell.js:27
+#: preferences/framework.js:20
+msgid "Sysfs node"
+msgstr "Sysfs node"
+
+#: preferences/chromebook.js:21
+msgid "Ectool"
+msgstr "Ectool"
+
+#: preferences/dell.js:28
+msgid "Libsmbios"
+msgstr "Libsmbios"
+
+#: preferences/dell.js:29
+msgid "Dell Command Center"
+msgstr "Dell Command Center"
+
+#: preferences/framework.js:21
+msgid "Framework Tool"
+msgstr "Framework Tools"
+
+#: preferences/general.js:53
+msgid ""
+"Select the type of icon for indicator and menu.\n"
+"In threshold settings, if <b>Customise</b> mode is selected, icon type will "
+"switch to <b>Symbols Only</b> and this option will be disabled."
+msgstr ""
+"Vælg ikon for menu og indikator.\n"
+"I tærskel-indstillinger, hvis <b>tilpasset</b> tilstand er valgt, så vil ikontypen "
+"skifte til <b>kun symboler</b> og denne mulighed vil blive slået fra."
+
+#: preferences/general.js:55
+msgid "Select the type of icon for indicator and menu."
+msgstr "Vælg typen af ikon for menu og indikator."
+
+#: preferences/general.js:166
+msgid "Remove"
+msgstr "Fjern"
+
+#: preferences/general.js:169
+msgid "Install"
+msgstr "Installer"
+
+#: preferences/general.js:172
+msgid "Update"
+msgstr "Opdater"
+
+#: preferences/general.js:198
+msgid "Installation Successful."
+msgstr "Installation fuldført."
+
+#: preferences/general.js:201
+msgid "Uninstallation Successful."
+msgstr "Afinstallation fuldført."
+
+#: preferences/general.js:204
+msgid "Encountered an unexpected error."
+msgstr "Mødte en uventet fejl."
+
+#: preferences/thresholdPrimary.js:46
+msgid "Threshold"
+msgstr "Tærskel"
+
+#: preferences/thresholdPrimary.js:202 preferences/thresholdSecondary.js:197
+msgid "Full Capacity Mode (Currently Active)"
+msgstr "Fuld kapacitet (aktiv)"
+
+#: preferences/thresholdPrimary.js:206 preferences/thresholdSecondary.js:201
+msgid "Balanced Mode (Currently Active)"
+msgstr "Balanceret (aktiv)"
+
+#: preferences/thresholdPrimary.js:210 preferences/thresholdSecondary.js:205
+msgid "Maximum Lifespan Mode (Currently Active)"
+msgstr "Skånsom (aktiv)"
+
+#: preferences/thresholdPrimary.js:216 preferences/thresholdSecondary.js:211
+#, javascript-format
+msgid "<i>Accepted Value : %d to %d</i>"
+msgstr "<i>Accepteret værdi : %d to %d</i>"
+
+#: ui/about.ui:5
+msgid "About"
+msgstr "Om"
+
+#: ui/about.ui:97
+msgid "Report an Issue"
+msgstr "Rapporter en fejl"
+
+#: ui/about.ui:114 ui/about.ui:197
+msgid "Translations"
+msgstr "Oversættelser"
+
+#: ui/about.ui:136
+msgid "View sources on Github"
+msgstr "Vis kilder på GitHub"
+
+#: ui/about.ui:153 ui/about.ui:271
+msgid "Legal"
+msgstr "Juridisk"
+
+#: ui/about.ui:217
+msgid "Crowdin"
+msgstr "Crowdin"
+
+#: ui/about.ui:229
+msgid "Online Tutorials"
+msgstr "Online vejledninger"
+
+#: ui/apple.ui:5 ui/asus.ui:5 ui/chromebook.ui:5 ui/dell.ui:5 ui/framework.ui:5
+#: ui/thinkpad.ui:5
+msgid "Device"
+msgstr "Enhed"
+
+#: ui/apple.ui:9 ui/asus.ui:9 ui/chromebook.ui:9 ui/dell.ui:9 ui/framework.ui:9
+#: ui/thinkpad.ui:9
+msgid "Device settings"
+msgstr "Enhedsindstillinger"
+
+#: ui/apple.ui:12
+msgid "Change the behavior of charging indicator light"
+msgstr "Skift adfærd på indikatorlampen"
+
+#: ui/asus.ui:12 ui/thinkpad.ui:24
+msgid "Skip Threshold Verification"
+msgstr "Spring over verikation af tærskel"
+
+#: ui/asus.ui:13 ui/thinkpad.ui:25
+msgid ""
+"Due to firmware or kernel bugs, some laptops may report incorrect thresholds "
+"consistently or after restart, sleep, or hibernate. Enable this setting to "
+"force threshold updates if you encounter this issue."
+msgstr ""
+"På grund af firmware eller kernel fejl, kan visse laptops rapportere forkerte tærskler "
+"konsekvent eller efter genstart, slumring eller dvale. Slå denne indstilling til "
+"for at tvinge opdatering af tærskler hvis du har problemer med ovenstående."
+
+#: ui/chromebook.ui:12 ui/dell.ui:12 ui/framework.ui:12
+msgid "Select configuration for charging mode"
+msgstr "Vælg konfiguration af ladetilstand"
+
+#: ui/chromebook.ui:13 ui/dell.ui:13 ui/framework.ui:13
+msgid "Select configuration used for changing charging mode/threshold."
+msgstr "Vælg konfiguration til ændring af ladetilstand/tærskel."
+
+#: ui/dell.ui:26
+msgid "Bios Authentication"
+msgstr "BIOS-godkendelse"
+
+#: ui/dell.ui:29
+msgid "Requires Bios password validation to change mode/threshold"
+msgstr "Kræver valdering af BIOS-adgangskode for at ændre ladetilstand/tærskel"
+
+#: ui/dell.ui:30
+msgid ""
+"Enable if Dell command configure uses Bios (system) password to change mode/"
+"threshold"
+msgstr ""
+"Slå til hvis Dell-kommandokonfiguration bruger BIOS-adgangskode til at ændre tilstand/"
+"tærskel"
+
+#: ui/dell.ui:42
+msgid "Enter Bios Password"
+msgstr "Skriv BIOS-adgangskode"
+
+#: ui/dell.ui:43
+msgid "Note: Bios password will be stored in Gnome Keyring"
+msgstr "Note: BIOS-adgangskode vil blive gemt i GNOME-nøglering"
+
+#: ui/general.ui:5
+msgid "General"
+msgstr "Generelt"
+
+#: ui/general.ui:12
+msgid "Choose icon style"
+msgstr "Vælg ikonstil"
+
+#: ui/general.ui:24
+msgid "Show notifications"
+msgstr "Vis notifikationer"
+
+#: ui/general.ui:25
+msgid "Shows notifications when the threshold is changed."
+msgstr "Viser notifikationer når tærsklen bliver ændret"
+
+#: ui/general.ui:36
+msgid "Show preferences button"
+msgstr "Vis knap til indstillinger"
+
+#: ui/general.ui:37
+msgid "Adds a button to open extension preferences from quick settings panel."
+msgstr "Tilføjer en knap til at åbne udvidelsesindstillingerne fra hurtigpanelet."
+
+#: ui/general.ui:48
+msgid "Display subtitle with current mode on quick menu button"
+msgstr "Vis aktiv ladetilstand på knappen i hurtigpanelet"
+
+#: ui/general.ui:49
+msgid ""
+"Displays the current mode in the text form (subtitle) on the quick menu "
+"button."
+msgstr ""
+"Viser den nuværende ladetilstand i tekstform på knappen i hurtigpanelet "
+"."
+
+#: ui/general.ui:60
+msgid "Show system indicator"
+msgstr "Vis systemindikator"
+
+#: ui/general.ui:61
+msgid "Shows an icon in system tray."
+msgstr "Vis et ikon i systembakken"
+
+#: ui/general.ui:72
+msgid "Indicator index"
+msgstr "Indeks af indikator"
+
+#: ui/general.ui:73
+msgid "The position relative of indicator icon to other items."
+msgstr "Positionen af indikatoren relativt til andre. "
+
+#: ui/general.ui:89
+msgid "Change battery indicator icon behavior"
+msgstr "Skift indikatoradfærden."
+
+#: ui/general.ui:90
+msgid ""
+"Switches battery indicator icon to <b>charging</b> in the system tray and "
+"quick settings panel when device is plugged into power source, even when "
+"charging is disabled due to charge threshold."
+msgstr ""
+"Skifter batteriinidkatorikonet til <b>oplader</b> i systembakken og "
+"hurtigpanelet når enheden er tilsluttet en oplader, selv hvis "
+"opladning er slået fra pga. tærsklen."
+
+#: ui/general.ui:103
+msgid "Installation"
+msgstr "Installation"
+
+#: ui/general.ui:106
+msgid "Install privileges for this user"
+msgstr "Installer privilegier for denne bruger"
+
+#: ui/general.ui:107
+msgid "Install / Update / Remove"
+msgstr "Installer / opdater / afinstaller"
+
+#: ui/general.ui:110
+msgid ""
+"This device requires root privileges to change the charging limit. Setup a "
+"privileged script and give user access via polkit.\n"
+"\n"
+"<b>Root privileges are required</b> to install, update or remove the polkit "
+"policy script.\n"
+"\n"
+"<b>Install / Update </b> this polkit policy script and continue using this "
+"extension.\n"
+"<b>Remove</b> this polkit policy script before uninstalling this extension."
+msgstr ""
+"Denne enhed kræver rodadgang for at ændre tærsklen. Lav et "
+"priviligeret script og give brugeren adgang vha. polkit.\n"
+"\n"
+"<b>Rodadgang er påkrævet</b> for at installere, opdatere eller fjerne polkit "
+"policy script.\n"
+"\n"
+"<b>Installer / opdater </b> dette polkit policy script og fortsæt med at bruge "
+"denne udvidelse.\n"
+"<b>Fjern</b> dette polkit policy script før afinstallation af denne udvidelse."
+
+#: ui/general.ui:134
+msgid "Symbols Only"
+msgstr "Kun symboler"
+
+#: ui/general.ui:135
+msgid "Symbol and Percentage"
+msgstr "Symboler og procentdel"
+
+#: ui/general.ui:136
+msgid "Percentage Highlighted"
+msgstr "Fremhævet procentdel"
+
+#: ui/thinkpad.ui:12
+msgid "Enable force discharge battery feature (Experimental)"
+msgstr "Slå tvungen afladning af batteri til (eksperimentelt)"
+
+#: ui/thinkpad.ui:13
+msgid ""
+"Enable option to force discharge battery when battery level higher than "
+"current threshold"
+msgstr ""
+"Slå denne mulighed til for at tvinge afladning af batteri nå niveauet er højere "
+"end den nuværende tærskel"
+
+#: ui/thresholdPrimary.ui:21 ui/thresholdSecondary.ui:21
+msgid "Customize"
+msgstr "Tilpas"
+
+#: ui/thresholdPrimary.ui:27 ui/thresholdSecondary.ui:27
+msgid "Default"
+msgstr "Standard"
+
+#: ui/thresholdPrimary.ui:47 ui/thresholdSecondary.ui:47
+msgid "Apply"
+msgstr "Anvend"
+
+#: ui/thresholdPrimary.ui:54 ui/thresholdPrimary.ui:122
+#: ui/thresholdPrimary.ui:190 ui/thresholdSecondary.ui:54
+#: ui/thresholdSecondary.ui:122 ui/thresholdSecondary.ui:190
+msgid "Stop charging threshold value"
+msgstr "Stoptærskel"
+
+#: ui/thresholdPrimary.ui:67 ui/thresholdPrimary.ui:99
+#: ui/thresholdPrimary.ui:135 ui/thresholdPrimary.ui:167
+#: ui/thresholdPrimary.ui:203 ui/thresholdPrimary.ui:236
+#: ui/thresholdSecondary.ui:67 ui/thresholdSecondary.ui:99
+#: ui/thresholdSecondary.ui:135 ui/thresholdSecondary.ui:167
+#: ui/thresholdSecondary.ui:203 ui/thresholdSecondary.ui:236
+msgid "Current Value"
+msgstr "Nuværende værdi"
+
+#: ui/thresholdPrimary.ui:86 ui/thresholdPrimary.ui:154
+#: ui/thresholdPrimary.ui:223 ui/thresholdSecondary.ui:86
+#: ui/thresholdSecondary.ui:154 ui/thresholdSecondary.ui:223
+msgid "Start charging threshold value"
+msgstr "Starttærskel"
