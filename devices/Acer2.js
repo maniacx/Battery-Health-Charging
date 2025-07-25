@@ -1,5 +1,5 @@
 'use strict';
-/* Acer Laptops using dkms https://github.com/frederik-h/acer-wmi-battery */
+/* Acer Laptops using dkms https://github.com/maxco2/acer-battery-wmi */
 const {GLib, GObject} = imports.gi;
 const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
@@ -7,15 +7,15 @@ const Helper = Me.imports.lib.helper;
 
 const {exitCode, fileExists, readFileInt, runCommandCtl} = Helper;
 
-const ACER_PATH = '/sys/bus/wmi/drivers/acer-wmi-battery/health_mode';
+const ACER2_PATH = '/sys/devices/platform/acer_battery_wmi/acer_battery/health_mode';
 
-var AcerSingleBattery = GObject.registerClass({
+var Acer2SingleBattery = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
-}, class AcerSingleBattery extends GObject.Object {
+}, class Acer2SingleBattery extends GObject.Object {
     constructor(settings) {
         super();
-        this.name = 'Acer';
-        this.type = 17;
+        this.name = 'Acer2';
+        this.type = 39;
         this.deviceNeedRootPermission = true;
         this.deviceHaveDualBattery = false;
         this.deviceHaveStartThreshold = false;
@@ -32,7 +32,7 @@ var AcerSingleBattery = GObject.registerClass({
     }
 
     isAvailable() {
-        if (!fileExists(ACER_PATH))
+        if (!fileExists(ACER2_PATH))
             return false;
         return true;
     }
@@ -46,7 +46,7 @@ var AcerSingleBattery = GObject.registerClass({
         if (this._verifyThreshold())
             return exitCode.SUCCESS;
 
-        const [status] = await runCommandCtl(this.ctlPath, 'ACER', `${this._healthMode}`);
+        const [status] = await runCommandCtl(this.ctlPath, 'ACER2', `${this._healthMode}`);
         if (status === exitCode.ERROR) {
             this.emit('threshold-applied', 'error');
             return exitCode.ERROR;
@@ -78,7 +78,7 @@ var AcerSingleBattery = GObject.registerClass({
     }
 
     _verifyThreshold() {
-        const healthMode = readFileInt(ACER_PATH);
+        const healthMode = readFileInt(ACER2_PATH);
         this.endLimitValue = healthMode === 1 ? 80 : 100;
         if (this._healthMode === healthMode) {
             this.emit('threshold-applied', 'success');
