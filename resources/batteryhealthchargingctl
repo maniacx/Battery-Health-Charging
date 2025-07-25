@@ -15,6 +15,7 @@ SONY_HIGHSPEED_CHARGING_PATH='/sys/devices/platform/sony-laptop/battery_highspee
 HUAWEI_PATH='/sys/devices/platform/huawei-wmi/charge_control_thresholds'
 SAMSUNG_PATH='/sys/devices/platform/samsung/battery_life_extender'
 ACER_PATH='/sys/bus/wmi/drivers/acer-wmi-battery/health_mode'
+ACER2_PATH='/sys/devices/platform/acer_battery_wmi/acer_battery/health_mode'
 BATC_END_PATH='/sys/class/power_supply/BATC/charge_control_end_threshold'
 BATT_END_PATH='/sys/class/power_supply/BATT/charge_control_end_threshold'
 TP_BAT0_END='/sys/devices/platform/smapi/BAT0/stop_charge_thresh'
@@ -195,6 +196,10 @@ case "$TOOLCMD" in
         ;;
     ACER)
         echo "$ARG1" >"$ACER_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    ACER2)
+        echo "$ARG1" >"$ACER2_PATH" &&
             exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
         ;;
     PANASONIC)
