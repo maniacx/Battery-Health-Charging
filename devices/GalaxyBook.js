@@ -5,7 +5,7 @@ import * as Helper from '../lib/helper.js';
 
 const {exitCode, fileExists, readFileInt, runCommandCtl} = Helper;
 
-const VENDOR_GALAXYBOOK = '/sys/class/firmware-attributes/samsung-galaxybook';
+const VENDOR_GALAXYBOOK = '/sys/module/samsung_galaxybook';
 const BAT1_END_PATH = '/sys/class/power_supply/BAT1/charge_control_end_threshold';
 
 export const GalaxyBookSingleBatteryBAT1 = GObject.registerClass({
