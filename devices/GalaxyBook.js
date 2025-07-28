@@ -85,7 +85,8 @@ export const GalaxyBookSingleBatteryBAT1 = GObject.registerClass({
     }
 
     _verifyThreshold() {
-        this.endLimitValue = readFileInt(BAT1_END_PATH);
+        const endValue = readFileInt(BAT1_END_PATH);
+        this.endLimitValue = endValue === 0 ? 100 : endValue;
         if (this._endValue === this.endLimitValue) {
             this.emit('threshold-applied', 'success');
             return true;
