@@ -6,6 +6,7 @@ import * as Helper from '../lib/helper.js';
 const {exitCode, fileExists, readFileInt, runCommandCtl} = Helper;
 
 const VENDOR_GALAXYBOOK = '/sys/module/samsung_galaxybook';
+const VENDOR_GALAXYBOOK_MAINLINE = '/sys/class/firmware-attributes/samsung-galaxybook';
 const BAT1_END_PATH = '/sys/class/power_supply/BAT1/charge_control_end_threshold';
 
 export const GalaxyBookSingleBatteryBAT1 = GObject.registerClass({
@@ -44,6 +45,10 @@ export const GalaxyBookSingleBatteryBAT1 = GObject.registerClass({
             return false;
         if (!fileExists(BAT1_END_PATH))
             return false;
+        if (fileExists(VENDOR_GALAXYBOOK_MAINLINE))
+            this._isOlderDrive = false;
+        else
+            this._isOlderDrive = true;
         return true;
     }
 
@@ -86,7 +91,7 @@ export const GalaxyBookSingleBatteryBAT1 = GObject.registerClass({
 
     _verifyThreshold() {
         const endValue = readFileInt(BAT1_END_PATH);
-        this.endLimitValue = endValue === 0 ? 100 : endValue;
+        this.endLimitValue = this._isOlderDrive && endValue === 0 ? 100 : endValue;
         if (this._endValue === this.endLimitValue) {
             this.emit('threshold-applied', 'success');
             return true;
