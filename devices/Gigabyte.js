@@ -8,6 +8,8 @@ const {exitCode, fileExists, readFileInt, runCommandCtl} = Helper;
 
 const GIGABYTE_MODE = '/sys/devices/platform/gigabyte_laptop/charge_mode';
 const GIGABYTE_LIMIT = '/sys/devices/platform/gigabyte_laptop/charge_limit';
+const AORUS_MODE = '/sys/devices/platform/aorus_laptop/charge_mode';
+const AORUS_LIMIT = '/sys/devices/platform/aorus_laptop/charge_limit';
 
 export const GigabyteSingleBattery = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
@@ -41,10 +43,17 @@ export const GigabyteSingleBattery = GObject.registerClass({
     }
 
     isAvailable() {
-        if (!fileExists(GIGABYTE_MODE))
+        const usesGIGA = fileExists(GIGABYTE_MODE) && fileExists(GIGABYTE_LIMIT);
+        const usesAORUS = fileExists(AORUS_MODE) && fileExists(AORUS_LIMIT);
+
+        if (usesGIGA || usesAORUS) {
+            this._modPath = usesAORUS ? AORUS_MODE : GIGABYTE_MODE;
+            this._limitPath = usesAORUS ? AORUS_LIMIT : GIGABYTE_LIMIT;
+
+            this._cmd = usesAORUS ? 'AORUS_THRESHOLD' : 'GIGABYTE_THRESHOLD';
+        } else {
             return false;
-        if (!fileExists(GIGABYTE_LIMIT))
-            return false;
+        }
         return true;
     }
 
@@ -55,7 +64,7 @@ export const GigabyteSingleBattery = GObject.registerClass({
         if (this._verifyThreshold())
             return exitCode.SUCCESS;
 
-        const [status] = await runCommandCtl(this.ctlPath, 'GIGABYTE_THRESHOLD', this._updateMode, `${this._endValue}`);
+        const [status] = await runCommandCtl(this.ctlPath, this._cmd, this._updateMode, `${this._endValue}`);
         if (status === exitCode.ERROR) {
             this.emit('threshold-applied', 'error');
             return exitCode.ERROR;
@@ -87,9 +96,9 @@ export const GigabyteSingleBattery = GObject.registerClass({
     }
 
     _verifyThreshold() {
-        if (readFileInt(GIGABYTE_MODE) === 1)
+        if (readFileInt(this._modPath) === 1)
             this._updateMode = 'false';
-        this.endLimitValue = readFileInt(GIGABYTE_LIMIT);
+        this.endLimitValue = readFileInt(this._limitPath);
         if (this._endValue === this.endLimitValue) {
             this.emit('threshold-applied', 'success');
             return true;

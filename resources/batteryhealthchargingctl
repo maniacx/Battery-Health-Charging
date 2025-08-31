@@ -28,6 +28,8 @@ ASAHI_START_PATH='/sys/class/power_supply/macsmc-battery/charge_control_start_th
 TUXEDO_PATH='/sys/devices/platform/tuxedo_keyboard/charging_profile/charging_profile'
 GIGABYTE_MODE='/sys/devices/platform/gigabyte_laptop/charge_mode'
 GIGABYTE_LIMIT='/sys/devices/platform/gigabyte_laptop/charge_limit'
+AORUS_MODE='/sys/devices/platform/aorus_laptop/charge_mode'
+AORUS_LIMIT='/sys/devices/platform/aorus_laptop/charge_limit'
 APPLE_CHARGING_LED_PATH='/sys/class/power_supply/BAT0/charge_control_full_threshold'
 BAT0_FORCE_DISCHARGE_PATH='/sys/class/power_supply/BAT0/charge_behaviour'
 BAT1_FORCE_DISCHARGE_PATH='/sys/class/power_supply/BAT1/charge_behaviour'
@@ -250,6 +252,15 @@ case "$TOOLCMD" in
             fi
         } &&
             echo "$ARG2" >"$GIGABYTE_LIMIT" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    AORUS_THRESHOLD)
+        {
+            if [ "$ARG1" = "true" ]; then
+                echo "1" >"$AORUS_MODE"
+            fi
+        } &&
+            echo "$ARG2" >"$AORUS_LIMIT" &&
             exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
         ;;
     APPLE)
