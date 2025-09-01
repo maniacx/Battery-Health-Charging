@@ -8,7 +8,7 @@ permalink: /changelogs
 # Changelogs
 
 {: .important-title }
-> GN-45_Version 74 &emsp;&emsp; Aug 31, 2025
+> GN-45_Version 75 &emsp;&emsp; Aug 31, 2025
 > * Support GalaxyBook
 > * Update Gigabyte paths
 > * Add new Acer driver
