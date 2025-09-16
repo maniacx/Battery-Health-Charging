@@ -8,6 +8,11 @@ permalink: /changelogs
 # Changelogs
 
 {: .important-title }
+> GN-45_Version 76 &emsp;&emsp; Sep 15, 2025
+> * French translation: credits p-sage
+> * Icon update
+
+{: .important-title }
 > GN-45_Version 75 &emsp;&emsp; Aug 31, 2025
 > * Support GalaxyBook
 > * Update Gigabyte paths
