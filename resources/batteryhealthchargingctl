@@ -16,6 +16,7 @@ HUAWEI_PATH='/sys/devices/platform/huawei-wmi/charge_control_thresholds'
 SAMSUNG_PATH='/sys/devices/platform/samsung/battery_life_extender'
 ACER_PATH='/sys/bus/wmi/drivers/acer-wmi-battery/health_mode'
 ACER2_PATH='/sys/devices/platform/acer_battery_wmi/acer_battery/health_mode'
+ACERNITRO_PATH='/sys/module/linuwu_sense/drivers/platform:acer-wmi/acer-wmi/nitro_sense/battery_limiter'
 BATC_END_PATH='/sys/class/power_supply/BATC/charge_control_end_threshold'
 BATT_END_PATH='/sys/class/power_supply/BATT/charge_control_end_threshold'
 TP_BAT0_END='/sys/devices/platform/smapi/BAT0/stop_charge_thresh'
@@ -202,6 +203,10 @@ case "$TOOLCMD" in
         ;;
     ACER2)
         echo "$ARG1" >"$ACER2_PATH" &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    ACERNITRO)
+        echo "$ARG1" >"$ACERNITRO_PATH" &&
             exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
         ;;
     PANASONIC)
