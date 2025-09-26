@@ -1,0 +1,97 @@
+'use strict';
+/* Acer Predator Laptops using:
+   - https://github.com/0x7375646F/Linuwu-Sense (original driver) 
+   - https://github.com/PXDiv/Div-Linuwu-Sense  (fork) */
+import GLib from 'gi://GLib';
+import GObject from 'gi://GObject';
+import * as Helper from '../lib/helper.js';
+
+const {exitCode, fileExists, readFileInt, runCommandCtl} = Helper;
+
+const ACERPREDATOR_PATH = '/sys/module/linuwu_sense/drivers/platform:acer-wmi/acer-wmi/predator_sense/battery_limiter';
+
+export const AcerPredatorSingleBattery = GObject.registerClass({
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
+}, class AcerPredatorSingleBattery extends GObject.Object {
+    constructor(settings) {
+        super();
+        this.name = 'AcerPredator';
+        this.type = 41;
+        this.deviceNeedRootPermission = true;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = false;
+        this.deviceHaveVariableThreshold = false;
+        this.deviceHaveBalancedMode = false;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForMaxLifeMode = '080';
+
+        this._settings = settings;
+        this.ctlPath = null;
+    }
+
+    isAvailable() {
+        if (!fileExists(ACERPREDATOR_PATH))
+            return false;
+        return true;
+    }
+
+    async setThresholdLimit(chargingMode) {
+        if (chargingMode === 'ful')
+            this._healthMode = 0;
+        else if (chargingMode === 'max')
+            this._healthMode = 1;
+
+        if (this._verifyThreshold())
+            return exitCode.SUCCESS;
+
+        const [status] = await runCommandCtl(this.ctlPath, 'ACERPREDATOR', `${this._healthMode}`);
+        if (status === exitCode.ERROR) {
+            this.emit('threshold-applied', 'error');
+            return exitCode.ERROR;
+        } else if (status === exitCode.TIMEOUT) {
+            this.emit('threshold-applied', 'timeout');
+            return exitCode.ERROR;
+        }
+
+        if (this._verifyThreshold())
+            return exitCode.SUCCESS;
+
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        this._delayReadTimeoutId = null;
+
+        await new Promise(resolve => {
+            this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+                resolve();
+                this._delayReadTimeoutId = null;
+                return GLib.SOURCE_REMOVE;
+            });
+        });
+
+        if (this._verifyThreshold())
+            return exitCode.SUCCESS;
+
+        this.emit('threshold-applied', 'not-updated');
+        return exitCode.ERROR;
+    }
+
+    _verifyThreshold() {
+        const healthMode = readFileInt(ACERPREDATOR_PATH);
+        this.endLimitValue = healthMode === 1 ? 80 : 100;
+        if (this._healthMode === healthMode) {
+            this.emit('threshold-applied', 'success');
+            return true;
+        }
+        return false;
+    }
+
+    destroy() {
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        this._delayReadTimeoutId = null;
+    }
+});
+
