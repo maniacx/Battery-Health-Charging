@@ -3,6 +3,7 @@
 # This file is distributed under the same license as the Battery-Health-Charging@maniacx.github.com package.
 #
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# A1exAK <a1exak@outlook.com>, 2025
 #
 msgid ""
 msgstr ""
@@ -66,11 +67,11 @@ msgstr ""
 
 #: lib/notifier.js:99
 msgid "Install check failed."
-msgstr ""
+msgstr "Проверка установки не удалась."
 
 #: lib/notifier.js:103
 msgid "Install check timed out."
-msgstr ""
+msgstr "Время проверки установки истекло."
 
 #: lib/notifier.js:107
 #, javascript-format
@@ -85,7 +86,7 @@ msgstr "Остановить значение порога зарядки. (%s)"
 #: lib/notifier.js:115
 #, javascript-format
 msgid "Threshold update process timed out. (%s)"
-msgstr ""
+msgstr "Процесс обновления порога истек. (%s)"
 
 #: lib/notifier.js:119
 msgid "Apply correct Bios Password to set threshold."
@@ -428,7 +429,7 @@ msgstr "Изменить поведение индикатора заряда"
 
 #: ui/asus.ui:12 ui/thinkpad.ui:24
 msgid "Skip Threshold Verification"
-msgstr ""
+msgstr "Пропустить пороговую проверку"
 
 #: ui/asus.ui:13 ui/thinkpad.ui:25
 msgid ""
@@ -436,14 +437,17 @@ msgid ""
 "consistently or after restart, sleep, or hibernate. Enable this setting to "
 "force threshold updates if you encounter this issue."
 msgstr ""
+"Из-за ошибок прошивки или ядра некоторые ноутбуки могут сообщать неверные пороговые значения "
+"постоянно или после перезагрузки, спящего режима или режима гибернации. Включите этот параметр, чтобы "
+"принудительно установите пороговое значение, если вы столкнулись с этой проблемой."
 
 #: ui/chromebook.ui:12 ui/dell.ui:12 ui/framework.ui:12
 msgid "Select configuration for charging mode"
-msgstr ""
+msgstr "Выберите конфигурацию для режима зарядки"
 
 #: ui/chromebook.ui:13 ui/dell.ui:13 ui/framework.ui:13
 msgid "Select configuration used for changing charging mode/threshold."
-msgstr ""
+msgstr "Выберите конфигурацию, используемую для изменения режима/порога зарядки."
 
 #: ui/dell.ui:26
 msgid "Bios Authentication"
