@@ -184,11 +184,11 @@ msgstr "Полная ёмкость"
 msgid "Balanced Mode"
 msgstr "Сбалансированный"
 
-#. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
+#. TRANSLATORS: Keep translation short if possible. Maximum 34 characters can be displayed here
 #: lib/thresholdPanel.js:77 preferences/thresholdPrimary.js:212
 #: preferences/thresholdSecondary.js:207
 msgid "Maximum Lifespan Mode"
-msgstr "Максимального срока службы"
+msgstr "Максимальный срок службы"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:82
