@@ -2,15 +2,15 @@
 # Copyright (C) 2023 Battery-Health-Charging@maniacx.github.com's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Battery-Health-Charging@maniacx.github.com package.
 #
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 # A1exAK <a1exak@outlook.com>, 2025
+# Andrey Sitnik <andrey@sitnik.ru>, 2025
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: battery-health-charging-45\n"
+"Project-Id-Version: battery-health-charging\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-12-21 22:40-0800\n"
-"PO-Revision-Date: 2025-10-29 23:50\n"
+"PO-Revision-Date: 2025-10-30 10:37+0100\n"
 "Last-Translator: \n"
 "Language-Team: Russian\n"
 "Language: ru\n"
@@ -18,11 +18,6 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=((n%10==1 && n%100!=11) ? 0 : ((n%10 >= 2 && n%10 <=4 && (n%100 < 12 || n%100 > 14)) ? 1 : ((n%10 == 0 || (n%10 >= 5 && n%10 <=9)) || (n%100 >= 11 && n%100 <= 14)) ? 2 : 3));\n"
-"X-Crowdin-Project: battery-health-charging-45\n"
-"X-Crowdin-Project-ID: 613375\n"
-"X-Crowdin-Language: ru\n"
-"X-Crowdin-File: /po/Battery-Health-Charging.pot\n"
-"X-Crowdin-File-ID: 73\n"
 
 #: lib/notifier.js:19
 msgid "Battery Health Charging"
@@ -30,7 +25,7 @@ msgstr "Battery Health Charging"
 
 #: lib/notifier.js:34
 msgid "Mode updated"
-msgstr "Режим зарядки изменён"
+msgstr "Режим зарядки обновлен"
 
 #: lib/notifier.js:39
 msgid "Battery Health Charging Error"
@@ -56,7 +51,7 @@ msgstr "Устройство не поддерживается.\n"
 
 #: lib/notifier.js:87
 msgid "Missing dependencies"
-msgstr "Отсутствуют зависимости"
+msgstr "Отсутствующие зависимости"
 
 #: lib/notifier.js:91
 msgid "Please install polkit from extension settings under Installation."
@@ -228,7 +223,7 @@ msgstr "Режим зарядки: Сбалансированный"
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:349
 msgid "Charging Mode: Maximum Lifespan"
-msgstr "Максимальный срок службы"
+msgstr "Режим зарядки: Максимальный срок службы"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:352
