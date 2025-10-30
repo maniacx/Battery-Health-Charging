@@ -176,19 +176,19 @@ msgstr "Режим зарядки"
 #: lib/thresholdPanel.js:65 preferences/thresholdPrimary.js:204
 #: preferences/thresholdSecondary.js:199
 msgid "Full Capacity Mode"
-msgstr "Режим полной мощности"
+msgstr "Полная ёмкость"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:71 preferences/thresholdPrimary.js:208
 #: preferences/thresholdSecondary.js:203
 msgid "Balanced Mode"
-msgstr "Сбалансированный режим"
+msgstr "Сбалансированный"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:77 preferences/thresholdPrimary.js:212
 #: preferences/thresholdSecondary.js:207
 msgid "Maximum Lifespan Mode"
-msgstr "Режим максимального срока службы"
+msgstr "Максимального срока службы"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:82
@@ -348,7 +348,7 @@ msgstr "Порог"
 
 #: preferences/thresholdPrimary.js:202 preferences/thresholdSecondary.js:197
 msgid "Full Capacity Mode (Currently Active)"
-msgstr "Режим полной мощности (Aктивирован)"
+msgstr "Режим полной ёмкости (Aктивирован)"
 
 #: preferences/thresholdPrimary.js:206 preferences/thresholdSecondary.js:201
 msgid "Balanced Mode (Currently Active)"
