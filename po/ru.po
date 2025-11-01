@@ -25,7 +25,7 @@ msgstr "Battery Health Charging"
 
 #: lib/notifier.js:34
 msgid "Mode updated"
-msgstr "Режим зарядки обновлен"
+msgstr "Режим зарядки обновлён"
 
 #: lib/notifier.js:39
 msgid "Battery Health Charging Error"
@@ -311,8 +311,8 @@ msgstr "Framework Tool"
 #: preferences/general.js:53
 msgid "Select the type of icon for indicator and menu.\n"
 "In threshold settings, if <b>Customise</b> mode is selected, icon type will switch to <b>Symbols Only</b> and this option will be disabled."
-msgstr "Выберите тип значка для индикатора и меню.\n"
-"В пороговых настройках, если выбран <b>Настроить</b> режим, тип значка переключится на <b>Только символы</b> и эта опция будет отключена."
+msgstr "Тип значка для индикатора и меню.\n"
+"В настройках погора, если выбран <b>Настроить</b> режим, тип значка переключится на <b>Только символы</b> и эта опция будет отключена."
 
 #: preferences/general.js:55
 msgid "Select the type of icon for indicator and menu."
@@ -328,7 +328,7 @@ msgstr "Установить"
 
 #: preferences/general.js:172
 msgid "Update"
-msgstr "Обновлять"
+msgstr "Обновить"
 
 #: preferences/general.js:198
 msgid "Installation Successful."
@@ -361,7 +361,7 @@ msgstr "Режим максимального срока службы (Aктив
 #: preferences/thresholdPrimary.js:216 preferences/thresholdSecondary.js:211
 #, javascript-format
 msgid "<i>Accepted Value : %d to %d</i>"
-msgstr "<i>Принятое значение: от %d до %d</i>"
+msgstr "<i>Допустимое значение: от %d до %d</i>"
 
 #: ui/about.ui:5
 msgid "About"
@@ -447,7 +447,7 @@ msgstr "Общие"
 
 #: ui/general.ui:12
 msgid "Choose icon style"
-msgstr "Выберите стиль значка"
+msgstr "Стиль значка"
 
 #: ui/general.ui:24
 msgid "Show notifications"
@@ -455,7 +455,7 @@ msgstr "Уведомления"
 
 #: ui/general.ui:25
 msgid "Shows notifications when the threshold is changed."
-msgstr "Показывает уведомления при изменении порога."
+msgstr "Показывать уведомления при изменении порога."
 
 #: ui/general.ui:36
 msgid "Show preferences button"
@@ -463,15 +463,15 @@ msgstr "Показать кнопку настроек"
 
 #: ui/general.ui:37
 msgid "Adds a button to open extension preferences from quick settings panel."
-msgstr "Добавляет кнопку, чтобы открыть настройки расширения из панели быстрых настроек."
+msgstr "Добавлять кнопку, чтобы открыть настройки расширения из панели быстрых настроек."
 
 #: ui/general.ui:48
 msgid "Display subtitle with current mode on quick menu button"
-msgstr "Отображать субтитры с текущим режимом на кнопке быстрого меню"
+msgstr "Отображать имя режима на кнопке быстрого меню"
 
 #: ui/general.ui:49
 msgid "Displays the current mode in the text form (subtitle) on the quick menu button."
-msgstr "Отображает текущий режим в тексте на кнопке быстрого переключения меню."
+msgstr "Отображать имя режим в тексте на кнопке быстрого переключения меню."
 
 #: ui/general.ui:60
 msgid "Show system indicator"
@@ -479,15 +479,15 @@ msgstr "Показать системный индикатор"
 
 #: ui/general.ui:61
 msgid "Shows an icon in system tray."
-msgstr "Показывает значок в системном трее."
+msgstr "Показывать значок в системном трее."
 
 #: ui/general.ui:72
 msgid "Indicator index"
-msgstr "Индекс индикатора"
+msgstr "Местоположения значка"
 
 #: ui/general.ui:73
 msgid "The position relative of indicator icon to other items."
-msgstr "Поменять местами значок индикатора с другим значком на панели задач."
+msgstr "Поменять местами значок с другим значком на панели задач."
 
 #: ui/general.ui:89
 msgid "Change battery indicator icon behavior"
@@ -495,7 +495,7 @@ msgstr "Изменить поведение индикатора батареи"
 
 #: ui/general.ui:90
 msgid "Switches battery indicator icon to <b>charging</b> in the system tray and quick settings panel when device is plugged into power source, even when charging is disabled due to charge threshold."
-msgstr "Переключает значок индикатора батареи на <b>зарядка</b> на панели задач и панели быстрых настроек, когда устройство подключено к источнику питания, даже если зарядка отключена из-за порога заряда."
+msgstr "Переключать значок индикатора батареи на <b>зарядка</b> на панели задач и панели быстрых настроек, когда устройство подключено к источнику питания, даже если зарядка отключена из-за порога заряда."
 
 #: ui/general.ui:103
 msgid "Installation"
