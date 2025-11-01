@@ -7,6 +7,12 @@ permalink: /changelogs
 
 # Changelogs
 
+
+{: .important-title }
+> GN-45_Version 77 &emsp;&emsp; Nov 01, 2025
+> * Russian translation: credits  a1ex-ak and ai
+> * Support for Acer Predator and Nitro. credits: LFd3v
+
 {: .important-title }
 > GN-45_Version 76 &emsp;&emsp; Sep 15, 2025
 > * French translation: credits p-sage

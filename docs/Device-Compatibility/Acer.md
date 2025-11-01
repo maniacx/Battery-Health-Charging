@@ -26,13 +26,22 @@ permalink: /device-compatibility/acer
 
 ## Dependencies
 Depends on separate kernel module `acer-wmi-battery`, that need to be installed.<br>
-<https://github.com/frederik-h/acer-wmi-battery>
 
 {: .note }
-`acer-wmi-battery` module is supported by a third party and this extension/author is not in any way responsible for the kernel module installation, bugs or damages.
+Update: Acer now offers three optional kernel modules for different laptop model groups. Please review all three links and determine which one matches your specific laptop model.
+
+<https://github.com/frederik-h/acer-wmi-battery>
+<br>
+<https://github.com/maxco2/acer-battery-wmi>
+<br>
+<https://github.com/PXDiv/Div-Linuwu-Sense> For Predator / Nitro models.
+
+
+{: .note }
+Kernel module is supported by a third party and this extension/author is not in any way responsible for the kernel module installation, bugs or damages.
 
 ## Testing charging threshold using command-line
-After installing `acer-wmi-battery` below sysfs path will be available and charging threshold/mode can be changed.
+After installing kernel module below sysfs path will be available and charging threshold/mode can be changed.
 Now user will be able to set charging threshold, using commandline and test charging behavior.
 Charging mode can be set by using  `echo` command in `terminal`.
 <br>
@@ -42,8 +51,21 @@ To turn on **Battery Limit charge**
 
 Require root privileges
 {: .label .label-yellow .mt-0}
+
+
+**acer-battery-wmi frederik-h and maxco2 kernel module**
 ```bash
 echo '1' | pkexec tee /sys/bus/wmi/drivers/acer-wmi-battery/health_mode
+```
+<br>
+**PXDiv/Div-Linuwu-Sense Nitro**
+```bash
+echo '1' | pkexec tee /sys/module/linuwu_sense/drivers/platform:acer-wmi/acer-wmi/nitro_sense/battery_limiter
+```
+<br>
+**PXDiv/Div-Linuwu-Sense Predator**
+```bash
+echo '1' | pkexec tee /sys/module/linuwu_sense/drivers/platform:acer-wmi/acer-wmi/predator_sense/battery_limiter
 ```
 <br>
 
@@ -51,15 +73,39 @@ To turn off **Battery Limit charge**
 
 Require root privileges
 {: .label .label-yellow .mt-0}
+
+**acer-battery-wmi frederik-h and maxco2 kernel module**
 ```bash
 echo '0' | pkexec tee /sys/bus/wmi/drivers/acer-wmi-battery/health_mode
+```
+<br>
+**PXDiv/Div-Linuwu-Sense Nitro**
+```bash
+echo '0' | pkexec tee /sys/module/linuwu_sense/drivers/platform:acer-wmi/acer-wmi/nitro_sense/battery_limiter
+```
+<br>
+**PXDiv/Div-Linuwu-Sense Predator**
+```bash
+echo '0' | pkexec tee /sys/module/linuwu_sense/drivers/platform:acer-wmi/acer-wmi/predator_sense/battery_limiter
 ```
 <br>
 `sudo` also can be used in place of `pkexec` in the above commands as both `sudo` and `pkexec` can be use to run commands in root mode. To make use of polkit rules, the extension uses `pkexec`.
 
 The current threshold value can also be read using `cat` command in `terminal`.
+
+**acer-battery-wmi frederik-h and maxco2 kernel module**
 ```bash
-cat /sys/bus/wmi/drivers/acer-wmi-battery/health_mode
+cat  /sys/bus/wmi/drivers/acer-wmi-battery/health_mode
+```
+<br>
+**PXDiv/Div-Linuwu-Sense Nitro**
+```bash
+cat /sys/module/linuwu_sense/drivers/platform:acer-wmi/acer-wmi/nitro_sense/battery_limiter
+```
+<br>
+**PXDiv/Div-Linuwu-Sense Predator**
+```bash
+cat  /sys/module/linuwu_sense/drivers/platform:acer-wmi/acer-wmi/predator_sense/battery_limiter
 ```
 <br>
 
