@@ -312,7 +312,7 @@ msgstr "Framework Tool"
 msgid "Select the type of icon for indicator and menu.\n"
 "In threshold settings, if <b>Customise</b> mode is selected, icon type will switch to <b>Symbols Only</b> and this option will be disabled."
 msgstr "Тип значка для индикатора и меню.\n"
-"В настройках погора, если выбран <b>Настроить</b> режим, тип значка переключится на <b>Только символы</b> и эта опция будет отключена."
+"В настройках порога, если выбран <b>Настроить</b> режим, тип значка переключится на <b>Только символы</b> и эта опция будет отключена."
 
 #: preferences/general.js:55
 msgid "Select the type of icon for indicator and menu."
