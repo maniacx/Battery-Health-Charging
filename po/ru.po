@@ -130,23 +130,23 @@ msgstr "Батарея 2\n"
 
 #: lib/notifier.js:151
 msgid "Charging Mode is set to Full Capacity"
-msgstr "Режим зарядки установлен на Полная мощность"
+msgstr "Установлен режим зарядки на Полную ёмкость"
 
 #: lib/notifier.js:155
 msgid "Charging Mode is set to Balanced"
-msgstr "Режим зарядки установлен на Сбалансированный"
+msgstr "Установлен Сбалансированный режим зарядки"
 
 #: lib/notifier.js:159
 msgid "Charging Mode is set to Maximum Lifespan"
-msgstr "Режим зарядки установлен в максимального срока службы"
+msgstr "Установлен режим зарядки для Максимального срока службы"
 
 #: lib/notifier.js:163
 msgid "Charging Mode is set to Express"
-msgstr "Режим зарядки установлен в Быстрая зарядка"
+msgstr "Установлен режим Быстрой зарядки"
 
 #: lib/notifier.js:167
 msgid "Charging Mode is set to Adaptive"
-msgstr "Режим зарядки установлен на Адаптивный"
+msgstr "Установлен Адаптивный режим зарядки"
 
 #: lib/notifier.js:171
 msgid "Threshold not applied: Battery level above 75%. Please unplug the charger and discharge the battery below 75% to apply the 80% limit."
@@ -213,7 +213,7 @@ msgstr "Аккумулятор не обнаружен!"
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:343
 msgid "Charging Mode: Full Capacity"
-msgstr "Режим зарядки: Полная мощность"
+msgstr "Режим зарядки: Полная ёмкость"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:346
