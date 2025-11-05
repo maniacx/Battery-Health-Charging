@@ -243,17 +243,17 @@ msgstr "Удалено"
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:400
 msgid "Full Capacity"
-msgstr "Полный"
+msgstr "Производительный"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:403
 msgid "Balanced"
-msgstr "Баланс"
+msgstr "Сбалансированный"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:406
 msgid "Max Lifespan"
-msgstr "Макс. срок"
+msgstr "Энергосберегающий"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:409
