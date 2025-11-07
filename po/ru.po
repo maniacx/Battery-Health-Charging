@@ -130,23 +130,23 @@ msgstr "Батарея 2\n"
 
 #: lib/notifier.js:151
 msgid "Charging Mode is set to Full Capacity"
-msgstr "Установлен режим зарядки на Полную ёмкость"
+msgstr "Установлен режим заряда Максимальный"
 
 #: lib/notifier.js:155
 msgid "Charging Mode is set to Balanced"
-msgstr "Установлен Сбалансированный режим зарядки"
+msgstr "Установлен режим заряда Сбалансированный"
 
 #: lib/notifier.js:159
 msgid "Charging Mode is set to Maximum Lifespan"
-msgstr "Установлен режим зарядки для Максимального срока службы"
+msgstr "Установлен режим заряда Сберегательный"
 
 #: lib/notifier.js:163
 msgid "Charging Mode is set to Express"
-msgstr "Установлен режим Быстрой зарядки"
+msgstr "Установлен режим заряда Быстрая зарядка"
 
 #: lib/notifier.js:167
 msgid "Charging Mode is set to Adaptive"
-msgstr "Установлен Адаптивный режим зарядки"
+msgstr "Установлен режим заряда Адаптивный"
 
 #: lib/notifier.js:171
 msgid "Threshold not applied: Battery level above 75%. Please unplug the charger and discharge the battery below 75% to apply the 80% limit."
@@ -213,7 +213,7 @@ msgstr "Аккумулятор не обнаружен!"
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:343
 msgid "Charging Mode: Full Capacity"
-msgstr "Режим зарядки: Полная ёмкость"
+msgstr "Режим зарядки: Максимальный"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:346
@@ -223,7 +223,7 @@ msgstr "Режим зарядки: Сбалансированный"
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:349
 msgid "Charging Mode: Maximum Lifespan"
-msgstr "Режим зарядки: Максимальный срок службы"
+msgstr "Режим зарядки: Сберегательный"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
 #: lib/thresholdPanel.js:352
@@ -243,7 +243,7 @@ msgstr "Удалено"
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:400
 msgid "Full Capacity"
-msgstr "Производительный"
+msgstr "Максимальный"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:403
@@ -253,7 +253,7 @@ msgstr "Сбалансированный"
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:406
 msgid "Max Lifespan"
-msgstr "Энергосберегающий"
+msgstr "Сберегательный"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:409
