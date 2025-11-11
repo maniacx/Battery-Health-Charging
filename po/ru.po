@@ -142,7 +142,7 @@ msgstr "Установлен режим заряда Сберегательны�
 
 #: lib/notifier.js:163
 msgid "Charging Mode is set to Express"
-msgstr "Установлен режим заряда Быстрая зарядка"
+msgstr "Установлен режим Быстрая зарядка"
 
 #: lib/notifier.js:167
 msgid "Charging Mode is set to Adaptive"
@@ -348,7 +348,7 @@ msgstr "Порог"
 
 #: preferences/thresholdPrimary.js:202 preferences/thresholdSecondary.js:197
 msgid "Full Capacity Mode (Currently Active)"
-msgstr "Режим полной ёмкости (Aктивирован)"
+msgstr "Режим Полная ёмкость (Aктивирован)"
 
 #: preferences/thresholdPrimary.js:206 preferences/thresholdSecondary.js:201
 msgid "Balanced Mode (Currently Active)"
@@ -356,7 +356,7 @@ msgstr "Режим Сбалансированный (Aктивирован)"
 
 #: preferences/thresholdPrimary.js:210 preferences/thresholdSecondary.js:205
 msgid "Maximum Lifespan Mode (Currently Active)"
-msgstr "Режим максимального срока службы (Aктивирован)"
+msgstr "Режим Максимальный срок службы (Aктивирован)"
 
 #: preferences/thresholdPrimary.js:216 preferences/thresholdSecondary.js:211
 #, javascript-format
