@@ -5,6 +5,7 @@ nav_order: 6
 permalink: /polkitbug
 ---
 
+# BUG FIXED IN POLKIT 126
 
 ## Bug with Polkit on Ubuntu/Debian running Wayland
 
