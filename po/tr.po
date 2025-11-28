@@ -44,11 +44,9 @@ msgid "Read me"
 msgstr "Beni oku"
 
 #: lib/notifier.js:85
-msgid ""
-"Unsupported device.\n"
+msgid "Unsupported device.\n"
 "This extension is not compatible with your device."
-msgstr ""
-"Desteklenmeyen aygıt.\n"
+msgstr "Desteklenmeyen aygıt.\n"
 "Bu uzantı, aygıtınızla uyumlu değil."
 
 #: lib/notifier.js:87
@@ -65,11 +63,11 @@ msgstr "Lütfen Kurulum altındaki uzantı ayarlarından polkitʼi güncelleyin.
 
 #: lib/notifier.js:99
 msgid "Install check failed."
-msgstr ""
+msgstr "Kurulum denetimi başarısız."
 
 #: lib/notifier.js:103
 msgid "Install check timed out."
-msgstr ""
+msgstr "Kurulum denetimi zaman aşımına uğradı."
 
 #: lib/notifier.js:107
 #, javascript-format
@@ -84,7 +82,7 @@ msgstr "Şarj eşiği güncellenmedi. (%s)"
 #: lib/notifier.js:115
 #, javascript-format
 msgid "Threshold update process timed out. (%s)"
-msgstr ""
+msgstr "Eşik güncelleme süreci zaman aşımına uğradı (%s)"
 
 #: lib/notifier.js:119
 msgid "Apply correct Bios Password to set threshold."
@@ -92,11 +90,9 @@ msgstr "Eşiği ayarlamak için doğru Bios Parolasını girin."
 
 #: lib/notifier.js:123
 #, javascript-format
-msgid ""
-"Battery 1\n"
+msgid "Battery 1\n"
 "Charge thresholds are set to %d / %d %%"
-msgstr ""
-"Pil 1\n"
+msgstr "Pil 1\n"
 "Şarj eşikleri %%%d / %%%d olarak ayarlandı"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
@@ -107,11 +103,9 @@ msgstr "Şarj eşikleri %%%d / %%%d olarak ayarlandı"
 
 #: lib/notifier.js:133
 #, javascript-format
-msgid ""
-"Battery 1\n"
+msgid "Battery 1\n"
 "Charging Limit is set to %d%%"
-msgstr ""
-"Pil 1\n"
+msgstr "Pil 1\n"
 "Şarj Sınırı %%%d olarak ayarlandı"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  34 characters can be displayed here
@@ -122,20 +116,16 @@ msgstr "Şarj Sınırı %%%d olarak ayarlandı"
 
 #: lib/notifier.js:141
 #, javascript-format
-msgid ""
-"Battery 2\n"
+msgid "Battery 2\n"
 "Charge thresholds are set to %d / %d %%"
-msgstr ""
-"Pil 2\n"
+msgstr "Pil 2\n"
 "Şarj eşikleri %%%d / %%%d olarak ayarlandı"
 
 #: lib/notifier.js:146
 #, javascript-format
-msgid ""
-"Battery 2\n"
+msgid "Battery 2\n"
 "Charging Limit is set to %d%%"
-msgstr ""
-"Pil 2\n"
+msgstr "Pil 2\n"
 "Şarj Sınırı %%%d olarak ayarlandı"
 
 #: lib/notifier.js:151
@@ -159,10 +149,8 @@ msgid "Charging Mode is set to Adaptive"
 msgstr "Şarj Kipi Uyarlanabilir olarak ayarlandı"
 
 #: lib/notifier.js:171
-msgid ""
-"Threshold not applied: Battery level above 75%. Please unplug the charger "
-"and discharge the battery below 75% to apply the 80% limit."
-msgstr ""
+msgid "Threshold not applied: Battery level above 75%. Please unplug the charger and discharge the battery below 75% to apply the 80% limit."
+msgstr "Eşik uygulanmadı: Pil düzeyi %75'in üzerinde. Lütfen şarj cihazını çıkarın ve %80 sınırını uygulamak için pili %75'in altına boşaltın."
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  10 characters can be displayed here
 #: lib/thresholdPanel.js:24
@@ -250,7 +238,7 @@ msgstr "Şarj Kipi: Hızlı"
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:397
 msgid "Uninstalled"
-msgstr "Kaldır"
+msgstr "Kaldırıldı"
 
 #. TRANSLATORS: Keep translation short if possible. Maximum  13 characters can be displayed here
 #: lib/thresholdPanel.js:400
@@ -296,21 +284,17 @@ msgstr "© %s %s"
 
 #: preferences/about.js:48
 #, javascript-format
-msgid ""
-"This application comes with absolutely no warranty. See the <a "
-"href=\"%s\">%s</a> for details."
-msgstr ""
-"Bu program kesinlikle hiçbir garanti vermiyor. Ayrıntılar için <a "
-"href=\"%s\">%s</a> bağlantısına bakın."
+msgid "This application comes with absolutely no warranty. See the <a href=\"%s\">%s</a> for details."
+msgstr "Bu program kesinlikle hiçbir garanti vermiyor. Ayrıntılar için <a href=\"%s\">%s</a> bağlantısına bakın."
 
 #: preferences/chromebook.js:20 preferences/dell.js:27
 #: preferences/framework.js:20
 msgid "Sysfs node"
-msgstr ""
+msgstr "Syfs düğümü"
 
 #: preferences/chromebook.js:21
 msgid "Ectool"
-msgstr ""
+msgstr "Ectool"
 
 #: preferences/dell.js:28
 msgid "Libsmbios"
@@ -322,17 +306,13 @@ msgstr "Dell Yönetim Merkezi"
 
 #: preferences/framework.js:21
 msgid "Framework Tool"
-msgstr ""
+msgstr "Donanım Yazılımı Aracı"
 
 #: preferences/general.js:53
-msgid ""
-"Select the type of icon for indicator and menu.\n"
-"In threshold settings, if <b>Customise</b> mode is selected, icon type will "
-"switch to <b>Symbols Only</b> and this option will be disabled."
-msgstr ""
-"Gösterge ve menü için simge tipini seçin.\n"
-"Eşik ayarlarından <b>Özelleştir</b> kipi seçilirse simge tipi <b>Yalnızca "
-"Simgeler</b> olarak değişir ve bu seçenek devre dışı bırakılır."
+msgid "Select the type of icon for indicator and menu.\n"
+"In threshold settings, if <b>Customise</b> mode is selected, icon type will switch to <b>Symbols Only</b> and this option will be disabled."
+msgstr "Gösterge ve menü için simge tipini seçin.\n"
+"Eşik ayarlarından <b>Özelleştir</b> kipi seçilirse simge tipi <b>Yalnızca Simgeler</b> olarak değişir ve bu seçenek devre dışı bırakılır."
 
 #: preferences/general.js:55
 msgid "Select the type of icon for indicator and menu."
@@ -427,22 +407,19 @@ msgstr "Şarj gösterge ışığının davranışını değiştir"
 
 #: ui/asus.ui:12 ui/thinkpad.ui:24
 msgid "Skip Threshold Verification"
-msgstr ""
+msgstr "Eşik Doğrulamasını Atla"
 
 #: ui/asus.ui:13 ui/thinkpad.ui:25
-msgid ""
-"Due to firmware or kernel bugs, some laptops may report incorrect thresholds "
-"consistently or after restart, sleep, or hibernate. Enable this setting to "
-"force threshold updates if you encounter this issue."
-msgstr ""
+msgid "Due to firmware or kernel bugs, some laptops may report incorrect thresholds consistently or after restart, sleep, or hibernate. Enable this setting to force threshold updates if you encounter this issue."
+msgstr "Donanım yazılı ya da çekirdek hataları nedeniyle, kimi dizüstü bilgisayarlar sürekli olarak ya da yeniden başlatma, uyku ya da hazırda bekleme kipinden çıktıktan sonra yanlış eşik değerleri bildirebilir. Bu sorunla karşılaşırsanız, eşik değerlerinin güncellenmesini zorlamak için bu ayarı etkinleştirin."
 
 #: ui/chromebook.ui:12 ui/dell.ui:12 ui/framework.ui:12
 msgid "Select configuration for charging mode"
-msgstr ""
+msgstr "Şarj kipi için yapılandırma seç"
 
 #: ui/chromebook.ui:13 ui/dell.ui:13 ui/framework.ui:13
 msgid "Select configuration used for changing charging mode/threshold."
-msgstr ""
+msgstr "Şarj kipini değiştirmek için kullanılan yapılandırmayı seç."
 
 #: ui/dell.ui:26
 msgid "Bios Authentication"
@@ -453,12 +430,8 @@ msgid "Requires Bios password validation to change mode/threshold"
 msgstr "Modu/eşiği değiştirmek için Bios parola doğrulaması gerekir"
 
 #: ui/dell.ui:30
-msgid ""
-"Enable if Dell command configure uses Bios (system) password to change mode/"
-"threshold"
-msgstr ""
-"Dell configure komutu, modu/eşiği değiştirmek için Bios (sistem) parolasını "
-"kullanıyorsa etkinleştirin"
+msgid "Enable if Dell command configure uses Bios (system) password to change mode/threshold"
+msgstr "Dell configure komutu, modu/eşiği değiştirmek için Bios (sistem) parolasını kullanıyorsa etkinleştirin"
 
 #: ui/dell.ui:42
 msgid "Enter Bios Password"
@@ -497,12 +470,8 @@ msgid "Display subtitle with current mode on quick menu button"
 msgstr "Hızlı menü düğmesinde geçerli kipi altyazı olarak görüntüle"
 
 #: ui/general.ui:49
-msgid ""
-"Displays the current mode in the text form (subtitle) on the quick menu "
-"button."
-msgstr ""
-"Geçerli kipi hızlı menü düğmesindeki metin biçiminde (altyazı olarak) "
-"görüntüler."
+msgid "Displays the current mode in the text form (subtitle) on the quick menu button."
+msgstr "Geçerli kipi hızlı menü düğmesindeki metin biçiminde (altyazı olarak) görüntüler."
 
 #: ui/general.ui:60
 msgid "Show system indicator"
@@ -525,14 +494,8 @@ msgid "Change battery indicator icon behavior"
 msgstr "Pil göstergesi simgesi davranışını değiştir"
 
 #: ui/general.ui:90
-msgid ""
-"Switches battery indicator icon to <b>charging</b> in the system tray and "
-"quick settings panel when device is plugged into power source, even when "
-"charging is disabled due to charge threshold."
-msgstr ""
-"Aygıt güç kaynağına takıldığında, şarj eşiği nedeniyle şarj etme devre dışı "
-"bırakılmış olsa bile, pil gösterge simgesini sistem tepsisinde ve hızlı "
-"ayarlar panelinde <b>şarj oluyor</b> olarak değiştirir."
+msgid "Switches battery indicator icon to <b>charging</b> in the system tray and quick settings panel when device is plugged into power source, even when charging is disabled due to charge threshold."
+msgstr "Aygıt güç kaynağına takıldığında, şarj eşiği nedeniyle şarj etme devre dışı bırakılmış olsa bile, pil gösterge simgesini sistem tepsisinde ve hızlı ayarlar panelinde <b>şarj oluyor</b> olarak değiştirir."
 
 #: ui/general.ui:103
 msgid "Installation"
@@ -547,25 +510,13 @@ msgid "Install / Update / Remove"
 msgstr "Kur / Güncelle / Kaldır"
 
 #: ui/general.ui:110
-msgid ""
-"This device requires root privileges to change the charging limit. Setup a "
-"privileged script and give user access via polkit.\n"
-"\n"
-"<b>Root privileges are required</b> to install, update or remove the polkit "
-"policy script.\n"
-"\n"
-"<b>Install / Update </b> this polkit policy script and continue using this "
-"extension.\n"
+msgid "This device requires root privileges to change the charging limit. Setup a privileged script and give user access via polkit.\n\n"
+"<b>Root privileges are required</b> to install, update or remove the polkit policy script.\n\n"
+"<b>Install / Update </b> this polkit policy script and continue using this extension.\n"
 "<b>Remove</b> this polkit policy script before uninstalling this extension."
-msgstr ""
-"Bu aygıt, şarj sınırını değiştirmek için root ayrıcalıkları gerektirir. "
-"Ayrıcalıklı betiği kurun ve polkit ile kullanıcıya erişim izni verin.\n"
-"\n"
-"Polkit ilke betiğini kurmak, güncellemek ya da kaldırmak için <b>root "
-"ayrıcalıkları gereklidir</b>.\n"
-"\n"
-"Bu polkit ilke betiğini <b>Kurun / Güncelleyin </b> ve bu uzantıyı "
-"kullanmaya devam edin.\n"
+msgstr "Bu aygıt, şarj sınırını değiştirmek için root ayrıcalıkları gerektirir. Ayrıcalıklı betiği kurun ve polkit ile kullanıcıya erişim izni verin.\n\n"
+"Polkit ilke betiğini kurmak, güncellemek ya da kaldırmak için <b>root ayrıcalıkları gereklidir</b>.\n\n"
+"Bu polkit ilke betiğini <b>Kurun / Güncelleyin </b> ve bu uzantıyı kullanmaya devam edin.\n"
 "Bu uzantıyı kaldırmadan önce bu polkit ilke betiğini <b>kaldırın</b>."
 
 #: ui/general.ui:134
@@ -585,12 +536,8 @@ msgid "Enable force discharge battery feature (Experimental)"
 msgstr "Boşalmaya zorla özelliğini etkinleştir (Deneysel)"
 
 #: ui/thinkpad.ui:13
-msgid ""
-"Enable option to force discharge battery when battery level higher than "
-"current threshold"
-msgstr ""
-"Pil seviyesi geçerli eşikten yüksek olduğunda pili boşalmaya zorlama "
-"seçeneğini etkinleştir"
+msgid "Enable option to force discharge battery when battery level higher than current threshold"
+msgstr "Pil seviyesi geçerli eşikten yüksek olduğunda pili boşalmaya zorlama seçeneğini etkinleştir"
 
 #: ui/thresholdPrimary.ui:21 ui/thresholdSecondary.ui:21
 msgid "Customize"
