@@ -1,8 +1,8 @@
 # Turkish translation for Battery-Health-Charging@maniacx.github.com.
-# Copyright (C) 2023-2024 Battery-Health-Charging@maniacx.github.com's COPYRIGHT HOLDER
+# Copyright (C) 2023-2026 Battery-Health-Charging@maniacx.github.com's COPYRIGHT HOLDER
 # This file is distributed under the same license as the Battery-Health-Charging@maniacx.github.com package.
 #
-# Sabri Ünal <yakushabb@gmail.com>, 2023-2024.
+# Sabri Ünal <yakushabb@gmail.com>, 2023-2026.
 #
 msgid ""
 msgstr ""
@@ -270,8 +270,8 @@ msgid "Force Discharge"
 msgstr "Boşalmaya Zorla"
 
 #: preferences/about.js:39
-msgid "2023-2024"
-msgstr "2023-2024"
+msgid "2023-2026"
+msgstr "2023-2026"
 
 #: preferences/about.js:40
 msgid "GNU General Public License, version 3 or later"

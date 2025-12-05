@@ -288,8 +288,8 @@ msgid "Force Discharge"
 msgstr "Forcer la décharge"
 
 #: preferences/about.js:39
-msgid "2023-2024"
-msgstr "2023-2024"
+msgid "2023-2026"
+msgstr "2023-2026"
 
 #: preferences/about.js:40
 msgid "GNU General Public License, version 3 or later"

@@ -285,7 +285,7 @@ msgid "Force Discharge"
 msgstr ""
 
 #: preferences/about.js:39
-msgid "2023-2024"
+msgid "2023-2026"
 msgstr ""
 
 #: preferences/about.js:40

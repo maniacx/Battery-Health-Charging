@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Battery Health Charging\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-11-28 11:04-0600\n"
+"POT-Creation-Date: 2025-12-05 11:43-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -270,7 +270,7 @@ msgid "Force Discharge"
 msgstr ""
 
 #: preferences/about.js:39
-msgid "2023-2024"
+msgid "2023-2026"
 msgstr ""
 
 #: preferences/about.js:40
