@@ -109,5 +109,12 @@ I made this extension for my Asus Viwobook. I referred to codes of other extensi
 > * MasinAD
 > * jnsson@crowdin
 > * omeritzics
+> * a1ex-ak
+> * LFd3v
+> * p-sage
+> * vodofrede
+> * LFd3v
+> * p-sage
+
 
 

@@ -7,6 +7,11 @@ permalink: /changelogs
 
 # Changelogs
 
+{: .important-title }
+> GN-45_Version 78 &emsp;&emsp; Nov 28, 2025
+> * Russian translation: credits  a1ex-ak and ai
+> * Turkish translations. credits: Sabri Ünal
+
 
 {: .important-title }
 > GN-45_Version 77 &emsp;&emsp; Nov 01, 2025

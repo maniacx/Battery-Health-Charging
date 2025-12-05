@@ -5,7 +5,13 @@ nav_order: 6
 permalink: /polkitbug
 ---
 
-# BUG FIXED IN POLKIT 126
+# UPDATE: Bug Fix Status (Polkit 126)
+
+- The underlying bug has been fully fixed in Polkit 126.
+- See the [upstream patch](https://github.com/polkit-org/polkit/pull/580)
+- If you are running Polkit 126 or newer, the sudo workaround described below is no longer required.
+- Polkit 124 and 125 are still affected and require the sudo patch when running under Wayland.
+
 
 ## Bug with Polkit on Ubuntu/Debian running Wayland
 
