@@ -12,25 +12,31 @@ export const  Thinkpad = GObject.registerClass({
         'skip_threshold_verification',
     ],
 }, class Thinkpad extends Adw.PreferencesPage {
-    constructor(settings) {
+    constructor(settings, isDualBattery) {
         super({});
         this._settings = settings;
 
-        this._settings.bind(
-            'force-discharge-feature',
-            this._force_discharge_feature,
-            'active',
-            Gio.SettingsBindFlags.DEFAULT
-        );
         this._settings.bind(
             'skip-threshold-verification',
             this._skip_threshold_verification,
             'active',
             Gio.SettingsBindFlags.DEFAULT
         );
-        this._settings.connect('changed::force-discharge-feature', () => {
-            if (!this._settings.get_boolean('force-discharge-feature'))
-                this._settings.set_boolean('force-discharge-enabled', false);
-        });
+
+        if (!isDualBattery) {
+            this._settings.bind(
+                'force-discharge-feature',
+                this._force_discharge_feature,
+                'active',
+                Gio.SettingsBindFlags.DEFAULT
+            );
+
+            this._settings.connect('changed::force-discharge-feature', () => {
+                if (!this._settings.get_boolean('force-discharge-feature'))
+                    this._settings.set_boolean('force-discharge-enabled', false);
+            });
+        } else {
+            this._force_discharge_feature.visible = false;
+        }
     }
 });

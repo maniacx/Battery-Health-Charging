@@ -49,8 +49,8 @@ export default class BatteryHealthChargingPrefs extends ExtensionPreferences {
                 window.add(new Framework(settings));
             else if (currentDevice.type === 35 && settings.get_strv('multiple-configuration-supported').length > 1) // device.type 35 is Chromebook
                 window.add(new Chromebook(settings));
-            else if (currentDevice.type === 20 || currentDevice.type === 21) // device.type 20,21 are Thinkpad
-                window.add(new Thinkpad(settings));
+            else if (currentDevice.type === 20 || currentDevice.type === 21 || currentDevice.type === 19) // device.type 20,21,19 are Thinkpad
+                window.add(new Thinkpad(settings, currentDevice.type === 19));
         }
         window.add(new About(this));
     }

@@ -91,17 +91,20 @@ export const ThinkpadDualBattery = GObject.registerClass({
     async setThresholdLimit(chargingMode) {
         if (this.battery0Removed)
             return exitCode.SUCCESS;
+
         const endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
         const startValue = this._settings.get_int(`current-${chargingMode}-start-threshold`);
+        this._skipVerification = this._settings.get_boolean('skip-threshold-verification');
+
+        if (!this._skipVerification && this._verifyThresholdBAT0(endValue, startValue))
+            return exitCode.SUCCESS;
+
         this.endLimitValue = readFileInt(BAT0_END_PATH);
         this.startLimitValue = readFileInt(BAT0_START_PATH);
-        if (this.endLimitValue === endValue && this.startLimitValue === startValue) {
-            this.emit('threshold-applied', 'success');
-            return exitCode.SUCCESS;
-        }
-        // Some device wont update end threshold if start threshold > end threshold
+
         const cmd = startValue >= this.endLimitValue ? 'BAT0_END_START' : 'BAT0_START_END';
         const [status] = await runCommandCtl(this.ctlPath, cmd, `${endValue}`, `${startValue}`);
+
         if (status === exitCode.ERROR) {
             this.emit('threshold-applied', 'error');
             return exitCode.ERROR;
@@ -109,14 +112,32 @@ export const ThinkpadDualBattery = GObject.registerClass({
             this.emit('threshold-applied', 'timeout');
             return exitCode.ERROR;
         }
-        if (status === exitCode.SUCCESS) {
-            this.endLimitValue = readFileInt(BAT0_END_PATH);
-            this.startLimitValue = readFileInt(BAT0_START_PATH);
-            if (endValue === this.endLimitValue && startValue === this.startLimitValue) {
-                this.emit('threshold-applied', 'success');
-                return exitCode.SUCCESS;
-            }
+
+        if (this._skipVerification) {
+            this.endLimitValue = endValue;
+            this.startLimitValue = startValue;
+            this.emit('threshold-applied', 'success');
+            return exitCode.SUCCESS;
         }
+
+        if (this._verifyThresholdBAT0(endValue, startValue))
+            return exitCode.SUCCESS;
+
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        this._delayReadTimeoutId = null;
+
+        await new Promise(resolve => {
+            this._delayReadTimeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+                this._delayReadTimeoutId = null;
+                resolve();
+                return GLib.SOURCE_REMOVE;
+            });
+        });
+
+        if (this._verifyThresholdBAT0(endValue, startValue))
+            return exitCode.SUCCESS;
+
         this.emit('threshold-applied', 'not-updated');
         return exitCode.ERROR;
     }
@@ -127,15 +148,17 @@ export const ThinkpadDualBattery = GObject.registerClass({
 
         const endValue = this._settings.get_int(`current-${chargingMode2}-end-threshold2`);
         const startValue = this._settings.get_int(`current-${chargingMode2}-start-threshold2`);
+        this._skipVerification = this._settings.get_boolean('skip-threshold-verification');
+
+        if (!this._skipVerification && this._verifyThresholdBAT1(endValue, startValue))
+            return exitCode.SUCCESS;
+
         this.endLimit2Value = readFileInt(BAT1_END_PATH);
         this.startLimit2Value = readFileInt(BAT1_START_PATH);
-        if (this.endLimit2Value === endValue && this.startLimit2Value === startValue) {
-            this.emit('threshold-applied', 'success-bat2');
-            return exitCode.SUCCESS;
-        }
-        // Some device wont update end threshold if start threshold > end threshold
+
         const cmd = startValue >= this.endLimit2Value ? 'BAT1_END_START' : 'BAT1_START_END';
         const [status] = await runCommandCtl(this.ctlPath, cmd, `${endValue}`, `${startValue}`);
+
         if (status === exitCode.ERROR) {
             this.emit('threshold-applied', 'error');
             return exitCode.ERROR;
@@ -143,15 +166,54 @@ export const ThinkpadDualBattery = GObject.registerClass({
             this.emit('threshold-applied', 'timeout');
             return exitCode.ERROR;
         }
-        if (status === exitCode.SUCCESS) {
-            this.endLimit2Value = readFileInt(BAT1_END_PATH);
-            this.startLimit2Value = readFileInt(BAT1_START_PATH);
-            if (endValue === this.endLimit2Value && startValue === this.startLimit2Value) {
-                this.emit('threshold-applied', 'success-bat2');
-                return exitCode.SUCCESS;
-            }
+
+        if (this._skipVerification) {
+            this.endLimit2Value = endValue;
+            this.startLimit2Value = startValue;
+            this.emit('threshold-applied', 'success-bat2');
+            return exitCode.SUCCESS;
         }
+
+        if (this._verifyThresholdBAT1(endValue, startValue))
+            return exitCode.SUCCESS;
+
+        if (this._delayReadTimeoutId2)
+            GLib.source_remove(this._delayReadTimeoutId2);
+        this._delayReadTimeoutId2 = null;
+
+        await new Promise(resolve => {
+            this._delayReadTimeoutId2 = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 200, () => {
+                this._delayReadTimeoutId2 = null;
+                resolve();
+                return GLib.SOURCE_REMOVE;
+            });
+        });
+
+        if (this._verifyThresholdBAT1(endValue, startValue))
+            return exitCode.SUCCESS;
+
+        this.emit('threshold-applied', 'not-updated');
         return exitCode.ERROR;
+    }
+
+    _verifyThresholdBAT0(endValue, startValue) {
+        this.endLimitValue = readFileInt(BAT0_END_PATH);
+        this.startLimitValue = readFileInt(BAT0_START_PATH);
+        if (this.endLimitValue === endValue && this.startLimitValue === startValue) {
+            this.emit('threshold-applied', 'success');
+            return true;
+        }
+        return false;
+    }
+
+    _verifyThresholdBAT1(endValue, startValue) {
+        this.endLimit2Value = readFileInt(BAT1_END_PATH);
+        this.startLimit2Value = readFileInt(BAT1_START_PATH);
+        if (this.endLimit2Value === endValue && this.startLimit2Value === startValue) {
+            this.emit('threshold-applied', 'success-bat2');
+            return true;
+        }
+        return false;
     }
 
     async setThresholdLimitDual() {
@@ -192,6 +254,14 @@ export const ThinkpadDualBattery = GObject.registerClass({
     }
 
     destroy() {
+        if (this._delayReadTimeoutId)
+            GLib.source_remove(this._delayReadTimeoutId);
+        this._delayReadTimeoutId = null;
+
+        if (this._delayReadTimeoutId2)
+            GLib.source_remove(this._delayReadTimeoutId2);
+        this._delayReadTimeoutId2 = null;
+
         if (this._monitorLevelId)
             this._monitorLevel.disconnect(this._monitorLevelId);
         this._monitorLevelId = null;

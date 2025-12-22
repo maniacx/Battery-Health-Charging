@@ -1,6 +1,6 @@
 'use strict';
 /* Acer Nitro Laptops using:
-   - https://github.com/0x7375646F/Linuwu-Sense (original driver) 
+   - https://github.com/0x7375646F/Linuwu-Sense (original driver)
    - https://github.com/PXDiv/Div-Linuwu-Sense  (fork) */
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
