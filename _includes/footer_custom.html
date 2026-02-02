@@ -2,39 +2,26 @@
   <br>
   <p class="text-small text-grey-dk-000 mb-0">Explore My GNOME Extensions</p>
   <div id='container1'>
-    <img id="bhc-logo" width="4%" style='float: left; margin-right: 0.5rem;'/>
+    <img src="{{ 'assets/images/footer/bhc-logo.png' | relative_url }}" width="4%" style='float: left; margin-right: 0.5rem;'/>
     <p class="text-small text-grey-dk-000 mb-0"><a href="https://extensions.gnome.org/extension/5724/battery-health-charging/">Battery Health Charging:</a> An extension for setting Charging threshold for batteries on laptops</p>
   </div>
   <div id='container2'>
-    <img id="bbm-logo" width="4%" style='float: left; margin-right: 0.5rem;'/>
+    <img src="{{ 'assets/images/footer/bbm-logo.png' | relative_url }}" width="4%" style='float: left; margin-right: 0.5rem;'/>
     <p class="text-small text-grey-dk-000 mb-0"><a href="https://extensions.gnome.org/extension/6670/bluetooth-battery-meter/">Bluetooth Battery Meter:</a> An extension featuring indicator icons in system tray</p>
   </div>
   <div id='container3'>
-    <img id="abm-logo" width="4%" style='float: left; margin-right: 0.5rem;'/>
+    <img src="{{ 'assets/images/footer/abm-logo.png' | relative_url }}" width="4%" style='float: left; margin-right: 0.5rem;'/>
     <p class="text-small text-grey-dk-000 mb-0"><a href="https://extensions.gnome.org/extension/6778/airpod-battery-monitor/">Airpod Battery Monitor:</a> An extension featuring indicator icons in system tray</p>
+  </div>
+  <br>
+  <p class="text-small text-grey-dk-000 mb-0">Explore My Flathub Apps</p>
+  <div id='container1'>
+    <img src="{{ 'assets/images/footer/budslink-logo.png' | relative_url }}" width="4%" style='float: left; margin-right: 0.5rem;'/>
+    <p class="text-small text-grey-dk-000 mb-0"><a href="https://github.com/maniacx/BudsLink/">BudsLink:</a> An application for Battery status and ANC control for several Bluetooth earbuds</p>
   </div>
   <br>
   <br>
   <p class="text-small text-grey-dk-000 mb-0">
-    Copyright &copy; 2017-2020 Patrick Marsceill. Distributed by an <a href="https://github.com/just-the-docs/just-the-docs/tree/main/LICENSE.txt">MIT license.</a> <a href="https://www.netlify.com/">This site is powered by Netlify.</a><br>Build by maniacx for Battery Health Charging Gnome Extension
+Copyright &copy; 2017-2020 Patrick Marsceill. Distributed by an <a href=\"https://github.com/just-the-docs/just-the-docs/tree/main/LICENSE.txt\">MIT license.</a> <a href=\"https://www.netlify.com/\">This site is powered by Netlify.</a><br>Build by maniacx for Bluetooth Battery Meter Gnome Extension
   </p>
 </footer>
-
-<script>
-  function setImageSource(imgId, primarySrc, fallbackSrc) {
-    var img = document.getElementById(imgId);
-    var primaryImg = new Image();
-    primaryImg.onload = function() {
-      img.src = primarySrc;
-    };
-    primaryImg.onerror = function() {
-      img.src = fallbackSrc;
-    };
-    primaryImg.src = primarySrc;
-  }
-
-  setImageSource('bhc-logo', './assets/images/footer/bhc-logo.png', '../assets/images/footer/bhc-logo.png');
-  setImageSource('bbm-logo', './assets/images/footer/bbm-logo.png', '../assets/images/footer/bbm-logo.png');
-  setImageSource('abm-logo', './assets/images/footer/abm-logo.png', '../assets/images/footer/abm-logo.png');
-</script>
-
