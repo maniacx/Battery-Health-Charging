@@ -100,7 +100,10 @@ if [[ "$(recent_polkit)" != "available" ]]; then
 fi
 TOOL_IN="${DIR}/../${RESOURCES_DIR}/$BHC_BASE"
 
-TOOL_OUT="${BHC_DIR}/${BHC_BASE}-${TOOL_USER}"
+# Resolve symlinks in BHC_DIR so the path baked into the polkit rule matches
+# the canonical path polkit sees at exec time. On Fedora Atomic /usr/local is
+# a symlink to /var/usrlocal; on traditional layouts this is a no-op.
+TOOL_OUT="$(readlink -f -m "${BHC_DIR}/${BHC_BASE}-${TOOL_USER}")"
 RULE_OUT="${RULE_DIR}/10-${RULE_BASE}-${TOOL_USER}.rules"
 ACTION_ID="${RULE_BASE}.${TOOL_USER}"
 ACTION_OUT="/usr/share/polkit-1/actions/${ACTION_ID}.policy"

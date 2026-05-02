@@ -77,7 +77,10 @@ function check_installation() {
     fi
 
     TOOL_IN="${EXTDIR}/${BHC_BASE}"
-    TOOL_OUT="${BHC_DIR}/${BHC_BASE}-${TOOL_USER}"
+    # Resolve symlinks so cmp against the installed rule matches the path that
+    # installer.sh baked in (canonicalized). On Fedora Atomic /usr/local is a
+    # symlink to /var/usrlocal; on traditional layouts this is a no-op.
+    TOOL_OUT="$(readlink -f -m "${BHC_DIR}/${BHC_BASE}-${TOOL_USER}")"
     RULE_OUT="${RULE_DIR}/10-${RULE_BASE}-${TOOL_USER}.rules"
     ACTION_ID="${RULE_BASE}.${TOOL_USER}"
     ACTION_OUT="/usr/share/polkit-1/actions/${ACTION_ID}.policy"
