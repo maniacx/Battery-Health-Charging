@@ -33,6 +33,7 @@ GIGABYTE_LIMIT='/sys/devices/platform/gigabyte_laptop/charge_limit'
 AORUS_MODE='/sys/devices/platform/aorus_laptop/charge_mode'
 AORUS_LIMIT='/sys/devices/platform/aorus_laptop/charge_limit'
 APPLE_CHARGING_LED_PATH='/sys/class/power_supply/BAT0/charge_control_full_threshold'
+APPLE2_PATH='/sys/bus/acpi/drivers/applesmc/APP0001:00/battery_charge_limit'
 BAT0_FORCE_DISCHARGE_PATH='/sys/class/power_supply/BAT0/charge_behaviour'
 BAT1_FORCE_DISCHARGE_PATH='/sys/class/power_supply/BAT1/charge_behaviour'
 CMB0_END_PATH='/sys/class/power_supply/CMB0/charge_control_end_threshold'
@@ -280,6 +281,10 @@ case "$TOOLCMD" in
                     echo "$ARG2" >"$APPLE_CHARGING_LED_PATH"
                 fi
             } &&
+            exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
+        ;;
+    APPLE2)
+        echo "$ARG1" >"$APPLE2_PATH" &&
             exit "$EXIT_SUCCESS" || exit "$EXIT_ERROR"
         ;;
     FORCE_DISCHARGE_BAT0)
