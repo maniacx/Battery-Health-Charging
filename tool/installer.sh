@@ -100,10 +100,9 @@ if [[ "$(recent_polkit)" != "available" ]]; then
 fi
 TOOL_IN="${DIR}/../${RESOURCES_DIR}/$BHC_BASE"
 
-# Resolve symlinks in BHC_DIR so the path baked into the polkit rule matches
-# the canonical path polkit sees at exec time. On Fedora Atomic /usr/local is
-# a symlink to /var/usrlocal; on traditional layouts this is a no-op.
-TOOL_OUT="$(readlink -f -m "${BHC_DIR}/${BHC_BASE}-${TOOL_USER}")"
+TOOL_OUT="${BHC_DIR}/${BHC_BASE}-${TOOL_USER}"
+CANONICAL_TOOL_OUT="$(readlink -f -m "${BHC_DIR}/${BHC_BASE}-${TOOL_USER}")"
+
 RULE_OUT="${RULE_DIR}/10-${RULE_BASE}-${TOOL_USER}.rules"
 ACTION_ID="${RULE_BASE}.${TOOL_USER}"
 ACTION_OUT="/usr/share/polkit-1/actions/${ACTION_ID}.policy"
@@ -114,11 +113,24 @@ function print_policy_xml() {
         -e "s:{{ACTION_ID}}:${ACTION_ID}:g" "${ACTION_IN}"
 }
 
+function generate_program_condition() {
+    if [[ "$TOOL_OUT" == "$CANONICAL_TOOL_OUT" ]]; then
+        printf 'action.lookup("program") === "%s"' "$TOOL_OUT"
+    else
+        printf 'action.lookup("program") === "%s" || action.lookup("program") === "%s"' \
+            "$TOOL_OUT" \
+            "$CANONICAL_TOOL_OUT"
+    fi
+}
+
 function print_rules_javascript() {
     if [[ "$RULE_IN" == *.legacy ]]; then
         sed -e "s:{{RULE_BASE}}:${RULE_BASE}:g" "${RULE_IN}"
     else
-        sed -e "s:{{TOOL_OUT}}:${TOOL_OUT}:g" \
+        local PROGRAM_CONDITION
+        PROGRAM_CONDITION="$(generate_program_condition)"
+
+        sed -e "s:{{PROGRAM_CONDITION}}:${PROGRAM_CONDITION}:g" \
             -e "s:{{TOOL_USER}}:${TOOL_USER}:g" "${RULE_IN}"
     fi
 

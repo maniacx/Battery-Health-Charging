@@ -1,7 +1,6 @@
 polkit.addRule(function(action, subject) {
-    if (action.id === "org.freedesktop.policykit.exec" &&
-        action.lookup("program") === "{{TOOL_OUT}}" &&
-        subject.user === "{{TOOL_USER}}")
+    if (action.id === "org.freedesktop.policykit.exec" && subject.user === "{{TOOL_USER}}" &&
+        ({{PROGRAM_CONDITION}}))
     {
         return polkit.Result.YES;
     }

@@ -50,6 +50,19 @@ ARG2=${3:-0}
 ARG3=${4:-0}
 ARG4=${5:-0}
 
+function generate_program_condition() {
+    local tool_out="$1"
+    local canonical_tool_out="$2"
+
+    if [[ "$tool_out" == "$canonical_tool_out" ]]; then
+        printf 'action.lookup("program") === "%s"' "$tool_out"
+    else
+        printf 'action.lookup("program") === "%s" || action.lookup("program") === "%s"' \
+            "$tool_out" \
+            "$canonical_tool_out"
+    fi
+}
+
 function check_installation() {
     local EXTENSION_NAME='Battery Health Charging'
     local ACTION_BASE='dem.batteryhealthcharging'
@@ -77,10 +90,9 @@ function check_installation() {
     fi
 
     TOOL_IN="${EXTDIR}/${BHC_BASE}"
-    # Resolve symlinks so cmp against the installed rule matches the path that
-    # installer.sh baked in (canonicalized). On Fedora Atomic /usr/local is a
-    # symlink to /var/usrlocal; on traditional layouts this is a no-op.
-    TOOL_OUT="$(readlink -f -m "${BHC_DIR}/${BHC_BASE}-${TOOL_USER}")"
+    TOOL_OUT="${BHC_DIR}/${BHC_BASE}-${TOOL_USER}"
+    CANONICAL_TOOL_OUT="$(readlink -f -m "${BHC_DIR}/${BHC_BASE}-${TOOL_USER}")"
+
     RULE_OUT="${RULE_DIR}/10-${RULE_BASE}-${TOOL_USER}.rules"
     ACTION_ID="${RULE_BASE}.${TOOL_USER}"
     ACTION_OUT="/usr/share/polkit-1/actions/${ACTION_ID}.policy"
@@ -102,7 +114,13 @@ function check_installation() {
         fi
     else
         echo "$EXTENSION_NAME: checking rules !"
-        if ! sed -e "s:{{TOOL_OUT}}:${TOOL_OUT}:g" \
+        local PROGRAM_CONDITION
+        PROGRAM_CONDITION="$(generate_program_condition \
+            "$TOOL_OUT" \
+            "$CANONICAL_TOOL_OUT")"
+
+        if ! sed \
+            -e "s:{{PROGRAM_CONDITION}}:${PROGRAM_CONDITION}:g" \
             -e "s:{{TOOL_USER}}:${TOOL_USER}:g" "${RULE_IN}" |
             cmp --silent "${RULE_OUT}"; then
             echo "$EXTENSION_NAME: installation needs updating rules!"
