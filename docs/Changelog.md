@@ -8,6 +8,11 @@ permalink: /changelogs
 # Changelogs
 
 {: .important-title }
+> GN-45_Version 80 &emsp;&emsp; Sep 15, 2026
+> * Fix for new version of Fedora 44 SilverBlue. credits@nokernel
+> * Support GNOME 51
+
+{: .important-title }
 > GN-45_Version 79 &emsp;&emsp; Mar 09, 2026
 > * Thinkpad: Dual: Add verify with delay and skip verification feature.
 > * Support GNOME 50
