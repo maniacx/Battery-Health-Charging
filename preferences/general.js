@@ -3,10 +3,10 @@ import Adw from 'gi://Adw';
 import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
-import {gettext as _} from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
+import { gettext as _ } from 'resource:///org/gnome/Shell/Extensions/js/extensions/prefs.js';
 
 import * as Helper from '../lib/helper.js';
-const {exitCode, execCheck} = Helper;
+const { exitCode, execCheck } = Helper;
 
 export const General = GObject.registerClass({
     GTypeName: 'BHC_General',
@@ -178,6 +178,7 @@ export const General = GObject.registerClass({
         const user = GLib.get_user_name();
         const argv = [
             'pkexec',
+            'bash',
             this._dir.get_child('tool').get_child('installer.sh').get_path(),
             '--tool-user',
             user,
