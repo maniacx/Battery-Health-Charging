@@ -176,9 +176,15 @@ export const General = GObject.registerClass({
 
     async _runInstallerScript(action) {
         const user = GLib.get_user_name();
+        const scriptPath = this._dir.get_child('tool').get_child('installer.sh').get_path();
+
+        // Packaging (gnome-extensions pack / extensions.gnome.org repackaging) does not
+        // reliably preserve the executable bit on bundled scripts — restore it before use.
+        await execCheck(['chmod', '+x', scriptPath]);
+
         const argv = [
             'pkexec',
-            this._dir.get_child('tool').get_child('installer.sh').get_path(),
+            scriptPath,
             '--tool-user',
             user,
             action,
