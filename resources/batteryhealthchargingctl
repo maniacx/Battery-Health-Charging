@@ -152,6 +152,9 @@ function validate_path() {
         "/run/current-system/sw/bin/"
         "/nix/store/"
         "/etc/profiles/per-user/"
+        "/home/linuxbrew/.linuxbrew/bin/",
+        "/home/linuxbrew/.linuxbrew/sbin/"
+
     )
     for BASEPATH in "${VALIDPATHS[@]}"; do
         if [[ "$TOOLPATH" == "${BASEPATH}"* && "$TOOLPATH" == *"$TOOLNAME" ]]; then
