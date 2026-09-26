@@ -8,6 +8,11 @@ permalink: /changelogs
 # Changelogs
 
 {: .important-title }
+> GN-45_Version 81 &emsp;&emsp; Sep 25, 2026
+> * Fix bugs introduce in version 80 due to missing super.destroy() credits@jenseinar
+> * Fix permission of installer credits@guillemglez
+
+{: .important-title }
 > GN-45_Version 80 &emsp;&emsp; Sep 15, 2026
 > * Fix for new version of Fedora 44 SilverBlue. credits@nokernel
 > * Support GNOME 51
