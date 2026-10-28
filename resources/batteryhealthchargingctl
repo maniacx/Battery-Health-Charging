@@ -142,6 +142,11 @@ function check_installation() {
 function validate_path() {
     local TOOLPATH="$1"
     local TOOLNAME="$2"
+
+    TOOLPATH="$(realpath -e -- "$TOOLPATH" 2>/dev/null)" || return 1
+    [[ "$TOOLPATH" == *"$TOOLNAME" && -f "$TOOLPATH" && -x "$TOOLPATH" ]] || return 1
+    [[ "$(stat -c '%U %a' "$TOOLPATH")" =~ ^root\ [0-7][0-5][0-5]$ ]] || return 1
+
     local VALIDPATHS=(
         "/usr/local/sbin/"
         "/usr/local/bin/"
