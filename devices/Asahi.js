@@ -53,8 +53,8 @@ export const AsahiSingleBattery62 = GObject.registerClass({
             return false;
         if (!fileExists(ASAHI_START_PATH))
             return false;
-        const kernelVersion = readFile(KERNEL_VERSION_PATH).trim().split('.', 2);
-        if (parseInt(kernelVersion[0]) >= 6 && parseInt(kernelVersion[1]) >= 3)
+        const [major, minor] = readFile(KERNEL_VERSION_PATH).trim().split('.').map(Number);
+        if (major > 6 || major === 6 && minor > 2)
             return false;
         return true;
     }
@@ -141,8 +141,8 @@ export const AsahiSingleBattery63 = GObject.registerClass({
             return false;
         if (!fileExists(ASAHI_START_PATH))
             return false;
-        const kernelVersion = readFile(KERNEL_VERSION_PATH).trim().split('.', 2);
-        if (parseInt(kernelVersion[0]) <= 6 && parseInt(kernelVersion[1]) <= 2)
+        const [major, minor] = readFile(KERNEL_VERSION_PATH).trim().split('.').map(Number);
+        if (major < 6 || major === 6 && minor <= 2)
             return false;
         return true;
     }
