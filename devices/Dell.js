@@ -295,7 +295,7 @@ export const DellSmBiosSingleBattery = GObject.registerClass({
         const arg2 = this._chargingMode === 'adv' || this._chargingMode === 'exp' ? null : `${this._endValue}`;
 
         if (pass)
-            [status] = await runCommandCtl(this.ctlPath, 'DELL_CCTK_AUTH_WRITE', this._cctkPath, pass, arg1, arg2);
+            [status] = await runCommandCtl(this.ctlPath, 'DELL_CCTK_AUTH_WRITE', this._cctkPath, arg1, arg2, {stdin: pass});
         else
             [status] = await runCommandCtl(this.ctlPath, 'DELL_CCTK_WRITE', this._cctkPath, arg1, arg2);
 

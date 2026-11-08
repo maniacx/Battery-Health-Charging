@@ -430,17 +430,22 @@ case "$TOOLCMD" in
         fi
         ;;
     DELL_CCTK_AUTH_WRITE)
+        IFS= read -r BIOS_PASSWORD || exit "$EXIT_ERROR"
+
         validate_path "$ARG1" "/cctk" &&
-            {
-                if [ "$ARG3" = "adv" ]; then
-                    "$ARG1" --ValSetupPwd="$ARG2" --PrimaryBattChargeCfg=Adaptive
-                elif [ "$ARG3" = "exp" ]; then
-                    "$ARG1" --ValSetupPwd="$ARG2" --PrimaryBattChargeCfg=Express
-                else
-                    "$ARG1" --ValSetupPwd="$ARG2" --PrimaryBattChargeCfg=Custom:"$ARG3"-"$ARG4"
-                fi
-            }
+        {
+            if [ "$ARG2" = "adv" ]; then
+                "$ARG1" --ValSetupPwd="$BIOS_PASSWORD" --PrimaryBattChargeCfg=Adaptive
+            elif [ "$ARG2" = "exp" ]; then
+                "$ARG1" --ValSetupPwd="$BIOS_PASSWORD" --PrimaryBattChargeCfg=Express
+            else
+                "$ARG1" --ValSetupPwd="$BIOS_PASSWORD" --PrimaryBattChargeCfg=Custom:"$ARG2"-"$ARG3"
+            fi
+        }
+
         COMMAND_EXIT_STATUS="$?"
+        unset BIOS_PASSWORD
+
         if [ "$COMMAND_EXIT_STATUS" -eq 65 ] || [ "$COMMAND_EXIT_STATUS" -eq 58 ]; then
             exit "$COMMAND_EXIT_STATUS"
         elif [ "$COMMAND_EXIT_STATUS" -eq 0 ]; then
