@@ -209,6 +209,10 @@
             <default>false</default>
             <summary>Need Bios password</summary>
         </key>
+        <key name="support-sysfs-password" type="b">
+            <default>false</default>
+            <summary>Supports Bios password in sysfs mode</summary>
+        </key>
 
         <!-- Apple -->
         <key name="apple-charging-led" type="b">

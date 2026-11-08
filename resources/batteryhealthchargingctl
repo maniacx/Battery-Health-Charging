@@ -40,6 +40,10 @@ CMB0_END_PATH='/sys/class/power_supply/CMB0/charge_control_end_threshold'
 CMB1_END_PATH='/sys/class/power_supply/CMB1/charge_control_end_threshold'
 DELL_BAT0_CHARGE_TYPES_PATH='/sys/class/power_supply/BAT0/charge_types'
 DELL_BAT1_CHARGE_TYPES_PATH='/sys/class/power_supply/BAT1/charge_types'
+DELL_PW='/sys/class/firmware-attributes/dell-wmi-sysman/authentication/Admin/current_password'
+DELL_FW_ATT_PRI_BATTCHARGE_CFG='/sys/class/firmware-attributes/dell-wmi-sysman/attributes/PrimaryBattChargeCfg'
+DELL_FW_ATT_CFG_CUSTOM_END='/sys/class/firmware-attributes/dell-wmi-sysman/attributes/CustomChargeStop'
+DELL_FW_ATT_CFG_CUSTOM_START='/sys/class/firmware-attributes/dell-wmi-sysman/attributes/CustomChargeStart'
 
 EXIT_SUCCESS=0
 EXIT_ERROR=1
@@ -452,6 +456,76 @@ case "$TOOLCMD" in
             exit "$EXIT_SUCCESS"
         else
             exit "$EXIT_ERROR"
+        fi
+        ;;
+    DELL_SYSFS_AUTH_END_START)
+        IFS= read -r BIOS_PASSWORD || exit "$EXIT_ERROR"
+
+        if ! printf '%s\n' "$BIOS_PASSWORD" >"$DELL_PW"; then
+            unset BIOS_PASSWORD
+            printf '\n' >"$DELL_PW"
+            exit "$EXIT_ERROR"
+        fi
+        unset BIOS_PASSWORD
+
+        if [ "$ARG1" = "adv" ]; then
+            echo "Adaptive" >"$DELL_FW_ATT_PRI_BATTCHARGE_CFG"
+        elif [ "$ARG1" = "exp" ]; then
+            echo "Express" >"$DELL_FW_ATT_PRI_BATTCHARGE_CFG"
+        else
+            echo "$ARG2" >"$DELL_FW_ATT_CFG_CUSTOM_END" &&
+                echo "$ARG3" >"$DELL_FW_ATT_CFG_CUSTOM_START" &&
+                echo "Custom" >"$DELL_FW_ATT_PRI_BATTCHARGE_CFG"
+        fi
+
+        COMMAND_EXIT_STATUS=$?
+        printf '\n' >"$DELL_PW" || COMMAND_EXIT_STATUS="$EXIT_ERROR"
+        exit "$COMMAND_EXIT_STATUS"
+        ;;
+    DELL_SYSFS_AUTH_START_END)
+        IFS= read -r BIOS_PASSWORD || exit "$EXIT_ERROR"
+
+        if ! printf '%s\n' "$BIOS_PASSWORD" >"$DELL_PW"; then
+            unset BIOS_PASSWORD
+            printf '\n' >"$DELL_PW"
+            exit "$EXIT_ERROR"
+        fi
+        unset BIOS_PASSWORD
+
+        if [ "$ARG1" = "adv" ]; then
+            echo "Adaptive" >"$DELL_FW_ATT_PRI_BATTCHARGE_CFG"
+        elif [ "$ARG1" = "exp" ]; then
+            echo "Express" >"$DELL_FW_ATT_PRI_BATTCHARGE_CFG"
+        else
+            echo "$ARG3" >"$DELL_FW_ATT_CFG_CUSTOM_START" &&
+                echo "$ARG2" >"$DELL_FW_ATT_CFG_CUSTOM_END" &&
+                echo "Custom" >"$DELL_FW_ATT_PRI_BATTCHARGE_CFG"
+        fi
+
+        COMMAND_EXIT_STATUS=$?
+        printf '\n' >"$DELL_PW" || COMMAND_EXIT_STATUS="$EXIT_ERROR"
+        exit "$COMMAND_EXIT_STATUS"
+        ;;
+    DELL_SYSFS_END_START)
+        if [ "$ARG1" = "adv" ]; then
+            echo "Adaptive" >"$DELL_FW_ATT_PRI_BATTCHARGE_CFG" || exit "$EXIT_ERROR"
+        elif [ "$ARG1" = "exp" ]; then
+            echo "Express" >"$DELL_FW_ATT_PRI_BATTCHARGE_CFG" || exit "$EXIT_ERROR"
+        else
+            echo "$ARG2" >"$DELL_FW_ATT_CFG_CUSTOM_END" || exit "$EXIT_ERROR"
+            echo "$ARG3" >"$DELL_FW_ATT_CFG_CUSTOM_START" || exit "$EXIT_ERROR"
+            echo "Custom" >"$DELL_FW_ATT_PRI_BATTCHARGE_CFG" || exit "$EXIT_ERROR"
+        fi
+        ;;
+    DELL_SYSFS_START_END)
+        if [ "$ARG1" = "adv" ]; then
+            echo "Adaptive" >"$DELL_FW_ATT_PRI_BATTCHARGE_CFG" || exit "$EXIT_ERROR"
+        elif [ "$ARG1" = "exp" ]; then
+            echo "Express" >"$DELL_FW_ATT_PRI_BATTCHARGE_CFG" || exit "$EXIT_ERROR"
+        else
+            echo "$ARG3" >"$DELL_FW_ATT_CFG_CUSTOM_START" || exit "$EXIT_ERROR"
+            echo "$ARG2" >"$DELL_FW_ATT_CFG_CUSTOM_END" || exit "$EXIT_ERROR"
+            echo "Custom" >"$DELL_FW_ATT_PRI_BATTCHARGE_CFG" || exit "$EXIT_ERROR"
         fi
         ;;
     FRAMEWORK_TOOL_THRESHOLD_READ)

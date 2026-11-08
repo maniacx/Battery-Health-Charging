@@ -50,20 +50,26 @@ export const Dell = GObject.registerClass({
             });
         }
 
-        this._bios_settings_group.visible = this._settings.get_string('configuration-mode') === 'cctk';
-        if (this._settings.get_string('configuration-mode') === 'cctk')
+        if (this._showBiosSettings()) {
             this._addBiosPasswordOption();
+            this._bios_settings_group.visible = true;
+        }
 
         this._settings.connect('changed::configuration-mode', () => {
-            if (this._settings.get_string('configuration-mode') === 'cctk') {
-                if (this._secretSchema)
-                    this._bios_settings_group.visible = true;
-                else
+            if (this._showBiosSettings()) {
+                if (!this._secretSchema)
                     this._addBiosPasswordOption();
+
+                this._bios_settings_group.visible = true;
             } else {
                 this._bios_settings_group.visible = false;
             }
         });
+    }
+
+    _showBiosSettings() {
+        const mode = this._settings.get_string('configuration-mode');
+        return mode === 'cctk' || mode === 'sysfs' && this._settings.get_boolean('support-sysfs-password');
     }
 
     _addBiosPasswordOption() {

@@ -1,6 +1,7 @@
 'use strict';
 /* Dell Laptops using package smbios-battery-ctl from https://github.com/dell/libsmbios */
 /* Dell Laptops using package dell command configure from https://www.dell.com/support/kbdoc/en-us/000178000/dell-command-configure */
+import Gio from 'gi://Gio';
 import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import Secret from 'gi://Secret';
@@ -8,9 +9,14 @@ import * as Helper from '../lib/helper.js';
 
 const {exitCode, fileExists, findValidProgramInPath, readFile, readFileInt, runCommandCtl} = Helper;
 
+Gio._promisify(Secret, 'password_lookup');
+
 const DELL_PATH = '/sys/devices/platform/dell-laptop';
 const SMBIOS_PATH = '/usr/sbin/smbios-battery-ctl';
 const CCTK_PATH = '/opt/dell/dcc/cctk';
+
+const DELL_FW_ADMIN_IS_ENABLED = '/sys/class/firmware-attributes/dell-wmi-sysman/authentication/Admin/is_enabled';
+const DELL_FW_ATT_PRI_BATTCHARGE_CFG = '/sys/class/firmware-attributes/dell-wmi-sysman/attributes/PrimaryBattChargeCfg';
 
 const BAT0_CHARGETYPES_PATH = '/sys/class/power_supply/BAT0/charge_types';
 const BAT0_END_PATH = '/sys/class/power_supply/BAT0/charge_control_end_threshold';
@@ -68,6 +74,9 @@ export const DellSmBiosSingleBattery = GObject.registerClass({
 
         const usesBAT0 = fileExists(BAT0_CHARGETYPES_PATH);
         const usesBAT1 = fileExists(BAT1_CHARGETYPES_PATH);
+        const isBpwEnabled = fileExists(DELL_FW_ADMIN_IS_ENABLED);
+        this._hasFwPriBattChargeCfg = fileExists(DELL_FW_ATT_PRI_BATTCHARGE_CFG);
+        this._bpwEnabled = isBpwEnabled && readFileInt(DELL_FW_ADMIN_IS_ENABLED) === 1;
 
         if (usesBAT0 || usesBAT1) {
             this._supportedConfiguration.push('sysfs');
@@ -76,6 +85,8 @@ export const DellSmBiosSingleBattery = GObject.registerClass({
             this._startPath = usesBAT0 ? BAT0_START_PATH : BAT1_START_PATH;
             this._dellEndStartCmd = usesBAT0 ? 'DELL_BAT0_END_START' : 'DELL_BAT1_END_START';
             this._dellStartEndCmd = usesBAT0 ? 'DELL_BAT0_START_END' : 'DELL_BAT1_START_END';
+            const supportSysfsBwp = this._bpwEnabled && this._hasFwPriBattChargeCfg;
+            this._settings.set_boolean('support-sysfs-password', supportSysfsBwp);
         }
 
         this._smbiosPath = findValidProgramInPath('smbios-battery-ctl');
@@ -113,9 +124,9 @@ export const DellSmBiosSingleBattery = GObject.registerClass({
             const config = this._supportedConfiguration[0];
             status = await this._executeThresholdFunction(config);
         } else if (this._supportedConfiguration.length > 1) {
-            const mode = this._settings.get_string('configuration-mode');
-            if (this._supportedConfiguration.includes(mode)) {
-                status = await this._executeThresholdFunction(mode);
+            const config = this._settings.get_string('configuration-mode');
+            if (this._supportedConfiguration.includes(config)) {
+                status = await this._executeThresholdFunction(config);
             } else {
                 const fallbackConfig = this._supportedConfiguration[0];
                 this._settings.set_string('configuration-mode', fallbackConfig);
@@ -148,9 +159,32 @@ export const DellSmBiosSingleBattery = GObject.registerClass({
         if (this._verifySysFsThreshold())
             return exitCode.SUCCESS;
 
-        // Some device wont update end threshold if start threshold > end threshold
-        const cmd = this._startValue >= this._oldEndValue ? this._dellEndStartCmd : this._dellStartEndCmd;
-        const [status] = await runCommandCtl(this.ctlPath, cmd, this._chargingMode, `${this._endValue}`, `${this._startValue}`);
+        let pass = null;
+        if (this._hasFwPriBattChargeCfg && this._bpwEnabled) {
+            pass = await this._getPwd();
+            if (pass === null) {
+                this.emit('threshold-applied', 'password-required');
+                return exitCode.ERROR;
+            }
+        }
+
+        return this._writeThresholdLimitSysFs(pass);
+    }
+
+    async _writeThresholdLimitSysFs(pass) {
+        let endStartCmd;
+        let startEndCmd;
+
+        if (this._hasFwPriBattChargeCfg) {
+            endStartCmd = this._bpwEnabled ? 'DELL_SYSFS_AUTH_END_START' : 'DELL_SYSFS_END_START';
+            startEndCmd = this._bpwEnabled ? 'DELL_SYSFS_AUTH_START_END' : 'DELL_SYSFS_START_END';
+        } else {
+            endStartCmd = this._dellEndStartCmd;
+            startEndCmd = this._dellStartEndCmd;
+        }
+
+        const cmd = this._startValue >= this._oldEndValue ? endStartCmd : startEndCmd;
+        const [status] = await runCommandCtl(this.ctlPath, cmd, this._chargingMode, `${this._endValue}`, `${this._startValue}`, {stdin: pass});
         if (status !== exitCode.SUCCESS) {
             this._emitThresholdError(status);
             return exitCode.ERROR;
@@ -265,28 +299,37 @@ export const DellSmBiosSingleBattery = GObject.registerClass({
         if (verified)
             return exitCode.SUCCESS;
 
-        if (this._settings.get_boolean('need-bios-password'))
-            this._writeCctkThresholdWithPassword();
-        else
-            await this._writeCctkThreshold(null);
-
-        return exitCode.SUCCESS;
-    }
-
-    _writeCctkThresholdWithPassword() {
-        if (!this._secretSchema) {
-            this._secretSchema = new Secret.Schema('org.gnome.shell.extensions.Battery-Health-Charging',
-                Secret.SchemaFlags.NONE, {'string': Secret.SchemaAttributeType.STRING});
+        let pass = null;
+        if (this._settings.get_boolean('need-bios-password')) {
+            pass = await this._getPwd();
+            if (pass === null) {
+                this.emit('threshold-applied', 'password-required');
+                return exitCode.ERROR;
+            }
         }
 
-        Secret.password_lookup(this._secretSchema, {'string': 'Battery-Health-Charging-Gnome-Extension'}, null, (o, result) => {
-            try {
-                const pass = Secret.password_lookup_finish(result);
-                this._writeCctkThreshold(pass);
-            } catch {
-                log('Battery Health Charging: Failed to lookup password from Gnome Keyring');
-            }
-        });
+        return this._writeCctkThreshold(pass);
+    }
+
+    async _getPwd() {
+        if (!this._secretSchema) {
+            this._secretSchema = new Secret.Schema(
+                'org.gnome.shell.extensions.Battery-Health-Charging',
+                Secret.SchemaFlags.NONE,
+                {'string': Secret.SchemaAttributeType.STRING}
+            );
+        }
+
+        try {
+            return await Secret.password_lookup(
+                this._secretSchema,
+                {'string': 'Battery-Health-Charging-Gnome-Extension'},
+                null
+            );
+        } catch (e) {
+            log(`Battery Health Charging: Failed to lookup password from Gnome Keyring: ${e.message}`);
+            return null;
+        }
     }
 
     async _writeCctkThreshold(pass) {
