@@ -213,6 +213,10 @@
             <default>false</default>
             <summary>Supports Bios password in sysfs mode</summary>
         </key>
+        <key name="password-applied" type="b">
+            <default>false</default>
+            <summary>Dummy emitter for password applied</summary>
+        </key>
 
         <!-- Apple -->
         <key name="apple-charging-led" type="b">

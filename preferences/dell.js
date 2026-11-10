@@ -116,6 +116,12 @@ export const Dell = GObject.registerClass({
                     log('Battery Health Charging: Failed to store password on Gnome Keyring');
                     this._status = false;
                 }
+
+                if (this._status) {
+                    const val = this._settings.get_boolean('password-applied');
+                    this._settings.set_boolean('password-applied', !val);
+                }
+
                 const iconKeyring = this._status ? this._success_keyring_icon : this._failed_keyring_icon;
                 iconKeyring.visible = true;
                 if (this._enterTimeout)

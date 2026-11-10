@@ -164,7 +164,7 @@ export const DellSmBiosSingleBattery = GObject.registerClass({
             pass = await this._getPwd();
             if (pass === null) {
                 this.emit('threshold-applied', 'password-required');
-                return exitCode.ERROR;
+                return exitCode.SUCCESS;
             }
         }
 
