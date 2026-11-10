@@ -42,8 +42,9 @@ export default class BatteryHealthChargingPrefs extends ExtensionPreferences {
                 window.add(new Asus(settings));
             else if (currentDevice.type === 16) // device.type 16 is AppleIntel
                 window.add(new Apple(settings));
-            else if (currentDevice.type === 22 && (settings.get_strv('multiple-configuration-supported').length > 1 ||
-                settings.get_string('configuration-mode') === 'cctk')) // device.type 22 is Dell
+            else if (currentDevice.type === 22 && (settings.get_strv('multiple-configuration-supported').length > 1 ||  // device.type 22 is Dell
+                settings.get_string('configuration-mode') === 'cctk' ||
+                settings.get_string('configuration-mode') === 'sysfs' && settings.get_boolean('support-sysfs-password')))
                 window.add(new Dell(settings));
             else if (currentDevice.type === 31 && settings.get_strv('multiple-configuration-supported').length > 1) // device.type 31 is Framework
                 window.add(new Framework(settings));
