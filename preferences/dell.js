@@ -16,6 +16,7 @@ export const Dell = GObject.registerClass({
         'bios_settings_group',
         'need_bios_password',
         'password_entry_box',
+        'save_password_button',
         'success_keyring_icon',
         'failed_keyring_icon',
     ],
@@ -76,6 +77,7 @@ export const Dell = GObject.registerClass({
         this._bios_settings_group.visible = true;
         this._success_keyring_icon.visible = false;
         this._failed_keyring_icon.visible = false;
+        this._save_password_button.sensitive = this._password_entry_box.text.length > 0;
 
         this._secretSchema = new Secret.Schema('org.gnome.shell.extensions.Battery-Health-Charging',
             Secret.SchemaFlags.NONE, {'string': Secret.SchemaAttributeType.STRING});
@@ -89,6 +91,14 @@ export const Dell = GObject.registerClass({
 
         this._password_entry_box.connect('activate', () => {
             this._setPassword(this._password_entry_box.text);
+        });
+
+        this._save_password_button.connect('clicked', () => {
+            this._setPassword(this._password_entry_box.text);
+        });
+
+        this._password_entry_box.connect('notify::text', () => {
+            this._save_password_button.sensitive = this._password_entry_box.text.length > 0;
         });
 
         this._settings.connect('changed::need-bios-password', () => {

@@ -27,7 +27,7 @@
         <child>
           <object class="AdwActionRow">
             <property name="title" translatable="yes">Requires Bios password validation to change mode/threshold</property>
-            <property name="subtitle" translatable="yes">Enable if Dell command configure uses Bios (system) password to change mode/threshold</property>
+            <property name="subtitle" translatable="yes">Enable if a BIOS (system) password is required to change the mode or threshold</property>
             <property name="activatable-widget">need_bios_password</property>
             <child>
               <object class="GtkSwitch" id="need_bios_password">
@@ -66,6 +66,17 @@
                 <property name="width-request">30</property>
                 <property name="valign">center</property>
                 <property name="show-peek-icon">True</property>
+              </object>
+            </child>
+            <child>
+              <object class="GtkButton" id="save_password_button">
+                <property name="valign">center</property>
+                <property name="tooltip-text" translatable="yes">Apply</property>
+                <property name="child">
+                  <object class="AdwButtonContent">
+                    <property name="icon-name">document-save-symbolic</property>
+                  </object>
+                </property>
               </object>
             </child>
           </object>
