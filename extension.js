@@ -65,7 +65,7 @@ export default class BatteryHealthCharging extends Extension {
 
                 // destroy _initializeDriver when entering [unlock-dialog] session mode.
             } else if (session.currentMode === 'unlock-dialog') {
-                initializeDriver.destroy();
+                initializeDriver?.destroy();
                 initializeDriver = null;
             }
         });
@@ -77,13 +77,13 @@ export default class BatteryHealthCharging extends Extension {
             Main.sessionMode.disconnect(this._sessionId);
             this._sessionId = null;
         }
-        if (initializeDriver) {
-            initializeDriver.destroy();
-            initializeDriver = null;
-        }
-        this._powerIcon.destroy();
+
+        initializeDriver?.destroy();
+        initializeDriver = null;
+        this._powerIcon?.destroy();
         this._powerIcon = null;
         this._settings = null;
+        this._upowerClient = null;
     }
 }
 
