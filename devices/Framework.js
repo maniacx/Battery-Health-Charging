@@ -4,12 +4,14 @@ import GLib from 'gi://GLib';
 import GObject from 'gi://GObject';
 import * as Helper from '../lib/helper.js';
 
-const {dmiVendor, exitCode, fileExists, findValidProgramInPath, readFileInt, runCommandCtl} = Helper;
+const {dmiVendor, exitCode, fileExists, findValidProgramInPath, readFileInt, runCommandCtl, execCheck} = Helper;
 
 const BAT1_END_PATH = '/sys/class/power_supply/BAT1/charge_control_end_threshold';
 const BAT1_START_PATH = '/sys/class/power_supply/BAT1/charge_control_start_threshold';
 const FRAMEWORK_TOOL_PATH = '/usr/bin/framework_tool';
 const CROS_EC_PATH = '/dev/cros_ec';
+const FRAMEWORK_BREW_BIN_PATH = '/home/linuxbrew/.linuxbrew/bin/framework_tool';
+const FRAMEWORK_BREW_SBIN_PATH = '/home/linuxbrew/.linuxbrew/sbin/framework_tool';
 
 export const FrameworkSingleBatteryBAT1 = GObject.registerClass({
     Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
@@ -293,4 +295,87 @@ export const FrameworkSingleBatteryEndStartBAT1 = GObject.registerClass({
         this._delayReadTimeoutId = null;
     }
 });
+
+export const FrameworkLinuxBrew = GObject.registerClass({
+    Signals: {'threshold-applied': {param_types: [GObject.TYPE_STRING]}},
+}, class FrameworkLinuxBrew extends GObject.Object {
+    constructor(settings) {
+        super();
+        this.name = 'Framework LinuxBrew';
+        this.type = 43;
+        this.deviceNeedRootPermission = false;
+        this.deviceHaveDualBattery = false;
+        this.deviceHaveStartThreshold = false;
+        this.deviceHaveVariableThreshold = true;
+        this.deviceHaveBalancedMode = true;
+        this.deviceHaveAdaptiveMode = false;
+        this.deviceHaveExpressMode = false;
+        this.deviceUsesModeNotValue = false;
+        this.iconForFullCapMode = '100';
+        this.iconForBalanceMode = '080';
+        this.iconForMaxLifeMode = '060';
+        this.endFullCapacityRangeMax = 100;
+        this.endFullCapacityRangeMin = 80;
+        this.endBalancedRangeMax = 95;
+        this.endBalancedRangeMin = 65;
+        this.endMaxLifeSpanRangeMax = 85;
+        this.endMaxLifeSpanRangeMin = 50;
+        this.incrementsStep = 1;
+        this.incrementsPage = 5;
+
+        this._settings = settings;
+        this.ctlPath = null;
+        this.endLimitValue = -1;
+    }
+
+    isAvailable() {
+        if (!dmiVendor()?.includes('Framework'))
+            return false;
+
+        this._frameworkToolPath = null;
+
+        if (fileExists(FRAMEWORK_BREW_BIN_PATH)) {
+            this._frameworkToolPath = FRAMEWORK_BREW_BIN_PATH;
+        } else if (fileExists(FRAMEWORK_BREW_SBIN_PATH)) {
+            this._frameworkToolPath = FRAMEWORK_BREW_SBIN_PATH;
+        } else {
+            const path = GLib.find_program_in_path('framework_tool');
+
+            if (path?.startsWith('/home/linuxbrew/.linuxbrew/'))
+                this._frameworkToolPath = path;
+        }
+
+        return this._frameworkToolPath !== null;
+    }
+
+    async setThresholdLimit(chargingMode) {
+        const endValue = this._settings.get_int(`current-${chargingMode}-end-threshold`);
+
+        const frameworkToolDriver = fileExists(CROS_EC_PATH) ? 'cros-ec' : 'portio';
+
+        const cmd = [
+            this._frameworkToolPath,
+            '--driver',
+            frameworkToolDriver,
+            '--charge-limit',
+            `${endValue}`,
+        ];
+
+        const [status] = await execCheck(cmd);
+
+        if (status === exitCode.SUCCESS) {
+            this.endLimitValue = endValue;
+            this.emit('threshold-applied', 'success');
+            return exitCode.SUCCESS;
+        } else {
+            this.emit('threshold-applied', 'error');
+            return exitCode.ERROR;
+        }
+    }
+
+    destroy() {
+        // Nothing to destroy for this device
+    }
+});
+
 
